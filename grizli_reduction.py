@@ -260,6 +260,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
 def retrieve_archival_data(visits, field, retrieve_bool = False):
     if retrieve_bool == False: return
+    os.chdir(PATH_TO_RAW)    
 
     product_names = np.array([visit['product'] for visit in visits])
     filter_names = np.array([visit['product'].split('-')[-1] for visit in visits])
@@ -279,22 +280,23 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
 
 
-    '''
+
     ra_target = 189.22053
     dec_target = 62.24010833333
-    radius_in_arcmin = 20
+    radius_in_arcmin = 10
 
 
-
+    #First run-through, ignore the imaging
     parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], 
                          extensions=['FLT'], filters=['F105W', 'F140W'], extra=[])
 
+    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
 
 
+    '''
     extra = query.DEFAULT_EXTRA
     extra += ["TARGET.TARGET_NAME LIKE 'GDN2'"]
     tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
-
     foot_files = glob.glob('j[02]*footprint.fits')
     print('Footprint files: ', foot_files)
 
@@ -314,6 +316,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
     '''
 
+   os.chdir(PATH_TO_PREP)    
 
 
 
