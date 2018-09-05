@@ -72,8 +72,8 @@ def grizli_getfiles(run = True):
     if run == False: return
     else: 'Running grizli_getfiles...'
 
-    os.chdir('../Prep')
-    files = glob.glob('../RAW/*flt.fits')
+    os.chdir(PATH_TO_PREP)
+    files = glob.glob('%s/*flt.fits'%PATH_TO_RAW)
     info = grizli.utils.get_flt_info(files)
     visits, filters = grizli.utils.parse_flt_files(info=info, uniquename=True)
     return visits, filters
