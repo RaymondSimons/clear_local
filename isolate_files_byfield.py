@@ -19,9 +19,12 @@ overlapping_fields = {'GN1':['GDN20'],
 
 fls = glob('/user/rsimons/grizli_extractions/RAW/*flt.fits')
 
+field_to_use = ['GN2']
+
 for f, fl in enumerate(fls):
 	data = fits.open(fl)
-	print data[0].header['TARGNAME']
-
+	field = data[0].header['TARGNAME']
+	if field.lower() == field_to_use or field.lower() in overlapping_fields[field_to_use].lower():
+		print field
 
 
