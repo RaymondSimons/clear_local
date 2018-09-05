@@ -320,7 +320,13 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
 if __name__ == '__main__':
 
-    os.chdir('../Prep')
+    global PATH_TO_RAW, PATH_TO_PREP, PATH_TO_SCRIPTS
+
+    PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW/GN2'
+    PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
+    PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
+
+    os.chdir(PATH_TO_PREP)
     mag_lim = 23
     mag_lim_lower = 22
 
@@ -328,7 +334,7 @@ if __name__ == '__main__':
     if True:
         files_bool = True
         prep_bool = False
-        retrieve_bool = True
+        retrieve_bool = False
         model_bool = False
         load_bool = False
         fit_bool = False
@@ -337,6 +343,7 @@ if __name__ == '__main__':
     #for field in overlapping_fields.keys():
     visits, filters = grizli_getfiles(run = files_bool)
 
+
     for field in ['GN2']:        
         retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
@@ -344,7 +351,7 @@ if __name__ == '__main__':
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
         grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 9124)
 
-    os.chdir('/Users/rsimons/Desktop/clear/scripts')
+    os.chdir(PATH_TO_SCRIPTS)
 
 
 
