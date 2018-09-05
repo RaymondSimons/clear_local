@@ -317,7 +317,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
             s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
             HOME_PATH = os.getcwd()
             auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, 
-                                    reprocess_parallel=True, s3_sync=(s3_status == 0))
+                                    reprocess_parallel=False, s3_sync=(s3_status == 0))
 
 
 
