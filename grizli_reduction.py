@@ -298,7 +298,8 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
     #Second run-through, retrieve the direct imaging
     if True:
         #Find targetnames
-        fls_temp = glob.glob(PATH_TO_RAW+'/j123625+621431/*flt.fits')
+        print()
+        fls_temp = glob.glob(PATH_TO_RAW+'/GN2/j123625+621431/*flt.fits')
         target_names = []
         for fl in fls_temp:
             data_temp = fits.open(fl)
