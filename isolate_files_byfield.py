@@ -21,7 +21,7 @@ fls = glob('/user/rsimons/grizli_extractions/RAW/*flt.fits')
 
 for f, fl in enumerate(fls):
 	data = fits.open(fl)
-
+	print data[0].header['TARGNAME']
 
 
 
