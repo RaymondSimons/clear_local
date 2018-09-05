@@ -1,7 +1,8 @@
 import os
 import glob
 from glob import glob
-
+import astropy
+from astropy.io import fits
 
 
 overlapping_fields = {'GN1':['GDN20'],
@@ -19,7 +20,7 @@ overlapping_fields = {'GN1':['GDN20'],
 fls = glob('/user/rsimons/grizli_extractions/RAW/*flt.fits')
 
 for f, fl in enumerate(fls):
-	print fl
+	data = fits.open(fl)
 
 
 
