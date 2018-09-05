@@ -29,7 +29,7 @@ for f, fl in enumerate(fls):
 	if field.upper() == field_to_use or field.upper() in overlapping_fields[field_to_use]:
 
 		print field, '\t', fl
-		associated_files = glob(fl.strip('_flt.fits')*)
+		associated_files = glob(fl.strip('_flt.fits')+'*')
 
 		for fl_2 in associated_files:
 			print '\t', fl_2
