@@ -289,7 +289,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
     #First run-through, ignore the imaging
     if True:
         parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], 
-                             extensions=['FLT'], filters=['F105W', 'F140W'], extra=[])
+                             extensions=['FLT'], filters=['G102', 'G141'], extra=[])
 
         tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
         foot_files = glob.glob('j[02]*footprint.fits')
