@@ -298,7 +298,6 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
     #Second run-through, retrieve the direct imaging
     if True:
         #Find targetnames
-        print(PATH_TO_RAW+'/j123625+621431/RAW/*flt.fits')
         fls_temp = glob.glob(PATH_TO_RAW+'/j123625+621431/RAW/*flt.fits')
         target_names = []
         for fl in fls_temp:
@@ -315,34 +314,15 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
             extra = query.DEFAULT_EXTRA.copy()
             extra += ["TARGET.TARGET_NAME LIKE '%s'"%target_name]
             tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
+            s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
+            HOME_PATH = os.getcwd()
+            auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, 
+                                    reprocess_parallel=True, s3_sync=(s3_status == 0))
 
 
 
     os.chdir(PATH_TO_PREP)    
 
-
-    '''
-    extra = query.DEFAULT_EXTRA
-    extra += ["TARGET.TARGET_NAME LIKE 'GDN2'"]
-    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
-    foot_files = glob.glob('j[02]*footprint.fits')
-    print('Footprint files: ', foot_files)
-
-    print('\n# id            ra         dec        e(b-v)   filters')
-    for tab in tabs:
-        print('{0}  {1:.5f}  {2:.5f}   {3:.4f}   {4}'.format(tab.meta['NAME'], tab.meta['RA'], 
-                                                     tab.meta['DEC'], tab.meta['MW_EBV'],
-                                                      ','.join(np.unique(tab['filter']))))
-    s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
-    HOME_PATH = os.getcwd()
-    auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, 
-                            reprocess_parallel=True, s3_sync=(s3_status == 0))
-    #parent = query.run_query(box=None, proposid=[11359], instruments=['WFC3-IR', 'ACS-WFC'], 
-    #                     extensions=['FLT'], filters=['G102','G141'], extra=[])
-
-
-
-    '''
 
 
 
