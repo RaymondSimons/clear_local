@@ -32,6 +32,7 @@ for f, fl in enumerate(fls):
 		associated_files = glob(fl.strip('_flt.fits')+'*')
 
 		for fl_2 in associated_files:
-			print '\t', fl_2
+			print '\t Copying %s to ..../RAW/%s/'%(fl_2, field_to_use)
+			os.system('cp %s /user/rsimons/grizli_extractions/RAW/GN2/'%fl_2)
 
 
