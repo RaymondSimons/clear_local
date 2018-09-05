@@ -305,7 +305,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
             data_temp = fits.open(fl)
             target_name = data_temp[0].header['TARGNAME']
             if target_name in target_names:
-                print('\t repeat for %s'%target_name)
+                pass
             else:
                 print('\t new entry for %s'%target_name)
                 target_names.append(target_name)
@@ -313,7 +313,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
         print(target_names)
         for target_name in target_names:
             parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], extensions=['FLT'], filters=['F105W', 'F140W'], extra=[])
-            extra = query.DEFAULT_EXTRA
+            extra = query.DEFAULT_EXTRA.copy()
             extra += ["TARGET.TARGET_NAME LIKE '%s'"%target_name]
             return extra
             #tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
