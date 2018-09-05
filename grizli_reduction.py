@@ -312,7 +312,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
         print(target_names)
         for target_name in target_names:
-            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
+            parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], extensions=['FLT'], filters=['F105W', 'F140W'], extra=[])
             extra = query.DEFAULT_EXTRA
             extra += ["TARGET.TARGET_NAME LIKE '%s'"%target_name]
             tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
