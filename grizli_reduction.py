@@ -309,7 +309,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
                 target_names.append(target_name)
 
         print(target_names)
-        for t, target_name in enumerate(target_names):
+        for t, target_name in enumerate(target_names[1:len(target_names)]):
             parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], extensions=['FLT'], filters=['F105W', 'F140W'], extra=[])
             extra = query.DEFAULT_EXTRA.copy()
             extra += ["TARGET.TARGET_NAME LIKE '%s'"%target_name]
