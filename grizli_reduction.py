@@ -315,7 +315,8 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
             parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], extensions=['FLT'], filters=['F105W', 'F140W'], extra=[])
             extra = query.DEFAULT_EXTRA
             extra += ["TARGET.TARGET_NAME LIKE '%s'"%target_name]
-            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
+            return extra
+            #tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
 
 
 
@@ -374,7 +375,7 @@ if __name__ == '__main__':
 
 
     for field in ['GN2']:
-        retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
+        extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter = 'F105W', ref_grism = 'G102', 
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
