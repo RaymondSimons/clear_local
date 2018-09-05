@@ -299,7 +299,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
     if True:
         #Find targetnames
         print(PATH_TO_RAW+'/GN2/j123625+621431/*flt.fits')
-        fls_temp = glob.glob(PATH_TO_RAW+'/GN2/j123625+621431/*flt.fits')
+        fls_temp = glob.glob(PATH_TO_RAW+'/j123625+621431/*flt.fits')
         target_names = []
         for fl in fls_temp:
             data_temp = fits.open(fl)
