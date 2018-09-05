@@ -287,30 +287,28 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
 
     #First run-through, ignore the imaging
-    if True:
+    if False:
         parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], 
                              extensions=['FLT'], filters=['G102', 'G141'], extra=[])
 
         tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
-        foot_files = glob.glob('j[02]*footprint.fits')
-        print('Footprint files: ', foot_files)
-
-        print('\n# id            ra         dec        e(b-v)   filters')
-        for tab in tabs:
-            print('{0}  {1:.5f}  {2:.5f}   {3:.4f}   {4}'.format(tab.meta['NAME'], tab.meta['RA'], 
-                                                         tab.meta['DEC'], tab.meta['MW_EBV'],
-                                                          ','.join(np.unique(tab['filter']))))
-
         s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
         HOME_PATH = os.getcwd()
-        auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, 
-                                reprocess_parallel=True, s3_sync=(s3_status == 0))
+        auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True, s3_sync=(s3_status == 0))
 
-
-
-
-
-
+    #Second run-through, retrieve the direct imaging
+    if True:
+        #Find targetnames
+        fls_temp = glob(PATH_TO_RAW+'/j123625+621431/*flt.fits')
+        target_names = []
+        for fl in fls_temp:
+            data_temp = fits.open(fl)
+            target_name = data_temp[0].header['TARGNAME']
+            if target_name in target_names:
+                print('\t repeat for %s'%target_name)
+            else:
+                print('\t new entry for %s'%target_name)
+                target_names.append(target_name)
 
 
 
