@@ -24,7 +24,7 @@ field_to_use = 'GN2'
 for f, fl in enumerate(fls):
 	data = fits.open(fl)
 	field = data[0].header['TARGNAME']
-	if field.upper() == field_to_use or field.upper() in overlapping_fields[field_to_use].lower():
+	if field.upper() == field_to_use or field.upper() in overlapping_fields[field_to_use]:
 		print field
 
 
