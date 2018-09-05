@@ -310,7 +310,14 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
                 print('\t new entry for %s'%target_name)
                 target_names.append(target_name)
 
-    print(target_names)
+        print(target_names)
+        for target_name in target_names:
+            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
+            extra = query.DEFAULT_EXTRA
+            extra += ["TARGET.TARGET_NAME LIKE '%s'"%target_name]
+            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
+
+
 
     os.chdir(PATH_TO_PREP)    
 
