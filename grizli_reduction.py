@@ -290,7 +290,6 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
     if False:
         parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], 
                              extensions=['FLT'], filters=['G102', 'G141'], extra=[])
-
         tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
         s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
         HOME_PATH = os.getcwd()
@@ -299,7 +298,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
     #Second run-through, retrieve the direct imaging
     if True:
         #Find targetnames
-        fls_temp = glob(PATH_TO_RAW+'/j123625+621431/*flt.fits')
+        fls_temp = glob.glob(PATH_TO_RAW+'/j123625+621431/*flt.fits')
         target_names = []
         for fl in fls_temp:
             data_temp = fits.open(fl)
@@ -310,9 +309,9 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
                 print('\t new entry for %s'%target_name)
                 target_names.append(target_name)
 
+    print(target_names)
 
-
-    pwdos.chdir(PATH_TO_PREP)    
+    os.chdir(PATH_TO_PREP)    
 
 
     '''
