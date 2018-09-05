@@ -104,7 +104,7 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
             radec_catalog = p.radec_catalog
             print (visit,'\n\n', visits[grism_index])
             #print (visit[grism_index])
-#            try:
+            #try:
             status = process_direct_grism_visit(direct = visit,
                                                 grism = visits[grism_index],
                                                 radec = radec_catalog, 
@@ -333,8 +333,8 @@ if __name__ == '__main__':
     id_choose = 23116
     if True:
         files_bool = True
+        retrieve_bool = True
         prep_bool = False
-        retrieve_bool = False
         model_bool = False
         load_bool = False
         fit_bool = False
@@ -344,7 +344,7 @@ if __name__ == '__main__':
     visits, filters = grizli_getfiles(run = files_bool)
 
 
-    for field in ['GN2']:        
+    for field in ['GN2']:
         retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter = 'F105W', ref_grism = 'G102', 
