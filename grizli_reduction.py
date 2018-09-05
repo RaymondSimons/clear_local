@@ -293,6 +293,9 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
     tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
 
 
+    os.chdir(PATH_TO_PREP)    
+
+
     '''
     extra = query.DEFAULT_EXTRA
     extra += ["TARGET.TARGET_NAME LIKE 'GDN2'"]
@@ -315,9 +318,6 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
 
     '''
-
-   os.chdir(PATH_TO_PREP)    
-
 
 
 
