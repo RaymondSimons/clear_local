@@ -101,7 +101,7 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
 
         print (field_in_contest)
         #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
-        if ref_filter.lower() == filt1.lower():
+        if (ref_filter.lower() == filt1.lower()) & (field_in_contest !=:
             #found a direct image, now search for grism counterpart
             grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
             p = Pointing(field = field, ref_filter = ref_filter)
@@ -334,7 +334,7 @@ if __name__ == '__main__':
 
     global PATH_TO_RAW, PATH_TO_PREP, PATH_TO_SCRIPTS
 
-    PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW/GN2'
+    PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
     PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
     PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
     PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
