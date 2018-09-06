@@ -308,11 +308,11 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
                 target_names.append(target_name)
 
         print(target_names)
-        for t, target_name in enumerate(target_names[0:1]):
-            parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], extensions=['FLT'], filters=['F105W', 'F140W'], extra=[])
+        for t, target_name in enumerate(target_names):
+            parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], extensions=['FLT'], filters=['F098M', 'F105W', 'F105W', 'F140W'], extra=[])
             extra = query.DEFAULT_EXTRA.copy()
             extra += ["TARGET.TARGET_NAME LIKE '%s'"%target_name]
-            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F105W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
+            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F098M', 'F105W', 'F125W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
             s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
             HOME_PATH = os.getcwd()
             auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, 
@@ -341,7 +341,7 @@ if __name__ == '__main__':
     id_choose = 23116
     if True:
         files_bool = True
-        retrieve_bool = False
+        retrieve_bool = True
         prep_bool = False
         model_bool = False
         load_bool = False
