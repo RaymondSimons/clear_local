@@ -39,29 +39,29 @@ class Pointing():
     def __init__(self, field, ref_filter):
         if 'N' in field.upper():
             self.pad = 500 # really only necessary for GDN
-            self.radec_catalog = '../Catalogs/old_radeccats/goodsN_radec.cat'
+            self.radec_catalog = PATH_TO_CATS + '/old_radeccats/goodsN_radec.cat'
             #self.radec_catalog = '../Catalogs/new_radeccats/goodsn_radec.cat'
-            self.seg_map = '../Catalogs/Goods_N_plus_seg.fits'
-            if '125' in ref_filter:
-                self.catalog = '../Catalogs/GoodsN_plus_merged.cat'
-                self.ref_image = '../Catalogs/goodsn_3dhst.v4.0.F125W_orig_sci.fits'
+            self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
+            if '140' in ref_filter:
+                self.catalog =  PATH_TO_CATS + '/GoodsN_plus_merged.cat'
+                self.ref_image =  PATH_TO_CATS + '/goodsn_3dhst.v4.0.F125W_orig_sci.fits'
             elif '105' in ref_filter:
                 #self.catalog = '../Catalogs/goodsn-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
-                self.catalog = '../Catalogs/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
-                self.ref_image = '../Catalogs/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
+                self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
+                self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
                 #self.ref_image = '../Catalogs/goodsn-F105W-astrodrizzle-v4.3_drz_sci.fits'
 
         elif 'S' in field.upper():
             self.pad = 200 # grizli default
             #self.radec_catalog = '../Catalogs/goodsS_radec.cat'
-            self.radec_catalog = '../Catalogs/goodss_3dhst.v4.1.radec.cat'
-            self.seg_map = '../Catalogs/Goods_S_plus_seg.fits'
-            if '125' in ref_filter:
-                self.catalog = '../Catalogs/GoodsS_plus_merged.cat'
-                self.ref_image = '../Catalogs/goodss_3dhst.v4.0.F125W_orig_sci.fits'  
+            self.radec_catalog =  PATH_TO_CATS + '/goodss_3dhst.v4.1.radec.cat'
+            self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_seg.fits'
+            if '140' in ref_filter:
+                self.catalog =  PATH_TO_CATS + '/GoodsS_plus_merged.cat'
+                self.ref_image =  PATH_TO_CATS + '/goodss_3dhst.v4.0.F125W_orig_sci.fits'  
             elif '105' in ref_filter:            
-                self.catalog = '../Catalogs/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
-                self.ref_image = '../Catalogs/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits'
+                self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
+                self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits'
                 #self.ref_image = '../Catalogs/goodss_3dhst.v4.0.F125W_orig_sci.fits'  
                 #RCS need to retrieve the F015W image
             
@@ -342,7 +342,7 @@ if __name__ == '__main__':
     if True:
         files_bool = True
         retrieve_bool = False
-        prep_bool = True
+        prep_bool = False
         model_bool = False
         load_bool = False
         fit_bool = False
