@@ -359,8 +359,8 @@ if __name__ == '__main__':
 
     for field in ['GN2']:
         extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
-        grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
+        grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter = 'F105W', ref_grism = 'G102', 
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
         grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 9124)
