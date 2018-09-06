@@ -134,7 +134,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
             all_grism_files.extend(visit['files'])
 
     print (all_direct_files, all_grism_files)
-    p = Pointing(field=field, ref_filter=ref_filter)
+    p = Pointing(field=field, ref_filter=ref_filter_1)
     if load_only:
         print('Loading contamination models...')
 
