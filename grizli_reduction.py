@@ -42,6 +42,9 @@ class Pointing():
             self.radec_catalog = PATH_TO_CATS + '/old_radeccats/goodsN_radec.cat'
             #self.radec_catalog = '../Catalogs/new_radeccats/goodsn_radec.cat'
             self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
+            self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
+            self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
+            '''
             if '140' in ref_filter:
                 self.catalog =  PATH_TO_CATS + '/GoodsN_plus_merged.cat'
                 self.ref_image =  PATH_TO_CATS + '/goodsn_3dhst.v4.0.F125W_orig_sci.fits'
@@ -50,6 +53,8 @@ class Pointing():
                 self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
                 self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
                 #self.ref_image = '../Catalogs/goodsn-F105W-astrodrizzle-v4.3_drz_sci.fits'
+            '''           
+
 
         elif 'S' in field.upper():
             self.pad = 200 # grizli default
