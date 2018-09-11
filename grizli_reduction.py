@@ -127,13 +127,13 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         filter_name = visit['product'].split('-')[-1]
         field_in_contest = visit['product'].split('-')[0].upper()
         if field_in_contest != 'goodsn':
-            print (field_in_contest)
+            print (field_in_contest, visit['files'])
             #if field_in_contest == field or field_in_contest in overlapping_fields[field]:
             if (ref_filter_1.lower() in filter_name) or (ref_filter_2.lower() in filter_name):
                 all_direct_files.extend(visit['files'])
             elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
                 all_grism_files.extend(visit['files'])
-
+    '''
     print (all_direct_files, all_grism_files)
     p = Pointing(field=field, ref_filter=ref_filter_1)
     if load_only:
@@ -155,9 +155,10 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         grp.refine_list(poly_order=2, mag_limits=[16, 24], verbose=False)
         print('Saving contamination models')
         grp.save_full_data()
-
+    '''
+    grp = []
     return grp
-
+        
 def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None):
     if fit_bool == False: return
     templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
