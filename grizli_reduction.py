@@ -106,13 +106,13 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
             grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
             p = Pointing(field = field, ref_filter = ref_filter)
             radec_catalog = p.radec_catalog
-            print (visit,'\n\n', visits[grism_index])
+            print (field_in_contest, visit,'\n\n\t','\n\n\t', visits[grism_index])
             #print (visit[grism_index])
             #try:
-            status = process_direct_grism_visit(direct = visit,
-                                                grism = visits[grism_index],
-                                                radec = radec_catalog, 
-                                                align_mag_limits = [14, 23])
+            #status = process_direct_grism_visit(direct = visit,
+            #                                    grism = visits[grism_index],
+            #                                    radec = radec_catalog, 
+            #                                    align_mag_limits = [14, 23])
 
     return visits, filters
 
