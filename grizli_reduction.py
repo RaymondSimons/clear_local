@@ -347,8 +347,8 @@ if __name__ == '__main__':
     if True:
         files_bool = True
         retrieve_bool = False
-        prep_bool = False
-        model_bool = True
+        prep_bool = True
+        model_bool = False
         load_bool = False
         fit_bool = False
 
@@ -358,7 +358,7 @@ if __name__ == '__main__':
         visits, filters = grizli_getfiles(run = files_bool)
         extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
         visits, filters = grizli_getfiles(run = files_bool)
-        grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
+        #grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
