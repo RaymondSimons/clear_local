@@ -96,7 +96,7 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
         product = product_names[v]
         basename = basenames[v]
         filt1 = filter_names[v]
-
+        print (filt1.lower())
         field_in_contest = basename.split('-')[0]
 
         #print (field_in_contest)
@@ -106,7 +106,7 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
             grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
             p = Pointing(field = field, ref_filter = ref_filter)
             radec_catalog = p.radec_catalog
-            print (field_in_contest, visit, visits[grism_index])
+            #print (field_in_contest, visit, visits[grism_index])
             #print (visit[grism_index])
             #try:
             #status = process_direct_grism_visit(direct = visit,
