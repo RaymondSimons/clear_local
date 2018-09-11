@@ -354,13 +354,12 @@ if __name__ == '__main__':
 
     #field = 'GN4'
     #for field in overlapping_fields.keys():
-    visits, filters = grizli_getfiles(run = files_bool)
-
-
     for field in ['GN2']:
+        visits, filters = grizli_getfiles(run = files_bool)
         extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
-        #grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
-        grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
+        visits, filters = grizli_getfiles(run = files_bool)
+        grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
+        #grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
         grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 9124)
