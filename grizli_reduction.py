@@ -139,7 +139,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
             if (ref_filter_1.lower() in filt1) or (ref_filter_2.lower() in filt1):
                 #Find grism files with a direct image
                 all_direct_files.extend(visit['files'])
-                grism_index= np.where((basenames == basename) & ((filter_names == ref_grism_1.lower()) or (filter_names == ref_grism_2.lower()))[0][0]
+                grism_index= np.where((basenames == basename) & ((filter_names == ref_grism_1.lower()) or (filter_names == ref_grism_2.lower())))[0][0]
                 all_grism_files.extend(visits[grism_index]['files'])
             '''
             elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
