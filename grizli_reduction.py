@@ -349,7 +349,7 @@ if __name__ == '__main__':
         retrieve_bool = False
         prep_bool = False
         model_bool = True
-        load_bool = False
+        load_bool = True
         fit_bool = True
 
     #field = 'GN4'
