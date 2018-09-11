@@ -126,12 +126,13 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
     for visit in visits:
         filter_name = visit['product'].split('-')[-1]
         field_in_contest = visit['product'].split('-')[0].upper()
-        print (field_in_contest)
-        #if field_in_contest == field or field_in_contest in overlapping_fields[field]:
-        if (ref_filter_1.lower() in filter_name) or (ref_filter_2.lower() in filter_name):
-            all_direct_files.extend(visit['files'])
-        elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
-            all_grism_files.extend(visit['files'])
+        if field_in_context != 'goodsn':
+            print (field_in_contest)
+            #if field_in_contest == field or field_in_contest in overlapping_fields[field]:
+            if (ref_filter_1.lower() in filter_name) or (ref_filter_2.lower() in filter_name):
+                all_direct_files.extend(visit['files'])
+            elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
+                all_grism_files.extend(visit['files'])
 
     print (all_direct_files, all_grism_files)
     p = Pointing(field=field, ref_filter=ref_filter_1)
@@ -349,18 +350,18 @@ if __name__ == '__main__':
         retrieve_bool = False
         prep_bool = False
         model_bool = True
-        load_bool = True
-        fit_bool = True
+        load_bool = False
+        fit_bool = False
 
     #field = 'GN4'
     #for field in overlapping_fields.keys():
     visits, filters = grizli_getfiles(run = files_bool)
 
 
-#    for field in ['GN2']:
-        #extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
-        #grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
-        #grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
+    for field in ['GN2']:
+        extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
+        grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
+        grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         #grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
         #                   run = model_bool, load_only = load_bool, mag_lim = mag_lim)
         #grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 9124)
