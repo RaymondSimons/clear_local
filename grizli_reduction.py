@@ -126,7 +126,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
     for visit in visits:
         filter_name = visit['product'].split('-')[-1]
         field_in_contest = visit['product'].split('-')[0].upper()
-        if field_in_context != 'goodsn':
+        if field_in_contest != 'goodsn':
             print (field_in_contest)
             #if field_in_contest == field or field_in_contest in overlapping_fields[field]:
             if (ref_filter_1.lower() in filter_name) or (ref_filter_2.lower() in filter_name):
