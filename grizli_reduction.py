@@ -127,8 +127,8 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         filter_name = visit['product'].split('-')[-1]
         field_in_contest = visit['product'].split('-')[0].upper()
         if field_in_contest != 'GOODSN':
-            print (field_in_contest, visit['files'])
             #if field_in_contest == field or field_in_contest in overlapping_fields[field]:
+            print (field_in_contest, visit['files'], filter_name)
             if (ref_filter_1.lower() in filter_name) or (ref_filter_2.lower() in filter_name):
                 all_direct_files.extend(visit['files'])
             elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
