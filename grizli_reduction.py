@@ -143,10 +143,10 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
                 grism_index_2= np.where((basenames == basename) & (ref_grism_2.lower() in filter_names))[0]
 
                 if len(grism_index_1) > 0:
-                    all_grism_files.extend(visits[grism_index_1[0]]['files'])
+                    print(all_grism_files.extend(visits[grism_index_1[0]]['files']))
                 elif len(grism_index_2) > 0:
                     all_grism_files.extend(visits[grism_index_2[0]]['files'])
-
+                    print(visits[grism_index_2[0]]['files'])
 
             '''
             elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
