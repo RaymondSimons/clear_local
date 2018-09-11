@@ -99,14 +99,14 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
 
         field_in_contest = basename.split('-')[0]
 
-        print (field_in_contest)
+        #print (field_in_contest)
         #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
         if (ref_filter.lower() == filt1.lower()):
             #found a direct image, now search for grism counterpart
             grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
             p = Pointing(field = field, ref_filter = ref_filter)
             radec_catalog = p.radec_catalog
-            print (field_in_contest, visit,'\n\n\t','\n\n\t', visits[grism_index])
+            print (field_in_contest, visit, visits[grism_index])
             #print (visit[grism_index])
             #try:
             #status = process_direct_grism_visit(direct = visit,
@@ -347,8 +347,8 @@ if __name__ == '__main__':
     if True:
         files_bool = True
         retrieve_bool = False
-        prep_bool = False
-        model_bool = True
+        prep_bool = True
+        model_bool = False
         load_bool = False
         fit_bool = False
 
