@@ -124,17 +124,28 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
 
     all_grism_files = []
     all_direct_files = []
-    for visit in visits:
-        filter_name = visit['product'].split('-')[-1]
+    product_names = np.array([visit['product'] for visit in visits])
+    filter_names = np.array([visit['product'].split('-')[-1] for visit in visits])
+    basenames = np.array([visit['product'].split('.')[0]+'.0' for visit in visits])
+
+    for v, visit in enumerate(visits):
+        product = product_names[v]
+        basename = basenames[v]
+        filt1 = filter_names[v]        
+        #filter_name = visit['product'].split('-')[-1]
         field_in_contest = visit['product'].split('-')[0].upper()
         if field_in_contest.upper() != 'GOODSN':
             #if field_in_contest == field or field_in_contest in overlapping_fields[field]:
-            if (ref_filter_1.lower() in filter_name) or (ref_filter_2.lower() in filter_name):
+            if (ref_filter_1.lower() in filt1) or (ref_filter_2.lower() in filt1):
+                #Find grism files with a direct image
                 all_direct_files.extend(visit['files'])
+                grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
+                all_grism_files.extend(visits[grism_index]['files'])
+            '''
             elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
                 all_grism_files.extend(visit['files'])
                 print (field_in_contest, visit['files'], filter_name)
-
+            '''
 
     #print (all_direct_files, all_grism_files)
     p = Pointing(field=field, ref_filter=ref_filter_1)
