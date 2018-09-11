@@ -347,8 +347,8 @@ if __name__ == '__main__':
     if True:
         files_bool = True
         retrieve_bool = False
-        prep_bool = True
-        model_bool = False
+        prep_bool = False
+        model_bool = True
         load_bool = False
         fit_bool = False
 
