@@ -362,7 +362,7 @@ if __name__ == '__main__':
     PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
 
     os.chdir(PATH_TO_PREP)
-    mag_lim = 22
+    mag_lim = 25
     mag_lim_lower = 0
 
     id_choose = 23116
@@ -371,7 +371,7 @@ if __name__ == '__main__':
         retrieve_bool = False
         prep_bool = False
         model_bool = True
-        load_bool = True
+        load_bool = False
         fit_bool = True
 
     #field = 'GN4'
