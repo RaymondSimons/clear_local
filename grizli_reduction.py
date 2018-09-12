@@ -372,7 +372,7 @@ if __name__ == '__main__':
         prep_bool = False
         model_bool = True
         load_bool = False
-        fit_bool = True
+        fit_bool = False
 
     #field = 'GN4'
     #for field in overlapping_fields.keys():
