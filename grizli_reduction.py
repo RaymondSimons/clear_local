@@ -174,6 +174,10 @@ class Pointing():
             self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
             self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
+
+            self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodsn_3dhst.v4.1', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
+
+
             '''
             if '140' in ref_filter:
                 self.catalog =  PATH_TO_CATS + '/GoodsN_plus_merged.cat'
