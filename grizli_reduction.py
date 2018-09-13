@@ -313,7 +313,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         grp.save_full_data()
     return grp
         
-def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W'):
+def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True):
     if fit_bool == False: return
     p = Pointing(field = field, ref_filter = ref_filter)
 
@@ -373,7 +373,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
 
                 #try:
-                    if True:
+                    if use_pz_prior:
                         #use redshift prior from z_phot
                         prior = np.zeros((2, len(p.tempfilt['zgrid'])))
                         prior[0] = p.tempfilt['zgrid']
@@ -529,7 +529,7 @@ if __name__ == '__main__':
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 21706)
+        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 21706, use_pz_prior = False)
     os.chdir(PATH_TO_SCRIPTS)
 
 
