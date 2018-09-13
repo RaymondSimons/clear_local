@@ -372,56 +372,56 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                     hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
 
 
-                    try:
-                        if True:
-                            #use redshift prior from z_phot
-                            prior = zeros((2, len(p.tempfilt['zgrid'])))
-                            prior[0] = p.tempfilt['zgrid']
-                            prior[1] = p.pz['chi2fit'][id]
-                        else:
-                            prior = None 
+                #try:
+                    if True:
+                        #use redshift prior from z_phot
+                        prior = zeros((2, len(p.tempfilt['zgrid'])))
+                        prior[0] = p.tempfilt['zgrid']
+                        prior[1] = p.pz['chi2fit'][id]
+                    else:
+                        prior = None 
 
-                        out = grizli.fitting.run_all(
-                            id, 
-                            t0=templ0, 
-                            t1=templ1, 
-                            fwhm=1200, 
-                            zr=[0.5, 2.3], 
-                            dz=[0.004, 0.0005], 
-                            fitter='nnls',
-                            group_name=field,
-                            fit_stacks=True, 
-                            prior=prior, 
-                            fcontam=0.,
-                            pline=pline, 
-                            mask_sn_limit=7, 
-                            fit_only_beams=False,
-                            fit_beams=True, 
-                            root=field,
-                            fit_trace_shift=False, 
-                            phot=None, 
-                            verbose=True, 
-                            scale_photometry=False, 
-                            show_beams=True)
-                        mb, st, fit, tfit, line_hdu = out
-                        fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
+                    out = grizli.fitting.run_all(
+                        id, 
+                        t0=templ0, 
+                        t1=templ1, 
+                        fwhm=1200, 
+                        zr=[0.5, 2.3], 
+                        dz=[0.004, 0.0005], 
+                        fitter='nnls',
+                        group_name=field,
+                        fit_stacks=True, 
+                        prior=prior, 
+                        fcontam=0.,
+                        pline=pline, 
+                        mask_sn_limit=7, 
+                        fit_only_beams=False,
+                        fit_beams=True, 
+                        root=field,
+                        fit_trace_shift=False, 
+                        phot=None, 
+                        verbose=True, 
+                        scale_photometry=False, 
+                        show_beams=True)
+                    mb, st, fit, tfit, line_hdu = out
+                    fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
 
-                        fit_hdu.info()
-                        # same as the fit table above, redshift fit to the stacked spectra
-                        fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
+                    fit_hdu.info()
+                    # same as the fit table above, redshift fit to the stacked spectra
+                    fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
 
 
-                        # zoom in around the initial best-guess with the individual "beam" spectra
-                        fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
+                    # zoom in around the initial best-guess with the individual "beam" spectra
+                    fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
 
-                        templ = Table(fit_hdu['TEMPL'].data)
-                        print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
+                    templ = Table(fit_hdu['TEMPL'].data)
+                    print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
 
-                        # Helper script for plotting them, not generated automatically
-                        fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
-                        fig.savefig('../figures/stacks/mag_22_23_stack/{0}_{1:05d}.line.png'.format(field, id))
-                    except:
-                        print ('Problem in fitting.run_all')
+                    # Helper script for plotting them, not generated automatically
+                    fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
+                    fig.savefig('../figures/stacks/mag_22_23_stack/{0}_{1:05d}.line.png'.format(field, id))
+                #except:
+                    #print ('Problem in fitting.run_all')
 
                     plt.close('all')
 
