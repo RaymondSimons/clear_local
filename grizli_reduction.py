@@ -419,7 +419,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
                     # Helper script for plotting them, not generated automatically
                     fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
-                    fig.savefig(extra_str + '{0}_{1:05d}.line.png'.format(field, id))
+                    fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
                 #except:
                     #print ('Problem in fitting.run_all')
 
@@ -529,7 +529,7 @@ if __name__ == '__main__':
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 23050, use_pz_prior = True)
+        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 23050, use_pz_prior = False)
     os.chdir(PATH_TO_SCRIPTS)
 
 
