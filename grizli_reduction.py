@@ -328,7 +328,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
     pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
     for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
-        if (mag <= mag_lim) & (mag >=mag_lim_lower):
+        if (mag <= mag_lim) & (mag >=mag_lim_lower) (id >= id_choose):
         #if id == id_choose:
             print(id, mag)
             beams = grp.get_beams(id, size=80) #size??
@@ -372,58 +372,58 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                     hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
 
 
-                #try:
-                    if use_pz_prior:
-                        #use redshift prior from z_phot
-                        prior = np.zeros((2, len(p.tempfilt['zgrid'])))
-                        prior[0] = p.tempfilt['zgrid']
-                        prior[1] = p.pz['chi2fit'][:,id]
-                    else:
-                        prior = None 
+                    try:
+                        if use_pz_prior:
+                            #use redshift prior from z_phot
+                            prior = np.zeros((2, len(p.tempfilt['zgrid'])))
+                            prior[0] = p.tempfilt['zgrid']
+                            prior[1] = p.pz['chi2fit'][:,id]
+                        else:
+                            prior = None 
 
-                    out = grizli.fitting.run_all(
-                        id, 
-                        t0=templ0, 
-                        t1=templ1, 
-                        fwhm=1200, 
-                        zr=[0.3, 3.5], 
-                        dz=[0.004, 0.0005], 
-                        fitter='nnls',
-                        group_name=field,
-                        fit_stacks=True, 
-                        prior=prior, 
-                        fcontam=0.,
-                        pline=pline, 
-                        mask_sn_limit=7, 
-                        fit_only_beams=False,
-                        fit_beams=True, 
-                        root=field,
-                        fit_trace_shift=False, 
-                        phot=None, 
-                        verbose=True, 
-                        scale_photometry=False, 
-                        show_beams=True)
-                    mb, st, fit, tfit, line_hdu = out
-                    fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
+                        out = grizli.fitting.run_all(
+                            id, 
+                            t0=templ0, 
+                            t1=templ1, 
+                            fwhm=1200, 
+                            zr=[0.3, 3.5], 
+                            dz=[0.004, 0.0005], 
+                            fitter='nnls',
+                            group_name=field,
+                            fit_stacks=True, 
+                            prior=prior, 
+                            fcontam=0.,
+                            pline=pline, 
+                            mask_sn_limit=7, 
+                            fit_only_beams=False,
+                            fit_beams=True, 
+                            root=field,
+                            fit_trace_shift=False, 
+                            phot=None, 
+                            verbose=True, 
+                            scale_photometry=False, 
+                            show_beams=True)
+                        mb, st, fit, tfit, line_hdu = out
+                        fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
 
-                    fit_hdu.info()
-                    # same as the fit table above, redshift fit to the stacked spectra
-                    fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
+                        fit_hdu.info()
+                        # same as the fit table above, redshift fit to the stacked spectra
+                        fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
 
 
-                    # zoom in around the initial best-guess with the individual "beam" spectra
-                    fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
+                        # zoom in around the initial best-guess with the individual "beam" spectra
+                        fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
 
-                    templ = Table(fit_hdu['TEMPL'].data)
-                    print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
+                        templ = Table(fit_hdu['TEMPL'].data)
+                        print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
 
-                    # Helper script for plotting them, not generated automatically
-                    fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
-                    fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
-                #except:
-                    #print ('Problem in fitting.run_all')
+                        # Helper script for plotting them, not generated automatically
+                        fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
+                        fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
+                    except:
+                        print ('Problem in fitting.run_all')
 
-                    plt.close('all')
+                        plt.close('all')
 
 
 
@@ -529,7 +529,7 @@ if __name__ == '__main__':
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 24014, use_pz_prior = True)
+        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 10209, use_pz_prior = True)
     os.chdir(PATH_TO_SCRIPTS)
 
 
