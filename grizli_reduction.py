@@ -328,7 +328,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
     pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
     for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
-        if (mag <= mag_lim) & (mag >=mag_lim_lower) (id >= id_choose):
+        if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id >= id_choose):
         #if id == id_choose:
             print(id, mag)
             beams = grp.get_beams(id, size=80) #size??
