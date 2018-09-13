@@ -501,12 +501,12 @@ if __name__ == '__main__':
 
     id_choose = 23116
     if True:
-        files_bool = True
+        files_bool = False
         retrieve_bool = False
         prep_bool = False
-        model_bool = True
-        load_bool = True
-        fit_bool = True
+        model_bool = False
+        load_bool = False
+        fit_bool = False
 
     #field = 'GN4'
     #for field in overlapping_fields.keys():
