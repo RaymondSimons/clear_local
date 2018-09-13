@@ -506,7 +506,7 @@ if __name__ == '__main__':
     PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
 
     os.chdir(PATH_TO_PREP)
-    mag_lim = 23
+    mag_lim = 22
     mag_lim_lower = 0
 
     id_choose = 23116
