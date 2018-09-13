@@ -375,7 +375,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                 #try:
                     if True:
                         #use redshift prior from z_phot
-                        prior = zeros((2, len(p.tempfilt['zgrid'])))
+                        prior = np.zeros((2, len(p.tempfilt['zgrid'])))
                         prior[0] = p.tempfilt['zgrid']
                         prior[1] = p.pz['chi2fit'][id]
                     else:
