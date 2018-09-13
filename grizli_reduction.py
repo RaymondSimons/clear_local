@@ -315,6 +315,8 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         
 def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None):
     if fit_bool == False: return
+    p = Pointing(field = field, ref_filter = ref_filter)
+
     templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
                                          full_line_list=None,  continuum_list=None, 
                                          fsps_templates=True)
@@ -326,8 +328,8 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
     pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
     for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
-        if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > id_choose):
-        #if id == id_choose:
+        #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > id_choose):
+        if id == id_choose:
             print(id, mag)
             beams = grp.get_beams(id, size=80) #size??
             if beams != []:
@@ -371,6 +373,14 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
 
                     try:
+                        if True:
+                            #use redshift prior from z_phot
+                            prior = zeros((2, len(p.tempfilt['zgrid'])))
+                            prior[0] = p.tempfilt['zgrid']
+                            prior[1] = p.pz['chi2fit'][id]
+                        else:
+                            prior = None 
+
                         out = grizli.fitting.run_all(
                             id, 
                             t0=templ0, 
@@ -381,7 +391,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                             fitter='nnls',
                             group_name=field,
                             fit_stacks=True, 
-                            prior=None, 
+                            prior=prior, 
                             fcontam=0.,
                             pline=pline, 
                             mask_sn_limit=7, 
@@ -501,16 +511,16 @@ if __name__ == '__main__':
 
     id_choose = 23116
     if True:
-        files_bool = False
+        files_bool = True
         retrieve_bool = False
         prep_bool = False
-        model_bool = False
-        load_bool = False
-        fit_bool = False
+        model_bool = True
+        load_bool = True
+        fit_bool = True
 
     #field = 'GN4'
     #for field in overlapping_fields.keys():
-    '''
+
     for field in ['GN2']:
         visits, filters = grizli_getfiles(run = files_bool)
         extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
@@ -519,8 +529,7 @@ if __name__ == '__main__':
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 16454)
-    '''
+        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 21706)
     os.chdir(PATH_TO_SCRIPTS)
 
 
