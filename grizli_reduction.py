@@ -313,7 +313,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         grp.save_full_data()
     return grp
         
-def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None):
+def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W'):
     if fit_bool == False: return
     p = Pointing(field = field, ref_filter = ref_filter)
 
