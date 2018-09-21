@@ -5,10 +5,17 @@ import os
 import grizli
 from grizli.pipeline import photoz
 import astropy.units as u
-PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
-PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
-PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
-PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
+
+#PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
+#PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
+#PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
+#PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
+
+
+PATH_TO_PREP = '/Users/rsimons/Desktop/clear/PREP'
+PATH_TO_SCRIPTS = '/Users/rsimons/Desktop/clear/scripts'
+PATH_TO_CATS= '/Users/rsimons/Desktop/clear/Catalogs'
+
 
 
 

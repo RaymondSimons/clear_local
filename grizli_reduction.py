@@ -178,6 +178,23 @@ class Pointing():
             self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodsn_3dhst.v4.1', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
 
 
+            self.params = {}
+            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodsn', '4.1')
+            self.params['Z_STEP'] = 0.002
+            self.params['Z_MAX'] = 4
+
+            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodsn', '4.1')
+            self.params['PRIOR_FILTER'] = 205
+
+
+            self.params['MW_EBV'] = {'aegis':0.0066, 'cosmos':0.0148, 'goodss':0.0069, 
+                                    'uds':0.0195, 'goodsn':0.0103}['goodsn']
+
+            self.params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
+            self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodsn', '4.1')
+
+
+
             '''
             if '140' in ref_filter:
                 self.catalog =  PATH_TO_CATS + '/GoodsN_plus_merged.cat'
@@ -327,7 +344,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                                          fsps_templates=True)
 
     pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-    for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
+    for id, mag, ra, dec in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO']), np.array(grp.catalog['RA']), np.array(grp.catalog['DEC'])):
         #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id >= id_choose):
         if id == id_choose:
             print(id, mag)
@@ -380,6 +397,21 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                             prior[1] = p.pz['chi2fit'][:,id]
                         else:
                             prior = None 
+                        order = 0
+
+                        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=self.translate_file, 
+                                                zeropoint_file=None, params=self.params, 
+                                                load_prior=True, load_products=False)
+
+                        ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
+
+
+                        tab = utils.GTable()
+                        tab['ra'] = [ra]
+                        tab['dec'] = [dec]
+
+                        tab['id'] = id
+                        phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
                         out = grizli.fitting.run_all(
                             id, 
@@ -391,7 +423,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                             fitter='nnls',
                             group_name=field,
                             fit_stacks=True, 
-                            prior=prior, 
+                            prior=None, 
                             fcontam=0.,
                             pline=pline, 
                             mask_sn_limit=7, 
@@ -399,9 +431,9 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                             fit_beams=True, 
                             root=field,
                             fit_trace_shift=False, 
-                            phot=None, 
+                            phot=phot, 
                             verbose=True, 
-                            scale_photometry=False, 
+                            scale_photometry=order, 
                             show_beams=True)
                         mb, st, fit, tfit, line_hdu = out
                         fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
@@ -529,7 +561,7 @@ if __name__ == '__main__':
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 16736, use_pz_prior = False, use_phot = True, scale_phot = True)
+        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True)
     os.chdir(PATH_TO_SCRIPTS)
 
 
