@@ -4,7 +4,7 @@ import eazy
 import os
 import grizli
 from grizli.pipeline import photoz
-
+import astropy.units as u
 PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
 PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
 PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
@@ -45,6 +45,44 @@ templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False
                                      full_line_list=None,  continuum_list=None, 
                                      fsps_templates=True)
 
+tab = utils.GTable()
+tab['ra'] = [189.20596196]
+tab['dec'] = [62.22970839600013]
+
+tab['id'] = 16736
+
+idx3, dr3 = ez.cat.match_to_catalog_sky(tab)
+
+ez.param['VERBOSITY'] = 1.
+ez.fit_parallel(idx=idx3, verbose=False) 
+
+
+
 ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 os.chdir(PATH_TO_SCRIPTS)
