@@ -39,5 +39,5 @@ for f, fl in enumerate(fls):
 	b.write('%s\t\t%i\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f\n'%(field, i, hdr['Z50'],  hdr['Z16'], hdr['Z84'], hdr['Z02'],hdr['Z97']))
 
 
-
+print 'saving to' +  PATH_TO_CATS + '/zcat_%s_new.cat'%field
 b.close()
