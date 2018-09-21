@@ -43,5 +43,6 @@ templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False
                                      full_line_list=None,  continuum_list=None, 
                                      fsps_templates=True)
 
+ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
 os.chdir(PATH_TO_SCRIPTS)
