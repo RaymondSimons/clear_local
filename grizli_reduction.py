@@ -348,8 +348,8 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
     pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
     for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
-        #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id >= id_choose):
-        if id == id_choose:
+        if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id >= id_choose):
+        #if id == id_choose:
             print(id, mag)
             beams = grp.get_beams(id, size=80) #size??
             if beams != []:
@@ -392,7 +392,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                     hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
 
 
-                    if True:
+                    try:
                         if use_pz_prior:
                             #use redshift prior from z_phot
                             prior = np.zeros((2, len(p.tempfilt['zgrid'])))
@@ -455,10 +455,10 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                         # Helper script for plotting them, not generated automatically
                         fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
                         fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
-                    #except:
-                    #    print ('Problem in fitting.run_all')
+                    except:
+                        print ('Problem in fitting.run_all')
 
-                    #    plt.close('all')
+                        plt.close('all')
 
 
 
@@ -541,8 +541,8 @@ if __name__ == '__main__':
     PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
 
     os.chdir(PATH_TO_PREP)
-    mag_lim = 23
-    mag_lim_lower = 22
+    mag_lim = 22
+    mag_lim_lower = 0
 
     id_choose = 23116
     if True:
