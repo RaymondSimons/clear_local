@@ -19,7 +19,7 @@ field = 'goodsn'
 version = 'v4.1'
 
 params = {}
-params['CATALOG_FILE'] = '{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format(field, version)
+params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format(field, version)
 params['Z_STEP'] = 0.002
 params['Z_MAX'] = 4
 
