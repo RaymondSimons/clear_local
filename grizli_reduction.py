@@ -490,7 +490,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
     ra_target = 189.22053
     dec_target = 62.24010833333
-    radius_in_arcmin = 10
+    radius_in_arcmin = 20
 
 
     #First run-through, ignore the imaging
