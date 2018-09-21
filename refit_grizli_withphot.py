@@ -1,4 +1,5 @@
 import grizli
+from grizli import utils
 import eazy
 import os
 
@@ -37,6 +38,10 @@ translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translat
 ez = eazy.photoz.PhotoZ(param_file=None, translate_file=translate_file, 
                         zeropoint_file=None, params=params, 
                         load_prior=True, load_products=False)
+
+templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                     full_line_list=None,  continuum_list=None, 
+                                     fsps_templates=True)
 
 
 os.chdir(PATH_TO_SCRIPTS)
