@@ -547,13 +547,7 @@ if __name__ == '__main__':
 
 
 
-    to_fits = np.array([15580,
-                        19546,
-                        16327,
-                        20158,
-                        20032,
-                        23116,
-                        20399])
+    to_fits = np.array([17829])
 
     os.chdir(PATH_TO_PREP)
     mag_lim = 24
