@@ -14,6 +14,7 @@ from grizli.pipeline import auto_script
 from grizli.multifit import GroupFLT, MultiBeam, get_redshift_fit_defaults
 import os
 from astropy.table import Table
+import eazy
 plt.ioff()
 ### A lot of this is working from the Grizli cookbook described here:
 ### https://github.com/gbrammer/grizli/blob/master/examples/WFC3IR_Reduction.ipynb
