@@ -294,15 +294,17 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
                 #Find grism files with a direct image
                 all_direct_files.extend(visit['files'])
                 grism_index_1= np.where((basenames == basename) & (filter_names == ref_grism_1.lower()))[0]
-                grism_index_2= np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
 
                 if len(grism_index_1) > 0:
                     all_grism_files.extend(visits[grism_index_1[0]]['files'])
                     print(filter_names[grism_index_1[0]], visits[grism_index_1[0]]['product'])
+                if True:
+                    #Include G141 observatinos
+                    grism_index_2= np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
 
-                elif len(grism_index_2) > 0:
-                    all_grism_files.extend(visits[grism_index_2[0]]['files'])
-                    print(filter_names[grism_index_2[0]], visits[grism_index_2[0]]['product'])
+                    if len(grism_index_2) > 0:
+                        all_grism_files.extend(visits[grism_index_2[0]]['files'])
+                        print(filter_names[grism_index_2[0]], visits[grism_index_2[0]]['product'])
 
             '''
             elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
@@ -480,8 +482,6 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
         field_in_contest = basename.split('-')[0]
         filt1 = filter_names[v]
-
-        print(field_in_contest)
         #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
 
 
@@ -498,6 +498,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
         parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin], instruments=['WFC3-IR', 'ACS-WFC'], 
                              extensions=['FLT'], filters=['G102', 'G141'], extra=[])
         tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False, use_parent = True)
+        s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
         HOME_PATH = os.getcwd()
         auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True, s3_sync=(s3_status == 0))
 
@@ -555,11 +556,11 @@ if __name__ == '__main__':
     id_choose = 23116
     if True:
         files_bool = True
-        retrieve_bool = True
+        retrieve_bool = False
         prep_bool = False
-        model_bool = False
+        model_bool = True
         load_bool = False
-        fit_bool = False
+        fit_bool = True
 
     for field in ['GN2']:
         visits, filters = grizli_getfiles(run = files_bool)
