@@ -347,6 +347,12 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                                          fsps_templates=True)
 
     pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+    ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
+                            zeropoint_file=None, params=p.params, 
+                            load_prior=True, load_products=False)
+
+    ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
+
     for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
         if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id >= id_choose):
         #if id == id_choose:
@@ -402,11 +408,6 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                             prior = None 
                         order = 0
 
-                        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
-                                                zeropoint_file=None, params=p.params, 
-                                                load_prior=True, load_products=False)
-
-                        ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
 
                         tab = utils.GTable()
