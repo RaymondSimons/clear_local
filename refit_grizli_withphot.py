@@ -2,6 +2,8 @@ import grizli
 from grizli import utils
 import eazy
 import os
+import grizli
+from grizli.pipeline import photoz
 
 PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
 PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
