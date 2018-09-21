@@ -344,7 +344,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                                          fsps_templates=True)
 
     pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-    for id, mag, ra, dec in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO']), np.array(grp.catalog['RA']), np.array(grp.catalog['DEC'])):
+    for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
         #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id >= id_choose):
         if id == id_choose:
             print(id, mag)
@@ -353,7 +353,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                 print("beams: ", beams)
                 mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
                 mb.write_master_fits()
-
+                return mb
                 # Fit polynomial model for initial continuum subtraction
                 wave = np.linspace(2000,2.5e4,100)
                 poly_templates = grizli.utils.polynomial_templates(
@@ -561,7 +561,7 @@ if __name__ == '__main__':
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True)
+        mb = grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True)
     os.chdir(PATH_TO_SCRIPTS)
 
 
