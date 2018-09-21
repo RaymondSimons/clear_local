@@ -503,7 +503,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
         auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True, s3_sync=(s3_status == 0))
 
     #Second run-through, retrieve the direct imaging
-    if True:
+    if False:
         #Find targetnames
         fls_temp = glob.glob(PATH_TO_RAW+'/j123625+621431/RAW/*flt.fits')
         target_names = []
@@ -564,7 +564,7 @@ if __name__ == '__main__':
 
     for field in ['GN2']:
         visits, filters = grizli_getfiles(run = files_bool)
-        #extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
+        extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
         #visits, filters = grizli_getfiles(run = files_bool)
         #grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
         #grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
