@@ -543,7 +543,17 @@ if __name__ == '__main__':
     PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
 
 
-    to_fits = np.array([9116, 16736, 18108, 15610, 19451])
+    #to_fits = np.array([9116, 16736, 18108, 15610, 19451])
+
+
+
+    to_fits = np.array([15580,
+                        19546,
+                        16327,
+                        20158,
+                        20032,
+                        23116,
+                        20399])
 
     os.chdir(PATH_TO_PREP)
     mag_lim = 24
