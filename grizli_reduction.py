@@ -16,6 +16,7 @@ import os
 from astropy.table import Table
 import eazy
 plt.ioff()
+plt.close('all')
 ### A lot of this is working from the Grizli cookbook described here:
 ### https://github.com/gbrammer/grizli/blob/master/examples/WFC3IR_Reduction.ipynb
 ### and Katie and Iva's grizli pipeline for CLEAR
