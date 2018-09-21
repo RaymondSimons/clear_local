@@ -32,7 +32,7 @@ params['MW_EBV'] = {'aegis':0.0066, 'cosmos':0.0148, 'goodss':0.0069,
 
 params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
 
-translate_file = '{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format(field, version)
+translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format(field, version)
 
 ez = eazy.photoz.PhotoZ(param_file=None, translate_file=translate_file, 
                         zeropoint_file=None, params=params, 
