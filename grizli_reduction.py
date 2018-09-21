@@ -495,10 +495,9 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
     #First run-through, ignore the imaging
     if True:
-        parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], 
+        parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin], instruments=['WFC3-IR', 'ACS-WFC'], 
                              extensions=['FLT'], filters=['G102', 'G141'], extra=[])
-        tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
-        s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
+        tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False, use_parent = True)
         HOME_PATH = os.getcwd()
         auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True, s3_sync=(s3_status == 0))
 
