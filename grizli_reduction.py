@@ -401,8 +401,8 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                             prior = None 
                         order = 0
 
-                        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=self.translate_file, 
-                                                zeropoint_file=None, params=self.params, 
+                        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
+                                                zeropoint_file=None, params=p.params, 
                                                 load_prior=True, load_products=False)
 
                         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
