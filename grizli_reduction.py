@@ -13,6 +13,7 @@ from hsaquery import query, overlaps
 from grizli.pipeline import auto_script
 from grizli.multifit import GroupFLT, MultiBeam, get_redshift_fit_defaults
 import os
+from grizli.pipeline import photoz
 from astropy.table import Table
 import eazy
 plt.ioff()
