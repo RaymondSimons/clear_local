@@ -389,7 +389,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                     hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
 
 
-                    try:
+                    if True:
                         if use_pz_prior:
                             #use redshift prior from z_phot
                             prior = np.zeros((2, len(p.tempfilt['zgrid'])))
@@ -452,10 +452,10 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                         # Helper script for plotting them, not generated automatically
                         fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
                         fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
-                    except:
-                        print ('Problem in fitting.run_all')
+                    #except:
+                    #    print ('Problem in fitting.run_all')
 
-                        plt.close('all')
+                    #    plt.close('all')
 
 
 
