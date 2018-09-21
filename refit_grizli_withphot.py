@@ -12,7 +12,8 @@ PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
 
 os.chdir(PATH_TO_PREP)
 
-
+eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
+                         path_is_env=False)
 
 
 os.chdir(PATH_TO_SCRIPTS)
