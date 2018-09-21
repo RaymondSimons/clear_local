@@ -550,8 +550,8 @@ if __name__ == '__main__':
     to_fits = np.array([17829])
 
     os.chdir(PATH_TO_PREP)
-    mag_lim = 24
-    mag_lim_lower = 23
+    mag_lim = 21
+    mag_lim_lower = 0
 
     id_choose = 23116
     if True:
