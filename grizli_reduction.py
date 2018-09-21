@@ -353,7 +353,7 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
                 print("beams: ", beams)
                 mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
                 mb.write_master_fits()
-                return mb
+                
                 # Fit polynomial model for initial continuum subtraction
                 wave = np.linspace(2000,2.5e4,100)
                 poly_templates = grizli.utils.polynomial_templates(
@@ -407,8 +407,8 @@ def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id
 
 
                         tab = utils.GTable()
-                        tab['ra'] = [ra]
-                        tab['dec'] = [dec]
+                        tab['ra'] = [mb.ra]
+                        tab['dec'] = [mb.dec]
 
                         tab['id'] = id
                         phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
@@ -561,7 +561,7 @@ if __name__ == '__main__':
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-        mb = grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True)
+        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True)
     os.chdir(PATH_TO_SCRIPTS)
 
 
