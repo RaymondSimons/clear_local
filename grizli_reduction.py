@@ -494,7 +494,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
 
     #First run-through, ignore the imaging
-    if False:
+    if True:
         parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], 
                              extensions=['FLT'], filters=['G102', 'G141'], extra=[])
         tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False)
@@ -556,11 +556,11 @@ if __name__ == '__main__':
     id_choose = 23116
     if True:
         files_bool = True
-        retrieve_bool = False
+        retrieve_bool = True
         prep_bool = False
-        model_bool = True
-        load_bool = True
-        fit_bool = True
+        model_bool = False
+        load_bool = False
+        fit_bool = False
 
     #field = 'GN4'
     #for field in overlapping_fields.keys():
