@@ -580,7 +580,7 @@ if __name__ == '__main__':
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
         
         if True:
-            Parallel(n_jobs = 3, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 17000, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
+            Parallel(n_jobs = 3, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 28200, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
                                                                             run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
                                                                             templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
