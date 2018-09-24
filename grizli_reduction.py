@@ -338,9 +338,9 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         grp.save_full_data()
     return grp
         
-def grizli_fit(grp, id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
+def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
     if fit_bool == False: return
-    if (mag <= mag_lim) & (mag >=mag_lim_lower):
+    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
     #if id in to_fits:
     #if id == id_choose:
         print(id, mag)
@@ -448,7 +448,9 @@ def grizli_fit(grp, id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run =
                     print ('Problem in fitting.run_all')
 
                     plt.close('all')
-    plt.close('all')
+    else:
+        return
+
 
 
 
@@ -578,7 +580,7 @@ if __name__ == '__main__':
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
         
         if True:
-            Parallel(n_jobs = 3, backend = 'threading')(delayed(grizli_fit)(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
+            Parallel(n_jobs = 3, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 17000, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
                                                                             run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
                                                                             templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
