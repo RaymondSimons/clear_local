@@ -535,7 +535,7 @@ if __name__ == '__main__':
     to_fits = np.array([17829])
 
     os.chdir(PATH_TO_PREP)
-    mag_lim = 21
+    mag_lim = 23
     mag_lim_lower = 0
 
     id_choose = 23116
@@ -572,10 +572,6 @@ if __name__ == '__main__':
 
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
         
-
-        for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
-    
-
         if True:
             Parallel(n_jobs = 2, backend = 'threading')(delayed(grizli_fit)(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
                                                                             run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
