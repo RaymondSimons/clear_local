@@ -16,6 +16,9 @@ import os
 from grizli.pipeline import photoz
 from astropy.table import Table
 import eazy
+from joblib import Parallel, delayed
+
+
 plt.ioff()
 plt.close('all')
 ### A lot of this is working from the Grizli cookbook described here:
@@ -335,134 +338,116 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         grp.save_full_data()
     return grp
         
-def grizli_fit(grp, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True):
+def grizli_fit(grp, id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
     if fit_bool == False: return
     p = Pointing(field = field, ref_filter = ref_filter)
+    if (mag <= mag_lim) & (mag >=mag_lim_lower):
+    #if id in to_fits:
+    #if id == id_choose:
+        print(id, mag)
+        beams = grp.get_beams(id, size=80) #size??
+        if beams != []:
+            print("beams: ", beams)
+            mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
+            mb.write_master_fits()
+            
+            # Fit polynomial model for initial continuum subtraction
+            wave = np.linspace(2000,2.5e4,100)
+            poly_templates = grizli.utils.polynomial_templates(
+                wave=wave, 
+                order=7,
+                line=False)
 
-    templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                         full_line_list=None,  continuum_list=None, 
-                                         fsps_templates=True)
-
-    # Load individual line templates for fitting the line fluxes
-    templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                         full_line_list=None, continuum_list=None, 
-                                         fsps_templates=True)
-
-    pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-    ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
-                            zeropoint_file=None, params=p.params, 
-                            load_prior=True, load_products=False)
-
-    ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
-
-    for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
-        #if (mag <= mag_lim) & (mag >=mag_lim_lower):
-        if id in to_fits:
-        #if id == id_choose:
-            print(id, mag)
-            beams = grp.get_beams(id, size=80) #size??
-            if beams != []:
-                print("beams: ", beams)
-                mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
-                mb.write_master_fits()
-                
-                # Fit polynomial model for initial continuum subtraction
-                wave = np.linspace(2000,2.5e4,100)
-                poly_templates = grizli.utils.polynomial_templates(
-                    wave=wave, 
-                    order=7,
-                    line=False)
-
-                pfit = mb.template_at_z(
-                    z=0, 
-                    templates=poly_templates, 
-                    fit_background=True, 
-                    fitter='lstsq', 
-                    fwhm=1400, 
-                    get_uncertainties=2)
+            pfit = mb.template_at_z(
+                z=0, 
+                templates=poly_templates, 
+                fit_background=True, 
+                fitter='lstsq', 
+                fwhm=1400, 
+                get_uncertainties=2)
 
 
-                if pfit != None:
-                #    pass
-                # Drizzle grisms / PAs
-                    hdu, fig = mb.drizzle_grisms_and_PAs(
-                        size=32, 
-                        fcontam=0.2, 
-                        flambda=False, 
-                        scale=1, 
-                        pixfrac=0.5, 
-                        kernel='point', 
-                        make_figure=True, 
-                        usewcs=False, 
-                        zfit=pfit,
-                        diff=True)
-                    # Save drizzled ("stacked") 2D trace as PNG and FITS
-                    fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
-                    hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
+            if pfit != None:
+            #    pass
+            # Drizzle grisms / PAs
+                hdu, fig = mb.drizzle_grisms_and_PAs(
+                    size=32, 
+                    fcontam=0.2, 
+                    flambda=False, 
+                    scale=1, 
+                    pixfrac=0.5, 
+                    kernel='point', 
+                    make_figure=True, 
+                    usewcs=False, 
+                    zfit=pfit,
+                    diff=True)
+                # Save drizzled ("stacked") 2D trace as PNG and FITS
+                fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
+                hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
 
 
-                    try:
-                        if use_pz_prior:
-                            #use redshift prior from z_phot
-                            prior = np.zeros((2, len(p.tempfilt['zgrid'])))
-                            prior[0] = p.tempfilt['zgrid']
-                            prior[1] = p.pz['chi2fit'][:,id]
-                        else:
-                            prior = None 
-                        order = 0
+                try:
+                    if use_pz_prior:
+                        #use redshift prior from z_phot
+                        prior = np.zeros((2, len(p.tempfilt['zgrid'])))
+                        prior[0] = p.tempfilt['zgrid']
+                        prior[1] = p.pz['chi2fit'][:,id]
+                    else:
+                        prior = None 
+                    order = 0
 
 
 
-                        tab = utils.GTable()
-                        tab['ra'] = [mb.ra]
-                        tab['dec'] = [mb.dec]
+                    tab = utils.GTable()
+                    tab['ra'] = [mb.ra]
+                    tab['dec'] = [mb.dec]
 
-                        tab['id'] = id
-                        phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
+                    tab['id'] = id
+                    phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
-                        out = grizli.fitting.run_all(
-                            id, 
-                            t0=templ0, 
-                            t1=templ1, 
-                            fwhm=1200, 
-                            zr=[0.0, 3.5], 
-                            dz=[0.004, 0.0005], 
-                            fitter='nnls',
-                            group_name=field,
-                            fit_stacks=True, 
-                            prior=None, 
-                            fcontam=0.,
-                            pline=pline, 
-                            mask_sn_limit=7, 
-                            fit_only_beams=False,
-                            fit_beams=True, 
-                            root=field,
-                            fit_trace_shift=False, 
-                            phot=phot, 
-                            verbose=True, 
-                            scale_photometry=order, 
-                            show_beams=True)
-                        mb, st, fit, tfit, line_hdu = out
-                        fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
+                    out = grizli.fitting.run_all(
+                        id, 
+                        t0=templ0, 
+                        t1=templ1, 
+                        fwhm=1200, 
+                        zr=[0.0, 3.5], 
+                        dz=[0.004, 0.0005], 
+                        fitter='nnls',
+                        group_name=field,
+                        fit_stacks=True, 
+                        prior=None, 
+                        fcontam=0.,
+                        pline=pline, 
+                        mask_sn_limit=7, 
+                        fit_only_beams=False,
+                        fit_beams=True, 
+                        root=field,
+                        fit_trace_shift=False, 
+                        phot=phot, 
+                        verbose=True, 
+                        scale_photometry=order, 
+                        show_beams=True)
+                    mb, st, fit, tfit, line_hdu = out
+                    fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
 
-                        fit_hdu.info()
-                        # same as the fit table above, redshift fit to the stacked spectra
-                        fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
+                    fit_hdu.info()
+                    # same as the fit table above, redshift fit to the stacked spectra
+                    fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
 
 
-                        # zoom in around the initial best-guess with the individual "beam" spectra
-                        fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
+                    # zoom in around the initial best-guess with the individual "beam" spectra
+                    fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
 
-                        templ = Table(fit_hdu['TEMPL'].data)
-                        print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
+                    templ = Table(fit_hdu['TEMPL'].data)
+                    print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
 
-                        # Helper script for plotting them, not generated automatically
-                        fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
-                        fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
-                    except:
-                        print ('Problem in fitting.run_all')
+                    # Helper script for plotting them, not generated automatically
+                    fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
+                    fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
+                except:
+                    print ('Problem in fitting.run_all')
 
-                        plt.close('all')
+                    plt.close('all')
 
 
 
@@ -570,7 +555,40 @@ if __name__ == '__main__':
         #grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-        grizli_fit(grp, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True)
+    
+        templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                             full_line_list=None,  continuum_list=None, 
+                                             fsps_templates=True)
+
+        # Load individual line templates for fitting the line fluxes
+        templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
+                                             full_line_list=None, continuum_list=None, 
+                                             fsps_templates=True)
+
+        pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
+                                zeropoint_file=None, params=p.params, 
+                                load_prior=True, load_products=False)
+
+        ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
+        
+
+        for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])):
+    
+
+        if True:
+            Parallel(n_jobs = 2, backend = 'threading')(delayed(grizli_fit)(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
+                                                                            run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
+                                                                            templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+
+
+        #grizli_fit(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, 
+        #            run = fit_bool, id_choose = 22945, 
+        #            use_pz_prior = False, use_phot = True, scale_phot = True, 
+        #            templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline)
+
+
+
     os.chdir(PATH_TO_SCRIPTS)
 
 
