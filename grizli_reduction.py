@@ -443,10 +443,12 @@ def grizli_fit(grp, id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run =
                     # Helper script for plotting them, not generated automatically
                     fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
                     fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
+                    plt.close('all')
                 except:
                     print ('Problem in fitting.run_all')
 
                     plt.close('all')
+    plt.close('all')
 
 
 
@@ -534,7 +536,7 @@ if __name__ == '__main__':
     to_fits = np.array([17829])
 
     os.chdir(PATH_TO_PREP)
-    mag_lim = 23
+    mag_lim = 24
     mag_lim_lower = 0
 
     id_choose = 23116
@@ -576,7 +578,7 @@ if __name__ == '__main__':
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
         
         if True:
-            Parallel(n_jobs = 2, backend = 'threading')(delayed(grizli_fit)(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
+            Parallel(n_jobs = 3, backend = 'threading')(delayed(grizli_fit)(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
                                                                             run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
                                                                             templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
