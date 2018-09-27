@@ -4,10 +4,11 @@ import glob
 from glob import glob
 
 field = 'GN2'
-fls = glob('/user/rsimons/grizli_extractions/Prep/*.full.fits')
+fls = glob('/user/rsimons/grizli_extractions/PREP/*.full.fits')
 cat = open('/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.cat'%field, 'w+')
 
 lines = ['OII', 'OIII', 'Ha', 'Hb']
+
 
 cat.write('#(0) Field\n')
 cat.write('#(1) ID\n')
