@@ -29,16 +29,20 @@ for f, fl in enumerate(fls):
 	ID = a[0].header['ID']
 	lines_f = a[0].header['HASLINES'].split(' ')
 	if (len(lines_f) > 0) & (lines_f[0] !=''):
+		j = -99
 		for l, ln in enumerate(lines_f):
 			flux_ln =  a[0].header['FLUX%.3i'%(l+1)]
 			eflux_ln =  a[0].header['ERR%.3i'%(l+1)]
 			ln_name =  a[0].header['LINE%.3i'%(l+1)]
-			if ln_name == 'OII': j = 0
-			elif ln_name == 'OIII':  j = 1
-			elif ln_name == 'Ha': j = 2
-			elif ln_name == 'Hb': j = 3
-			fluxs[j,0,f] = flux_ln * 1.e17
-			fluxs[j,1,f] = eflux_ln  * 1.e17
+			if ln_name == 'OII': 		j = 0
+			elif ln_name == 'OIII':  	j = 1
+			elif ln_name == 'Ha': 		j = 2
+			elif ln_name == 'Hb': 		j = 3
+
+			if j != -99:
+				fluxs[j,0,f] = flux_ln * 1.e17
+				fluxs[j,1,f] = eflux_ln  * 1.e17
+			j = -99
 
 	n_lines = len(lines_f)
 
