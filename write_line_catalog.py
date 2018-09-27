@@ -3,12 +3,10 @@ from astropy.io import fits
 import glob
 from glob import glob
 
+field = 'GN2'
+fls = glob('/user/rsimons/grizli_extractions/Prep/*.full.fits')
+cat = open('/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.cat'%field, 'w+')
 
-fls = glob('../Prep/*.full.fits')
-
-
-cat = open('../Catalogs/lines_grizli.cat', 'w+')
-#lines = ['Lya', 'CIV', 'MgII', 'OII', 'Hd', 'Hg', 'OIIIx', 'HeII', 'Hb', 'OIII', 'Ha', 'SII', 'SIII', 'HeI', 'HeIb', 'NeIII', 'NeV', 'NeVI', 'OI']
 lines = ['OII', 'OIII', 'Ha', 'Hb']
 
 cat.write('#(0) Field\n')
@@ -23,7 +21,6 @@ cat.write('#(8) Ha flux err, 1e-17 erg/s/cm2\n')
 cat.write('#(9) Hb flux, 1e-17 erg/s/cm2\n')
 cat.write('#(10) Hb flux err, 1e-17 erg/s/cm2\n\n\n\n\n')
 
-field = 'GN2'
 
 fluxs = zeros((4,2, len(fls))) - 99.
 for f, fl in enumerate(fls):
