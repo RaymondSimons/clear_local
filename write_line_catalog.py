@@ -10,7 +10,6 @@ cat = open('/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.cat'%field
 lines = ['OII', 'OIII', 'Ha', 'Hb']
 
 
-cat.write('#(0) Field\n')
 cat.write('#(0) ID\n')
 cat.write('#(1) n_lines\n')
 cat.write('#(2) OII flux, 1e-17 erg/s/cm2\n')
