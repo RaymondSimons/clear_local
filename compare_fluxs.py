@@ -5,6 +5,7 @@ plt.close('all')
 
 
 
+
 fig, axes = plt.subplots(1,4, figsize = (20,5))
 
 for a, ax in enumerate(axes):
