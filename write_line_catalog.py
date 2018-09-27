@@ -11,16 +11,16 @@ lines = ['OII', 'OIII', 'Ha', 'Hb']
 
 
 cat.write('#(0) Field\n')
-cat.write('#(1) ID\n')
-cat.write('#(2) n_lines\n')
-cat.write('#(3) OII flux, 1e-17 erg/s/cm2\n')
-cat.write('#(4) OII flux err, 1e-17 erg/s/cm2\n')
-cat.write('#(5) OIII flux, 1e-17 erg/s/cm2\n')
-cat.write('#(6) OIII flux err, 1e-17 erg/s/cm2\n')
-cat.write('#(7) Ha flux, 1e-17 erg/s/cm2\n')
-cat.write('#(8) Ha flux err, 1e-17 erg/s/cm2\n')
-cat.write('#(9) Hb flux, 1e-17 erg/s/cm2\n')
-cat.write('#(10) Hb flux err, 1e-17 erg/s/cm2\n\n\n\n\n')
+cat.write('#(0) ID\n')
+cat.write('#(1) n_lines\n')
+cat.write('#(2) OII flux, 1e-17 erg/s/cm2\n')
+cat.write('#(3) OII flux err, 1e-17 erg/s/cm2\n')
+cat.write('#(4) OIII flux, 1e-17 erg/s/cm2\n')
+cat.write('#(5) OIII flux err, 1e-17 erg/s/cm2\n')
+cat.write('#(6) Ha flux, 1e-17 erg/s/cm2\n')
+cat.write('#(7) Ha flux err, 1e-17 erg/s/cm2\n')
+cat.write('#(8) Hb flux, 1e-17 erg/s/cm2\n')
+cat.write('#(9) Hb flux err, 1e-17 erg/s/cm2\n\n\n\n\n')
 
 
 fluxs = zeros((4,2, len(fls))) - 99.
