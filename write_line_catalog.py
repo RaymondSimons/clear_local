@@ -37,11 +37,11 @@ for f, fl in enumerate(fls):
 	if (len(lines_f) > 0) & (lines_f[0] !=''):
 		j = -99
 
-		zs[0, f] = a[0].header['Z50']
-		zs[1, f] = a[0].header['Z02']
-		zs[2, f] = a[0].header['Z16']
-		zs[3, f] = a[0].header['Z84']
-		zs[4, f] = a[0].header['Z97']
+		zs[0, f] = a[1].header['Z50']
+		zs[1, f] = a[1].header['Z02']
+		zs[2, f] = a[1].header['Z16']
+		zs[3, f] = a[1].header['Z84']
+		zs[4, f] = a[1].header['Z97']
 
 		for l, ln in enumerate(lines_f):
 			flux_ln =  a[0].header['FLUX%.3i'%(l+1)]
