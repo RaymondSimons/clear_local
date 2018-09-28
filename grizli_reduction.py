@@ -301,7 +301,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
                 if len(grism_index_1) > 0:
                     all_grism_files.extend(visits[grism_index_1[0]]['files'])
                     print(filter_names[grism_index_1[0]], visits[grism_index_1[0]]['product'])
-                if False:
+                if True:
                     #Include G141 observatinos
                     grism_index_2= np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
 
@@ -547,7 +547,7 @@ if __name__ == '__main__':
         retrieve_bool = False
         prep_bool = False
         model_bool = True
-        load_bool = True
+        load_bool = False
         fit_bool = True
 
     for field in ['GN2']:
