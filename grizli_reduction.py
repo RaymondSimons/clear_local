@@ -267,10 +267,10 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
             print (field_in_contest, visits[grism_index])
             #print (visit[grism_index])
             #try:
-            #status = process_direct_grism_visit(direct = visit,
-            #                                    grism = visits[grism_index],
-            #                                    radec = radec_catalog, 
-            #                                    align_mag_limits = [14, 23])
+            status = process_direct_grism_visit(direct = visit,
+                                                grism = visits[grism_index],
+                                                radec = radec_catalog, 
+                                                align_mag_limits = [14, 23])
 
     return visits, filters
 
@@ -340,7 +340,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
     if fit_bool == False: return
-    if (mag <= mag_lim) & (mag >=mag_lim_lower):# & (id > min_id):
+    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
     #if id in to_fits:
     #if id == id_choose:
         print(id, mag)
@@ -525,10 +525,16 @@ if __name__ == '__main__':
 
     global PATH_TO_RAW, PATH_TO_PREP, PATH_TO_SCRIPTS, to_fits
 
-    PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
-    PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
-    PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
-    PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
+    if False:
+        PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
+        PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
+        PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
+        PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
+    else:
+        #PATH_TO_RAW = '/Volumes/wd/clear/GN2/j123652+621424/RAW'
+        #PATH_TO_PREP = '/Volumes/wd/clear/GN2/j123652+621424/PREP'
+        PATH_TO_SCRIPTS = '/Users/rsimons/Desktop/git/clear_local'
+        PATH_TO_CATS= '/Users/rsimons/Desktop/clear/Catalogs'
 
 
     #to_fits = np.array([9116, 16736, 18108, 15610, 19451])
@@ -537,8 +543,7 @@ if __name__ == '__main__':
 
     to_fits = np.array([17829])
 
-    os.chdir(PATH_TO_PREP)
-    mag_lim = 24
+    mag_lim = 23
     mag_lim_lower = 0
 
     id_choose = 23116
@@ -550,37 +555,48 @@ if __name__ == '__main__':
         load_bool = True
         fit_bool = True
 
-    for field in ['GN2']:
+    for field in ['GN3']:
+
+        PATH_TO_RAW = glob.glob('/Volumes/wd/clear/%s/*/RAW'%field)[0]
+        PATH_TO_PREP = glob.glob('/Volumes/wd/clear/%s/*/PREP'%field)[0]
+        os.chdir(PATH_TO_PREP)
+
+        #visits, filters = grizli_getfiles(run = files_bool)
+        #extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
         visits, filters = grizli_getfiles(run = files_bool)
-        extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
-        visits, filters = grizli_getfiles(run = files_bool)
-        #grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
-        #grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
+
+        grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
+        grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
+
+
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-    
-        templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                             full_line_list=None,  continuum_list=None, 
-                                             fsps_templates=True)
 
-        # Load individual line templates for fitting the line fluxes
-        templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                             full_line_list=None, continuum_list=None, 
-                                             fsps_templates=True)
-
-
-        p = Pointing(field = field, ref_filter = 'F105W')
-
-
-        pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
-                                zeropoint_file=None, params=p.params, 
-                                load_prior=True, load_products=False)
-
-        ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
-        
         if True:
-            Parallel(n_jobs = 3, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 28200, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
+            eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
+                         path_is_env=False)
+            templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                                 full_line_list=None,  continuum_list=None, 
+                                                 fsps_templates=True)
+
+            # Load individual line templates for fitting the line fluxes
+            templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
+                                                 full_line_list=None, continuum_list=None, 
+                                                 fsps_templates=True)
+
+
+            p = Pointing(field = field, ref_filter = 'F105W')
+
+
+            pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+            ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
+                                    zeropoint_file=None, params=p.params, 
+                                    load_prior=True, load_products=False)
+
+            ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
+            
+        if True:
+            Parallel(n_jobs = -1, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 26130, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
                                                                             run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
                                                                             templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
