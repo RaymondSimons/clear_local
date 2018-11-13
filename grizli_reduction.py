@@ -230,7 +230,7 @@ class Pointing():
 
 
 
-def grizli_getfiles(run = True):
+def grizli_getfiles(run = True):f
     if run == False: return
     else: 'Running grizli_getfiles...'
 

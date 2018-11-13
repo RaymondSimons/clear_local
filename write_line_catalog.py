@@ -3,7 +3,7 @@ from astropy.io import fits
 import glob
 from glob import glob
 
-field = 'GN2'
+field = 'GN3'
 
 if False:
 	fls = glob('/user/rsimons/grizli_extractions/PREP/*.full.fits')
@@ -33,7 +33,9 @@ cat.write('#(11) z_02\n')
 cat.write('#(12) z_16\n')
 cat.write('#(13) z_84\n')
 cat.write('#(14) z_97\n')
-
+cat.write('#(15) ra\n')
+cat.write('#(16) dec\n')
+cat.write('#(17) nlines grizli\n')
 
 fluxs = zeros((4,2, len(fls))) - 99.
 zs = zeros((5, len(fls))) - 99.
@@ -41,7 +43,10 @@ zs = zeros((5, len(fls))) - 99.
 for f, fl in enumerate(fls):
 	a = fits.open(fl)
 	ID = a[0].header['ID']
+	ra = a[0].header['ra']
+	dec = a[0].header['dec']
 	lines_f = a[0].header['HASLINES'].split(' ')
+	nlines = a[0].header['NUMLINES']
 	if (len(lines_f) > 0) & (lines_f[0] !=''):
 		j = -99
 
@@ -67,8 +72,8 @@ for f, fl in enumerate(fls):
 
 	n_lines = len(lines_f)
 
-	cat.write('%i\t\t%i\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\n'%
-			  (ID, n_lines, fluxs[0,0,f], fluxs[0,1,f], fluxs[1,0,f], fluxs[1,1,f], fluxs[2,0,f], fluxs[2,1,f], fluxs[3,0,f], fluxs[3,1,f], zs[0, f], zs[1, f], zs[2, f], zs[3, f], zs[4, f]))
+	cat.write('%i\t\t%i\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.8f\t\t%.8f\t\t%i\n'%
+			  (ID, n_lines, fluxs[0,0,f], fluxs[0,1,f], fluxs[1,0,f], fluxs[1,1,f], fluxs[2,0,f], fluxs[2,1,f], fluxs[3,0,f], fluxs[3,1,f], zs[0, f], zs[1, f], zs[2, f], zs[3, f], zs[4, f], ra, dec, nlines))
 
 
 cat.close()
