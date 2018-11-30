@@ -17,6 +17,7 @@ from grizli.pipeline import photoz
 from astropy.table import Table
 import eazy
 from joblib import Parallel, delayed
+from glob import glob
 
 try: 
     from mastquery import query, overlaps
@@ -615,7 +616,7 @@ if __name__ == '__main__':
                                           filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
                                           instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], 
                                           extra=extra, close=False)
-            if False:
+            if True:
                 # retrieve raw data from MAST
                 s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
                 auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, 
