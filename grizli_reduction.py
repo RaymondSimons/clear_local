@@ -523,18 +523,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
 
 if __name__ == '__main__':
 
-    global PATH_TO_RAW, PATH_TO_PREP, PATH_TO_SCRIPTS, to_fits
-
-    if True:
-        PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
-        PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
-        PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
-        PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
-    else:
-        #PATH_TO_RAW = '/Volumes/wd/clear/GN2/j123652+621424/RAW'
-        #PATH_TO_PREP = '/Volumes/wd/clear/GN2/j123652+621424/PREP'
-        PATH_TO_SCRIPTS = '/Users/rsimons/Desktop/git/clear_local'
-        PATH_TO_CATS= '/Users/rsimons/Desktop/clear/Catalogs'
+    global PATH_TO_RAW, PATH_TO_PREP, PATH_TO_SCRIPTS, HOME_PATH, to_fits
 
 
     #to_fits = np.array([9116, 16736, 18108, 15610, 19451])
@@ -557,12 +546,93 @@ if __name__ == '__main__':
 
     for field in ['GS1']:
 
+        if True:
+            PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
+            PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
+            PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
+            PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
+            HOME_PATH = '/user/rsimons/grizli_extractions/%s'%field
+        else:
+            #PATH_TO_RAW = '/Volumes/wd/clear/GN2/j123652+621424/RAW'
+            #PATH_TO_PREP = '/Volumes/wd/clear/GN2/j123652+621424/PREP'
+            PATH_TO_SCRIPTS = '/Users/rsimons/Desktop/git/clear_local'
+            PATH_TO_CATS= '/Users/rsimons/Desktop/clear/Catalogs'
+
+
+        if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
+        if not os.path.isdir(HOME_PATH + '/query_results'): os.system('mkdir %s/query_results'%HOME_PATH)
+
+
+        parent = query.run_query(box = None, proposal_id = [14227], instruments=['WFC3/IR', 'ACS/WFC'], 
+                         filters = ['G102'], target_name = field)
+        
+        # Find all G102 and G141 observations overlapping the parent query in the archive
+        tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
+                                      filters=['G102', 'G141'], 
+                                      instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
+
+        # rerun overlaps.find_overlaps
+        #
+        # pids = list(np.unique(tabs[0]['proposal_id']))
+        # 
+        # proposal_id = pids
+
+        footprint_fits_file = glob('*footprint.fits')[0]
+        jtargname = footprint_fits_file.strip('_footprint.fits')
+
+
+        # A list of the target names
+        fp_fits = fits.open(footprint_fits_file)
+        overlapping_target_names = set(fp_fits[1].data['target'])
+
+
+        # Move the footprint figure files to $HOME_PATH/query_results/ so that they are not overwritten
+        os.system('cp %s/%s_footprint.fits %s/query_results/%s_footprint_%s.fits'%(HOME_PATH, jtargname, HOME_PATH, jtargname, 'all_G102_G141'))
+        os.system('cp %s/%s_footprint.npy %s/query_results/%s_footprint_%s.npy'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
+        os.system('cp %s/%s_footprint.pdf %s/query_results/%s_footprint_%s.pdf'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
+        os.system('cp %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
+
+        # Loop targ_name by targ_name
+        for t, targ_name in enumerate(overlapping_target_names):
+            if use_mquery:
+                extra = {'target_name':targ_name}
+            else:
+                extra = query.DEFAULT_EXTRA.copy()
+                extra += ["TARGET.TARGET_NAME LIKE '%s'"%targ_name]
+            
+            # search the MAST archive again, this time looking for 
+            # all grism and imaging observations with the given target name
+            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
+                                          filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
+                                          instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], 
+                                          extra=extra, close=False)
+            if False:
+                # retrieve raw data from MAST
+                s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
+                auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, 
+                                        reprocess_parallel=True, s3_sync=(s3_status == 0))
+
+            # Move the figure files to $HOME_PATH/query_results/ so that they are not overwritten
+            os.system('mv %s/%s_footprint.fits %s/query_results/%s_footprint_%s.fits'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
+            os.system('mv %s/%s_footprint.npy %s/query_results/%s_footprint_%s.npy'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
+            os.system('mv %s/%s_footprint.pdf %s/query_results/%s_footprint_%s.pdf'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
+            os.system('mv %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
+
+            os.chdir(HOME_PATH)
+
+
+        '''
+
+
+
+
+
+        extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
+        
         PATH_TO_RAW = glob.glob('/Volumes/wd/clear/%s/*/RAW'%field)[0]
         PATH_TO_PREP = glob.glob('/Volumes/wd/clear/%s/*/PREP'%field)[0]
         os.chdir(PATH_TO_PREP)
-
         #visits, filters = grizli_getfiles(run = files_bool)
-        #extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
         visits, filters = grizli_getfiles(run = files_bool)
 
         grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
@@ -600,7 +670,7 @@ if __name__ == '__main__':
                                                                             run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
                                                                             templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
-
+        '''
 
         #grizli_fit(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, 
         #            run = fit_bool, id_choose = 22945, 
