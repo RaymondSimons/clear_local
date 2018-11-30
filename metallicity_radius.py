@@ -26,7 +26,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 import glob
 from glob import glob
 from astropy.convolution import Gaussian2DKernel, convolve_fft
-
+from scipy.interpolate import interp1d
 
 
 
@@ -122,8 +122,8 @@ objects = [('GS1', 43403),
 lines = ['OII', 'OIII']#, 'Hb']
 
 
-mnx = 20
-mxx = 60
+mnx = 15
+mxx = 65
 
 
 min_a = 0.01
@@ -134,13 +134,16 @@ da = 1.
 a_arr = np.arange(min_a, max_a, da)
 
 
+fluxes_direct = zeros((len(a_arr), 5))*nan
+
+
 
 gfit_cat_dir = '/Users/rsimons/Desktop/clear/Catalogs/galfit'
 gfit_cat_gdn = np.loadtxt(gfit_cat_dir + '/gn_all_candels_wfc3_f105w_060mas_v0.8_galfit.cat')
 gfit_cat_gds = np.loadtxt(gfit_cat_dir + '/gs_all_candels_ers_udf_f105w_v0.5_galfit.cat')
 
 
-for o, obj in enumerate(objects):    
+for o, obj in enumerate(objects[6:7]):    
 
     field = obj[0]
     id_fit = obj[1]
@@ -172,6 +175,8 @@ for o, obj in enumerate(objects):
             for ax in axes[:,0]:
                 ax.set_xticklabels([])
                 ax.set_yticklabels([])
+            for ax in axes[:,1]:
+                ax.axhline(y = 0.0, color = 'grey', alpha = 0.3)
 
 
 
@@ -196,20 +201,45 @@ for o, obj in enumerate(objects):
             axes[0,0].imshow(direct_im)
             axes[0,0].set_title('direct')
 
-            for a_in in a_arr:
+            for a, a_in in enumerate(a_arr):
                 a_out = a_in + da
                 ea = photutils.EllipticalAnnulus(positions = (x1, y1), a_in = a_in, a_out = a_out, b_out = a_out/ab, theta = tht_rad)
                 ap_sums = ea.do_photometry(direct_im, derr)
                 
-                
-                axes[0, 1].errorbar((a_in+da/2.) * pix_scale, ap_sums[0]/ea.area(), xerr = da/2. * pix_scale, yerr = ap_sums[1]/ea.area(), color = 'black', marker = 'o', ms = 10)
-                #for ax in axes[:, 0]:
-                ea.plot(ax = axes[0, 0])
+                fluxes_direct[a, 0] = (a_in+da/2.) * pix_scale
+                fluxes_direct[a, 1] = ap_sums[0]/ea.area()
+                fluxes_direct[a, 2] = ap_sums[1]/ea.area()
+                fluxes_direct[a, 3] = ap_sums[0]
+                fluxes_direct[a, 4] = ap_sums[1]
+                axes[0,1].set_ylabel('flux($<$r)', fontsize = 20)
+                axes[0,1].set_xlabel('r along major axis (arcsec)', fontsize = 20)
 
-            #ax2.set_yscale('log')
-                   
-                    
-            aps = np.zeros((3, len(a_arr), len(lines)))
+                ea.plot(ax = axes[0, 0], alpha = 0.2)
+
+            #axes[0, 1].errorbar(fluxes[0, :, 0], fluxes[0, :, 3], xerr = da/2. * pix_scale, yerr = fluxes[0, :, 4], ls = 'none', color = 'black', marker = 'o', ms = 10)
+            
+            csf = concatenate(([0], cumsum(fluxes_direct[:, 3])))
+            rd = concatenate(([0], fluxes_direct[:, 0]))
+            axes[0, 1].plot(rd, csf)
+
+            f = interp1d(csf, rd)
+
+            axes[0, 1].plot(f(csf), csf, 'k-')
+
+            tsum = sum(fluxes_direct[:, 3])
+
+            n = 20.
+            a_arr_new = [a_arr[0]]
+            for i in arange(n):
+                tsm = tsum * (i+1)/n
+                axes[0,1].axvline(x = f(tsm), color = 'black', alpha = 0.2)
+                a_arr_new.append(float(f(tsm)))
+
+            print (sum(fluxes_direct[:,3]))
+
+            fluxes = zeros((len(lines), len(a_arr_new[0:-1]),7))*nan
+
+
             clrs = ['blue', 'purple', 'red', 'green']
             for l, line in enumerate(lines):
 
@@ -228,20 +258,31 @@ for o, obj in enumerate(objects):
 
                 axes[l+1, 0].imshow(line_im, vmin = vmn, vmax = vmx)
 
-                for a, a_in in enumerate(a_arr):
-                    a_out = a_in + da
-                    ea = photutils.EllipticalAnnulus(positions = (x1, y1), a_in = a_in, a_out = a_out, b_out = a_out/ab, theta = tht_rad)
-                    ap_sums = ea.do_photometry(line_im, line_err)                    
-                    aps[0, a, l] = (a_in + da/2.) * pix_scale
-                    aps[1, a, l] = ap_sums[0]/ea.area()
-                    aps[2, a, l] = ap_sums[1]/ea.area()
+                for a, a_in in enumerate(a_arr_new[0:-1]):
+                    a_out = a_arr_new[a + 1]
+                    print (a_in, a_out)
+
+                    ea = photutils.EllipticalAnnulus(positions = (x1, y1), a_in = a_in/pix_scale, a_out = a_out/pix_scale, b_out = a_out/ab/pix_scale, theta = tht_rad)
+                    ap_sums = ea.do_photometry(line_im, line_err)     
+                    fluxes[l, a, 0] = (a_in+a_out)/2.
+                    fluxes[l, a, 1] = ap_sums[0]/ea.area()
+                    fluxes[l, a, 2] = ap_sums[1]/ea.area()
+                    fluxes[l, a, 3] = ap_sums[0]
+                    fluxes[l, a, 4] = ap_sums[1]
+                    fluxes[l, a, 5] = ((a_in+a_out)/2. - a_in)
+                    fluxes[l, a, 6] = (a_out - (a_in+a_out)/2.)
+                    ea.plot(ax = axes[l+1, 0], alpha = 0.2)
+
+ 
+                axes[l+1,1].set_xlabel('r along major axis (arcsec)', fontsize = 20)
+                axes[l+1,1].set_ylabel('surface brightness', fontsize = 20)
+
 
                 axes[l+1, 1].annotate(line, (0.75, 0.85), xycoords = 'axes fraction', color = 'black', fontweight = 'bold', fontsize = 40)
-                axes[l+1, 1].axhline(y = 0.0, color = 'black')
 
-                axes[l+1, 1].plot(aps[0, :, l], aps[1, :, l], marker = 'o', color = 'black', linewidth = 0, markersize = 0.0)
+                axes[l+1, 1].plot(fluxes[l, :, 0],fluxes[l, :, 1], marker = 'o', color = 'black', linewidth = 0, markersize = 0.0)
                 ylm = axes[l+1, 1].get_ylim()
-                axes[l+1, 1].errorbar(aps[0, :, l], aps[1, :, l], xerr = da/2. * pix_scale, yerr = aps[2, :, l], color = 'black', fmt = 'o', ms = 10)
+                axes[l+1, 1].errorbar(fluxes[l, :, 0],fluxes[l, :, 1], xerr = [fluxes[l, :, 5], fluxes[l, :, 6]], yerr =fluxes[l, :, 2], color = 'black', fmt = 'o', ms = 10)
                 ylm2 = axes[l+1, 1].get_ylim()
                 axes[l+1, 1].set_ylim(max(ylm[0]*2.0, ylm2[0]), min(ylm[1]*2.0, ylm2[1]))
 
@@ -253,27 +294,23 @@ for o, obj in enumerate(objects):
                 
 
             np.random.seed(9)
-            #aps = aps[:,(~isnan(aps[1, a, 1])) & (~isnan(aps[1, a, 0])),:]
             to_fit = []
-            for a in np.arange(len(a_arr)):
-                try:
-                    OH_z, eOH_z = OH(O3 = aps[1, a, 1], O2 = aps[1, a, 0], eO3 = aps[2, a, 1], eO2 = aps[2, a, 0])
+            for a in np.arange(len(a_arr_new[0:-1])):
+                OH_z, eOH_z = OH(O3 = fluxes[0, a, 1], O2 = fluxes[1, a, 1], eO3 = fluxes[0, a, 2], eO2 = fluxes[1, a, 2])
 
-                    if eOH_z/OH_z > 1/3.:
-                        alp = 0.1
-                        clr = 'grey'
+                if eOH_z/OH_z > 1/3.:
+                    alp = 0.1
+                    clr = 'grey'
 
-                    elif eOH_z/OH_z < 0.1:
-                        alp = 1.0
-                        clr = 'darkblue'
-                    else:
-                        alp = 1.0
-                        clr = 'black'            
+                elif eOH_z/OH_z < 0.1:
+                    alp = 1.0
+                    clr = 'darkblue'
+                else:
+                    alp = 1.0
+                    clr = 'black'            
 
-                    to_fit.append([aps[0,a,0], OH_z, eOH_z])
-                    ax3.errorbar(aps[0,a,0], OH_z, yerr = eOH_z,color = clr, fmt = 'o', alpha = alp, markersize = 10, zorder = 2)
-                except:
-                    pass
+                to_fit.append([fluxes[0,a,0], OH_z, eOH_z])
+                ax3.errorbar(fluxes[0,a,0], OH_z, yerr = eOH_z,color = clr, fmt = 'o', alpha = alp, markersize = 10, zorder = 2)
 
 
 
@@ -282,7 +319,7 @@ for o, obj in enumerate(objects):
 
 
 
-            ax3.set_ylim(7., 9.5)
+            ax3.set_ylim(3., 12)
             ax3.set_ylabel(r'12 + log(O/H)', fontsize = 20)
             ax3.set_xlabel(r'Semi-major axis radius [arcsec]', fontsize = 20)
             ax3_t = ax3.twiny()

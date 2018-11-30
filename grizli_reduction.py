@@ -491,7 +491,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
         auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True, s3_sync=(s3_status == 0))
 
     #Second run-through, retrieve the direct imaging
-    if False:
+    if True:
         #Find targetnames
         fls_temp = glob.glob(PATH_TO_RAW+'/j123625+621431/RAW/*flt.fits')
         target_names = []
@@ -525,7 +525,7 @@ if __name__ == '__main__':
 
     global PATH_TO_RAW, PATH_TO_PREP, PATH_TO_SCRIPTS, to_fits
 
-    if False:
+    if True:
         PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
         PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
         PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
@@ -543,19 +543,19 @@ if __name__ == '__main__':
 
     to_fits = np.array([17829])
 
-    mag_lim = 23
+    mag_lim = 25
     mag_lim_lower = 0
 
     id_choose = 23116
     if True:
         files_bool = True
-        retrieve_bool = False
+        retrieve_bool = True
         prep_bool = False
-        model_bool = True
-        load_bool = True
-        fit_bool = True
+        model_bool = False
+        load_bool = False
+        fit_bool = False
 
-    for field in ['GN3']:
+    for field in ['GS1']:
 
         PATH_TO_RAW = glob.glob('/Volumes/wd/clear/%s/*/RAW'%field)[0]
         PATH_TO_PREP = glob.glob('/Volumes/wd/clear/%s/*/PREP'%field)[0]
