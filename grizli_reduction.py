@@ -230,7 +230,7 @@ class Pointing():
 
 
 
-def grizli_getfiles(run = True):f
+def grizli_getfiles(run = True):
     if run == False: return
     else: 'Running grizli_getfiles...'
 
@@ -565,7 +565,7 @@ if __name__ == '__main__':
 
         parent = query.run_query(box = None, proposal_id = [14227], instruments=['WFC3/IR', 'ACS/WFC'], 
                          filters = ['G102'], target_name = field)
-        
+
         # Find all G102 and G141 observations overlapping the parent query in the archive
         tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
                                       filters=['G102', 'G141'], 
