@@ -18,6 +18,15 @@ from astropy.table import Table
 import eazy
 from joblib import Parallel, delayed
 
+try: 
+    from mastquery import query, overlaps
+    use_mquery = True
+except: 
+    from hsaquery import query, overlaps
+    use_mquery = False
+
+
+
 
 plt.ioff()
 plt.close('all')
