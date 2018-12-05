@@ -571,11 +571,13 @@ if __name__ == '__main__':
     if not os.path.isdir(HOME_PATH + '/query_results'): os.system('mkdir %s/query_results'%HOME_PATH)
 
 
-
+    print ('Changing to %s'%HOME_PATH)
     os.chdir(HOME_PATH)
 
 
 
+
+    print ('Changing to %s'%PATH_TO_SCRIPTS)
     os.chdir(PATH_TO_SCRIPTS)
 
 
