@@ -627,58 +627,55 @@ if __name__ == '__main__':
         os.system('mv %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
 
         os.chdir(HOME_PATH)
-        '''
+    extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
+    
+    PATH_TO_RAW = glob.glob('/Volumes/wd/clear/%s/*/RAW'%field)[0]
+    PATH_TO_PREP = glob.glob('/Volumes/wd/clear/%s/*/PREP'%field)[0]
+    os.chdir(PATH_TO_PREP)
+    #visits, filters = grizli_getfiles(run = files_bool)
+    visits, filters = grizli_getfiles(run = files_bool)
 
-        '''
-        extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
+    grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
+    grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
+
+
+    grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
+                       run = model_bool, load_only = load_bool, mag_lim = mag_lim)
+
+    if True:
+        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
+                     path_is_env=False)
+        templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                             full_line_list=None,  continuum_list=None, 
+                                             fsps_templates=True)
+
+        # Load individual line templates for fitting the line fluxes
+        templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
+                                             full_line_list=None, continuum_list=None, 
+                                             fsps_templates=True)
+
+
+        p = Pointing(field = field, ref_filter = 'F105W')
+
+
+        pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
+                                zeropoint_file=None, params=p.params, 
+                                load_prior=True, load_products=False)
+
+        ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
         
-        PATH_TO_RAW = glob.glob('/Volumes/wd/clear/%s/*/RAW'%field)[0]
-        PATH_TO_PREP = glob.glob('/Volumes/wd/clear/%s/*/PREP'%field)[0]
-        os.chdir(PATH_TO_PREP)
-        #visits, filters = grizli_getfiles(run = files_bool)
-        visits, filters = grizli_getfiles(run = files_bool)
+    if True:
+        Parallel(n_jobs = -1, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 26130, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
+                                                                        run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
+                                                                        templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
-        grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
-        grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
+    '''
 
-
-        grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
-                           run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-
-        if True:
-            eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
-                         path_is_env=False)
-            templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                                 full_line_list=None,  continuum_list=None, 
-                                                 fsps_templates=True)
-
-            # Load individual line templates for fitting the line fluxes
-            templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                                 full_line_list=None, continuum_list=None, 
-                                                 fsps_templates=True)
-
-
-            p = Pointing(field = field, ref_filter = 'F105W')
-
-
-            pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-            ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
-                                    zeropoint_file=None, params=p.params, 
-                                    load_prior=True, load_products=False)
-
-            ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
-            
-        if True:
-            Parallel(n_jobs = -1, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 26130, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
-                                                                            run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
-                                                                            templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
-
-        '''
-
-        #grizli_fit(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, 
-        #            run = fit_bool, id_choose = 22945, 
-        #            use_pz_prior = False, use_phot = True, scale_phot = True, 
-        #            templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline)
+    #grizli_fit(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, 
+    #            run = fit_bool, id_choose = 22945, 
+    #            use_pz_prior = False, use_phot = True, scale_phot = True, 
+    #            templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline)
 
 
 
