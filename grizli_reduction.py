@@ -9,7 +9,7 @@ import glob
 from grizli import utils
 import importlib
 from grizli.prep import process_direct_grism_visit
-from hsaquery import query, overlaps
+#from hsaquery import query, overlaps
 from grizli.pipeline import auto_script
 from grizli.multifit import GroupFLT, MultiBeam, get_redshift_fit_defaults
 import os, sys, argparse
@@ -18,14 +18,15 @@ from astropy.table import Table
 import eazy
 from joblib import Parallel, delayed
 from glob import glob
-
+from mastquery import query, overlaps
+'''
 try: 
     from mastquery import query, overlaps
     use_mquery = True
 except: 
     from hsaquery import query, overlaps
     use_mquery = False
-
+'''
 
 
 
