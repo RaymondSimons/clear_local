@@ -492,6 +492,13 @@ def retrieve_archival_data(field, retrieve_bool = False):
     pids = list(np.unique(tabs[0]['proposal_id']))
 
 
+    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
+                                  filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
+                                  instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], 
+                                  extra=extra, close=False)
+
+
+
     print (pids)
 
 
