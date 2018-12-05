@@ -490,7 +490,7 @@ def retrieve_archival_data(field, retrieve_bool = False):
 
     tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
                                   filters=['G102', 'G141'], 
-                                  instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
+                                  instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False, use_parent = True)
 
     pids = list(np.unique(tabs[0]['proposal_id']))
 
@@ -577,6 +577,9 @@ if __name__ == '__main__':
     HOME_PATH           = PATH_TO_HOME + '/' + field
     
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
+    if not os.path.isdir(PATH_TO_PREP): os.system('mkdir %s'%PATH_TO_PREP)
+    if not os.path.isdir(PATH_TO_RAW): os.system('mkdir %s'%PATH_TO_RAW)
+
     if not os.path.isdir(HOME_PATH + '/query_results'): os.system('mkdir %s/query_results'%HOME_PATH)
 
 
