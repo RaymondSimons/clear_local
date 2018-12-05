@@ -12,7 +12,7 @@ from grizli.prep import process_direct_grism_visit
 from hsaquery import query, overlaps
 from grizli.pipeline import auto_script
 from grizli.multifit import GroupFLT, MultiBeam, get_redshift_fit_defaults
-import os
+import os, sys, argparse
 from grizli.pipeline import photoz
 from astropy.table import Table
 import eazy
