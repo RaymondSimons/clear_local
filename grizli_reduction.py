@@ -478,30 +478,17 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
 
 def retrieve_archival_data(visits, field, retrieve_bool = False):
     if retrieve_bool == False: return
-    os.chdir(PATH_TO_RAW)    
 
-    product_names = np.array([visit['product'] for visit in visits])
-    filter_names = np.array([visit['product'].split('-')[-1] for visit in visits])
-    basenames = np.array([visit['product'].split('.')[0]+'.0' for visit in visits])
-    print ('\n\n\n\n\n\n\n')
-    for v, visit in enumerate(visits):
-        product = product_names[v]
-        basename = basenames[v]
-        filt1 = filter_names[v]
-
-        field_in_contest = basename.split('-')[0]
-        filt1 = filter_names[v]
-        #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
+    os.chdir(HOME_PATH)    
+    
+    parent = query.run_query(box = None, proposal_id = [14227], instruments=['WFC3/IR', 'ACS/WFC'], 
+                         filters = ['G102'], target_name = field)
 
 
-
-
-
-    ra_target = 189.22053
-    dec_target = 62.24010833333
-    radius_in_arcmin = 60
-
-
+    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
+                                  filters=['G102', 'G141'], 
+                                  instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
+    '''
     #First run-through, ignore the imaging
     if True:
         parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin], instruments=['WFC3-IR', 'ACS-WFC'], 
@@ -536,7 +523,7 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
                                     reprocess_parallel=True, s3_sync=(s3_status == 0))
 
 
-
+    '''
     os.chdir(PATH_TO_PREP)    
 
 
@@ -574,6 +561,9 @@ if __name__ == '__main__':
     print ('Changing to %s'%HOME_PATH)
     os.chdir(HOME_PATH)
 
+
+
+    extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
 
 
 
