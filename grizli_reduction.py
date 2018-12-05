@@ -570,8 +570,18 @@ if __name__ == '__main__':
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
     if not os.path.isdir(HOME_PATH + '/query_results'): os.system('mkdir %s/query_results'%HOME_PATH)
 
-    '''
+
+
     os.chdir(HOME_PATH)
+
+
+
+    os.chdir(PATH_TO_SCRIPTS)
+
+
+
+
+    '''
     parent = query.run_query(box = None, proposal_id = [14227], instruments=['WFC3/IR', 'ACS/WFC'], 
                      filters = ['G102'], target_name = field)
 
@@ -682,7 +692,7 @@ if __name__ == '__main__':
 
 
 
-    os.chdir(PATH_TO_SCRIPTS)
+
 
 
 
