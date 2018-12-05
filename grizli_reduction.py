@@ -497,8 +497,10 @@ def retrieve_archival_data(field, retrieve_bool = False):
     tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, proposal_id = pids,
                                   filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
                                   instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
+    footprint_fits_file = glob('*footprint.fits')[0]
+    jtargname = footprint_fits_file.strip('_footprint.fits')
 
-
+    auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True)
 
     print (pids)
 

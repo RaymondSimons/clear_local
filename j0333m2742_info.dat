@@ -1,0 +1,8 @@
+proposal_id j0333m2742 12177
+proposal_id j0333m2742 14227
+target j0333m2742 GOODS-SOUTH-1
+target j0333m2742 GS1
+filter j0333m2742         WFC3/IR F105W    6    3185.2
+filter j0333m2742         WFC3/IR F140W    1     811.7
+filter j0333m2742          WFC3/IR G102    6   27670.5
+filter j0333m2742          WFC3/IR G141    1    4711.7
