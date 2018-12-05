@@ -476,7 +476,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
     else:
         return
 
-def retrieve_archival_data(visits, field, retrieve_bool = False):
+def retrieve_archival_data(field, retrieve_bool = False):
     if retrieve_bool == False: return
 
     os.chdir(HOME_PATH)    
@@ -563,7 +563,7 @@ if __name__ == '__main__':
 
 
 
-    extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
+    extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
 
 
 
