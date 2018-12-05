@@ -62,6 +62,13 @@ def parse():
     parser.add_argument('-do_fit',      '--do_fit',      default = False, help = 'bool to fit modeled spectra')
 
 
+    parser.add_argument('-PATH_TO_RAW'    , '--PATH_TO_RAW'    , default = '/user/rsimons/grizli_extractions/RAW', help = 'path to RAW directory')
+    parser.add_argument('-PATH_TO_PREP'   , '--PATH_TO_PREP'   , default = '/user/rsimons/grizli_extractions/PREP', help = 'path to prep directory')
+    parser.add_argument('-PATH_TO_SCRIPTS', '--PATH_TO_SCRIPTS', default = '/home/rsimons/git/clear_local', help = 'path to scripts directory')
+    parser.add_argument('-PATH_TO_CATS'   , '--PATH_TO_CATS'   , default = '/user/rsimons/grizli_extractions/Catalogs', help = 'path to catalog directory')
+    parser.add_argument('-PATH_TO_HOME'   , '--PATH_TO_HOME'   , default = '/user/rsimons/grizli_extractions', help = 'path to home directory sans field')
+
+
 
     args = vars(parser.parse_args())
     return args
@@ -552,18 +559,14 @@ if __name__ == '__main__':
     fit_bool        = args['do_fit']
 
 
-    PATH_TO_RAW         = '/user/rsimons/grizli_extractions/RAW'
-    PATH_TO_PREP        = '/user/rsimons/grizli_extractions/PREP'
-    PATH_TO_SCRIPTS     = '/home/rsimons/git/clear_local'
-    PATH_TO_CATS        = '/user/rsimons/grizli_extractions/Catalogs'
-    HOME_PATH           = '/user/rsimons/grizli_extractions/%s'%field
+    PATH_TO_RAW         = args['PATH_TO_RAW']     
+    PATH_TO_PREP        = args['PATH_TO_PREP']   
+    PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
+    PATH_TO_CATS        = args['PATH_TO_CATS']    
+    PATH_TO_HOME        = args['PATH_TO_HOME']
+
+    HOME_PATH           = PATH_TO_HOME + '/' + field
     
-    #PATH_TO_RAW = '/Volumes/wd/clear/GN2/j123652+621424/RAW'
-    #PATH_TO_PREP = '/Volumes/wd/clear/GN2/j123652+621424/PREP'
-    #PATH_TO_SCRIPTS = '/Users/rsimons/Desktop/git/clear_local'
-    #PATH_TO_CATS= '/Users/rsimons/Desktop/clear/Catalogs'
-
-
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
     if not os.path.isdir(HOME_PATH + '/query_results'): os.system('mkdir %s/query_results'%HOME_PATH)
 
