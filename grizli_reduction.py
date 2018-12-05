@@ -19,6 +19,7 @@ import eazy
 from joblib import Parallel, delayed
 from glob import glob
 from mastquery import query, overlaps
+matplotlib.use('agg')
 '''
 try: 
     from mastquery import query, overlaps
