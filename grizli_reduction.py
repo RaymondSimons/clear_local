@@ -46,7 +46,25 @@ overlapping_fields = {'GN1':['GDN20'],
 
 
 
+def parse():
+    '''
+    Parse command line arguments
+    ''' 
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description='''CLEAR grizli extractions.''')
+    parser.add_argument('-field',       '--field',       default='GS1', help='field to extract')
+    parser.add_argument('-mag_lim',     '--mag_lim',     default=25, help='field to extract')
+    parser.add_argument('-mag_max',     '--mag_max',     default= 0, help='field to extract')
+    parser.add_argument('-do_files',    '--do_files',    default = True, help = 'bool to load files')
+    parser.add_argument('-do_retrieve', '--do_retrieve', default = False, help = 'bool to retrieve files from MAST')
+    parser.add_argument('-do_prep',     '--do_prep',     default = False, help = 'bool to PREP files with Grizli')
+    parser.add_argument('-do_model',    '--do_model',    default = False, help = 'bool to model spectra')
+    parser.add_argument('-do_load',     '--do_load',     default = False, help = 'bool to load previosuly created models')
+    parser.add_argument('-do_fit',      '--do_fit',      default = False, help = 'bool to fit modeled spectra')
 
+
+
+    args = vars(parser.parse_args())
+    return args
 
 def readEazyBinary(MAIN_OUTPUT_FILE='photz', OUTPUT_DIRECTORY='./OUTPUT', CACHE_FILE='Same'):
 
@@ -170,11 +188,6 @@ def readEazyBinary(MAIN_OUTPUT_FILE='photz', OUTPUT_DIRECTORY='./OUTPUT', CACHE_
     ###### Done.    
     return tempfilt, coeffs, temp_sed, pz
 
-
-
-
-
-
 class Pointing():
     """ Generalization of GN1, GS1, ERSPRIME, etc
 
@@ -237,9 +250,6 @@ class Pointing():
                 #self.ref_image = '../Catalogs/goodss_3dhst.v4.0.F125W_orig_sci.fits'  
                 #RCS need to retrieve the F015W image
             
-
-
-
 def grizli_getfiles(run = True):
     if run == False: return
     else: 'Running grizli_getfiles...'
@@ -283,8 +293,6 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
                                                 align_mag_limits = [14, 23])
 
     return visits, filters
-
-
 
 def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141', run = True, load_only = True, mag_lim = 25):
     if run == False: return
@@ -461,10 +469,6 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
     else:
         return
 
-
-
-
-
 def retrieve_archival_data(visits, field, retrieve_bool = False):
     if retrieve_bool == False: return
     os.chdir(PATH_TO_RAW)    
@@ -529,114 +533,103 @@ def retrieve_archival_data(visits, field, retrieve_bool = False):
     os.chdir(PATH_TO_PREP)    
 
 
-
-
 if __name__ == '__main__':
 
     global PATH_TO_RAW, PATH_TO_PREP, PATH_TO_SCRIPTS, HOME_PATH, to_fits
-
-
     #to_fits = np.array([9116, 16736, 18108, 15610, 19451])
+    args = parse()
+    #to_fits = np.array([17829])
+    #id_choose = 23116
+
+    field           = args['field']
+    mag_lim         = args['mag_lim']
+    mag_max         = args['mag_max']
+    files_bool      = args['do_files']
+    retrieve_bool   = args['do_retrieve']
+    prep_bool       = args['do_prep']
+    model_bool      = args['do_model']
+    load_bool       = args['do_load']
+    fit_bool        = args['do_fit']
+
+
+    PATH_TO_RAW         = '/user/rsimons/grizli_extractions/RAW'
+    PATH_TO_PREP        = '/user/rsimons/grizli_extractions/PREP'
+    PATH_TO_SCRIPTS     = '/home/rsimons/git/clear_local'
+    PATH_TO_CATS        = '/user/rsimons/grizli_extractions/Catalogs'
+    HOME_PATH           = '/user/rsimons/grizli_extractions/%s'%field
+    
+    #PATH_TO_RAW = '/Volumes/wd/clear/GN2/j123652+621424/RAW'
+    #PATH_TO_PREP = '/Volumes/wd/clear/GN2/j123652+621424/PREP'
+    #PATH_TO_SCRIPTS = '/Users/rsimons/Desktop/git/clear_local'
+    #PATH_TO_CATS= '/Users/rsimons/Desktop/clear/Catalogs'
+
+
+    if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
+    if not os.path.isdir(HOME_PATH + '/query_results'): os.system('mkdir %s/query_results'%HOME_PATH)
+
+    '''
+    os.chdir(HOME_PATH)
+    parent = query.run_query(box = None, proposal_id = [14227], instruments=['WFC3/IR', 'ACS/WFC'], 
+                     filters = ['G102'], target_name = field)
+
+    # Find all G102 and G141 observations overlapping the parent query in the archive
+    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
+                                  filters=['G102', 'G141'], 
+                                  instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
 
 
 
-    to_fits = np.array([17829])
+    # rerun overlaps.find_overlaps
+    #
+    # pids = list(np.unique(tabs[0]['proposal_id']))
+    # 
+    # proposal_id = pids
 
-    mag_lim = 25
-    mag_lim_lower = 0
+    footprint_fits_file = glob('*footprint.fits')[0]
+    jtargname = footprint_fits_file.strip('_footprint.fits')
 
-    id_choose = 23116
-    if True:
-        files_bool = True
-        retrieve_bool = True
-        prep_bool = False
-        model_bool = False
-        load_bool = False
-        fit_bool = False
 
-    for field in ['GS1']:
+    # A list of the target names
+    fp_fits = fits.open(footprint_fits_file)
+    overlapping_target_names = set(fp_fits[1].data['target'])
 
-        if True:
-            PATH_TO_RAW = '/user/rsimons/grizli_extractions/RAW'
-            PATH_TO_PREP = '/user/rsimons/grizli_extractions/PREP'
-            PATH_TO_SCRIPTS = '/home/rsimons/git/clear_local'
-            PATH_TO_CATS= '/user/rsimons/grizli_extractions/Catalogs'
-            HOME_PATH = '/user/rsimons/grizli_extractions/%s'%field
+
+    # Move the footprint figure files to $HOME_PATH/query_results/ so that they are not overwritten
+    os.system('cp %s/%s_footprint.fits %s/query_results/%s_footprint_%s.fits'%(HOME_PATH, jtargname, HOME_PATH, jtargname, 'all_G102_G141'))
+    os.system('cp %s/%s_footprint.npy %s/query_results/%s_footprint_%s.npy'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
+    os.system('cp %s/%s_footprint.pdf %s/query_results/%s_footprint_%s.pdf'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
+    os.system('cp %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
+
+    # Loop targ_name by targ_name
+    for t, targ_name in enumerate(overlapping_target_names):
+        if use_mquery:
+            extra = {'target_name':targ_name}
         else:
-            #PATH_TO_RAW = '/Volumes/wd/clear/GN2/j123652+621424/RAW'
-            #PATH_TO_PREP = '/Volumes/wd/clear/GN2/j123652+621424/PREP'
-            PATH_TO_SCRIPTS = '/Users/rsimons/Desktop/git/clear_local'
-            PATH_TO_CATS= '/Users/rsimons/Desktop/clear/Catalogs'
+            extra = query.DEFAULT_EXTRA.copy()
+            extra += ["TARGET.TARGET_NAME LIKE '%s'"%targ_name]
+        
+        # search the MAST archive again, this time looking for 
+        # all grism and imaging observations with the given target name
+        tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
+                                      filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
+                                      instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], 
+                                      extra=extra, close=False)
+        if True:
+            # retrieve raw data from MAST
+            s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
+            auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, 
+                                    reprocess_parallel=True, s3_sync=(s3_status == 0))
 
-
-        if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
-        if not os.path.isdir(HOME_PATH + '/query_results'): os.system('mkdir %s/query_results'%HOME_PATH)
+        # Move the figure files to $HOME_PATH/query_results/ so that they are not overwritten
+        os.system('mv %s/%s_footprint.fits %s/query_results/%s_footprint_%s.fits'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
+        os.system('mv %s/%s_footprint.npy %s/query_results/%s_footprint_%s.npy'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
+        os.system('mv %s/%s_footprint.pdf %s/query_results/%s_footprint_%s.pdf'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
+        os.system('mv %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
 
         os.chdir(HOME_PATH)
-        parent = query.run_query(box = None, proposal_id = [14227], instruments=['WFC3/IR', 'ACS/WFC'], 
-                         filters = ['G102'], target_name = field)
-
-        # Find all G102 and G141 observations overlapping the parent query in the archive
-        tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
-                                      filters=['G102', 'G141'], 
-                                      instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
-
-        # rerun overlaps.find_overlaps
-        #
-        # pids = list(np.unique(tabs[0]['proposal_id']))
-        # 
-        # proposal_id = pids
-
-        footprint_fits_file = glob('*footprint.fits')[0]
-        jtargname = footprint_fits_file.strip('_footprint.fits')
-
-
-        # A list of the target names
-        fp_fits = fits.open(footprint_fits_file)
-        overlapping_target_names = set(fp_fits[1].data['target'])
-
-
-        # Move the footprint figure files to $HOME_PATH/query_results/ so that they are not overwritten
-        os.system('cp %s/%s_footprint.fits %s/query_results/%s_footprint_%s.fits'%(HOME_PATH, jtargname, HOME_PATH, jtargname, 'all_G102_G141'))
-        os.system('cp %s/%s_footprint.npy %s/query_results/%s_footprint_%s.npy'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
-        os.system('cp %s/%s_footprint.pdf %s/query_results/%s_footprint_%s.pdf'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
-        os.system('cp %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
-
-        # Loop targ_name by targ_name
-        for t, targ_name in enumerate(overlapping_target_names):
-            if use_mquery:
-                extra = {'target_name':targ_name}
-            else:
-                extra = query.DEFAULT_EXTRA.copy()
-                extra += ["TARGET.TARGET_NAME LIKE '%s'"%targ_name]
-            
-            # search the MAST archive again, this time looking for 
-            # all grism and imaging observations with the given target name
-            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
-                                          filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
-                                          instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], 
-                                          extra=extra, close=False)
-            if True:
-                # retrieve raw data from MAST
-                s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
-                auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, 
-                                        reprocess_parallel=True, s3_sync=(s3_status == 0))
-
-            # Move the figure files to $HOME_PATH/query_results/ so that they are not overwritten
-            os.system('mv %s/%s_footprint.fits %s/query_results/%s_footprint_%s.fits'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
-            os.system('mv %s/%s_footprint.npy %s/query_results/%s_footprint_%s.npy'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
-            os.system('mv %s/%s_footprint.pdf %s/query_results/%s_footprint_%s.pdf'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
-            os.system('mv %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
-
-            os.chdir(HOME_PATH)
-
-
         '''
 
-
-
-
-
+        '''
         extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
         
         PATH_TO_RAW = glob.glob('/Volumes/wd/clear/%s/*/RAW'%field)[0]
