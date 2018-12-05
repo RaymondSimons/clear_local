@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('agg')
 import time
 import os
 import numpy as np
@@ -19,8 +21,6 @@ import eazy
 from joblib import Parallel, delayed
 from glob import glob
 from mastquery import query, overlaps
-import matplotlib
-matplotlib.use('agg')
 '''
 try: 
     from mastquery import query, overlaps
