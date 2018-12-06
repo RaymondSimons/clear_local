@@ -58,7 +58,7 @@ def parse():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description='''CLEAR grizli extractions.''')
     parser.add_argument('-field',       '--field',          default='GS1', help='field to extract')
     parser.add_argument('-mag_lim',     '--mag_lim',        default=22, help='field to extract')
-    parser.add_argument('-mag_max',     '--mag_max',        action = "store_true", default= 0, help='field to extract')
+    parser.add_argument('-mag_max',     '--mag_max',        default= 0, help='field to extract')
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_files',    '--do_files',       default = True, help = 'bool to load files')
     parser.add_argument('-do_model',    '--do_model',       default = True, help = 'bool to model spectra')
