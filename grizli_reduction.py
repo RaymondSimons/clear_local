@@ -349,7 +349,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         seg_file = p.seg_map,
         catalog  = p.catalog,
         pad=p.pad,
-        cpu_count=8)
+        cpu_count=2)
     
     if new_model:
         print('Computing contamination models...')
