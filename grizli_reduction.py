@@ -567,8 +567,6 @@ if __name__ == '__main__':
     fit_bool        = args['do_fit']
 
 
-    PATH_TO_RAW         = args['PATH_TO_RAW']     
-    PATH_TO_PREP        = args['PATH_TO_PREP']   
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
     PATH_TO_CATS        = args['PATH_TO_CATS']    
     PATH_TO_HOME        = args['PATH_TO_HOME']
@@ -588,6 +586,11 @@ if __name__ == '__main__':
 
 
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
+
+    PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
+    PATH_TO_PREP        = glob(HOME_PATH + '/*/PREP')[0]
+
+
 
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
