@@ -38,6 +38,8 @@ plt.close('all')
 ### https://github.com/gbrammer/grizli/blob/master/examples/WFC3IR_Reduction.ipynb
 ### and Katie and Iva's grizli pipeline for CLEAR
 
+
+'''
 overlapping_fields = {'GN1':['GDN20'],
                       'GN2':['GDN8', 'GDN12', 'GDN21', 'GDN25'],
                       'GN3':['GDN18', 'GDN19', 'GDN22', 'GDN23'],
@@ -45,7 +47,7 @@ overlapping_fields = {'GN1':['GDN20'],
                       'GN5':['GDN17', 'GDN18'],
                       'GN7':['GDN3', 'GDN6', 'GDN7', 'GDN11'],
                       'ERSPRIME':['WFC3-ERSII-G01']}
-
+'''
 
 
 
@@ -586,6 +588,13 @@ if __name__ == '__main__':
 
 
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
+
+    print ('Changing to %s'%PATH_TO_PREP)
+    os.chdir(PATH_TO_PREP)
+    #visits, filters = grizli_getfiles(run = files_bool)
+    visits, filters = grizli_getfiles(run = files_bool)
+
+
 
 
 
