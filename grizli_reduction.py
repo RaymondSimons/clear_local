@@ -63,6 +63,7 @@ def parse():
     parser.add_argument('-do_files',    '--do_files',    default = True, help = 'bool to load files')
     parser.add_argument('-do_prep_102',     '--do_prep_102',     default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-do_prep_141',     '--do_prep_141',     default = False, help = 'bool to PREP files with Grizli')
+    parser.add_argument('-do_prep',     '--do_prep',     default = False, help = 'bool to PREP files with Grizli')
 
     parser.add_argument('-do_model',    '--do_model',    default = False, help = 'bool to model spectra')
     parser.add_argument('-do_load',     '--do_load',     default = False, help = 'bool to load previosuly created models')
@@ -280,7 +281,7 @@ def grizli_getfiles(run = True):
     visits, filters = grizli.utils.parse_flt_files(info=info, uniquename=True)
     return visits, filters
 
-def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2', run = True):
+def grizli_prep(visits, field = '', run = True):
     if run == False: return
     else: 'Running grizli_prep...'
 
@@ -288,28 +289,29 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
     product_names = np.array([visit['product'] for visit in visits])
     filter_names = np.array([visit['product'].split('-')[-1] for visit in visits])
     basenames = np.array([visit['product'].split('.')[0]+'.0' for visit in visits])
+    for ref_grism, ref_filter in [('G102', 'F105W'), ('G141', 'F140W')]:
+        print ('Processing %s + %s visits'%(ref_grism, ref_filter))
+        for v, visit in enumerate(visits):
+            product = product_names[v]
+            basename = basenames[v]
+            filt1 = filter_names[v]
+            #print (filt1.lower())
+            field_in_contest = basename.split('-')[0]
 
-    for v, visit in enumerate(visits):
-        product = product_names[v]
-        basename = basenames[v]
-        filt1 = filter_names[v]
-        #print (filt1.lower())
-        field_in_contest = basename.split('-')[0]
-
-        #print (field_in_contest)
-        #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
-        if (ref_filter.lower() == filt1.lower()):
-            #found a direct image, now search for grism counterpart
-            grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
-            #print(grism_index)
-            p = Pointing(field = field, ref_filter = ref_filter)
-            radec_catalog = p.radec_catalog
-            print (field_in_contest, visits[grism_index], radec_catalog)
-            #radec_catalog = None
-            status = process_direct_grism_visit(direct = visit,
-                                                grism = visits[grism_index],
-                                                radec = radec_catalog, 
-                                                align_mag_limits = [14, 24])
+            #print (field_in_contest)
+            #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
+            if (ref_filter.lower() == filt1.lower()):
+                #found a direct image, now search for grism counterpart
+                grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
+                #print(grism_index)
+                p = Pointing(field = field, ref_filter = ref_filter)
+                radec_catalog = p.radec_catalog
+                print (field_in_contest, visits[grism_index], radec_catalog)
+                #radec_catalog = None
+                status = process_direct_grism_visit(direct = visit,
+                                                    grism = visits[grism_index],
+                                                    radec = radec_catalog, 
+                                                    align_mag_limits = [14, 24])
 
     return visits, filters
 
@@ -529,6 +531,7 @@ if __name__ == '__main__':
     retrieve_bool   = args['do_retrieve']
     prep_bool_102   = args['do_prep_102']
     prep_bool_141   = args['do_prep_141']
+    prep_bool       = args['do_prep']
     model_bool      = args['do_model']
     load_bool       = args['do_load']
     fit_bool        = args['do_fit']
@@ -566,9 +569,9 @@ if __name__ == '__main__':
 
 
 
-    #grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', field = field, run = prep_bool_102)
+    grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', field = field, run = prep_bool_102)
     grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', field = field, run = prep_bool_141)
-
+    #grizli_prep(visits = visits, field = field, run = prep_bool)
 
 
 
