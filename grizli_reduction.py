@@ -237,17 +237,6 @@ class Pointing():
 
 
 
-            '''
-            if '140' in ref_filter:
-                self.catalog =  PATH_TO_CATS + '/GoodsN_plus_merged.cat'
-                self.ref_image =  PATH_TO_CATS + '/goodsn_3dhst.v4.0.F125W_orig_sci.fits'
-            elif '105' in ref_filter:
-                #self.catalog = '../Catalogs/goodsn-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
-                self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
-                self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
-                #self.ref_image = '../Catalogs/goodsn-F105W-astrodrizzle-v4.3_drz_sci.fits'
-            '''           
-
 
         elif 'S' in field.upper():
             self.pad = 200 # grizli default
@@ -258,16 +247,28 @@ class Pointing():
             self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
             self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits' 
 
-            '''
-            if '140' in ref_filter:
-                self.catalog =  PATH_TO_CATS + '/GoodsS_plus_merged.cat'
-                self.ref_image =  PATH_TO_CATS + '/goodss_3dhst.v4.0.F125W_orig_sci.fits'  
-            elif '105' in ref_filter:            
-                self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
-                self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits'
-                #self.ref_image = '../Catalogs/goodss_3dhst.v4.0.F125W_orig_sci.fits'  
-                #RCS need to retrieve the F015W image
-            '''
+            self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodss_3dhst.v4.1', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
+
+
+            self.params = {}
+            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodss', 'v4.1')
+            self.params['Z_STEP'] = 0.002
+            self.params['Z_MAX'] = 4
+
+            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodss', 'v4.1')
+            self.params['PRIOR_FILTER'] = 205
+
+
+            self.params['MW_EBV'] = {'aegis':0.0066, 'cosmos':0.0148, 'goodss':0.0069, 
+                                    'uds':0.0195, 'goodsn':0.0103}['goodsn']
+
+            self.params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
+            self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodss', 'v4.1')
+
+
+
+
+
 def grizli_getfiles(run = True):
     if run == False: return
     else: 'Running grizli_getfiles...'
@@ -550,33 +551,33 @@ if __name__ == '__main__':
 
 
 
+    if fit_bool:
+        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
+                     path_is_env=False)
+        templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                             full_line_list=None,  continuum_list=None, 
+                                             fsps_templates=True)
 
-    eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
-                 path_is_env=False)
-    templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                         full_line_list=None,  continuum_list=None, 
-                                         fsps_templates=True)
-
-    # Load individual line templates for fitting the line fluxes
-    templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                         full_line_list=None, continuum_list=None, 
-                                         fsps_templates=True)
-
-
-    p = Pointing(field = field, ref_filter = 'F105W')
+        # Load individual line templates for fitting the line fluxes
+        templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
+                                             full_line_list=None, continuum_list=None, 
+                                             fsps_templates=True)
 
 
-    pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-    ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
-                            zeropoint_file=None, params=p.params, 
-                            load_prior=True, load_products=False)
+        p = Pointing(field = field, ref_filter = 'F105W')
 
-    ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
-        
 
-    Parallel(n_jobs = 2, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 0., mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_max,
-                                                                    run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
-                                                                    templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+        pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
+                                zeropoint_file=None, params=p.params, 
+                                load_prior=True, load_products=False)
+
+        ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
+            
+
+        Parallel(n_jobs = 2, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 0., mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_max,
+                                                                        run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
+                                                                        templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
 
 
