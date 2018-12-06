@@ -65,6 +65,8 @@ def parse():
     parser.add_argument('-do_model',    '--do_model',    default = True, help = 'bool to model spectra')
     parser.add_argument('-do_load',     '--do_load',     default = False, help = 'bool to load previosuly created models')
     parser.add_argument('-do_fit',      '--do_fit',      default = False, help = 'bool to fit modeled spectra')
+    parser.add_argument('-fit_min_id',      '--fit_min_id',      default = 0, help = 'ID to start on for the fit')
+    parser.add_argument('-n_jobs',      '--n_jobs',      default = 2, help = 'number of threads')
 
 
     parser.add_argument('-PATH_TO_RAW'    , '--PATH_TO_RAW'    , default = '/user/rsimons/grizli_extractions/RAW', help = 'path to RAW directory')
@@ -516,7 +518,8 @@ if __name__ == '__main__':
     model_bool      = args['do_model']
     load_bool       = args['do_load']
     fit_bool        = args['do_fit']
-
+    fit_min_id        = args['fit_min_id']
+    n_jobs      = args['n_jobs']
 
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
     PATH_TO_CATS        = args['PATH_TO_CATS']    
@@ -576,7 +579,7 @@ if __name__ == '__main__':
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
             
 
-        Parallel(n_jobs = 2, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 0., mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_max,
+        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_max,
                                                                         run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
                                                                         templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
