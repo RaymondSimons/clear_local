@@ -65,7 +65,7 @@ def parse():
     parser.add_argument('-do_model',    '--do_model',    default = True, help = 'bool to model spectra')
     parser.add_argument('-do_load',     '--do_load',     default = True, help = 'bool to load previosuly created models')
     parser.add_argument('-do_fit',      '--do_fit',      default = False, help = 'bool to fit modeled spectra')
-    parser.add_argument('-fit_min_id',  '--fit_min_id',      default = 0, help = 'ID to start on for the fit')
+    parser.add_argument('-fit_min_id',  '--fit_min_id',  default = 0, help = 'ID to start on for the fit')
     parser.add_argument('-n_jobs',      '--n_jobs',      default = 2, help = 'number of threads')
 
 
@@ -527,7 +527,7 @@ if __name__ == '__main__':
     PATH_TO_HOME        = args['PATH_TO_HOME']
 
     HOME_PATH           = PATH_TO_HOME + '/' + field
-    
+    '''
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
 
     print ('Changing to %s'%HOME_PATH)
@@ -584,6 +584,7 @@ if __name__ == '__main__':
                                                                         templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
 
+    '''
 
 
 
