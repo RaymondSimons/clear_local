@@ -369,6 +369,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
     #if id in to_fits:
     #if id == id_choose:
         print(id, mag)
+        '''
         beams = grp.get_beams(id, size=80) #size??
         if beams != []:
             print("beams: ", beams)
@@ -473,6 +474,11 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                     print ('Problem in fitting.run_all')
 
                     plt.close('all')
+        print('Finished', id, mag)
+        '''
+
+
+
     else:
         return
 
