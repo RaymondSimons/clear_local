@@ -60,7 +60,7 @@ def parse():
     parser.add_argument('-mag_lim',     '--mag_lim',     default=25, help='field to extract')
     parser.add_argument('-mag_max',     '--mag_max',     default= 0, help='field to extract')
     parser.add_argument('-do_retrieve', '--do_retrieve', default = False, help = 'bool to retrieve files from MAST')
-    parser.add_argument('-do_files',    '--do_files',    default = False, help = 'bool to load files')
+    parser.add_argument('-do_files',    '--do_files',    default = True, help = 'bool to load files')
     parser.add_argument('-do_prep',     '--do_prep',     default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-do_model',    '--do_model',    default = False, help = 'bool to model spectra')
     parser.add_argument('-do_load',     '--do_load',     default = False, help = 'bool to load previosuly created models')
