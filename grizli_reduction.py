@@ -516,12 +516,12 @@ if __name__ == '__main__':
     field           = args['field']
     mag_lim         = args['mag_lim']
     mag_max         = args['mag_max']
-    files_bool      = args['do_files']
-    retrieve_bool   = args['do_retrieve']
-    prep_bool       = args['do_prep']
-    model_bool      = args['do_model']
-    load_bool       = args['do_load']
-    fit_bool        = args['do_fit']
+    files_bool      = bool(args['do_files'])
+    retrieve_bool   = bool(args['do_retrieve'])
+    prep_bool       = bool(args['do_prep'])
+    model_bool      = bool(args['do_model'])
+    load_bool       = bool(args['do_load'])
+    fit_bool        = bool(args['do_fit'])
     fit_min_id        = int(args['fit_min_id'])
     n_jobs      =   int(args['n_jobs'])
 
