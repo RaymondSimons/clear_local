@@ -63,7 +63,7 @@ def parse():
     parser.add_argument('-do_files',    '--do_files',    default = True, help = 'bool to load files')
     parser.add_argument('-do_prep',     '--do_prep',     default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-do_model',    '--do_model',    default = True, help = 'bool to model spectra')
-    parser.add_argument('-do_load',     '--do_load',     type = bool, default = True, help = 'bool to load previosuly created models')
+    parser.add_argument('-do_load',     '--do_load',    action = "store_false", default = True, help = 'bool to load previosuly created models')
     parser.add_argument('-do_fit',      '--do_fit',      default = False, help = 'bool to fit modeled spectra')
     parser.add_argument('-fit_min_id',  '--fit_min_id',  default = 0, help = 'ID to start on for the fit')
     parser.add_argument('-n_jobs',      '--n_jobs',      default = 2, help = 'number of threads')
