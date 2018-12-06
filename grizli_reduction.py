@@ -339,7 +339,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
     p = Pointing(field=field, ref_filter=ref_filter_1)
 
 
-    print (load_only)
+    print (load_only == True)
 
     if load_only: print('False')
 
@@ -355,6 +355,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         pad=p.pad,
         cpu_count=8)
     '''
+    '''
     if not load_only:
         print('Computing contamination models...')
         grp.compute_full_model(mag_limit=mag_lim)
@@ -364,7 +365,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
 
         print('Saving contamination models')
         grp.save_full_data()
-
+    '''
     return grp
         
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
