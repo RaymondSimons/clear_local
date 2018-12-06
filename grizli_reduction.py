@@ -299,6 +299,7 @@ def grizli_prep(visits, field = '', run = True):
             #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
             if (ref_filter.lower() == filt1.lower()):
                 #found a direct image, now search for grism counterpart
+                print(np.where((basenames == basename) & (filter_names == ref_grism.lower())))
                 grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
                 #print(grism_index)
                 p = Pointing(field = field, ref_filter = ref_filter)
@@ -324,37 +325,17 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
     for v, visit in enumerate(visits):
         product = product_names[v]
         basename = basenames[v]
-        filt1 = filter_names[v]        
-        #filter_name = visit['product'].split('-')[-1]
-        field_in_contest = visit['product'].split('-')[0].upper()
-        if field_in_contest.upper() != 'GOODSN':
-            #if field_in_contest == field or field_in_contest in overlapping_fields[field]:
-            if (ref_filter_1.lower() in filt1) or (ref_filter_2.lower() in filt1):
-                #Find grism files with a direct image
-                all_direct_files.extend(visit['files'])
-                grism_index_1= np.where((basenames == basename) & (filter_names == ref_grism_1.lower()))[0]
-
-                if len(grism_index_1) > 0:
-                    all_grism_files.extend(visits[grism_index_1[0]]['files'])
-                    print(filter_names[grism_index_1[0]], visits[grism_index_1[0]]['product'])
-                if True:
-                    #Include G141 observatinos
-                    grism_index_2= np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
-
-                    if len(grism_index_2) > 0:
-                        all_grism_files.extend(visits[grism_index_2[0]]['files'])
-                        print(filter_names[grism_index_2[0]], visits[grism_index_2[0]]['product'])
-
-            '''
-            elif (ref_grism_1.lower() in filter_name) or (ref_grism_2.lower() in filter_name):
-                all_grism_files.extend(visit['files'])
-                print (field_in_contest, visit['files'], filter_name)
-            '''
-
-    #print (all_direct_files, all_grism_files)
+        filt1 = filter_names[v]
+        if (ref_filter_1.lower() in filt1) or (ref_filter_2.lower() in filt1):
+            all_direct_files.extend(visit['files'])
+            grism_index_1 = np.where((basenames == basename) & (filter_names == ref_grism_1.lower()))[0]
+            grism_index_2 = np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
+            if len(grism_index_1) > 0: all_grism_files.extend(visits[grism_index_1[0]]['files'])
+            if len(grism_index_2) > 0: all_grism_files.extend(visits[grism_index_2[0]]['files'])
+            
     p = Pointing(field=field, ref_filter=ref_filter_1)
-    if load_only:
-        print('Loading contamination models...')
+
+    if load_only: print('Loading contamination models...')
 
     grp = GroupFLT(
         grism_files=all_grism_files, 
@@ -368,10 +349,13 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
     if not load_only:
         print('Computing contamination models...')
         grp.compute_full_model(mag_limit=mag_lim)
-        print('Refining List..')
+    
+        print('Re-computing continuum models with higher-order polynomials and subtracting off contamination..')
         grp.refine_list(poly_order=2, mag_limits=[16, 24], verbose=False)
+
         print('Saving contamination models')
         grp.save_full_data()
+
     return grp
         
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
@@ -560,11 +544,19 @@ if __name__ == '__main__':
     grizli_prep(visits = visits, field = field, run = prep_bool)
 
 
+    grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
+                       run = model_bool, load_only = load_bool, mag_lim = mag_lim)
 
 
 
     print ('Changing to %s'%PATH_TO_SCRIPTS)
     os.chdir(PATH_TO_SCRIPTS)
+
+
+
+
+
+
 
 
 
