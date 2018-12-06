@@ -349,11 +349,11 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         seg_file = p.seg_map,
         catalog  = p.catalog,
         pad=p.pad,
-        cpu_count=2)
+        cpu_count=8)
     
     if new_model:
         print('Computing contamination models...')
-        grp.compute_full_model(mag_limit=mag_lim)
+        grp.compute_full_model(mag_limit=mag_lim, cpu_count = 1)
     
         print('Re-computing continuum models with higher-order polynomials, subtracting off contamination..')
         grp.refine_list(poly_order=2, mag_limits=[16, 24], verbose=False)
