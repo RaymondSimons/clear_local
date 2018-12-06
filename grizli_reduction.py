@@ -310,6 +310,8 @@ def grizli_prep(visits, field = '', run = True):
                                                         grism = visits[grism_index],
                                                         radec = radec_catalog, 
                                                         align_mag_limits = [14, 24])
+            else:
+                print ('no grism associated with direct image %s'%basename)
     return visits, filters
 
 def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141', run = True, load_only = True, mag_lim = 25):
