@@ -519,7 +519,7 @@ if __name__ == '__main__':
     load_bool       = args['do_load']
     fit_bool        = args['do_fit']
     fit_min_id        = args['fit_min_id']
-    n_jobs      = args['n_jobs']
+    n_jobs      =   int(args['n_jobs'])
 
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
     PATH_TO_CATS        = args['PATH_TO_CATS']    
