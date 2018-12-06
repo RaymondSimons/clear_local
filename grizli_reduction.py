@@ -339,7 +339,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
     p = Pointing(field=field, ref_filter=ref_filter_1)
 
 
-    print (load_only == True)
+    print (load_only == False)
 
     if load_only == True: print('Loading contamination models...')
     #else: print('Initializing contamination models...')
