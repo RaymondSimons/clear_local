@@ -333,7 +333,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
             grism_index_2 = np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
             if len(grism_index_1) > 0: all_grism_files.extend(visits[grism_index_1[0]]['files'])
             if len(grism_index_2) > 0: all_grism_files.extend(visits[grism_index_2[0]]['files'])
-            
+    return
     p = Pointing(field=field, ref_filter=ref_filter_1)
 
     if load_only: print('Loading contamination models...')
