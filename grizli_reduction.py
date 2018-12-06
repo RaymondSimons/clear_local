@@ -210,8 +210,9 @@ class Pointing():
     def __init__(self, field, ref_filter):
         if 'N' in field.upper():
             self.pad = 500 # really only necessary for GDN
-            self.radec_catalog = PATH_TO_CATS + '/goodsN_radec.cat'
-            #self.radec_catalog = '../Catalogs/new_radeccats/goodsn_radec.cat'
+            #self.radec_catalog = PATH_TO_CATS + '/goodsN_radec.cat'
+            self.radec_catalog = PATH_TO_CATS + '/gdn_radec_f140_14_24.cat'
+            
             self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
             self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
@@ -301,7 +302,7 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
             #print(grism_index)
             p = Pointing(field = field, ref_filter = ref_filter)
             radec_catalog = p.radec_catalog
-            print (field_in_contest, visits[grism_index])
+            print (field_in_contest, visits[grism_index], radec_catalog)
             #print (visit[grism_index])
             #try:
             #radec_catalog = None
