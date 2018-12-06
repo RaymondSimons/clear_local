@@ -256,7 +256,7 @@ class Pointing():
             self.radec_catalog = PATH_TO_CATS + '/gds_radec_f140_14_24.cat'
             self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_seg.fits'
             self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
-            self.ref_image =  PATH_TO_CATS + '/goodss_3dhst.v4.0.F125W_orig_sci.fits' 
+            self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits' 
 
             '''
             if '140' in ref_filter:
