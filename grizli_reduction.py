@@ -369,7 +369,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
     #if id in to_fits:
     #if id == id_choose:
         print(id, mag)
-        '''
+
         beams = grp.get_beams(id, size=80) #size??
         if beams != []:
             print("beams: ", beams)
@@ -475,7 +475,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
 
                     plt.close('all')
         print('Finished', id, mag)
-        '''
+
 
 
 
@@ -596,127 +596,6 @@ if __name__ == '__main__':
 
     print ('Changing to %s'%PATH_TO_SCRIPTS)
     os.chdir(PATH_TO_SCRIPTS)
-
-
-
-
-
-
-
-
-
-
-    '''
-    parent = query.run_query(box = None, proposal_id = [14227], instruments=['WFC3/IR', 'ACS/WFC'], 
-                     filters = ['G102'], target_name = field)
-
-    # Find all G102 and G141 observations overlapping the parent query in the archive
-    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
-                                  filters=['G102', 'G141'], 
-                                  instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
-
-
-
-    # rerun overlaps.find_overlaps
-    #
-    # pids = list(np.unique(tabs[0]['proposal_id']))
-    # 
-    # proposal_id = pids
-
-    footprint_fits_file = glob('*footprint.fits')[0]
-    jtargname = footprint_fits_file.strip('_footprint.fits')
-
-
-    # A list of the target names
-    fp_fits = fits.open(footprint_fits_file)
-    overlapping_target_names = set(fp_fits[1].data['target'])
-
-
-    # Move the footprint figure files to $HOME_PATH/query_results/ so that they are not overwritten
-    os.system('cp %s/%s_footprint.fits %s/query_results/%s_footprint_%s.fits'%(HOME_PATH, jtargname, HOME_PATH, jtargname, 'all_G102_G141'))
-    os.system('cp %s/%s_footprint.npy %s/query_results/%s_footprint_%s.npy'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
-    os.system('cp %s/%s_footprint.pdf %s/query_results/%s_footprint_%s.pdf'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
-    os.system('cp %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname,  'all_G102_G141'))
-
-    # Loop targ_name by targ_name
-    for t, targ_name in enumerate(overlapping_target_names):
-        if use_mquery:
-            extra = {'target_name':targ_name}
-        else:
-            extra = query.DEFAULT_EXTRA.copy()
-            extra += ["TARGET.TARGET_NAME LIKE '%s'"%targ_name]
-        
-        # search the MAST archive again, this time looking for 
-        # all grism and imaging observations with the given target name
-        tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
-                                      filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
-                                      instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], 
-                                      extra=extra, close=False)
-        if True:
-            # retrieve raw data from MAST
-            s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
-            auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, 
-                                    reprocess_parallel=True, s3_sync=(s3_status == 0))
-
-        # Move the figure files to $HOME_PATH/query_results/ so that they are not overwritten
-        os.system('mv %s/%s_footprint.fits %s/query_results/%s_footprint_%s.fits'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
-        os.system('mv %s/%s_footprint.npy %s/query_results/%s_footprint_%s.npy'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
-        os.system('mv %s/%s_footprint.pdf %s/query_results/%s_footprint_%s.pdf'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
-        os.system('mv %s/%s_info.dat %s/query_results/%s_info_%s.dat'%(HOME_PATH, jtargname, HOME_PATH, jtargname, targ_name))
-
-        os.chdir(HOME_PATH)
-    extra = retrieve_archival_data(visits = visits, field = field, retrieve_bool = retrieve_bool)
-    
-    PATH_TO_RAW = glob.glob('/Volumes/wd/clear/%s/*/RAW'%field)[0]
-    PATH_TO_PREP = glob.glob('/Volumes/wd/clear/%s/*/PREP'%field)[0]
-    os.chdir(PATH_TO_PREP)
-    #visits, filters = grizli_getfiles(run = files_bool)
-    visits, filters = grizli_getfiles(run = files_bool)
-
-    grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
-    grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', run = prep_bool)
-
-
-    grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
-                       run = model_bool, load_only = load_bool, mag_lim = mag_lim)
-
-    if True:
-        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
-                     path_is_env=False)
-        templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                             full_line_list=None,  continuum_list=None, 
-                                             fsps_templates=True)
-
-        # Load individual line templates for fitting the line fluxes
-        templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                             full_line_list=None, continuum_list=None, 
-                                             fsps_templates=True)
-
-
-        p = Pointing(field = field, ref_filter = 'F105W')
-
-
-        pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
-                                zeropoint_file=None, params=p.params, 
-                                load_prior=True, load_products=False)
-
-        ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
-        
-    if True:
-        Parallel(n_jobs = -1, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 26130, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower,
-                                                                        run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
-                                                                        templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
-
-    '''
-
-    #grizli_fit(grp, id = id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_lim_lower, 
-    #            run = fit_bool, id_choose = 22945, 
-    #            use_pz_prior = False, use_phot = True, scale_phot = True, 
-    #            templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline)
-
-
-
 
 
 
