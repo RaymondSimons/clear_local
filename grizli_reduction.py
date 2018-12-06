@@ -355,7 +355,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         print('Computing contamination models...')
         grp.compute_full_model(mag_limit=mag_lim)
     
-        print('Re-computing continuum models with higher-order polynomials and subtracting off contamination..')
+        print('Re-computing continuum models with higher-order polynomials, subtracting off contamination..')
         grp.refine_list(poly_order=2, mag_limits=[16, 24], verbose=False)
 
         print('Saving contamination models')
@@ -394,23 +394,23 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
             if pfit != None:
             #    pass
             # Drizzle grisms / PAs
-                hdu, fig = mb.drizzle_grisms_and_PAs(
-                    size=32, 
-                    fcontam=0.2, 
-                    flambda=False, 
-                    scale=1, 
-                    pixfrac=0.5, 
-                    kernel='point', 
-                    make_figure=True, 
-                    usewcs=False, 
-                    zfit=pfit,
-                    diff=True)
-                # Save drizzled ("stacked") 2D trace as PNG and FITS
-                fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
-                hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
-
-
                 try:
+                    hdu, fig = mb.drizzle_grisms_and_PAs(
+                        size=32, 
+                        fcontam=0.2, 
+                        flambda=False, 
+                        scale=1, 
+                        pixfrac=0.5, 
+                        kernel='point', 
+                        make_figure=True, 
+                        usewcs=False, 
+                        zfit=pfit,
+                        diff=True)
+                    # Save drizzled ("stacked") 2D trace as PNG and FITS
+                    fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
+                    hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
+
+
                     if use_pz_prior:
                         #use redshift prior from z_phot
                         prior = np.zeros((2, len(p.tempfilt['zgrid'])))
