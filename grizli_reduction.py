@@ -253,6 +253,10 @@ class Pointing():
             #self.radec_catalog = '../Catalogs/goodsS_radec.cat'
             self.radec_catalog = PATH_TO_CATS + '/goodsS_radec.cat'
             self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_seg.fits'
+            self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
+            self.ref_image =  PATH_TO_CATS + '/goodss_3dhst.v4.0.F125W_orig_sci.fits' 
+
+            '''
             if '140' in ref_filter:
                 self.catalog =  PATH_TO_CATS + '/GoodsS_plus_merged.cat'
                 self.ref_image =  PATH_TO_CATS + '/goodss_3dhst.v4.0.F125W_orig_sci.fits'  
@@ -261,7 +265,7 @@ class Pointing():
                 self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits'
                 #self.ref_image = '../Catalogs/goodss_3dhst.v4.0.F125W_orig_sci.fits'  
                 #RCS need to retrieve the F015W image
-            
+            '''
 def grizli_getfiles(run = True):
     if run == False: return
     else: 'Running grizli_getfiles...'
