@@ -57,16 +57,16 @@ def parse():
     ''' 
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description='''CLEAR grizli extractions.''')
     parser.add_argument('-field',       '--field',          default='GS1', help='field to extract')
-    parser.add_argument('-mag_lim',     '--mag_lim',        type = 'int', default=22, help='field to extract')
-    parser.add_argument('-mag_max',     '--mag_max',        type = 'int', default= 0, help='field to extract')
+    parser.add_argument('-mag_lim',     '--mag_lim',        type = int, default=22, help='field to extract')
+    parser.add_argument('-mag_max',     '--mag_max',        type = int, default= 0, help='field to extract')
     parser.add_argument('-do_files',    '--do_files',       default = True, help = 'bool to load files')
     parser.add_argument('-do_model',    '--do_model',       default = True, help = 'bool to model spectra')
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-new_model',   '--new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
     parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
-    parser.add_argument('-fit_min_id',  '--fit_min_id',     type = 'int', default = 0, help = 'ID to start on for the fit')
-    parser.add_argument('-n_jobs',      '--n_jobs',         type = 'int', default = 2, help = 'number of threads')
+    parser.add_argument('-fit_min_id',  '--fit_min_id',     type = int, default = 0, help = 'ID to start on for the fit')
+    parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = 2, help = 'number of threads')
 
 
     parser.add_argument('-PATH_TO_RAW'    , '--PATH_TO_RAW'    , default = '/user/rsimons/grizli_extractions/RAW', help = 'path to RAW directory')
@@ -519,8 +519,8 @@ if __name__ == '__main__':
     model_bool      = args['do_model']
     new_model       = args['new_model']
     fit_bool        = args['do_fit']
-    fit_min_id      = int(args['fit_min_id'])
-    n_jobs          = int(args['n_jobs'])
+    fit_min_id      = args['fit_min_id']
+    n_jobs          = args['n_jobs']
 
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
     PATH_TO_CATS        = args['PATH_TO_CATS']    
