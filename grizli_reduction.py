@@ -56,17 +56,17 @@ def parse():
     Parse command line arguments
     ''' 
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description='''CLEAR grizli extractions.''')
-    parser.add_argument('-field',       '--field',       default='GS1', help='field to extract')
-    parser.add_argument('-mag_lim',     '--mag_lim',     default=22, help='field to extract')
-    parser.add_argument('-mag_max',     '--mag_max',     default= 0, help='field to extract')
-    parser.add_argument('-do_retrieve', '--do_retrieve', default = False, help = 'bool to retrieve files from MAST')
-    parser.add_argument('-do_files',    '--do_files',    default = True, help = 'bool to load files')
-    parser.add_argument('-do_prep',     '--do_prep',     default = False, help = 'bool to PREP files with Grizli')
-    parser.add_argument('-do_model',    '--do_model',    default = True, help = 'bool to model spectra')
-    parser.add_argument('-do_load',     '--do_load',    action = "store_false", default = True, help = 'bool to load previosuly created models')
-    parser.add_argument('-do_fit',      '--do_fit',      default = False, help = 'bool to fit modeled spectra')
-    parser.add_argument('-fit_min_id',  '--fit_min_id',  default = 0, help = 'ID to start on for the fit')
-    parser.add_argument('-n_jobs',      '--n_jobs',      default = 2, help = 'number of threads')
+    parser.add_argument('-field',       '--field',          default='GS1', help='field to extract')
+    parser.add_argument('-mag_lim',     '--mag_lim',        default=22, help='field to extract')
+    parser.add_argument('-mag_max',     '--mag_max',        action = "store_true", default= 0, help='field to extract')
+    parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
+    parser.add_argument('-do_files',    '--do_files',       action = "store_true", default = True, help = 'bool to load files')
+    parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
+    parser.add_argument('-do_model',    '--do_model',       default = True, help = 'bool to model spectra')
+    parser.add_argument('-new_model',     '--new_model',    action = "store_true", default = False, help = 'bool to load previosuly created models')
+    parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
+    parser.add_argument('-fit_min_id',  '--fit_min_id',     default = 0, help = 'ID to start on for the fit')
+    parser.add_argument('-n_jobs',      '--n_jobs',         default = 2, help = 'number of threads')
 
 
     parser.add_argument('-PATH_TO_RAW'    , '--PATH_TO_RAW'    , default = '/user/rsimons/grizli_extractions/RAW', help = 'path to RAW directory')
@@ -513,14 +513,14 @@ if __name__ == '__main__':
     field           = args['field']
     mag_lim         = args['mag_lim']
     mag_max         = args['mag_max']
-    files_bool      = bool(args['do_files'])
-    retrieve_bool   = bool(args['do_retrieve'])
-    prep_bool       = bool(args['do_prep'])
-    model_bool      = bool(args['do_model'])
+    files_bool      = args['do_files']
+    retrieve_bool   = args['do_retrieve']
+    prep_bool       = args['do_prep']
+    model_bool      = args['do_model']
     load_bool       = args['do_load']
-    fit_bool        = bool(args['do_fit'])
-    fit_min_id        = int(args['fit_min_id'])
-    n_jobs      =   int(args['n_jobs'])
+    fit_bool        = args['do_fit']
+    fit_min_id      = int(args['fit_min_id'])
+    n_jobs          = int(args['n_jobs'])
 
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
     PATH_TO_CATS        = args['PATH_TO_CATS']    
