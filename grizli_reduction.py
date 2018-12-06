@@ -317,7 +317,7 @@ def grizli_prep(visits, field = '', run = True):
                 print ('no grism associated with direct image %s'%basename)
     return visits, filters
 
-def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141', run = True, load_only = True, mag_lim = 25):
+def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141', run = True, new_model = False, mag_lim = 25):
     if run == False: return
 
     all_grism_files = []
@@ -339,7 +339,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
     p = Pointing(field=field, ref_filter=ref_filter_1)
 
 
-    if load_only: print('Loading contamination models...')
+    if not new_model: print('Loading contamination models...')
     else: print('Initializing contamination models...')
     
     grp = GroupFLT(
@@ -351,7 +351,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         pad=p.pad,
         cpu_count=8)
     
-    if not load_only:
+    if new_model:
         print('Computing contamination models...')
         grp.compute_full_model(mag_limit=mag_lim)
     
@@ -517,7 +517,7 @@ if __name__ == '__main__':
     retrieve_bool   = args['do_retrieve']
     prep_bool       = args['do_prep']
     model_bool      = args['do_model']
-    load_bool       = args['do_load']
+    new_model       = args['new_model']
     fit_bool        = args['do_fit']
     fit_min_id      = int(args['fit_min_id'])
     n_jobs          = int(args['n_jobs'])
@@ -527,7 +527,7 @@ if __name__ == '__main__':
     PATH_TO_HOME        = args['PATH_TO_HOME']
 
     HOME_PATH           = PATH_TO_HOME + '/' + field
-    '''
+
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
 
     print ('Changing to %s'%HOME_PATH)
@@ -550,7 +550,7 @@ if __name__ == '__main__':
     grizli_prep(visits = visits, field = field, run = prep_bool)
 
     grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
-                       run = model_bool, load_only = load_bool, mag_lim = mag_lim)
+                       run = model_bool, new_model = new_model, mag_lim = mag_lim)
 
 
 
@@ -584,7 +584,7 @@ if __name__ == '__main__':
                                                                         templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
 
-    '''
+
 
 
 
