@@ -210,7 +210,7 @@ class Pointing():
     def __init__(self, field, ref_filter):
         if 'N' in field.upper():
             self.pad = 500 # really only necessary for GDN
-            self.radec_catalog = PATH_TO_CATS + '/old_radeccats/goodsN_radec.cat'
+            self.radec_catalog = PATH_TO_CATS + '/goodsN_radec.cat'
             #self.radec_catalog = '../Catalogs/new_radeccats/goodsn_radec.cat'
             self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
             self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
@@ -251,7 +251,7 @@ class Pointing():
         elif 'S' in field.upper():
             self.pad = 200 # grizli default
             #self.radec_catalog = '../Catalogs/goodsS_radec.cat'
-            self.radec_catalog =  PATH_TO_CATS + '/goodss_3dhst.v4.1.radec.cat'
+            self.radec_catalog = PATH_TO_CATS + '/goodsS_radec.cat'
             self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_seg.fits'
             if '140' in ref_filter:
                 self.catalog =  PATH_TO_CATS + '/GoodsS_plus_merged.cat'
@@ -505,46 +505,6 @@ def retrieve_archival_data(field, retrieve_bool = False):
     auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True)
 
     print (pids)
-
-
-
-    '''
-    #First run-through, ignore the imaging
-
-    if True:
-        parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin], instruments=['WFC3-IR', 'ACS-WFC'], 
-                             extensions=['FLT'], filters=['G102', 'G141'], extra=[])
-        tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['G102', 'G141'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=[], close=False, use_parent = True)
-        s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
-        HOME_PATH = os.getcwd()
-        auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True, s3_sync=(s3_status == 0))
-
-    #Second run-through, retrieve the direct imaging
-    if True:
-        #Find targetnames
-        fls_temp = glob.glob(PATH_TO_RAW+'/j123625+621431/RAW/*flt.fits')
-        target_names = []
-        for fl in fls_temp:
-            data_temp = fits.open(fl)
-            target_name = data_temp[0].header['TARGNAME']
-            if target_name in target_names:
-                pass
-            else:
-                target_names.append(target_name)
-
-        print(target_names)
-        for t, target_name in enumerate(target_names):
-            parent = query.run_query(box=[ra_target, dec_target, radius_in_arcmin],instruments=['WFC3-IR', 'ACS-WFC'], extensions=['FLT'], filters=['F098M', 'F105W', 'F105W', 'F140W'], extra=[])
-            extra = query.DEFAULT_EXTRA.copy()
-            extra += ["TARGET.TARGET_NAME LIKE '%s'"%target_name]
-            tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, filters=['F098M', 'F105W', 'F125W', 'F140W'], instruments=['WFC3-IR','WFC3-UVIS','ACS-WFC'], extra=extra, close=False)
-            s3_status = os.system('aws s3 ls s3://stpubdata --request-payer requester')
-            HOME_PATH = os.getcwd()
-            auto_script.fetch_files(field_root='j123625+621431', HOME_PATH=HOME_PATH, remove_bad=True, 
-                                    reprocess_parallel=True, s3_sync=(s3_status == 0))
-
-
-    '''
 
 
 if __name__ == '__main__':
