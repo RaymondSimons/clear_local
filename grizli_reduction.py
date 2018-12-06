@@ -563,8 +563,8 @@ if __name__ == '__main__':
 
 
 
-    grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', field = field, run = prep_bool)
-
+    #grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', field = field, run = prep_bool)
+    grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', field = field, run = prep_bool)
 
 
 
