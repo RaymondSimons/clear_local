@@ -299,18 +299,17 @@ def grizli_prep(visits, field = '', run = True):
             #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
             if (ref_filter.lower() == filt1.lower()):
                 #found a direct image, now search for grism counterpart
-                print(np.where((basenames == basename) & (filter_names == ref_grism.lower())))
-                grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
-                #print(grism_index)
-                p = Pointing(field = field, ref_filter = ref_filter)
-                radec_catalog = p.radec_catalog
-                print (field_in_contest, visits[grism_index], radec_catalog)
-                #radec_catalog = None
-                status = process_direct_grism_visit(direct = visit,
-                                                    grism = visits[grism_index],
-                                                    radec = radec_catalog, 
-                                                    align_mag_limits = [14, 24])
-
+                if len(np.where((basenames == basename) & (filter_names == ref_grism.lower())) > 0):
+                    grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
+                    #print(grism_index)
+                    p = Pointing(field = field, ref_filter = ref_filter)
+                    radec_catalog = p.radec_catalog
+                    print (field_in_contest, visits[grism_index], radec_catalog)
+                    #radec_catalog = None
+                    status = process_direct_grism_visit(direct = visit,
+                                                        grism = visits[grism_index],
+                                                        radec = radec_catalog, 
+                                                        align_mag_limits = [14, 24])
     return visits, filters
 
 def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141', run = True, load_only = True, mag_lim = 25):
