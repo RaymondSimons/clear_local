@@ -588,7 +588,7 @@ if __name__ == '__main__':
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
 
     PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
-    PATH_TO_PREP        = glob(HOME_PATH + '/*/PREP')[0]
+    PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
 
 
 
