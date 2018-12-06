@@ -517,7 +517,7 @@ if __name__ == '__main__':
     retrieve_bool   = bool(args['do_retrieve'])
     prep_bool       = bool(args['do_prep'])
     model_bool      = bool(args['do_model'])
-    load_bool       = bool(args['do_load'])
+    load_bool       = args['do_load']
     fit_bool        = bool(args['do_fit'])
     fit_min_id        = int(args['fit_min_id'])
     n_jobs      =   int(args['n_jobs'])
