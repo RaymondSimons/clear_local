@@ -303,13 +303,11 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
             p = Pointing(field = field, ref_filter = ref_filter)
             radec_catalog = p.radec_catalog
             print (field_in_contest, visits[grism_index], radec_catalog)
-            #print (visit[grism_index])
-            #try:
             #radec_catalog = None
             status = process_direct_grism_visit(direct = visit,
                                                 grism = visits[grism_index],
                                                 radec = radec_catalog, 
-                                                align_mag_limits = [14, 23])
+                                                align_mag_limits = [14, 24])
 
     return visits, filters
 
@@ -565,7 +563,7 @@ if __name__ == '__main__':
 
 
 
-    grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
+    grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', field = field, run = prep_bool)
 
 
 
