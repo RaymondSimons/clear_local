@@ -599,6 +599,12 @@ if __name__ == '__main__':
 
 
 
+    grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', run = prep_bool)
+
+
+
+
+
 
 
     print ('Changing to %s'%PATH_TO_SCRIPTS)
