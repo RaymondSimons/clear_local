@@ -304,7 +304,7 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
             print (field_in_contest, visits[grism_index])
             #print (visit[grism_index])
             #try:
-            #radec_catalog = None
+            radec_catalog = None
             status = process_direct_grism_visit(direct = visit,
                                                 grism = visits[grism_index],
                                                 radec = radec_catalog, 
