@@ -545,7 +545,6 @@ def retrieve_archival_data(field, retrieve_bool = False):
 
 
     '''
-    os.chdir(PATH_TO_PREP)    
 
 
 if __name__ == '__main__':
