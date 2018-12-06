@@ -62,7 +62,7 @@ def parse():
     parser.add_argument('-do_retrieve', '--do_retrieve', default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_files',    '--do_files',    default = True, help = 'bool to load files')
     parser.add_argument('-do_prep',     '--do_prep',     default = False, help = 'bool to PREP files with Grizli')
-    parser.add_argument('-do_model',    '--do_model',    default = False, help = 'bool to model spectra')
+    parser.add_argument('-do_model',    '--do_model',    default = True, help = 'bool to model spectra')
     parser.add_argument('-do_load',     '--do_load',     default = False, help = 'bool to load previosuly created models')
     parser.add_argument('-do_fit',      '--do_fit',      default = False, help = 'bool to fit modeled spectra')
 
@@ -315,7 +315,7 @@ def grizli_prep(visits, field = '', run = True):
                 print ('no grism associated with direct image %s'%basename)
     return visits, filters
 
-def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141', run = True, load_only = True, mag_lim = 25):
+def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141', run = True, load_only = True, mag_lim = 25):
     if run == False: return
 
     all_grism_files = []
@@ -337,6 +337,7 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
     p = Pointing(field=field, ref_filter=ref_filter_1)
 
     if load_only: print('Loading contamination models...')
+    else: print('Initializing contamination models...')
 
     grp = GroupFLT(
         grism_files=all_grism_files, 
