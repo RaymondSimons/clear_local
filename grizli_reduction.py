@@ -345,7 +345,6 @@ def grizli_model(visits, field = 'GN2', ref_filter_1 = 'F105W', ref_grism_1 = 'G
         catalog  = p.catalog,
         pad=p.pad,
         cpu_count=8)
-    return
 
     if not load_only:
         print('Computing contamination models...')
