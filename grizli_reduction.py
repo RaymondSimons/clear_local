@@ -251,7 +251,8 @@ class Pointing():
         elif 'S' in field.upper():
             self.pad = 200 # grizli default
             #self.radec_catalog = '../Catalogs/goodsS_radec.cat'
-            self.radec_catalog = PATH_TO_CATS + '/goodsS_radec.cat'
+            #self.radec_catalog = PATH_TO_CATS + '/goodsS_radec.cat'
+            self.radec_catalog = PATH_TO_CATS + '/goodss_3dhst.v4.1.radec.cat'
             self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_seg.fits'
             self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
             self.ref_image =  PATH_TO_CATS + '/goodss_3dhst.v4.0.F125W_orig_sci.fits' 
@@ -303,7 +304,7 @@ def grizli_prep(visits, ref_filter = 'F105W', ref_grism = 'G102', field = 'GN2',
             print (field_in_contest, visits[grism_index])
             #print (visit[grism_index])
             #try:
-            radec_catalog = None
+            #radec_catalog = None
             status = process_direct_grism_visit(direct = visit,
                                                 grism = visits[grism_index],
                                                 radec = radec_catalog, 
