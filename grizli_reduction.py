@@ -57,7 +57,7 @@ def parse():
     ''' 
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description='''CLEAR grizli extractions.''')
     parser.add_argument('-field',       '--field',       default='GS1', help='field to extract')
-    parser.add_argument('-mag_lim',     '--mag_lim',     default=25, help='field to extract')
+    parser.add_argument('-mag_lim',     '--mag_lim',     default=22, help='field to extract')
     parser.add_argument('-mag_max',     '--mag_max',     default= 0, help='field to extract')
     parser.add_argument('-do_retrieve', '--do_retrieve', default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_files',    '--do_files',    default = True, help = 'bool to load files')
@@ -413,7 +413,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         prior[1] = p.pz['chi2fit'][:,id]
                     else:
                         prior = None 
-                    order = 0
+                    phot_scale_order = 0
 
 
 
@@ -444,7 +444,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         fit_trace_shift=False, 
                         phot=phot, 
                         verbose=True, 
-                        scale_photometry=order, 
+                        scale_photometry=phot_scale_order, 
                         show_beams=True)
                     mb, st, fit, tfit, line_hdu = out
                     fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
@@ -546,6 +546,39 @@ if __name__ == '__main__':
 
     grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                        run = model_bool, load_only = load_bool, mag_lim = mag_lim)
+
+
+
+
+
+    eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
+                 path_is_env=False)
+    templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                         full_line_list=None,  continuum_list=None, 
+                                         fsps_templates=True)
+
+    # Load individual line templates for fitting the line fluxes
+    templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
+                                         full_line_list=None, continuum_list=None, 
+                                         fsps_templates=True)
+
+
+    p = Pointing(field = field, ref_filter = 'F105W')
+
+
+    pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+    ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
+                            zeropoint_file=None, params=p.params, 
+                            load_prior=True, load_products=False)
+
+    ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
+        
+
+    Parallel(n_jobs = 2, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = 0., mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_max,
+                                                                    run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
+                                                                    templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+
+
 
 
 
