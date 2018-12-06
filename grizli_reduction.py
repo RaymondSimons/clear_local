@@ -548,7 +548,7 @@ if __name__ == '__main__':
 
     grizli_prep(visits = visits, field = field, run = prep_bool)
 
-
+    print (load_bool)
     grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                        run = model_bool, load_only = load_bool, mag_lim = mag_lim)
 
