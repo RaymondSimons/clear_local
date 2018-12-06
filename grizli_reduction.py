@@ -61,10 +61,7 @@ def parse():
     parser.add_argument('-mag_max',     '--mag_max',     default= 0, help='field to extract')
     parser.add_argument('-do_retrieve', '--do_retrieve', default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_files',    '--do_files',    default = True, help = 'bool to load files')
-    parser.add_argument('-do_prep_102',     '--do_prep_102',     default = False, help = 'bool to PREP files with Grizli')
-    parser.add_argument('-do_prep_141',     '--do_prep_141',     default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-do_prep',     '--do_prep',     default = False, help = 'bool to PREP files with Grizli')
-
     parser.add_argument('-do_model',    '--do_model',    default = False, help = 'bool to model spectra')
     parser.add_argument('-do_load',     '--do_load',     default = False, help = 'bool to load previosuly created models')
     parser.add_argument('-do_fit',      '--do_fit',      default = False, help = 'bool to fit modeled spectra')
@@ -529,8 +526,6 @@ if __name__ == '__main__':
     mag_max         = args['mag_max']
     files_bool      = args['do_files']
     retrieve_bool   = args['do_retrieve']
-    prep_bool_102   = args['do_prep_102']
-    prep_bool_141   = args['do_prep_141']
     prep_bool       = args['do_prep']
     model_bool      = args['do_model']
     load_bool       = args['do_load']
@@ -544,11 +539,6 @@ if __name__ == '__main__':
     HOME_PATH           = PATH_TO_HOME + '/' + field
     
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
-    #if not os.path.isdir(PATH_TO_PREP): os.system('mkdir %s'%PATH_TO_PREP)
-    #if not os.path.isdir(PATH_TO_RAW): os.system('mkdir %s'%PATH_TO_RAW)
-
-    #if not os.path.isdir(HOME_PATH + '/query_results'): os.system('mkdir %s/query_results'%HOME_PATH)
-
 
     print ('Changing to %s'%HOME_PATH)
     os.chdir(HOME_PATH)
@@ -564,13 +554,9 @@ if __name__ == '__main__':
 
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
-    #visits, filters = grizli_getfiles(run = files_bool)
+
     visits, filters = grizli_getfiles(run = files_bool)
 
-
-
-    #grizli_prep(visits = visits, ref_filter = 'F105W', ref_grism = 'G102', field = field, run = prep_bool_102)
-    #grizli_prep(visits = visits, ref_filter = 'F140W', ref_grism = 'G141', field = field, run = prep_bool_141)
     grizli_prep(visits = visits, field = field, run = prep_bool)
 
 
