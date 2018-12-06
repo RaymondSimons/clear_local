@@ -343,8 +343,8 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
 
 
 
-    if load_only: print('Loading contamination models...')
-    else: print('Initializing contamination models...')
+    #if load_only: print('Loading contamination models...')
+    #else: print('Initializing contamination models...')
 
     grp = GroupFLT(
         grism_files=all_grism_files, 
