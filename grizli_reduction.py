@@ -345,7 +345,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
 
     if load_only: print('Loading contamination models...')
     #else: print('Initializing contamination models...')
-
+    '''
     grp = GroupFLT(
         grism_files=all_grism_files, 
         direct_files=[], 
@@ -354,7 +354,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         catalog  = p.catalog,
         pad=p.pad,
         cpu_count=8)
-
+    '''
     if not load_only:
         print('Computing contamination models...')
         grp.compute_full_model(mag_limit=mag_lim)
