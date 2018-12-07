@@ -1,0 +1,9 @@
+nice -19 python grizli_reduction.py --do_fit --field GS4
+nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -mag_max 22
+nice -19 python grizli_reduction.py --do_fit --field GS5 -mag_lim 25 -mag_max 22
+nice -19 python grizli_reduction.py --do_fit --field GN1 -mag_lim 25 -mag_max 22
+nice -19 python grizli_reduction.py --do_fit --field GN3 -mag_lim 25 -mag_max 22
+nice -19 python grizli_reduction.py --do_fit --field GN4 -mag_lim 25 -mag_max 22
+nice -19 python grizli_reduction.py --do_fit --field GN5 -mag_lim 25 -mag_max 22
+nice -19 python grizli_reduction.py --do_fit --field GN7 -mag_lim 25 -mag_max 22
+
