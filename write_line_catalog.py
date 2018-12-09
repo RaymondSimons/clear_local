@@ -43,13 +43,14 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
     n_lines = []
     for f, fl in enumerate(fls):
         a = fits.open(fl)
-        IDs[f] = a[0].header['ID']
+        IDs.append(a[0].header['ID'])
+        ras.append(a[0].header['ra'])
+        decs.append(a[0].header['dec'])
+        nlines.append(a[0].header['NUMLINES'])
 
 
-        ras[f] = a[0].header['ra']
-        decs[f] = a[0].header['dec']
+
         lines_f = a[0].header['HASLINES'].split(' ')
-        nlines[f] = a[0].header['NUMLINES']
         if (len(lines_f) > 0) & (lines_f[0] !=''):
             j = -99
 
@@ -77,7 +78,6 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
         cat.write('%i\t\t%i\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.8f\t\t%.8f\t\t%i\n'%
             (IDs[f],  ras[f], decs[f], nlines[f], fluxs[0,0,f], fluxs[0,1,f], fluxs[1,0,f], fluxs[1,1,f], fluxs[2,0,f], fluxs[2,1,f], fluxs[3,0,f], fluxs[3,1,f], zs[0, f], zs[1, f], zs[2, f], zs[3, f], zs[4, f]))
 
-
     master_hdulist = []
     prihdr = fits.Header()
 
@@ -86,9 +86,9 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
 
     colhdr = fits.Header()
 
-    col1 = fits.Column(name='ID', format = 'D', array=IDs)
-    col2 = fits.Column(name='RA', format = 'D',array=ras)
-    col3 = fits.Column(name='DEc', format = 'D',array=decs)
+    col1 = fits.Column(name='ID', format = 'D', array=array(IDs))
+    col2 = fits.Column(name='RA', format = 'D', array=array(ras))
+    col3 = fits.Column(name='DEc',format = 'D', array=array(decs))
     coldefs = fits.ColDefs([col1, col2, col3])
     table_hdu = fits.BinTableHDU.from_columns(coldefs)
     master_hdulist.append(table_hdu)
