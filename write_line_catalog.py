@@ -11,6 +11,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
     fls = glob('/user/rsimons/grizli_extractions/PREP/*.full.fits')
     cat = open('/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.cat'%field, 'w+')
 
+    fits_name = '/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.fits'%field
 
 
     lines = ['OII', 'OIII', 'Ha', 'Hb']
@@ -92,6 +93,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
     coldefs = fits.ColDefs([col1, col2, col3])
     table_hdu = fits.BinTableHDU.from_columns(coldefs)
     master_hdulist.append(table_hdu)
+
 
 
     thdulist = fits.HDUList(master_hdulist)
