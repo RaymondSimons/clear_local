@@ -8,7 +8,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
 
 
 
-    fls = glob('/user/rsimons/grizli_extractions/PREP/*.full.fits')
+    fls = glob('/user/rsimons/grizli_extractions/%s/*/Prep/*.full.fits'%field)
     cat = open('/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.cat'%field, 'w+')
 
     fits_name = '/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.fits'%field
@@ -85,9 +85,6 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
     master_hdulist.append(prihdu)
 
     colhdr = fits.Header()
-
-
-    master_hdulist.append(fits.ImageHDU(data = IDs, header = colhdr, name = 'ID'))
 
     col1 = fits.Column(name='ID', format = 'D', array=IDs)
     col2 = fits.Column(name='RA', format = 'D',array=ras)
