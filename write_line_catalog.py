@@ -21,7 +21,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
     cat.write('#(0) ID\n')
     cat.write('#(1) ra\n')
     cat.write('#(2) dec\n')
-    cat.write('#(3) n_lines\n')
+    cat.write('#(3) number of lines\n')
     cat.write('#(4) OII flux, 1e-17 erg/s/cm2\n')
     cat.write('#(5) OII flux err, 1e-17 erg/s/cm2\n')
     cat.write('#(6) OIII flux, 1e-17 erg/s/cm2\n')
@@ -88,15 +88,27 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
 
     colhdr = fits.Header()
 
-    col1 = fits.Column(name='ID', format = 'D', array=array(IDs))
-    col2 = fits.Column(name='RA', format = 'D', array=array(ras))
-    col3 = fits.Column(name='DEc',format = 'D', array=array(decs))
-    coldefs = fits.ColDefs([col1, col2, col3])
+    col_list = [fits.Column(name='ID', format = 'D', array=array(IDs)),
+    fits.Column(name='RA', format = 'D', array=array(ras)),
+    fits.Column(name='DEC',format = 'D', array=array(decs)),
+    fits.Column(name='nlines',format = 'D', array=array(nlines)),
+    fits.Column(name='OII_f',format = 'D', array=fluxs[0,0,:]),
+    fits.Column(name='OII_e',format = 'D', array=fluxs[0,1,:]),
+    fits.Column(name='OIII_f',format = 'D', array=fluxs[1,0,:]),
+    fits.Column(name='OIII_e',format = 'D', array=fluxs[1,1,:]),
+    fits.Column(name='Ha_f',format = 'D', array=fluxs[2,0,:]),
+    fits.Column(name='Ha_e',format = 'D', array=fluxs[2,1,:]),
+    fits.Column(name='Hb_f',format = 'D', array=fluxs[3,0,:]),
+    fits.Column(name='Hb_e',format = 'D', array=fluxs[3,1,:]),
+    fits.Column(name='z_50',format = 'D', array=zs[0,:]),
+    fits.Column(name='z_02',format = 'D', array=zs[1,:]),
+    fits.Column(name='z_16',format = 'D', array=zs[2,:]),
+    fits.Column(name='z_84',format = 'D', array=zs[3,:]),
+    fits.Column(name='z_97',format = 'D', array=zs[4,:])]
+
+    coldefs = fits.ColDefs(col_list)
     table_hdu = fits.BinTableHDU.from_columns(coldefs)
     master_hdulist.append(table_hdu)
-
-
-
     thdulist = fits.HDUList(master_hdulist)
     thdulist.writeto(fits_name, overwrite = True)
 
