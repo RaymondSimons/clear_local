@@ -43,6 +43,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
     decs = []
     n_lines = []
     for f, fl in enumerate(fls):
+        print f, len(fls)
         a = fits.open(fl)
         IDs.append(a[0].header['ID'])
         ras.append(a[0].header['ra'])
