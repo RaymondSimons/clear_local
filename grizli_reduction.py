@@ -370,7 +370,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
     #if id == id_choose:
         print(id, mag)
 
-        beams = grp.get_beams(id, size=80) #size??
+        beams = grp.get_beams(id, size=80)
         if beams != []:
             print("beams: ", beams)
             mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)

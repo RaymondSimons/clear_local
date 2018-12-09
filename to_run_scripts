@@ -1,9 +1,97 @@
-nice -19 python grizli_reduction.py --do_fit --field GS4
-nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -mag_max 22
-nice -19 python grizli_reduction.py --do_fit --field GS5 -mag_lim 25 -mag_max 22
-nice -19 python grizli_reduction.py --do_fit --field GN1 -mag_lim 25 -mag_max 22
-nice -19 python grizli_reduction.py --do_fit --field GN3 -mag_lim 25 -mag_max 22
-nice -19 python grizli_reduction.py --do_fit --field GN4 -mag_lim 25 -mag_max 22
-nice -19 python grizli_reduction.py --do_fit --field GN5 -mag_lim 25 -mag_max 22
-nice -19 python grizli_reduction.py --do_fit --field GN7 -mag_lim 25 -mag_max 22
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -fit_min_id 30000 -n_jobs 8 > GS4_0_22.out &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS5 -mag_lim 25 -mag_max 22 -n_jobs 8 > GS5_22_25.out &
+nohup nice -19 python grizli_reduction.py --do_fit --field GN1 -mag_lim 25 -mag_max 22 -n_jobs 8 > GN1_22_25.out &
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -mag_max 22 -n_jobs 4 > GS4_22_25.out  &
+
+
+
+
+
+#all on science8
+nohup nice -19 python grizli_reduction.py --do_fit --field GN3 -mag_lim 25 -mag_max 22 -n_jobs 4 & > GN3_22_25.out &
+nohup nice -19 python grizli_reduction.py --do_fit --field GN4 -mag_lim 25 -mag_max 22 -n_jobs 3 & > GN4_22_25.out &
+
+
+to be run
+on science1
+#nohup nice -19 python grizli_reduction.py --do_fit --field GN5 -mag_lim 25 -mag_max 22 -n_jobs 2 & > GN5_22_25.out &
+
+
+on science10
+nohup nice -19 python grizli_reduction.py --do_fit --field GN7 -mag_lim 25 -mag_max 22 -n_jobs 2 & > GN7_22_25.out &
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+S2
+nohup nice -19 tar -czvf GS2.tar.gz GS2 > tar_GS2.out &
+nohup nice -19 tar -czvf GN5.tar.gz GN5 > tar_GN5.out &
+nohup nice -19 tar -czvf GN7.tar.gz GN7 > tar_GN7.out &
+
+
+S0
+nohup nice -19 tar -czvf GS3.tar.gz GS3 > tar_GS3.out &
+nohup nice -19 tar -czvf GN3.tar.gz GN3 > tar_GN3.out &
+
+
+S4
+nohup nice -19 tar -czvf GS5.tar.gz GS5 > tar_GS5.out &
+nohup nice -19 tar -czvf GN4.tar.gz GN4 > tar_GN4.out &
+
+
+S5
+nohup nice -19 tar -czvf GN1.tar.gz GN1 > tar_GN1.out &
+nohup nice -19 tar -czvf GN2.tar.gz GN2 > tar_GN2.out &
+
+
+
+
+
+
+
+
+
+
+nohup nice -19 tar -czvf GS1.tar.gz GS4 & > tar_.out &
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
