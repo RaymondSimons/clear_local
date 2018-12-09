@@ -91,9 +91,9 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
     fits.Column(name='z_16',format = 'D', array=zs[2,:]),
     fits.Column(name='z_84',format = 'D', array=zs[3,:]),
     fits.Column(name='z_97',format = 'D', array=zs[4,:])]
-    for l, line in lines:
-        col_list.append(fits.Column(name='%s_FLUX'%line,format = 'D', array=fluxs[l,0,:]))
-        col_list.append(fits.Column(name='%s_FLUX_ERR'%line,format = 'D', array=fluxs[l,1,:]))
+    for ll, line in enumerate(lines):
+        col_list.append(fits.Column(name='%s_FLUX'%line,format = 'D', array=fluxs[ll,0,:]))
+        col_list.append(fits.Column(name='%s_FLUX_ERR'%line,format = 'D', array=fluxs[ll,1,:]))
     fits.Column(name='T_G102',format = 'D', array=exptime[0,:])
     fits.Column(name='T_G141',format = 'D', array=exptime[1,:])
 
