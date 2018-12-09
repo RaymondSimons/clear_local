@@ -82,7 +82,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
 
     colhdr = fits.Header()
 
-    col_list = [fits.Column(name='ID', format = 'D', array=array(IDs)),
+    col_list = [fits.Column(name='ID', format = '%5i', array=array(IDs)),
     fits.Column(name='RA', format = 'D', array=array(ras)),
     fits.Column(name='DEC',format = 'D', array=array(decs)),
     fits.Column(name='nlines',format = 'D', array=array(nlines)),
