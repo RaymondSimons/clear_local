@@ -5,7 +5,7 @@ from glob import glob
 import numpy as np
 from numpy import *
 
-for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
+for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
 
     fls = glob('/user/rsimons/grizli_extractions/%s/*/Prep/*.full.fits'%field)
     fits_name = '/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.fits'%field
