@@ -78,6 +78,8 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
             (IDs[f],  ras[f], decs[f], nlines[f], fluxs[0,0,f], fluxs[0,1,f], fluxs[1,0,f], fluxs[1,1,f], fluxs[2,0,f], fluxs[2,1,f], fluxs[3,0,f], fluxs[3,1,f], zs[0, f], zs[1, f], zs[2, f], zs[3, f], zs[4, f]))
 
 
+    master_hdulist = []
+    prihdr = fits.Header()
 
     prihdu = fits.PrimaryHDU(header=prihdr)    
     master_hdulist.append(prihdu)
