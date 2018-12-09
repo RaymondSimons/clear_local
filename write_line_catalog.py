@@ -45,8 +45,17 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
         ras.append(a[0].header['ra'])
         decs.append(a[0].header['dec'])
         nlines.append(a[0].header['NUMLINES'])
-        exptime[0,f] = float(a[0].header['T_G102'])
-        exptime[1,f] = float(a[0].header['T_G141'])
+        try:
+            exptime[0,f] = float(a[0].header['T_G102'])
+        except:
+            exptime[0,f] = 0.0
+
+        try:
+            exptime[1,f] = float(a[0].header['T_G141'])
+        except:
+            exptime[1,f] = 0.0
+
+
         lines_f = a[0].header['HASLINES'].split(' ')
         print lines_f
         if (len(lines_f) > 0) & (lines_f[0] !=''):
