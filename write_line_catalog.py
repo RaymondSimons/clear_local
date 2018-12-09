@@ -53,6 +53,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
 
 
         lines_f = a[0].header['HASLINES'].split(' ')
+        print lines_f
         if (len(lines_f) > 0) & (lines_f[0] !=''):
             j = -99
 
