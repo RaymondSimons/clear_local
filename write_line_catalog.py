@@ -2,7 +2,8 @@ import astropy
 from astropy.io import fits
 import glob
 from glob import glob
-
+import numpy as np
+from numpy import *
 
 for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
 
