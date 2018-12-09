@@ -60,10 +60,10 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
                 flux_ln =  a[0].header['FLUX%.3i'%(l+1)]
                 eflux_ln =  a[0].header['ERR%.3i'%(l+1)]
                 ln_name =  a[0].header['LINE%.3i'%(l+1)]
-                for ll, line in lines:	
+                for ll, line in enumerate(lines):	
                     if ln_name == line:
-                        fluxs[j,0,f] = flux_ln * 1.e17
-                        fluxs[j,1,f] = eflux_ln  * 1.e17
+                        fluxs[ll,0,f] = flux_ln * 1.e17
+                        fluxs[ll,1,f] = eflux_ln  * 1.e17
 
     master_hdulist = []
     prihdr = fits.Header()
