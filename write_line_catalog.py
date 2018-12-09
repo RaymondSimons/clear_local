@@ -106,7 +106,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
 
 
 
-	cat.close()
+    cat.close()
 
 
 
