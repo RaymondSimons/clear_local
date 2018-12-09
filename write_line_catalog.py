@@ -99,7 +99,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
 
 
     thdulist = fits.HDUList(master_hdulist)
-    thdulist.writeto(fits_name, clobber = True)
+    thdulist.writeto(fits_name, overwrite = True)
 
 
 
