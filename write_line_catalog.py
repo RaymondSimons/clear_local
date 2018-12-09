@@ -89,9 +89,9 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
 
     master_hdulist.append(fits.ImageHDU(data = IDs, header = colhdr, name = 'ID'))
 
-    col1 = fits.Column(name='ID', array=IDs)
-    col2 = fits.Column(name='RA', array=ras)
-    col3 = fits.Column(name='DEc', array=decs)
+    col1 = fits.Column(name='ID', format = 'D', array=IDs)
+    col2 = fits.Column(name='RA', format = 'D',array=ras)
+    col3 = fits.Column(name='DEc', format = 'D',array=decs)
     coldefs = fits.ColDefs([col1, col2, col3])
     table_hdu = fits.BinTableHDU.from_columns(coldefs)
     master_hdulist.append(table_hdu)
