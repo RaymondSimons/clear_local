@@ -31,7 +31,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
              'OI']
 
     fluxs = zeros((len(lines),2, len(fls))) - 99.
-    exptime = zeros(2, len(fls))
+    exptime = zeros((2, len(fls)))
 
     zs = zeros((5, len(fls))) - 99.
     IDs = []
@@ -64,8 +64,6 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
                     if ln_name == line:
                         fluxs[j,0,f] = flux_ln * 1.e17
                         fluxs[j,1,f] = eflux_ln  * 1.e17
-
-
 
     master_hdulist = []
     prihdr = fits.Header()
