@@ -77,7 +77,7 @@ for field in ['GS1']:#, 'GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 
                 j = -99
 
 
-        cat.write('%i\t\t%i\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.8f\t\t%.8f\t\t%i\n'%
+        cat.write('%i\t\t%.8f\t\t%.8f\t\t%i\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\n'%
             (IDs[f],  ras[f], decs[f], nlines[f], fluxs[0,0,f], fluxs[0,1,f], fluxs[1,0,f], fluxs[1,1,f], fluxs[2,0,f], fluxs[2,1,f], fluxs[3,0,f], fluxs[3,1,f], zs[0, f], zs[1, f], zs[2, f], zs[3, f], zs[4, f]))
 
     master_hdulist = []
