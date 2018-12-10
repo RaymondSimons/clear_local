@@ -94,8 +94,8 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
     for ll, line in enumerate(lines):
         col_list.append(fits.Column(name='%s_FLUX'%line,format = 'D', array=fluxs[ll,0,:]))
         col_list.append(fits.Column(name='%s_FLUX_ERR'%line,format = 'D', array=fluxs[ll,1,:]))
-    fits.Column(name='T_G102',format = 'D', array=exptime[0,:])
-    fits.Column(name='T_G141',format = 'D', array=exptime[1,:])
+    col_list.append(fits.Column(name='T_G102',format = 'D', array=exptime[0,:]))
+    col_list.append(fits.Column(name='T_G141',format = 'D', array=exptime[1,:]))
 
     coldefs = fits.ColDefs(col_list)
     table_hdu = fits.BinTableHDU.from_columns(coldefs)
