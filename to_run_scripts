@@ -23,6 +23,7 @@ nohup nice -19 python grizli_reduction.py --do_fit --field GN7 -mag_lim 25 -mag_
 
 
 
+nohup nice -19 cp -r GS* /astro/clear/grizli_extractions/ &
 
 
 
@@ -34,6 +35,10 @@ nohup nice -19 python grizli_reduction.py --do_fit --field GN7 -mag_lim 25 -mag_
 
 
 
+
+
+
+nohup nice -19 tar -czvf GS4_incomplete.tar.gz GS4 > tar_GS4_incomplete.out &
 
 
 

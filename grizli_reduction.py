@@ -64,9 +64,10 @@ def parse():
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-new_model',   '--new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
-    parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
+    parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = True, help = 'bool to fit modeled spectra')
     parser.add_argument('-fit_min_id',  '--fit_min_id',     type = int, default = 0, help = 'ID to start on for the fit')
     parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = 2, help = 'number of threads')
+    parser.add_argument('-id_fit',      '--id_fit',         type = int, default = 2, help = 'number of threads')
 
 
     parser.add_argument('-PATH_TO_RAW'    , '--PATH_TO_RAW'    , default = '/user/rsimons/grizli_extractions/RAW', help = 'path to RAW directory')
@@ -353,10 +354,12 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
     
     if new_model:
         print('Computing contamination models with flat model...')
-        grp.compute_full_model(mag_limit=mag_lim, cpu_count = 4)
+        grp.compute_full_model(mag_limit=25, cpu_count = 4)
     
         print('Refine continuum/contamination models with poly_order polynomial, subtracting off contamination..')
         grp.refine_list(poly_order=2, mag_limits=[16, 24], verbose=False)
+
+        #poly_order = 3
 
         print('Saving contamination models')
         grp.save_full_data()
@@ -365,12 +368,17 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
     if fit_bool == False: return
-    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
+    #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
+
     #if id in to_fits:
-    #if id == id_choose:
+    if id == id_choose:
         print(id, mag)
 
         beams = grp.get_beams(id, size=80)
+
+        #separate beams extraction, save, load in without needing models
+
+
         if beams != []:
             print("beams: ", beams)
             mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
@@ -435,23 +443,27 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         t0=templ0, 
                         t1=templ1, 
                         fwhm=1200, 
-                        zr=[0.0, 3.5], 
+                        zr=[0.0, 3.5],       #zr = [0, 12.0]
                         dz=[0.004, 0.0005], 
                         fitter='nnls',
                         group_name=field,
-                        fit_stacks=True, 
+                        fit_stacks=True,      #fit_stacks = False
                         prior=None, 
                         fcontam=0.,
                         pline=pline, 
                         mask_sn_limit=7, 
-                        fit_only_beams=False,
-                        fit_beams=True, 
+                        fit_only_beams=False, #fit_only_beams = True
+                        fit_beams=True,       #fit_beams = False
                         root=field,
                         fit_trace_shift=False, 
                         phot=phot, 
                         verbose=True, 
                         scale_photometry=phot_scale_order, 
                         show_beams=True)
+                    #use_psf
+
+
+
                     mb, st, fit, tfit, line_hdu = out
                     fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
 
@@ -467,9 +479,9 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                     print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
 
                     # Helper script for plotting them, not generated automatically
-                    fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
-                    fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
-                    plt.close('all')
+                    #fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
+                    #fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
+                    #plt.close('all')
                 except:
                     print ('Problem in fitting.run_all')
 
@@ -527,9 +539,11 @@ if __name__ == '__main__':
     fit_bool        = args['do_fit']
     fit_min_id      = args['fit_min_id']
     n_jobs          = args['n_jobs']
+    id_fit          = args['id_fit']
 
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
-    PATH_TO_CATS        = args['PATH_TO_CATS']    
+    #PATH_TO_CATS        = args['PATH_TO_CATS']    
+    PATH_TO_CATS = '/Users/rsimons/Desktop/clear/Catalogs'
     PATH_TO_HOME        = args['PATH_TO_HOME']
 
     HOME_PATH           = PATH_TO_HOME + '/' + field

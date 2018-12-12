@@ -101,6 +101,7 @@ objects = [('GN1', 36108),
            ('GS1', 43403)
            ]
 
+
 objects = [('GS1', 43403),
            ('GN1', 36854),
            ('GN1', 37525),
@@ -143,8 +144,7 @@ gfit_cat_gdn = np.loadtxt(gfit_cat_dir + '/gn_all_candels_wfc3_f105w_060mas_v0.8
 gfit_cat_gds = np.loadtxt(gfit_cat_dir + '/gs_all_candels_ers_udf_f105w_v0.5_galfit.cat')
 
 
-for o, obj in enumerate(objects[6:7]):    
-
+for o, obj in enumerate(objects[2:3]):
     field = obj[0]
     id_fit = obj[1]
     #PATH_TO_PREP = '/Users/rsimons/Desktop/clear/for_hackday/Prep'
