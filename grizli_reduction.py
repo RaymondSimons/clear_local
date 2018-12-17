@@ -434,14 +434,10 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                     tab = utils.GTable()
                     tab['ra'] = [mb.ra]
                     tab['dec'] = [mb.dec]
-
                     tab['id'] = id
                     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
                     # Gabe suggests use_psf = True for point sources
-                    # Gabe suggests mask_sn_limit = np.inf
-                    # Gabe suggests bad_pa_threshold = np.inf
-
                     out = grizli.fitting.run_all(
                         id, 
                         t0=templ0, 
@@ -460,7 +456,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         fit_beams=False,        #suggests fit_beams = False
                         root=field,
                         fit_trace_shift=False, 
-                        bad_pa_threshold = np.inf,
+                        bad_pa_threshold = np.inf, # Gabe suggests bad_pa_threshold = np.inf
                         phot=phot, 
                         verbose=True, 
                         scale_photometry=phot_scale_order, 
