@@ -447,7 +447,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         t0=templ0, 
                         t1=templ1, 
                         fwhm=1200, 
-                        zr=[0.0, 3.5],       #zr = [0, 12.0]
+                        zr=[0.0, 12.0],       #gabe suggests zr = [0, 12.0]
                         dz=[0.004, 0.0005], 
                         fitter='nnls',
                         group_name=field,
