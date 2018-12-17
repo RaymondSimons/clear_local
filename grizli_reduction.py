@@ -465,28 +465,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         verbose=True, 
                         scale_photometry=phot_scale_order, 
                         show_beams=True)
-                    #use_psf
 
-
-
-                    #mb, st, fit, tfit, line_hdu = out
-                    #fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
-
-                    #fit_hdu.info()
-                    # same as the fit table above, redshift fit to the stacked spectra
-                    #fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
-
-
-                    # zoom in around the initial best-guess with the individual "beam" spectra
-                    #fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
-
-                    #templ = Table(fit_hdu['TEMPL'].data)
-                    #print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
-
-                    # Helper script for plotting them, not generated automatically
-                    #fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
-                    #fig.savefig('{0}_{1:05d}.line.png'.format(field, id))
-                    #plt.close('all')
                 except:
                     print ('Problem in fitting.run_all')
 
