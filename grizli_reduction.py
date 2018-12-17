@@ -57,7 +57,7 @@ def parse():
     ''' 
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description='''CLEAR grizli extractions.''')
     parser.add_argument('-field',       '--field',          default='GS1', help='field to extract')
-    parser.add_argument('-mag_lim',     '--mag_lim',        type = int, default=22, help='field to extract')
+    parser.add_argument('-mag_lim',     '--mag_lim',        type = int, default=25, help='field to extract')
     parser.add_argument('-mag_max',     '--mag_max',        type = int, default= 0, help='field to extract')
     parser.add_argument('-do_files',    '--do_files',       default = True, help = 'bool to load files')
     parser.add_argument('-do_model',    '--do_model',       default = True, help = 'bool to model spectra')
@@ -368,10 +368,10 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
     if fit_bool == False: return
-    #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
+    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
 
     #if id in to_fits:
-    if id == id_choose:
+    #if id == id_choose:
         print(id, mag)
 
         beams = grp.get_beams(id, size=80)
