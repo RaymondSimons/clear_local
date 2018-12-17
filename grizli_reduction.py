@@ -427,7 +427,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         prior[1] = p.pz['chi2fit'][:,id]
                     else:
                         prior = None 
-                    phot_scale_order = 0
+                    phot_scale_order = 1
 
 
 
@@ -438,6 +438,10 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                     tab['id'] = id
                     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
+                    # Gabe suggests use_psf = True
+                    # Gabe suggests mask_sn_limit = np.inf
+                    # Gabe suggests bad_pa_threshold = np.inf
+
                     out = grizli.fitting.run_all(
                         id, 
                         t0=templ0, 
@@ -447,13 +451,13 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         dz=[0.004, 0.0005], 
                         fitter='nnls',
                         group_name=field,
-                        fit_stacks=True,      #fit_stacks = False
+                        fit_stacks=False,      #Gabe suggests fit_stacks = False, fit to FLT files
                         prior=None, 
-                        fcontam=0.,
+                        fcontam=0.2, #Gabe suggests fcontam = 0.2
                         pline=pline, 
-                        mask_sn_limit=7, 
-                        fit_only_beams=False, #fit_only_beams = True
-                        fit_beams=True,       #fit_beams = False
+                        mask_sn_limit=np.inf,  # Gabe suggests mask_sn_limit = np.inf
+                        fit_only_beams=True, #suggests fit_only_beams = True
+                        fit_beams=False,       #suggests fit_beams = False
                         root=field,
                         fit_trace_shift=False, 
                         phot=phot, 
@@ -464,19 +468,19 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
 
 
 
-                    mb, st, fit, tfit, line_hdu = out
-                    fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
+                    #mb, st, fit, tfit, line_hdu = out
+                    #fit_hdu = fits.open('{0}_{1:05d}.full.fits'.format(field, id)) 
 
-                    fit_hdu.info()
+                    #fit_hdu.info()
                     # same as the fit table above, redshift fit to the stacked spectra
-                    fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
+                    #fit_stack = Table(fit_hdu['ZFIT_STACK'].data) 
 
 
                     # zoom in around the initial best-guess with the individual "beam" spectra
-                    fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
+                    #fit_beam = Table(fit_hdu['ZFIT_BEAM'].data)   
 
-                    templ = Table(fit_hdu['TEMPL'].data)
-                    print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
+                    #templ = Table(fit_hdu['TEMPL'].data)
+                    #print('{0} has lines [{1}]'.format(fit_hdu.filename(), fit_hdu[0].header['HASLINES']))
 
                     # Helper script for plotting them, not generated automatically
                     #fig = grizli.fitting.show_drizzled_lines(fit_hdu, size_arcsec=1.6, cmap='plasma_r')
@@ -542,8 +546,8 @@ if __name__ == '__main__':
     id_fit          = args['id_fit']
 
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
-    #PATH_TO_CATS        = args['PATH_TO_CATS']    
-    PATH_TO_CATS = '/Users/rsimons/Desktop/clear/Catalogs'
+    PATH_TO_CATS        = args['PATH_TO_CATS']    
+    #PATH_TO_CATS = '/Users/rsimons/Desktop/clear/Catalogs'
     PATH_TO_HOME        = args['PATH_TO_HOME']
 
     HOME_PATH           = PATH_TO_HOME + '/' + field
@@ -599,9 +603,12 @@ if __name__ == '__main__':
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
             
 
-        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, mag_lim = mag_lim, mag_lim_lower = mag_max,
-                                                                        run = fit_bool, id_choose = 22945, use_pz_prior = False, use_phot = True, scale_phot = True,
-                                                                        templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
+                                                                             mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
+                                                                             id_choose = 22945, use_pz_prior = False, use_phot = True, 
+                                                                             scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
+                                                                             ep = ep, pline = pline,) 
+                                                                             for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
 
 

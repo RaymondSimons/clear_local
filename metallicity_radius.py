@@ -41,11 +41,6 @@ def OH(O3, O2, eO3, eO2):
     print ('%.2f  %.2f  %.2f  %.2f   %.2f  %.2f' %(np.mean(OH_z_arr), np.std(OH_z_arr), O3, O2, eO3, eO2))
     
     return np.mean(OH_z_arr), e_an#np.std(OH_z_arr)
-    
-
-
-
-
 
 def load_galfit(field, id_fit,  ra, dec, gfit_cat_gdn, gfit_cat_gds):
     if 'GN' in field: gfit_cat = gfit_cat_gdn
@@ -65,7 +60,6 @@ def load_galfit(field, id_fit,  ra, dec, gfit_cat_gdn, gfit_cat_gds):
         eab   = gfit_cat[np.argmin(diff_arc), 11]
 
     return tht, ab
-
 
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
@@ -113,6 +107,9 @@ objects = [('GS1', 43403),
            ('GN2', 21022),
            ]
 
+objects = [('GN3', 32719),
+            ('GN3', 32719),
+           ]
 
 
 
@@ -150,6 +147,7 @@ for o, obj in enumerate(objects[2:3]):
     #PATH_TO_PREP = '/Users/rsimons/Desktop/clear/for_hackday/Prep'
     #PATH_TO_PREP = glob('/Volumes/wd/clear/%s/*/Prep'%field)[0]
     PATH_TO_PREP = '/Users/rsimons/Dropbox/rcs_clear/data'
+
     fits_file = PATH_TO_PREP + '/{0}_{1:05d}.full.fits'.format(field, id_fit)
     fit_hdu = fits.open(fits_file)
     pix_scale = abs(fit_hdu['DSCI'].header['CD1_1'] * 60. * 60.)
