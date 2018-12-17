@@ -212,7 +212,7 @@ class Pointing():
     """
     def __init__(self, field, ref_filter):
         if 'N' in field.upper():
-            self.pad = 500 # really only necessary for GDN
+            self.pad = 200
             #self.radec_catalog = PATH_TO_CATS + '/goodsN_radec.cat'
             self.radec_catalog = PATH_TO_CATS + '/gdn_radec_f140_14_24.cat'
             
@@ -368,10 +368,10 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
     if fit_bool == False: return
-    #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
+    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
 
     #if id in to_fits:
-    if id == id_choose:
+    #if id == id_choose:
         print(id, mag)
 
         beams = grp.get_beams(id, size=80)
