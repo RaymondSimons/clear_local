@@ -438,7 +438,8 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         phot=phot, 
                         verbose=True, 
                         scale_photometry=phot_scale_order, 
-                        show_beams=True)
+                        show_beams=True,
+                        use_psf = True)
 
                 except:
                     print ('Problem in fitting.run_all')
