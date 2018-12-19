@@ -38,7 +38,9 @@ def parse():
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-new_model',   '--new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
-    parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = True, help = 'bool to fit modeled spectra')
+    parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
+    parser.add_argument('-use_psf',      '--use_psf',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
+
     parser.add_argument('-fit_min_id',  '--fit_min_id',     type = int, default = 0, help = 'ID to start on for the fit')
     parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = 2, help = 'number of threads')
     parser.add_argument('-id_fit',      '--id_fit',         type = int, default = 2, help = 'number of threads')
@@ -344,7 +346,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
                id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
                scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
-               fcontam = 0.2, phot_scale_order = 1):
+               fcontam = 0.2, phot_scale_order = 1, use_psf = False):
 
     if fit_bool == False: return
     #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
@@ -439,7 +441,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         verbose=True, 
                         scale_photometry=phot_scale_order, 
                         show_beams=True,
-                        use_psf = True)
+                        use_psf = use_psf)
 
                 except:
                     print ('Problem in fitting.run_all')
@@ -496,6 +498,7 @@ if __name__ == '__main__':
     model_bool      = args['do_model']
     new_model       = args['new_model']
     fit_bool        = args['do_fit']
+    use_psf         = args['use_psf']
     fit_min_id      = args['fit_min_id']
     n_jobs          = args['n_jobs']
     id_fit          = args['id_fit']
@@ -565,7 +568,7 @@ if __name__ == '__main__':
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                              id_choose = id_fit, use_pz_prior = False, use_phot = True, 
                                                                              scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
-                                                                             ep = ep, pline = pline, phot_scale_order = phot_scale_order) 
+                                                                             ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf) 
                                                                              for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
 
