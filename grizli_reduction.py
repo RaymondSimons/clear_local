@@ -68,6 +68,7 @@ def parse():
     parser.add_argument('-fit_min_id',  '--fit_min_id',     type = int, default = 0, help = 'ID to start on for the fit')
     parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = 2, help = 'number of threads')
     parser.add_argument('-id_fit',      '--id_fit',         type = int, default = 2, help = 'number of threads')
+    parser.add_argument('-pso',         '--pso',         type = int, default = 1, help = 'phot_scale_order')
 
 
     parser.add_argument('-PATH_TO_RAW'    , '--PATH_TO_RAW'    , default = '/user/rsimons/grizli_extractions/RAW', help = 'path to RAW directory')
@@ -369,7 +370,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
                id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
                scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
-               fcontam = 0.2):
+               fcontam = 0.2, phot_scale_order = 1):
 
     if fit_bool == False: return
     #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
@@ -431,7 +432,6 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         prior[1] = p.pz['chi2fit'][:,id]
                     else:
                         prior = None 
-                    phot_scale_order = 1
 
 
 
@@ -524,6 +524,9 @@ if __name__ == '__main__':
     fit_min_id      = args['fit_min_id']
     n_jobs          = args['n_jobs']
     id_fit          = args['id_fit']
+    phot_scale_order = args['pso']
+
+
 
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
     PATH_TO_CATS        = args['PATH_TO_CATS']    
@@ -587,7 +590,7 @@ if __name__ == '__main__':
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                              id_choose = id_fit, use_pz_prior = False, use_phot = True, 
                                                                              scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
-                                                                             ep = ep, pline = pline,) 
+                                                                             ep = ep, pline = pline, phot_scale_order = phot_scale_order) 
                                                                              for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
 
