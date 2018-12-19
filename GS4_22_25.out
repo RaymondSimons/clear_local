@@ -1,0 +1,6795 @@
+nohup: ignoring input
+Changing to /user/rsimons/grizli_extractions/GS4
+Changing to /user/rsimons/grizli_extractions/GS4/j033236m2748/Prep
+BUSH1-bfu-b1-077.0-F125W 2
+BUSH3-bfu-bl-089.0-F098M 4
+BUSH3-bfu-by-089.0-F105W 2
+BUSH3-bfu-b3-089.0-F125W 2
+BUSH3-bfu-by-089.0-F140W 2
+FIGS-GS1-coi-1m-028.0-F105W 2
+FIGS-GS1-coi-1n-028.0-F105W 2
+FIGS-GS1-coi-1o-028.0-F105W 2
+FIGS-GS1-coi-1p-028.0-F105W 2
+FIGS-GS1-coi-1i-038.0-F105W 2
+FIGS-GS1-coi-1j-038.0-F105W 2
+FIGS-GS1-coi-1k-038.0-F105W 2
+FIGS-GS1-coi-1l-038.0-F105W 2
+FIGS-GS1-coi-1e-100.0-F105W 2
+FIGS-GS1-coi-1f-100.0-F105W 2
+FIGS-GS1-coi-1g-100.0-F105W 2
+FIGS-GS1-coi-1h-100.0-F105W 2
+FIGS-GS1-coi-1q-106.0-F105W 2
+FIGS-GS1-coi-1r-106.0-F105W 2
+FIGS-GS1-coi-1s-106.0-F105W 2
+FIGS-GS1-coi-1t-106.0-F105W 2
+FIGS-GS1-coi-1a-168.0-F105W 2
+FIGS-GS1-coi-1b-168.0-F105W 2
+FIGS-GS1-coi-1c-168.0-F105W 2
+FIGS-GS1-coi-1d-168.0-F105W 2
+FIGS-GS1-coi-1m-028.0-G102 8
+FIGS-GS1-coi-1n-028.0-G102 8
+FIGS-GS1-coi-1o-028.0-G102 8
+FIGS-GS1-coi-1p-028.0-G102 8
+FIGS-GS1-coi-1i-038.0-G102 8
+FIGS-GS1-coi-1j-038.0-G102 8
+FIGS-GS1-coi-1k-038.0-G102 8
+FIGS-GS1-coi-1l-038.0-G102 8
+FIGS-GS1-coi-1e-100.0-G102 8
+FIGS-GS1-coi-1f-100.0-G102 8
+FIGS-GS1-coi-1g-100.0-G102 8
+FIGS-GS1-coi-1h-100.0-G102 8
+FIGS-GS1-coi-1q-106.0-G102 8
+FIGS-GS1-coi-1r-106.0-G102 8
+FIGS-GS1-coi-1s-106.0-G102 8
+FIGS-GS1-coi-1t-106.0-G102 8
+FIGS-GS1-coi-1a-168.0-G102 8
+FIGS-GS1-coi-1b-168.0-G102 8
+FIGS-GS1-coi-1c-168.0-G102 8
+FIGS-GS1-coi-1d-168.0-G102 8
+goodss-32-bhj-32-131.0-F140W 4
+goodss-32-bhj-32-131.0-G141 4
+goodss-34-bhj-34-084.0-F140W 4
+goodss-34-bhj-34-084.0-G141 4
+goodss-36-bhj-36-084.0-F140W 4
+goodss-36-bhj-36-084.0-G141 4
+goodss-37-bhj-37-084.0-F140W 4
+goodss-37-bhj-37-084.0-G141 4
+goodss-38-bhj-38-084.0-F140W 4
+goodss-38-bhj-38-084.0-G141 4
+goodss-07-bhj-07-131.0-F140W 4
+goodss-07-bhj-07-131.0-G141 4
+goodss-08-bhj-08-131.0-F140W 4
+goodss-08-bhj-08-131.0-G141 4
+GS4-cxt-26-051.0-F105W 2
+GS4-cxt-27-051.0-F105W 2
+GS4-cxt-24-074.0-F105W 2
+GS4-cxt-25-074.0-F105W 2
+GS4-cxt-28-094.0-F105W 2
+GS4-cxt-29-094.0-F105W 2
+GS4-cxt-26-051.0-G102 4
+GS4-cxt-27-051.0-G102 4
+GS4-cxt-24-074.0-G102 4
+GS4-cxt-25-074.0-G102 4
+GS4-cxt-28-094.0-G102 4
+GS4-cxt-29-094.0-G102 4
+PRIMO-bfu-pa-137.0-F125W 1
+PRIMO-bfu-pb-137.0-F125W 1
+PRIMO-bfu-p5-166.0-F125W 2
+PRIMO-bfu-pc-184.0-F125W 4
+PRIMO-bfu-p7-201.0-F125W 4
+PRIMO-bfu-p1-131.0-G141 6
+PRIMO-bfu-pa-137.0-G141 6
+PRIMO-bfu-pb-137.0-G141 6
+par-j033241-274605-bfu-np-205.0-F125W 8
+File, /user/rsimons/grizli_extractions/Catalogs/goodss_3dhst.v4.1.tempfilt, not found.
+Loading contamination models...
+Load icoi1mk0q.01.GrismFLT.fits!
+Load icoi1mkcq.01.GrismFLT.fits!
+Load icoi1ng2q.01.GrismFLT.fits!
+Load icoi1ngpq.01.GrismFLT.fits!
+Load icoi1ohkq.01.GrismFLT.fits!
+Load icoi1ohzq.01.GrismFLT.fits!
+Load icoi1pigq.01.GrismFLT.fits!
+Load icoi1pivq.01.GrismFLT.fits!
+Load icoi1iruq.01.GrismFLT.fits!
+Load icoi1is8q.01.GrismFLT.fits!
+Load icoi1jg1q.01.GrismFLT.fits!
+Load icoi1jgfq.01.GrismFLT.fits!
+Load icoi1keuq.01.GrismFLT.fits!
+Load icoi1kf8q.01.GrismFLT.fits!
+Load icoi1lfpq.01.GrismFLT.fits!
+Load icoi1lg3q.01.GrismFLT.fits!
+Load icoi1eqkq.01.GrismFLT.fits!
+Load icoi1eqyq.01.GrismFLT.fits!
+Load icoi1fzrq.01.GrismFLT.fits!
+Load icoi1fa6q.01.GrismFLT.fits!
+Load icoi1gxjq.01.GrismFLT.fits!
+Load icoi1gxyq.01.GrismFLT.fits!
+Load icoi1hydq.01.GrismFLT.fits!
+Load icoi1hyrq.01.GrismFLT.fits!
+Load icoi1qduq.01.GrismFLT.fits!
+Load icoi1qe8q.01.GrismFLT.fits!
+Load icoi1rn3q.01.GrismFLT.fits!
+Load icoi1rnhq.01.GrismFLT.fits!
+Load icoi1sstq.01.GrismFLT.fits!
+Load icoi1st7q.01.GrismFLT.fits!
+Load icoi1tkuq.01.GrismFLT.fits!
+Load icoi1tlfq.01.GrismFLT.fits!
+Load icoi1ag2q.01.GrismFLT.fits!
+Load icoi1aggq.01.GrismFLT.fits!
+Load icoi1bn0q.01.GrismFLT.fits!
+Load icoi1bnlq.01.GrismFLT.fits!
+Load icoi1co0q.01.GrismFLT.fits!
+Load icoi1coeq.01.GrismFLT.fits!
+Load icoi1dqaq.01.GrismFLT.fits!
+Load icoi1dqoq.01.GrismFLT.fits!
+Load ibhj32qvq.01.GrismFLT.fits!
+Load ibhj34h8q.01.GrismFLT.fits!
+Load ibhj36huq.01.GrismFLT.fits!
+Load ibhj37uaq.01.GrismFLT.fits!
+Load ibhj38a6q.01.GrismFLT.fits!
+Load ibhj07ygq.01.GrismFLT.fits!
+Load ibhj08z8q.01.GrismFLT.fits!
+Load icxt26h8q.01.GrismFLT.fits!
+Load icxt27hhq.01.GrismFLT.fits!
+Load icxt24z2q.01.GrismFLT.fits!
+Load icxt25buq.01.GrismFLT.fits!
+Load icxt28w5q.01.GrismFLT.fits!
+Load icxt29yaq.01.GrismFLT.fits!
+Load icoi1mk2q.01.GrismFLT.fits!
+Load icoi1mkfq.01.GrismFLT.fits!
+Load icoi1ng5q.01.GrismFLT.fits!
+Load icoi1ngsq.01.GrismFLT.fits!
+Load icoi1ohnq.01.GrismFLT.fits!
+Load icoi1oi2q.01.GrismFLT.fits!
+Load icoi1pijq.01.GrismFLT.fits!
+Load icoi1piyq.01.GrismFLT.fits!
+Load icoi1irwq.01.GrismFLT.fits!
+Load icoi1isbq.01.GrismFLT.fits!
+Load icoi1jg3q.01.GrismFLT.fits!
+Load icoi1jgiq.01.GrismFLT.fits!
+Load icoi1kewq.01.GrismFLT.fits!
+Load icoi1kfbq.01.GrismFLT.fits!
+Load icoi1lfrq.01.GrismFLT.fits!
+Load icoi1lg6q.01.GrismFLT.fits!
+Load icoi1eqmq.01.GrismFLT.fits!
+Load icoi1er1q.01.GrismFLT.fits!
+Load icoi1fztq.01.GrismFLT.fits!
+Load icoi1fa9q.01.GrismFLT.fits!
+Load icoi1gxlq.01.GrismFLT.fits!
+Load icoi1gy1q.01.GrismFLT.fits!
+Load icoi1hyfq.01.GrismFLT.fits!
+Load icoi1hyuq.01.GrismFLT.fits!
+Load icoi1qdwq.01.GrismFLT.fits!
+Load icoi1qebq.01.GrismFLT.fits!
+Load icoi1rn5q.01.GrismFLT.fits!
+Load icoi1rnkq.01.GrismFLT.fits!
+Load icoi1ssvq.01.GrismFLT.fits!
+Load icoi1staq.01.GrismFLT.fits!
+Load icoi1tkwq.01.GrismFLT.fits!
+Load icoi1tliq.01.GrismFLT.fits!
+Load icoi1ag4q.01.GrismFLT.fits!
+Load icoi1agjq.01.GrismFLT.fits!
+Load icoi1bn2q.01.GrismFLT.fits!
+Load icoi1bnoq.01.GrismFLT.fits!
+Load icoi1co2q.01.GrismFLT.fits!
+Load icoi1cohq.01.GrismFLT.fits!
+Load icoi1dqcq.01.GrismFLT.fits!
+Load icoi1dqrq.01.GrismFLT.fits!
+Load ibhj32r2q.01.GrismFLT.fits!
+Load ibhj34hiq.01.GrismFLT.fits!
+Load ibhj36i4q.01.GrismFLT.fits!
+Load ibhj37uhq.01.GrismFLT.fits!
+Load ibhj38adq.01.GrismFLT.fits!
+Load ibhj07ynq.01.GrismFLT.fits!
+Load ibhj08zfq.01.GrismFLT.fits!
+Load icxt26h9q.01.GrismFLT.fits!
+Load icxt27hiq.01.GrismFLT.fits!
+Load icxt24z4q.01.GrismFLT.fits!
+Load icxt25bwq.01.GrismFLT.fits!
+Load icxt28w6q.01.GrismFLT.fits!
+Load icxt29ybq.01.GrismFLT.fits!
+Load icoi1mk6q.01.GrismFLT.fits!
+Load icoi1mklq.01.GrismFLT.fits!
+Load icoi1ngbq.01.GrismFLT.fits!
+Load icoi1ngyq.01.GrismFLT.fits!
+Load icoi1ohtq.01.GrismFLT.fits!
+Load icoi1oi8q.01.GrismFLT.fits!
+Load icoi1pipq.01.GrismFLT.fits!
+Load icoi1pj4q.01.GrismFLT.fits!
+Load icoi1is2q.01.GrismFLT.fits!
+Load icoi1ishq.01.GrismFLT.fits!
+Load icoi1jg9q.01.GrismFLT.fits!
+Load icoi1jgoq.01.GrismFLT.fits!
+Load icoi1kf2q.01.GrismFLT.fits!
+Load icoi1kfhq.01.GrismFLT.fits!
+Load icoi1lfxq.01.GrismFLT.fits!
+Load icoi1lgcq.01.GrismFLT.fits!
+Load icoi1eqsq.01.GrismFLT.fits!
+Load icoi1er7q.01.GrismFLT.fits!
+Load icoi1fzzq.01.GrismFLT.fits!
+Load icoi1fafq.01.GrismFLT.fits!
+Load icoi1gxsq.01.GrismFLT.fits!
+Load icoi1gy7q.01.GrismFLT.fits!
+Load icoi1hylq.01.GrismFLT.fits!
+Load icoi1hz0q.01.GrismFLT.fits!
+Load icoi1qe2q.01.GrismFLT.fits!
+Load icoi1qehq.01.GrismFLT.fits!
+Load icoi1rnbq.01.GrismFLT.fits!
+Load icoi1rnqq.01.GrismFLT.fits!
+Load icoi1st1q.01.GrismFLT.fits!
+Load icoi1stgq.01.GrismFLT.fits!
+Load icoi1tl5q.01.GrismFLT.fits!
+Load icoi1tloq.01.GrismFLT.fits!
+Load icoi1agaq.01.GrismFLT.fits!
+Load icoi1agpq.01.GrismFLT.fits!
+Load icoi1bnfq.01.GrismFLT.fits!
+Load icoi1bnuq.01.GrismFLT.fits!
+Load icoi1co8q.01.GrismFLT.fits!
+Load icoi1conq.01.GrismFLT.fits!
+Load icoi1dqiq.01.GrismFLT.fits!
+Load icoi1dqxq.01.GrismFLT.fits!
+Load ibhj32rgq.01.GrismFLT.fits!
+Load ibhj34i1q.01.GrismFLT.fits!
+Load ibhj36jbq.01.GrismFLT.fits!
+Load ibhj37uvq.01.GrismFLT.fits!
+Load ibhj38arq.01.GrismFLT.fits!
+Load ibhj07z1q.01.GrismFLT.fits!
+Load ibhj08ztq.01.GrismFLT.fits!
+Load icxt26heq.01.GrismFLT.fits!
+Load icxt27hnq.01.GrismFLT.fits!
+Load icxt24a7q.01.GrismFLT.fits!
+Load icxt25c5q.01.GrismFLT.fits!
+Load icxt28wbq.01.GrismFLT.fits!
+Load icxt29yeq.01.GrismFLT.fits!
+Load icoi1mjxq.01.GrismFLT.fits!
+Load icoi1mkhq.01.GrismFLT.fits!
+Load icoi1ng7q.01.GrismFLT.fits!
+Load icoi1nguq.01.GrismFLT.fits!
+Load icoi1ohpq.01.GrismFLT.fits!
+Load icoi1oi4q.01.GrismFLT.fits!
+Load icoi1pilq.01.GrismFLT.fits!
+Load icoi1pj0q.01.GrismFLT.fits!
+Load icoi1iryq.01.GrismFLT.fits!
+Load icoi1isdq.01.GrismFLT.fits!
+Load icoi1jg5q.01.GrismFLT.fits!
+Load icoi1jgkq.01.GrismFLT.fits!
+Load icoi1keyq.01.GrismFLT.fits!
+Load icoi1kfdq.01.GrismFLT.fits!
+Load icoi1lftq.01.GrismFLT.fits!
+Load icoi1lg8q.01.GrismFLT.fits!
+Load icoi1eqoq.01.GrismFLT.fits!
+Load icoi1er3q.01.GrismFLT.fits!
+Load icoi1fzvq.01.GrismFLT.fits!
+Load icoi1fabq.01.GrismFLT.fits!
+Load icoi1gxoq.01.GrismFLT.fits!
+Load icoi1gy3q.01.GrismFLT.fits!
+Load icoi1hyhq.01.GrismFLT.fits!
+Load icoi1hywq.01.GrismFLT.fits!
+Load icoi1qdyq.01.GrismFLT.fits!
+Load icoi1qedq.01.GrismFLT.fits!
+Load icoi1rn7q.01.GrismFLT.fits!
+Load icoi1rnmq.01.GrismFLT.fits!
+Load icoi1ssxq.01.GrismFLT.fits!
+Load icoi1stcq.01.GrismFLT.fits!
+Load icoi1tl1q.01.GrismFLT.fits!
+Load icoi1tlkq.01.GrismFLT.fits!
+Load icoi1ag6q.01.GrismFLT.fits!
+Load icoi1aglq.01.GrismFLT.fits!
+Load icoi1bnbq.01.GrismFLT.fits!
+Load icoi1bnqq.01.GrismFLT.fits!
+Load icoi1co4q.01.GrismFLT.fits!
+Load icoi1cojq.01.GrismFLT.fits!
+Load icoi1dqeq.01.GrismFLT.fits!
+Load icoi1dqtq.01.GrismFLT.fits!
+Load ibhj32r9q.01.GrismFLT.fits!
+Load ibhj34huq.01.GrismFLT.fits!
+Load ibhj36j3q.01.GrismFLT.fits!
+Load ibhj37uoq.01.GrismFLT.fits!
+Load ibhj38akq.01.GrismFLT.fits!
+Load ibhj07yuq.01.GrismFLT.fits!
+Load ibhj08zmq.01.GrismFLT.fits!
+Load icxt26hcq.01.GrismFLT.fits!
+Load icxt27hlq.01.GrismFLT.fits!
+Load icxt24a5q.01.GrismFLT.fits!
+Load icxt25c3q.01.GrismFLT.fits!
+Load icxt28w9q.01.GrismFLT.fits!
+Load icxt29ygq.01.GrismFLT.fits!
+Files loaded - 93.78 sec.
+/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/eazy/data/templates -> ./templates
+/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/eazy/data/filters/FILTER.RES.latest -> ./FILTER.RES.latest
+File, /user/rsimons/grizli_extractions/Catalogs/goodss_3dhst.v4.1.tempfilt, not found.
+Read default param file: /home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/eazy/data/zphot.param.default
+Read CATALOG_FILE: /user/rsimons/grizli_extractions/Catalogs/goodss_3dhst.v4.1.cats/Catalog/goodss_3dhst.v4.1.cat
+f_F160W e_F160W (205): hst/wfc3/IR/f160w.dat
+f_U e_U (103): ESO/vimos_u.res
+f_F435W e_F435W (  1): hst/ACS_update_sep07/wfc_f435w_t77.dat
+f_F606Wcand e_F606Wcand (236): hst/ACS_update_sep07/wfc_f606w_t81.dat
+f_F606W e_F606W (  4): hst/ACS_update_sep07/wfc_f606w_t77.dat
+f_R e_R (260): ESO/VIMOS/R.dat
+f_F775W e_F775W (  5): hst/ACS_update_sep07/wfc_f775w_t77.dat
+f_F814Wcand e_F814Wcand (239): hst/ACS_update_sep07/wfc_f814w_t81.dat
+f_F850LP e_F850LP (  7): hst/ACS_update_sep07/wfc_f850lp_t77.dat
+f_F850LPcand e_F850LPcand (240): hst/ACS_update_sep07/wfc_f850lp_t81.dat
+f_F125W e_F125W (203): hst/wfc3/IR/f125w.dat
+f_J e_J ( 34): ESO/isaac_j.res
+f_F140W e_F140W (204): hst/wfc3/IR/f140w.dat
+f_H e_H ( 36): ESO/isaac_h.res
+f_Ks e_Ks ( 37): ESO/isaac_ks.res
+f_IRAC1 e_IRAC1 ( 18): IRAC/irac_tr1_2004-08-09.dat
+f_IRAC2 e_IRAC2 ( 19): IRAC/irac_tr2_2004-08-09.dat
+f_IRAC3 e_IRAC3 ( 20): IRAC/irac_tr3_2004-08-09.dat
+f_IRAC4 e_IRAC4 ( 21): IRAC/irac_tr4_2004-08-09.dat
+f_U38 e_U38 (107): ESO/wfi_BB_U38_ESO841.res
+f_B e_B ( 46): musyc/B_cdfs_tot.dat
+f_V e_V ( 50): musyc/V_cdfs_tot.dat
+f_Rc e_Rc ( 54): musyc/R_cdfs_tot.dat
+f_I e_I ( 58): musyc/I_cdfs_tot.dat
+f_IA427 e_IA427 (181): Subaru_MB/IA427.dat
+f_IA445 e_IA445 (182): Subaru_MB/IA445.dat
+f_IA505 e_IA505 (185): Subaru_MB/IA505.dat
+f_IA527 e_IA527 (186): Subaru_MB/IA527.dat
+f_IA550 e_IA550 (187): Subaru_MB/IA550.dat
+f_IA574 e_IA574 (188): Subaru_MB/IA574.dat
+f_IA598 e_IA598 (189): Subaru_MB/IA598.dat
+f_IA624 e_IA624 (190): Subaru_MB/IA624.dat
+f_IA651 e_IA651 (191): Subaru_MB/IA651.dat
+f_IA679 e_IA679 (192): Subaru_MB/IA679.dat
+f_IA738 e_IA738 (194): Subaru_MB/IA738.dat
+f_IA767 e_IA767 (195): Subaru_MB/IA768.dat
+f_IA797 e_IA797 (196): Subaru_MB/IA797.dat
+f_IA856 e_IA856 (198): Subaru_MB/IA856.dat
+f_tenisJ e_tenisJ (220): WIRCam/cfh8101_J.txt
+f_tenisK e_tenisK (222): WIRCam/cfh8302_Ks.txt
+Read PRIOR_FILE:  templates/prior_F160W_TAO.dat
+Process template tweak_fsps_QSF_12_v3_001.dat.
+Process template tweak_fsps_QSF_12_v3_002.dat.
+Process template tweak_fsps_QSF_12_v3_003.dat.
+Process template tweak_fsps_QSF_12_v3_004.dat.
+Process template tweak_fsps_QSF_12_v3_005.dat.
+Process template tweak_fsps_QSF_12_v3_006.dat.
+Process template tweak_fsps_QSF_12_v3_007.dat.
+Process template tweak_fsps_QSF_12_v3_008.dat.
+Process template tweak_fsps_QSF_12_v3_009.dat.
+Process template tweak_fsps_QSF_12_v3_010.dat.
+Process template tweak_fsps_QSF_12_v3_011.dat.
+Process template tweak_fsps_QSF_12_v3_012.dat.
+Process templates: 24.169 s
+Process template fsps/fsps_QSF_12_v3_nolines_001.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_002.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_003.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_004.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_005.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_006.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_007.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_008.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_009.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_010.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_011.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_012.dat.
+Process template line Ha+NII+SII+SIII+He+PaB.
+Process template line OIII+Hb.
+Process template line OII+Ne.
+Process template line Lya+CIV.
+91 24.0664
+Finished 91 24.0664
+106 24.4021
+Finished 106 24.4021
+123 24.9082
+Finished 123 24.9082
+126 24.9387
+Finished 126 24.9387
+134 24.7682
+Finished 134 24.7682
+141 23.5156
+Finished 141 23.5156
+152 22.7218
+Finished 152 22.7218
+155 24.3864
+Finished 155 24.3864
+169 24.8413
+Finished 169 24.8413
+181 24.678
+Finished 181 24.678
+182 24.382
+Finished 182 24.382
+183 23.7855
+Finished 183 23.7855
+209 23.6668
+Finished 209 23.6668
+223 23.5996
+Finished 223 23.5996
+231 23.984
+Finished 231 23.984
+257 24.2123
+Finished 257 24.2123
+258 23.7157
+Finished 258 23.7157
+261 23.3287
+Finished 261 23.3287
+263 23.289
+Finished 263 23.289
+270 24.4433
+Finished 270 24.4433
+276 24.906
+Finished 276 24.906
+284 22.8774
+Finished 284 22.8774
+285 24.6199
+Finished 285 24.6199
+286 22.5676
+Finished 286 22.5676
+293 23.4086
+Finished 293 23.4086
+305 24.1192
+Finished 305 24.1192
+322 22.8862
+Finished 322 22.8862
+325 24.5182
+Finished 325 24.5182
+333 22.8859
+Finished 333 22.8859
+334 24.6108
+Finished 334 24.6108
+346 24.0003
+Finished 346 24.0003
+349 24.1276
+Finished 349 24.1276
+365 24.7261
+Finished 365 24.7261
+369 24.2366
+Finished 369 24.2366
+382 23.3948
+Finished 382 23.3948
+383 24.8559
+Finished 383 24.8559
+388 24.188
+Finished 388 24.188
+393 23.8291
+Finished 393 23.8291
+400 24.8426
+Finished 400 24.8426
+407 24.7961
+Finished 407 24.7961
+409 23.2815
+Finished 409 23.2815
+415 24.8249
+Finished 415 24.8249
+428 24.2065
+Finished 428 24.2065
+439 24.0038
+Finished 439 24.0038
+443 24.177
+Finished 443 24.177
+457 23.6284
+Finished 457 23.6284
+460 23.9654
+Finished 460 23.9654
+469 24.6934
+Finished 469 24.6934
+471 24.8298
+Finished 471 24.8298
+475 22.6031
+Finished 475 22.6031
+485 24.9358
+Finished 485 24.9358
+491 24.5995
+Finished 491 24.5995
+493 24.6642
+Finished 493 24.6642
+503 24.7927
+Finished 503 24.7927
+507 23.4666
+Finished 507 23.4666
+519 24.9401
+Finished 519 24.9401
+522 23.2398
+Finished 522 23.2398
+526 22.9378
+Finished 526 22.9378
+528 24.2959
+Finished 528 24.2959
+532 24.9952
+Finished 532 24.9952
+533 23.831
+Finished 533 23.831
+534 22.744
+Finished 534 22.744
+537 23.7687
+Finished 537 23.7687
+539 24.6593
+Finished 539 24.6593
+540 24.3425
+Finished 540 24.3425
+546 23.278
+Finished 546 23.278
+552 22.7906
+Finished 552 22.7906
+556 24.7881
+Finished 556 24.7881
+566 23.0763
+Finished 566 23.0763
+571 24.7966
+Finished 571 24.7966
+573 24.025
+Finished 573 24.025
+576 24.9291
+Finished 576 24.9291
+579 23.0604
+Finished 579 23.0604
+583 24.7101
+Finished 583 24.7101
+593 24.055
+Finished 593 24.055
+598 23.9382
+Finished 598 23.9382
+609 24.6152
+Finished 609 24.6152
+610 23.3672
+Finished 610 23.3672
+613 24.3284
+Finished 613 24.3284
+624 23.738
+Finished 624 23.738
+634 24.6585
+Finished 634 24.6585
+643 23.8346
+Finished 643 23.8346
+644 23.8464
+Finished 644 23.8464
+646 22.6709
+Finished 646 22.6709
+655 24.1268
+Finished 655 24.1268
+661 24.5597
+Finished 661 24.5597
+662 24.2047
+Finished 662 24.2047
+667 23.9538
+Finished 667 23.9538
+668 23.7133
+Finished 668 23.7133
+669 23.6558
+Finished 669 23.6558
+670 24.5808
+Finished 670 24.5808
+672 24.1616
+Finished 672 24.1616
+689 24.7002
+Finished 689 24.7002
+703 22.545
+Finished 703 22.545
+706 24.897
+Finished 706 24.897
+713 24.0092
+Finished 713 24.0092
+716 23.1084
+Finished 716 23.1084
+730 23.234
+Finished 730 23.234
+750 23.474
+Finished 750 23.474
+754 24.5656
+Finished 754 24.5656
+755 23.4051
+Finished 755 23.4051
+764 23.1376
+Finished 764 23.1376
+773 23.26
+Finished 773 23.26
+781 23.0395
+Finished 781 23.0395
+785 23.126
+Finished 785 23.126
+789 24.8548
+Finished 789 24.8548
+792 22.9287
+Finished 792 22.9287
+793 24.1962
+Finished 793 24.1962
+795 23.1958
+Finished 795 23.1958
+805 23.2815
+Finished 805 23.2815
+807 24.7013
+Finished 807 24.7013
+809 23.88
+Finished 809 23.88
+813 22.992
+Finished 813 22.992
+814 23.8413
+Finished 814 23.8413
+815 24.1458
+Finished 815 24.1458
+825 24.5876
+Finished 825 24.5876
+832 24.4251
+Finished 832 24.4251
+833 24.0745
+Finished 833 24.0745
+835 24.1308
+Finished 835 24.1308
+847 24.9147
+Finished 847 24.9147
+850 24.7094
+Finished 850 24.7094
+872 22.0114
+Finished 872 22.0114
+874 23.7494
+Finished 874 23.7494
+877 24.3711
+Finished 877 24.3711
+879 24.9262
+Finished 879 24.9262
+882 24.9608
+Finished 882 24.9608
+883 24.4114
+Finished 883 24.4114
+887 24.698
+Finished 887 24.698
+891 23.32
+Finished 891 23.32
+902 22.9929
+Finished 902 22.9929
+906 24.0399
+Finished 906 24.0399
+907 23.885
+Finished 907 23.885
+908 24.1703
+Finished 908 24.1703
+913 23.936
+Finished 913 23.936
+915 24.5819
+Finished 915 24.5819
+921 22.8665
+Finished 921 22.8665
+925 23.9459
+Finished 925 23.9459
+934 22.1496
+Finished 934 22.1496
+936 24.7199
+Finished 936 24.7199
+943 24.8511
+Finished 943 24.8511
+947 24.5173
+Finished 947 24.5173
+950 24.436
+Finished 950 24.436
+958 23.7556
+Finished 958 23.7556
+959 24.8158
+Finished 959 24.8158
+967 24.4723
+Finished 967 24.4723
+971 22.4395
+Finished 971 22.4395
+973 23.976
+Finished 973 23.976
+974 24.6796
+Finished 974 24.6796
+984 22.2118
+Finished 984 22.2118
+985 24.545
+Finished 985 24.545
+988 23.3158
+Finished 988 23.3158
+1000 23.3943
+Finished 1000 23.3943
+1002 24.5736
+Finished 1002 24.5736
+1006 23.6254
+Finished 1006 23.6254
+1011 24.8194
+Finished 1011 24.8194
+1012 24.7154
+Finished 1012 24.7154
+1013 23.0325
+Finished 1013 23.0325
+1014 23.9722
+Finished 1014 23.9722
+1017 24.9872
+Finished 1017 24.9872
+1022 23.1915
+Finished 1022 23.1915
+1032 23.6565
+Finished 1032 23.6565
+1047 22.7236
+Finished 1047 22.7236
+1051 24.8121
+Finished 1051 24.8121
+1064 23.4423
+Finished 1064 23.4423
+1068 23.1104
+Finished 1068 23.1104
+1069 23.0439
+Finished 1069 23.0439
+1078 23.4968
+Finished 1078 23.4968
+1093 22.1303
+Finished 1093 22.1303
+1095 23.6049
+Finished 1095 23.6049
+1103 24.135
+Finished 1103 24.135
+1104 24.4715
+Finished 1104 24.4715
+1111 23.9557
+Finished 1111 23.9557
+1137 24.3345
+Finished 1137 24.3345
+1144 24.3885
+Finished 1144 24.3885
+1146 24.8481
+Finished 1146 24.8481
+1151 23.8783
+Finished 1151 23.8783
+1155 24.6473
+Finished 1155 24.6473
+1157 24.8362
+Finished 1157 24.8362
+1160 23.1838
+Finished 1160 23.1838
+1161 24.7912
+Finished 1161 24.7912
+1175 23.778
+Finished 1175 23.778
+1180 23.9535
+Finished 1180 23.9535
+1186 22.1378
+Finished 1186 22.1378
+1196 23.7227
+Finished 1196 23.7227
+1198 24.3439
+Finished 1198 24.3439
+1200 24.6519
+Finished 1200 24.6519
+1215 24.8845
+Finished 1215 24.8845
+1216 24.6537
+Finished 1216 24.6537
+1218 24.6709
+Finished 1218 24.6709
+1226 22.5495
+Finished 1226 22.5495
+1230 23.0586
+Finished 1230 23.0586
+1231 24.9679
+Finished 1231 24.9679
+1239 24.4342
+Finished 1239 24.4342
+1242 24.5598
+Finished 1242 24.5598
+1245 24.0217
+Finished 1245 24.0217
+1253 24.9022
+Finished 1253 24.9022
+1254 22.9662
+Finished 1254 22.9662
+1255 24.0722
+Finished 1255 24.0722
+1258 24.63
+Finished 1258 24.63
+1261 23.5274
+Finished 1261 23.5274
+1262 24.9803
+Finished 1262 24.9803
+1267 24.1273
+Finished 1267 24.1273
+1268 24.6525
+Finished 1268 24.6525
+1269 24.1874
+Finished 1269 24.1874
+1273 23.8228
+Finished 1273 23.8228
+1278 24.9818
+Finished 1278 24.9818
+1281 24.3691
+Finished 1281 24.3691
+1287 22.6635
+Finished 1287 22.6635
+1288 24.4308
+Finished 1288 24.4308
+1309 24.2586
+Finished 1309 24.2586
+1316 24.9271
+Finished 1316 24.9271
+1323 22.4452
+Finished 1323 22.4452
+1331 23.0538
+Finished 1331 23.0538
+1334 23.1283
+Finished 1334 23.1283
+1336 23.5773
+Finished 1336 23.5773
+1340 24.6356
+Finished 1340 24.6356
+1341 23.4085
+Finished 1341 23.4085
+1345 24.9065
+Finished 1345 24.9065
+1353 24.1711
+Finished 1353 24.1711
+1357 23.084
+Finished 1357 23.084
+1367 22.2998
+Finished 1367 22.2998
+1368 23.3997
+Finished 1368 23.3997
+1369 23.6898
+Finished 1369 23.6898
+1370 23.2639
+Finished 1370 23.2639
+1376 23.956
+Finished 1376 23.956
+1379 22.7964
+Finished 1379 22.7964
+1385 22.6264
+Finished 1385 22.6264
+1391 23.2917
+Finished 1391 23.2917
+1396 23.0999
+Finished 1396 23.0999
+1401 24.7657
+Finished 1401 24.7657
+1408 24.1598
+Finished 1408 24.1598
+1409 24.5457
+Finished 1409 24.5457
+1410 24.5958
+Finished 1410 24.5958
+1411 24.5244
+Finished 1411 24.5244
+1422 24.7744
+Finished 1422 24.7744
+1425 24.9647
+Finished 1425 24.9647
+1426 24.3979
+Finished 1426 24.3979
+1436 24.5232
+Finished 1436 24.5232
+1446 24.7127
+Finished 1446 24.7127
+1448 24.4434
+Finished 1448 24.4434
+1450 24.2913
+Finished 1450 24.2913
+1452 23.9668
+Finished 1452 23.9668
+1454 24.6451
+Finished 1454 24.6451
+1459 24.5387
+Finished 1459 24.5387
+1460 24.6906
+Finished 1460 24.6906
+1461 23.9452
+Finished 1461 23.9452
+1465 24.4736
+Finished 1465 24.4736
+1472 23.5753
+Finished 1472 23.5753
+1481 23.6643
+Finished 1481 23.6643
+1483 24.126
+Finished 1483 24.126
+1485 24.2804
+Finished 1485 24.2804
+1489 22.6343
+Finished 1489 22.6343
+1497 24.8257
+Finished 1497 24.8257
+1498 24.2789
+Finished 1498 24.2789
+1502 24.7684
+Finished 1502 24.7684
+1511 24.7028
+Finished 1511 24.7028
+1512 23.1516
+Finished 1512 23.1516
+1516 22.997
+Finished 1516 22.997
+1519 22.1198
+Finished 1519 22.1198
+1523 22.421
+Finished 1523 22.421
+1527 23.8625
+Finished 1527 23.8625
+1528 23.93
+Finished 1528 23.93
+1529 24.2408
+Finished 1529 24.2408
+1532 24.4014
+Finished 1532 24.4014
+1534 24.2211
+Finished 1534 24.2211
+1539 24.7326
+Finished 1539 24.7326
+1541 22.3196
+Finished 1541 22.3196
+1546 23.4429
+Finished 1546 23.4429
+1553 24.8281
+Finished 1553 24.8281
+1555 24.7154
+Finished 1555 24.7154
+1556 22.8697
+Finished 1556 22.8697
+1567 24.8078
+Finished 1567 24.8078
+1572 24.1745
+Finished 1572 24.1745
+1579 23.7005
+Finished 1579 23.7005
+1580 24.6675
+Finished 1580 24.6675
+1588 22.8105
+Finished 1588 22.8105
+1593 24.9958
+Finished 1593 24.9958
+1600 24.5665
+Finished 1600 24.5665
+1607 24.9677
+Finished 1607 24.9677
+1609 23.61
+Finished 1609 23.61
+1620 22.3694
+Finished 1620 22.3694
+1621 24.7215
+Finished 1621 24.7215
+1622 24.4715
+Finished 1622 24.4715
+1625 23.7608
+Finished 1625 23.7608
+1629 24.4239
+Finished 1629 24.4239
+1632 24.6991
+Finished 1632 24.6991
+1641 24.2052
+Finished 1641 24.2052
+1644 24.7137
+Finished 1644 24.7137
+1645 22.413
+Finished 1645 22.413
+1652 24.2179
+Finished 1652 24.2179
+1655 24.8229
+Finished 1655 24.8229
+1657 23.0581
+Finished 1657 23.0581
+1666 24.5436
+Finished 1666 24.5436
+1670 23.9299
+Finished 1670 23.9299
+1673 23.923
+Finished 1673 23.923
+1676 24.1766
+Finished 1676 24.1766
+1679 23.7377
+Finished 1679 23.7377
+1681 23.9013
+Finished 1681 23.9013
+1692 24.1888
+Finished 1692 24.1888
+1693 24.9553
+Finished 1693 24.9553
+1701 24.4112
+Finished 1701 24.4112
+1707 24.5523
+Finished 1707 24.5523
+1709 23.274
+Finished 1709 23.274
+1712 24.4021
+Finished 1712 24.4021
+1725 24.7215
+Finished 1725 24.7215
+1727 24.9428
+Finished 1727 24.9428
+1728 22.4931
+Finished 1728 22.4931
+1729 23.5054
+Finished 1729 23.5054
+1730 24.3238
+Finished 1730 24.3238
+1750 23.473
+Finished 1750 23.473
+1761 24.3962
+Finished 1761 24.3962
+1763 24.8991
+Finished 1763 24.8991
+1770 24.6782
+Finished 1770 24.6782
+1773 23.4788
+Finished 1773 23.4788
+1781 24.9832
+Finished 1781 24.9832
+1783 22.6672
+Finished 1783 22.6672
+1790 24.1263
+Finished 1790 24.1263
+1792 24.8757
+Finished 1792 24.8757
+1801 23.4821
+Finished 1801 23.4821
+1802 24.3126
+Finished 1802 24.3126
+1803 24.2429
+Finished 1803 24.2429
+1823 23.6452
+Finished 1823 23.6452
+1828 24.3753
+Finished 1828 24.3753
+1835 24.0845
+Finished 1835 24.0845
+1839 24.6161
+Finished 1839 24.6161
+1840 24.6542
+Finished 1840 24.6542
+1853 23.9849
+Finished 1853 23.9849
+1854 22.2412
+Finished 1854 22.2412
+1858 23.5338
+Finished 1858 23.5338
+1862 24.6176
+Finished 1862 24.6176
+1866 23.1283
+Finished 1866 23.1283
+1870 24.7126
+Finished 1870 24.7126
+1880 24.1505
+Finished 1880 24.1505
+1884 24.0488
+Finished 1884 24.0488
+1888 24.2266
+Finished 1888 24.2266
+1896 23.7417
+Finished 1896 23.7417
+1900 24.9741
+Finished 1900 24.9741
+1908 23.254
+Finished 1908 23.254
+1909 23.737
+Finished 1909 23.737
+1928 24.935
+Finished 1928 24.935
+1936 24.3042
+Finished 1936 24.3042
+1944 24.184
+Finished 1944 24.184
+1956 24.1467
+Finished 1956 24.1467
+1962 23.0205
+Finished 1962 23.0205
+1963 24.1596
+Finished 1963 24.1596
+1971 24.945
+Finished 1971 24.945
+1973 23.5071
+Finished 1973 23.5071
+1975 23.6446
+Finished 1975 23.6446
+1977 24.8323
+Finished 1977 24.8323
+1978 23.3281
+Finished 1978 23.3281
+1979 24.7771
+Finished 1979 24.7771
+1980 24.8881
+Finished 1980 24.8881
+1984 24.2446
+Finished 1984 24.2446
+1992 22.5429
+Finished 1992 22.5429
+1994 22.8078
+Finished 1994 22.8078
+1997 24.3416
+Finished 1997 24.3416
+1998 24.4631
+Finished 1998 24.4631
+2002 23.5073
+Finished 2002 23.5073
+2003 24.2777
+Finished 2003 24.2777
+2010 22.2988
+Finished 2010 22.2988
+2013 24.4617
+Finished 2013 24.4617
+2014 24.7495
+Finished 2014 24.7495
+2028 24.2708
+Finished 2028 24.2708
+2030 24.3259
+Finished 2030 24.3259
+2031 24.4923
+Finished 2031 24.4923
+2034 24.1715
+Finished 2034 24.1715
+2044 24.2422
+Finished 2044 24.2422
+2055 24.441
+Finished 2055 24.441
+2060 24.6689
+Finished 2060 24.6689
+2069 23.5481
+Finished 2069 23.5481
+2070 24.6146
+Finished 2070 24.6146
+2077 23.5956
+Finished 2077 23.5956
+2079 23.1845
+Finished 2079 23.1845
+2080 24.7837
+Finished 2080 24.7837
+2085 24.8884
+Finished 2085 24.8884
+2090 23.7956
+Finished 2090 23.7956
+2095 22.8242
+Finished 2095 22.8242
+2097 22.3018
+Finished 2097 22.3018
+2102 24.7429
+Finished 2102 24.7429
+2115 24.7502
+Finished 2115 24.7502
+2116 23.5627
+Finished 2116 23.5627
+2120 23.8717
+Finished 2120 23.8717
+2121 24.1736
+Finished 2121 24.1736
+2128 24.3092
+Finished 2128 24.3092
+2135 24.1365
+Finished 2135 24.1365
+2136 23.4876
+Finished 2136 23.4876
+2139 23.418
+Finished 2139 23.418
+2146 23.2108
+Finished 2146 23.2108
+2162 24.0025
+Finished 2162 24.0025
+2164 24.981
+Finished 2164 24.981
+2165 24.8147
+Finished 2165 24.8147
+2173 24.2687
+Finished 2173 24.2687
+2174 24.7029
+Finished 2174 24.7029
+2177 24.5691
+Finished 2177 24.5691
+2186 24.5225
+Finished 2186 24.5225
+2191 24.5114
+Finished 2191 24.5114
+2199 24.6687
+Finished 2199 24.6687
+2201 24.4064
+Finished 2201 24.4064
+2218 24.2303
+Finished 2218 24.2303
+2220 23.6565
+Finished 2220 23.6565
+2223 22.3704
+Finished 2223 22.3704
+2227 23.4022
+Finished 2227 23.4022
+2238 22.367
+Finished 2238 22.367
+2241 24.8897
+Finished 2241 24.8897
+2242 22.9205
+Finished 2242 22.9205
+2244 22.8217
+Finished 2244 22.8217
+2249 23.2654
+Finished 2249 23.2654
+2254 24.9647
+Finished 2254 24.9647
+2268 23.8255
+Finished 2268 23.8255
+2270 24.2284
+Finished 2270 24.2284
+2272 24.4188
+Finished 2272 24.4188
+2283 24.9913
+Finished 2283 24.9913
+2285 24.6068
+Finished 2285 24.6068
+2289 24.5255
+Finished 2289 24.5255
+2295 24.6855
+Finished 2295 24.6855
+2296 22.9145
+Finished 2296 22.9145
+2297 22.7294
+Finished 2297 22.7294
+2302 24.9847
+Finished 2302 24.9847
+2303 24.2008
+Finished 2303 24.2008
+2307 24.8447
+Finished 2307 24.8447
+2314 24.4108
+Finished 2314 24.4108
+2322 23.7592
+Finished 2322 23.7592
+2327 23.905
+Finished 2327 23.905
+2334 23.7608
+Finished 2334 23.7608
+2337 24.029
+Finished 2337 24.029
+2340 23.954
+Finished 2340 23.954
+2345 23.1267
+Finished 2345 23.1267
+2353 24.8629
+Finished 2353 24.8629
+2355 23.0938
+Finished 2355 23.0938
+2357 24.9208
+Finished 2357 24.9208
+2362 24.7097
+Finished 2362 24.7097
+2363 23.2402
+Finished 2363 23.2402
+2364 23.7756
+Finished 2364 23.7756
+2365 24.0022
+Finished 2365 24.0022
+2370 24.63
+Finished 2370 24.63
+2382 24.7058
+Finished 2382 24.7058
+2383 22.4196
+Finished 2383 22.4196
+2393 22.4997
+Finished 2393 22.4997
+2394 24.6228
+Finished 2394 24.6228
+2399 24.9159
+Finished 2399 24.9159
+2406 24.8471
+Finished 2406 24.8471
+2407 24.6536
+Finished 2407 24.6536
+2417 24.6437
+Finished 2417 24.6437
+2425 23.9945
+Finished 2425 23.9945
+2426 23.554
+Finished 2426 23.554
+2432 24.8365
+Finished 2432 24.8365
+2433 24.867
+Finished 2433 24.867
+2435 24.8269
+Finished 2435 24.8269
+2451 23.4427
+Finished 2451 23.4427
+2452 24.2389
+Finished 2452 24.2389
+2453 24.9641
+Finished 2453 24.9641
+2457 24.2382
+Finished 2457 24.2382
+2461 24.8162
+Finished 2461 24.8162
+2467 22.9468
+Finished 2467 22.9468
+2477 23.8326
+Finished 2477 23.8326
+2478 23.1833
+Finished 2478 23.1833
+2496 23.7847
+Finished 2496 23.7847
+2508 22.7443
+Finished 2508 22.7443
+2513 23.2951
+Finished 2513 23.2951
+2521 24.6171
+Finished 2521 24.6171
+2523 22.8379
+Finished 2523 22.8379
+2541 23.7645
+Finished 2541 23.7645
+2545 23.6826
+Finished 2545 23.6826
+2547 24.5889
+Finished 2547 24.5889
+2567 24.3041
+Finished 2567 24.3041
+2569 23.6412
+Finished 2569 23.6412
+2570 24.8376
+Finished 2570 24.8376
+2573 24.8079
+Finished 2573 24.8079
+2577 24.6223
+Finished 2577 24.6223
+2588 22.1039
+Finished 2588 22.1039
+2590 22.5886
+Finished 2590 22.5886
+2604 24.7651
+Finished 2604 24.7651
+2611 23.8402
+Finished 2611 23.8402
+2617 22.7455
+Finished 2617 22.7455
+2620 24.3206
+Finished 2620 24.3206
+2622 24.4234
+Finished 2622 24.4234
+2632 24.5924
+Finished 2632 24.5924
+2636 24.3693
+Finished 2636 24.3693
+2649 23.938
+Finished 2649 23.938
+2650 23.4575
+Finished 2650 23.4575
+2651 23.6352
+Finished 2651 23.6352
+2664 24.2589
+Finished 2664 24.2589
+2666 23.173
+Finished 2666 23.173
+2683 24.4738
+Finished 2683 24.4738
+2690 24.3745
+Finished 2690 24.3745
+2711 23.2934
+Finished 2711 23.2934
+2715 24.1829
+Finished 2715 24.1829
+2719 24.2783
+Finished 2719 24.2783
+2720 24.753
+Finished 2720 24.753
+2722 24.6703
+Finished 2722 24.6703
+2725 23.7132
+Finished 2725 23.7132
+2729 24.6784
+Finished 2729 24.6784
+2743 24.5143
+Finished 2743 24.5143
+2754 23.1203
+Finished 2754 23.1203
+2755 24.7175
+Finished 2755 24.7175
+2758 24.4222
+Finished 2758 24.4222
+2764 22.1862
+Finished 2764 22.1862
+2765 23.7356
+Finished 2765 23.7356
+2768 24.2144
+Finished 2768 24.2144
+2774 24.886
+Finished 2774 24.886
+2780 24.7024
+Finished 2780 24.7024
+2781 24.321
+Finished 2781 24.321
+2784 23.9486
+Finished 2784 23.9486
+2787 24.5875
+Finished 2787 24.5875
+2804 23.5197
+Finished 2804 23.5197
+2805 24.1196
+Finished 2805 24.1196
+2807 23.5597
+Finished 2807 23.5597
+2810 24.8162
+Finished 2810 24.8162
+2812 24.5507
+Finished 2812 24.5507
+2813 24.6257
+Finished 2813 24.6257
+2814 22.3172
+Finished 2814 22.3172
+2818 23.7767
+Finished 2818 23.7767
+2822 24.7641
+Finished 2822 24.7641
+2837 24.7378
+Finished 2837 24.7378
+2856 23.8243
+Finished 2856 23.8243
+2859 23.1468
+Finished 2859 23.1468
+2866 22.8513
+Finished 2866 22.8513
+2874 23.8696
+Finished 2874 23.8696
+2881 22.8158
+Finished 2881 22.8158
+2886 24.7865
+Finished 2886 24.7865
+2911 23.751
+Finished 2911 23.751
+2919 22.6915
+Finished 2919 22.6915
+2923 24.9929
+Finished 2923 24.9929
+2924 23.3933
+Finished 2924 23.3933
+2925 24.2772
+Finished 2925 24.2772
+2931 24.4701
+Finished 2931 24.4701
+2941 22.809
+Finished 2941 22.809
+2946 24.6055
+Finished 2946 24.6055
+2953 22.6312
+Finished 2953 22.6312
+2954 24.8792
+Finished 2954 24.8792
+2959 23.6424
+Finished 2959 23.6424
+2962 24.5899
+Finished 2962 24.5899
+2964 23.9118
+Finished 2964 23.9118
+2970 24.3514
+Finished 2970 24.3514
+2972 24.7406
+Finished 2972 24.7406
+2974 24.0892
+Finished 2974 24.0892
+2976 24.6606
+Finished 2976 24.6606
+2980 22.4235
+Finished 2980 22.4235
+2982 24.6645
+Finished 2982 24.6645
+2983 22.8085
+Finished 2983 22.8085
+2984 23.852
+Finished 2984 23.852
+2985 24.9424
+Finished 2985 24.9424
+2989 23.2023
+Finished 2989 23.2023
+2994 23.8449
+Finished 2994 23.8449
+2996 24.5257
+Finished 2996 24.5257
+2997 24.3805
+Finished 2997 24.3805
+2998 23.9945
+Finished 2998 23.9945
+3014 22.6845
+Finished 3014 22.6845
+3015 23.3139
+Finished 3015 23.3139
+3016 24.5807
+Finished 3016 24.5807
+3026 23.2831
+Finished 3026 23.2831
+3035 24.4523
+Finished 3035 24.4523
+3046 23.2317
+Finished 3046 23.2317
+3047 23.5248
+Finished 3047 23.5248
+3049 23.822
+Finished 3049 23.822
+3055 24.0906
+Finished 3055 24.0906
+3056 23.5941
+Finished 3056 23.5941
+3062 23.9607
+Finished 3062 23.9607
+3063 24.2648
+Finished 3063 24.2648
+3073 24.7025
+Finished 3073 24.7025
+3075 22.3545
+Finished 3075 22.3545
+3080 22.7654
+Finished 3080 22.7654
+3087 24.1705
+Finished 3087 24.1705
+3090 23.5093
+Finished 3090 23.5093
+3099 24.774
+Finished 3099 24.774
+3103 24.312
+Finished 3103 24.312
+3106 23.5605
+Finished 3106 23.5605
+3107 24.9547
+Finished 3107 24.9547
+3117 24.2842
+Finished 3117 24.2842
+3118 24.3875
+Finished 3118 24.3875
+3120 24.8608
+Finished 3120 24.8608
+3130 22.1142
+Finished 3130 22.1142
+3131 24.8882
+Finished 3131 24.8882
+3141 24.7734
+Finished 3141 24.7734
+3146 22.154
+Finished 3146 22.154
+3149 23.6283
+Finished 3149 23.6283
+3156 24.1596
+Finished 3156 24.1596
+3159 23.5056
+Finished 3159 23.5056
+3165 24.415
+Finished 3165 24.415
+3167 24.8009
+Finished 3167 24.8009
+3169 24.2647
+Finished 3169 24.2647
+3171 22.2879
+Finished 3171 22.2879
+3172 22.792
+Finished 3172 22.792
+3175 24.0537
+Finished 3175 24.0537
+3178 24.1785
+Finished 3178 24.1785
+3192 24.7345
+Finished 3192 24.7345
+3194 24.8492
+Finished 3194 24.8492
+3213 24.6821
+Finished 3213 24.6821
+3214 24.3672
+Finished 3214 24.3672
+3215 22.5971
+Finished 3215 22.5971
+3216 23.2051
+Finished 3216 23.2051
+3224 24.0047
+Finished 3224 24.0047
+3228 22.8745
+Finished 3228 22.8745
+3231 24.6279
+Finished 3231 24.6279
+3232 24.3878
+Finished 3232 24.3878
+3240 24.6012
+Finished 3240 24.6012
+3241 24.667
+Finished 3241 24.667
+3244 24.7371
+Finished 3244 24.7371
+3247 24.6992
+Finished 3247 24.6992
+3248 22.9416
+Finished 3248 22.9416
+3251 24.7503
+Finished 3251 24.7503
+3252 24.4326
+Finished 3252 24.4326
+3255 22.9851
+Finished 3255 22.9851
+3257 24.9639
+Finished 3257 24.9639
+3258 22.5612
+Finished 3258 22.5612
+3259 24.2234
+Finished 3259 24.2234
+3263 24.8479
+Finished 3263 24.8479
+3274 23.8944
+Finished 3274 23.8944
+3278 24.9744
+Finished 3278 24.9744
+3280 23.1193
+Finished 3280 23.1193
+3295 23.6891
+Finished 3295 23.6891
+3304 24.3895
+Finished 3304 24.3895
+3305 24.4639
+Finished 3305 24.4639
+3306 22.7319
+Finished 3306 22.7319
+3308 24.8251
+Finished 3308 24.8251
+3312 23.0029
+Finished 3312 23.0029
+3320 22.751
+Finished 3320 22.751
+3326 24.6402
+Finished 3326 24.6402
+3330 23.4543
+Finished 3330 23.4543
+3332 24.3121
+Finished 3332 24.3121
+3336 24.5159
+Finished 3336 24.5159
+3339 23.94
+Finished 3339 23.94
+3348 24.7377
+Finished 3348 24.7377
+3349 24.6201
+Finished 3349 24.6201
+3350 24.0792
+Finished 3350 24.0792
+3353 23.8758
+Finished 3353 23.8758
+3356 22.947
+Finished 3356 22.947
+3357 23.5117
+Finished 3357 23.5117
+3361 24.8681
+Finished 3361 24.8681
+3364 22.5966
+Finished 3364 22.5966
+3368 24.768
+Finished 3368 24.768
+3371 23.0393
+Finished 3371 23.0393
+3375 22.2252
+Finished 3375 22.2252
+3376 23.9131
+Finished 3376 23.9131
+3384 24.4392
+Finished 3384 24.4392
+3386 23.7084
+Finished 3386 23.7084
+3388 24.5029
+Finished 3388 24.5029
+3398 22.7856
+Finished 3398 22.7856
+3405 22.8421
+Finished 3405 22.8421
+3412 23.8836
+Finished 3412 23.8836
+3421 23.9454
+Finished 3421 23.9454
+3424 23.461
+Finished 3424 23.461
+3433 24.924
+Finished 3433 24.924
+3435 22.8335
+Finished 3435 22.8335
+3436 24.4932
+Finished 3436 24.4932
+3439 24.7531
+Finished 3439 24.7531
+3449 24.7946
+Finished 3449 24.7946
+3456 24.0665
+Finished 3456 24.0665
+3457 24.6159
+Finished 3457 24.6159
+3459 24.2436
+Finished 3459 24.2436
+3464 23.5698
+Finished 3464 23.5698
+3465 23.2443
+Finished 3465 23.2443
+3466 24.1253
+Finished 3466 24.1253
+3472 24.9483
+Finished 3472 24.9483
+3488 24.7764
+Finished 3488 24.7764
+3489 24.8321
+Finished 3489 24.8321
+3492 24.8992
+Finished 3492 24.8992
+3496 24.5793
+Finished 3496 24.5793
+3498 23.9706
+Finished 3498 23.9706
+3506 24.9098
+Finished 3506 24.9098
+3511 23.518
+Finished 3511 23.518
+3518 23.6239
+Finished 3518 23.6239
+3519 24.2672
+Finished 3519 24.2672
+3520 23.9334
+Finished 3520 23.9334
+3524 23.5734
+Finished 3524 23.5734
+3528 24.7704
+Finished 3528 24.7704
+3529 22.5737
+Finished 3529 22.5737
+3531 22.0747
+Finished 3531 22.0747
+3532 24.3963
+Finished 3532 24.3963
+3534 23.4563
+Finished 3534 23.4563
+3539 23.6301
+Finished 3539 23.6301
+3540 24.5061
+Finished 3540 24.5061
+3547 24.3008
+Finished 3547 24.3008
+3560 24.1767
+Finished 3560 24.1767
+3563 23.1429
+Finished 3563 23.1429
+3570 22.7812
+Finished 3570 22.7812
+3580 23.808
+Finished 3580 23.808
+3582 23.7979
+Finished 3582 23.7979
+3583 24.3651
+Finished 3583 24.3651
+3590 24.8374
+Finished 3590 24.8374
+3595 23.8912
+Finished 3595 23.8912
+3596 24.2796
+Finished 3596 24.2796
+3598 23.9598
+Finished 3598 23.9598
+3603 24.8459
+Finished 3603 24.8459
+3609 24.7187
+Finished 3609 24.7187
+3610 24.4031
+Finished 3610 24.4031
+3616 23.5212
+Finished 3616 23.5212
+3621 24.939
+Finished 3621 24.939
+3622 24.943
+Finished 3622 24.943
+3628 24.2824
+Finished 3628 24.2824
+3634 24.8786
+Finished 3634 24.8786
+3640 23.4931
+Finished 3640 23.4931
+3642 23.5299
+Finished 3642 23.5299
+3644 24.4349
+Finished 3644 24.4349
+3652 24.5539
+Finished 3652 24.5539
+3653 24.394
+Finished 3653 24.394
+3656 24.3805
+Finished 3656 24.3805
+3663 22.4246
+Finished 3663 22.4246
+3673 23.1888
+Finished 3673 23.1888
+3681 22.8029
+Finished 3681 22.8029
+3682 22.1944
+Finished 3682 22.1944
+3687 24.7897
+Finished 3687 24.7897
+3698 22.833
+Finished 3698 22.833
+3705 23.1618
+Finished 3705 23.1618
+3707 23.4262
+Finished 3707 23.4262
+3709 22.7089
+Finished 3709 22.7089
+3710 23.6871
+Finished 3710 23.6871
+3718 23.6067
+Finished 3718 23.6067
+3730 22.7336
+Finished 3730 22.7336
+3731 24.9155
+Finished 3731 24.9155
+3740 24.0613
+Finished 3740 24.0613
+3742 24.4023
+Finished 3742 24.4023
+3748 22.8587
+Finished 3748 22.8587
+3750 23.9979
+Finished 3750 23.9979
+3753 24.2779
+Finished 3753 24.2779
+3772 24.8954
+Finished 3772 24.8954
+3773 23.5049
+Finished 3773 23.5049
+3776 23.0094
+Finished 3776 23.0094
+3782 24.9824
+Finished 3782 24.9824
+3784 24.5148
+Finished 3784 24.5148
+3786 22.2343
+Finished 3786 22.2343
+3789 22.5697
+Finished 3789 22.5697
+3790 23.9758
+Finished 3790 23.9758
+3804 24.2121
+Finished 3804 24.2121
+3808 24.6981
+Finished 3808 24.6981
+3810 23.9846
+Finished 3810 23.9846
+3818 24.9344
+Finished 3818 24.9344
+3821 24.8376
+Finished 3821 24.8376
+3825 23.1457
+Finished 3825 23.1457
+3852 24.167
+Finished 3852 24.167
+3854 24.0611
+Finished 3854 24.0611
+3855 22.3871
+Finished 3855 22.3871
+3861 23.0395
+Finished 3861 23.0395
+3870 24.922
+Finished 3870 24.922
+3871 23.6072
+Finished 3871 23.6072
+3877 24.9037
+Finished 3877 24.9037
+3880 24.5469
+Finished 3880 24.5469
+3881 24.8205
+Finished 3881 24.8205
+3882 24.9136
+Finished 3882 24.9136
+3883 23.4345
+Finished 3883 23.4345
+3897 24.9753
+Finished 3897 24.9753
+3898 24.1249
+Finished 3898 24.1249
+3911 24.4159
+Finished 3911 24.4159
+3912 22.6578
+Finished 3912 22.6578
+3928 23.7542
+Finished 3928 23.7542
+3933 22.6667
+Finished 3933 22.6667
+3937 24.9771
+Finished 3937 24.9771
+3945 24.828
+Finished 3945 24.828
+3962 23.4471
+Finished 3962 23.4471
+3964 24.5402
+Finished 3964 24.5402
+3965 22.0107
+Finished 3965 22.0107
+3966 24.4449
+Finished 3966 24.4449
+3969 22.8699
+Finished 3969 22.8699
+3971 23.9887
+Finished 3971 23.9887
+3973 24.7197
+Finished 3973 24.7197
+3980 23.9354
+Finished 3980 23.9354
+3989 22.6721
+Finished 3989 22.6721
+4002 23.3661
+Finished 4002 23.3661
+4012 24.8584
+Finished 4012 24.8584
+4015 24.5404
+Finished 4015 24.5404
+4022 23.6998
+Finished 4022 23.6998
+4025 23.2951
+Finished 4025 23.2951
+4029 24.1746
+Finished 4029 24.1746
+4036 22.7517
+Finished 4036 22.7517
+4048 24.6668
+Finished 4048 24.6668
+4052 24.607
+Finished 4052 24.607
+4061 24.2444
+Finished 4061 24.2444
+4062 24.8573
+Finished 4062 24.8573
+4095 24.9505
+Finished 4095 24.9505
+4097 24.973
+Finished 4097 24.973
+4103 24.8442
+Finished 4103 24.8442
+4104 23.3741
+Finished 4104 23.3741
+4105 24.7725
+Finished 4105 24.7725
+4108 24.6311
+Finished 4108 24.6311
+4109 23.3395
+Finished 4109 23.3395
+4124 24.4884
+Finished 4124 24.4884
+4125 23.6687
+Finished 4125 23.6687
+4130 24.1036
+Finished 4130 24.1036
+4145 24.528
+Finished 4145 24.528
+4147 24.5851
+Finished 4147 24.5851
+4151 22.1907
+Finished 4151 22.1907
+4154 24.3561
+Finished 4154 24.3561
+4155 23.5595
+Finished 4155 23.5595
+4157 24.4749
+Finished 4157 24.4749
+4162 23.7549
+Finished 4162 23.7549
+4164 23.4949
+Finished 4164 23.4949
+4168 24.5518
+Finished 4168 24.5518
+4172 24.6728
+Finished 4172 24.6728
+4182 24.7819
+Finished 4182 24.7819
+4190 24.5715
+Finished 4190 24.5715
+4191 23.6437
+Finished 4191 23.6437
+4193 24.575
+Finished 4193 24.575
+4202 23.7566
+Finished 4202 23.7566
+4209 23.9632
+Finished 4209 23.9632
+4212 24.0091
+Finished 4212 24.0091
+4213 24.9768
+Finished 4213 24.9768
+4222 24.4112
+Finished 4222 24.4112
+4228 22.981
+Finished 4228 22.981
+4239 24.0273
+Finished 4239 24.0273
+4240 23.5654
+Finished 4240 23.5654
+4248 24.0129
+Finished 4248 24.0129
+4252 23.3353
+Finished 4252 23.3353
+4253 24.1224
+Finished 4253 24.1224
+4256 24.5826
+Finished 4256 24.5826
+4261 24.3435
+Finished 4261 24.3435
+4267 24.9958
+Finished 4267 24.9958
+4268 24.064
+Finished 4268 24.064
+4270 24.821
+Finished 4270 24.821
+4274 23.6934
+Finished 4274 23.6934
+4275 23.3147
+Finished 4275 23.3147
+4280 23.6707
+Finished 4280 23.6707
+4282 24.907
+Finished 4282 24.907
+4290 24.6075
+Finished 4290 24.6075
+4293 24.6083
+Finished 4293 24.6083
+4303 22.0759
+Finished 4303 22.0759
+4306 22.6227
+Finished 4306 22.6227
+4307 24.7223
+Finished 4307 24.7223
+4311 24.2351
+Finished 4311 24.2351
+4317 23.4823
+Finished 4317 23.4823
+4318 24.4095
+Finished 4318 24.4095
+4320 23.8948
+Finished 4320 23.8948
+4321 24.5157
+Finished 4321 24.5157
+4332 24.4478
+Finished 4332 24.4478
+4340 22.7594
+Finished 4340 22.7594
+4349 24.6091
+Finished 4349 24.6091
+4357 24.8099
+Finished 4357 24.8099
+4361 24.6297
+Finished 4361 24.6297
+4366 24.8947
+Finished 4366 24.8947
+4372 24.6806
+Finished 4372 24.6806
+4379 24.4765
+Finished 4379 24.4765
+4381 23.1663
+Finished 4381 23.1663
+4384 23.7984
+Finished 4384 23.7984
+4388 23.1753
+Finished 4388 23.1753
+4408 24.4904
+Finished 4408 24.4904
+4409 23.1963
+Finished 4409 23.1963
+4410 23.0561
+Finished 4410 23.0561
+4431 23.568
+Finished 4431 23.568
+4438 24.33
+Finished 4438 24.33
+4446 23.4496
+Finished 4446 23.4496
+4450 22.8779
+Finished 4450 22.8779
+4451 23.9673
+Finished 4451 23.9673
+4453 23.2818
+Finished 4453 23.2818
+4474 24.9481
+Finished 4474 24.9481
+4478 23.5699
+Finished 4478 23.5699
+4485 24.2388
+Finished 4485 24.2388
+4494 23.7521
+Finished 4494 23.7521
+4497 23.4298
+Finished 4497 23.4298
+4500 24.1586
+Finished 4500 24.1586
+4505 23.1929
+Finished 4505 23.1929
+4507 24.8218
+Finished 4507 24.8218
+4512 23.6928
+Finished 4512 23.6928
+4513 23.8099
+Finished 4513 23.8099
+4515 23.906
+Finished 4515 23.906
+4523 24.0957
+Finished 4523 24.0957
+4527 24.7262
+Finished 4527 24.7262
+4529 24.9541
+Finished 4529 24.9541
+4536 22.422
+Finished 4536 22.422
+4541 23.802
+Finished 4541 23.802
+4543 24.8528
+Finished 4543 24.8528
+4551 24.4034
+Finished 4551 24.4034
+4554 23.035
+Finished 4554 23.035
+4556 24.2985
+Finished 4556 24.2985
+4557 22.2838
+Finished 4557 22.2838
+4560 22.8253
+Finished 4560 22.8253
+4563 24.4465
+Finished 4563 24.4465
+4565 24.818
+Finished 4565 24.818
+4568 22.134
+Finished 4568 22.134
+4583 24.0447
+Finished 4583 24.0447
+4584 23.8473
+Finished 4584 23.8473
+4590 24.8681
+Finished 4590 24.8681
+4599 24.0475
+Finished 4599 24.0475
+4601 24.8619
+Finished 4601 24.8619
+4603 22.6405
+Finished 4603 22.6405
+4607 24.3275
+Finished 4607 24.3275
+4619 23.8392
+Finished 4619 23.8392
+4620 23.804
+Finished 4620 23.804
+4622 24.3981
+Finished 4622 24.3981
+4631 24.5783
+Finished 4631 24.5783
+4635 24.9549
+Finished 4635 24.9549
+4637 24.4385
+Finished 4637 24.4385
+4639 23.6574
+Finished 4639 23.6574
+4640 24.258
+Finished 4640 24.258
+4643 24.5534
+Finished 4643 24.5534
+4651 24.0587
+Finished 4651 24.0587
+4652 24.0546
+Finished 4652 24.0546
+4662 24.6961
+Finished 4662 24.6961
+4669 24.1043
+Finished 4669 24.1043
+4672 23.2359
+Finished 4672 23.2359
+4673 23.1297
+Finished 4673 23.1297
+4675 23.2324
+Finished 4675 23.2324
+4679 24.0502
+Finished 4679 24.0502
+4686 23.4558
+Finished 4686 23.4558
+4694 24.5347
+Finished 4694 24.5347
+4698 23.5207
+Finished 4698 23.5207
+4700 23.3839
+Finished 4700 23.3839
+4705 23.6849
+Finished 4705 23.6849
+4717 22.284
+Finished 4717 22.284
+4727 24.5477
+Finished 4727 24.5477
+4728 22.3321
+Finished 4728 22.3321
+4729 24.9805
+Finished 4729 24.9805
+4736 24.2527
+Finished 4736 24.2527
+4756 23.5566
+Finished 4756 23.5566
+4761 23.6786
+Finished 4761 23.6786
+4763 24.0697
+Finished 4763 24.0697
+4765 23.5613
+Finished 4765 23.5613
+4778 24.7418
+Finished 4778 24.7418
+4779 22.9249
+Finished 4779 22.9249
+4789 24.5929
+Finished 4789 24.5929
+4793 24.2976
+Finished 4793 24.2976
+4794 24.3402
+Finished 4794 24.3402
+4795 23.9103
+Finished 4795 23.9103
+4798 22.8531
+Finished 4798 22.8531
+4799 24.6393
+Finished 4799 24.6393
+4808 24.0752
+Finished 4808 24.0752
+4819 24.0012
+Finished 4819 24.0012
+4826 24.2734
+Finished 4826 24.2734
+4829 23.6923
+Finished 4829 23.6923
+4836 24.6073
+Finished 4836 24.6073
+4862 23.7628
+Finished 4862 23.7628
+4880 22.0562
+Finished 4880 22.0562
+4890 24.5527
+Finished 4890 24.5527
+4897 23.556
+Finished 4897 23.556
+4900 23.1217
+Finished 4900 23.1217
+4903 24.1224
+Finished 4903 24.1224
+4911 24.7318
+Finished 4911 24.7318
+4913 23.9615
+Finished 4913 23.9615
+4914 23.4619
+Finished 4914 23.4619
+4915 22.9951
+Finished 4915 22.9951
+4933 24.4496
+Finished 4933 24.4496
+4934 23.4888
+Finished 4934 23.4888
+4936 24.7944
+Finished 4936 24.7944
+4937 24.8287
+Finished 4937 24.8287
+4950 24.17
+Finished 4950 24.17
+4958 23.2852
+Finished 4958 23.2852
+4965 22.8263
+Finished 4965 22.8263
+4971 22.7398
+Finished 4971 22.7398
+4986 23.2842
+Finished 4986 23.2842
+4987 24.7622
+Finished 4987 24.7622
+4988 24.8407
+Finished 4988 24.8407
+4991 24.6817
+Finished 4991 24.6817
+4999 23.9694
+Finished 4999 23.9694
+5000 23.6027
+Finished 5000 23.6027
+5001 24.8568
+Finished 5001 24.8568
+5007 24.5497
+Finished 5007 24.5497
+5014 23.949
+Finished 5014 23.949
+5028 24.4736
+Finished 5028 24.4736
+5030 22.5233
+Finished 5030 22.5233
+5036 23.4789
+Finished 5036 23.4789
+5038 24.0927
+Finished 5038 24.0927
+5042 23.5881
+Finished 5042 23.5881
+5054 23.8303
+Finished 5054 23.8303
+5055 24.1605
+Finished 5055 24.1605
+5057 24.9373
+Finished 5057 24.9373
+5060 24.8018
+Finished 5060 24.8018
+5063 22.4435
+Finished 5063 22.4435
+5070 24.0174
+Finished 5070 24.0174
+5076 24.5912
+Finished 5076 24.5912
+5084 22.5105
+Finished 5084 22.5105
+5085 22.9521
+Finished 5085 22.9521
+5091 24.9122
+Finished 5091 24.9122
+5099 24.8684
+Finished 5099 24.8684
+5107 22.4446
+Finished 5107 22.4446
+5108 24.5765
+Finished 5108 24.5765
+5113 24.9831
+Finished 5113 24.9831
+5114 22.6238
+Finished 5114 22.6238
+5122 24.3791
+Finished 5122 24.3791
+5125 24.915
+Finished 5125 24.915
+5128 24.5396
+Finished 5128 24.5396
+5138 24.6647
+Finished 5138 24.6647
+5140 23.9908
+Finished 5140 23.9908
+5141 22.7486
+Finished 5141 22.7486
+5165 24.2964
+Finished 5165 24.2964
+5180 24.6052
+Finished 5180 24.6052
+5183 24.7463
+Finished 5183 24.7463
+5187 23.4504
+Finished 5187 23.4504
+5193 22.4998
+Finished 5193 22.4998
+5199 23.4762
+Finished 5199 23.4762
+5205 23.3252
+Finished 5205 23.3252
+5213 24.9135
+Finished 5213 24.9135
+5217 24.9674
+Finished 5217 24.9674
+5225 24.9893
+Finished 5225 24.9893
+5227 24.6168
+Finished 5227 24.6168
+5230 23.2825
+Finished 5230 23.2825
+5235 24.219
+Finished 5235 24.219
+5236 22.3397
+Finished 5236 22.3397
+5242 22.6842
+Finished 5242 22.6842
+5246 22.7326
+Finished 5246 22.7326
+5250 24.0707
+Finished 5250 24.0707
+5251 24.7037
+Finished 5251 24.7037
+5252 24.7439
+Finished 5252 24.7439
+5264 23.2564
+Finished 5264 23.2564
+5265 23.8705
+Finished 5265 23.8705
+5267 24.5683
+Finished 5267 24.5683
+5282 23.9767
+Finished 5282 23.9767
+5301 23.3103
+Finished 5301 23.3103
+5311 24.1818
+Finished 5311 24.1818
+5315 24.9272
+Finished 5315 24.9272
+5333 23.6818
+Finished 5333 23.6818
+5338 24.1506
+Finished 5338 24.1506
+5343 24.1684
+Finished 5343 24.1684
+5345 22.771
+Finished 5345 22.771
+5352 22.5963
+Finished 5352 22.5963
+5354 24.1296
+Finished 5354 24.1296
+5362 22.6636
+Finished 5362 22.6636
+5368 24.1042
+Finished 5368 24.1042
+5384 24.4102
+Finished 5384 24.4102
+5391 24.1984
+Finished 5391 24.1984
+5394 24.3461
+Finished 5394 24.3461
+5398 24.4482
+Finished 5398 24.4482
+5413 24.2051
+Finished 5413 24.2051
+5420 23.0217
+Finished 5420 23.0217
+5427 22.641
+Finished 5427 22.641
+5429 24.8447
+Finished 5429 24.8447
+5435 23.7571
+Finished 5435 23.7571
+5438 22.3934
+Finished 5438 22.3934
+5462 23.4604
+Finished 5462 23.4604
+5464 24.379
+Finished 5464 24.379
+5485 23.8815
+Finished 5485 23.8815
+5486 24.772
+Finished 5486 24.772
+5505 23.6936
+Finished 5505 23.6936
+5517 22.8943
+Finished 5517 22.8943
+5522 24.7852
+Finished 5522 24.7852
+5526 22.8076
+Finished 5526 22.8076
+5532 24.8862
+Finished 5532 24.8862
+5543 24.1631
+Finished 5543 24.1631
+5550 24.4817
+Finished 5550 24.4817
+5553 23.7844
+Finished 5553 23.7844
+5563 24.205
+Finished 5563 24.205
+5579 24.3242
+Finished 5579 24.3242
+5619 24.0452
+Finished 5619 24.0452
+5648 24.699
+Finished 5648 24.699
+5651 24.1498
+Finished 5651 24.1498
+5652 22.0561
+Finished 5652 22.0561
+5656 24.7747
+Finished 5656 24.7747
+5679 24.9871
+Finished 5679 24.9871
+5681 23.5286
+Finished 5681 23.5286
+5683 23.4355
+Finished 5683 23.4355
+5690 24.7338
+Finished 5690 24.7338
+5705 22.7446
+Finished 5705 22.7446
+5709 23.4322
+Finished 5709 23.4322
+5719 24.2794
+Finished 5719 24.2794
+5720 24.7088
+Finished 5720 24.7088
+5734 23.7717
+Finished 5734 23.7717
+5738 24.5821
+Finished 5738 24.5821
+5744 23.5405
+Finished 5744 23.5405
+5756 24.9603
+Finished 5756 24.9603
+5759 22.3841
+Finished 5759 22.3841
+5763 24.0006
+Finished 5763 24.0006
+5783 22.0308
+Finished 5783 22.0308
+5792 24.6879
+Finished 5792 24.6879
+5795 24.6024
+Finished 5795 24.6024
+5810 24.2066
+Finished 5810 24.2066
+5812 23.7935
+Finished 5812 23.7935
+5828 24.3287
+Finished 5828 24.3287
+5829 23.8729
+Finished 5829 23.8729
+5830 24.386
+Finished 5830 24.386
+5838 24.3565
+Finished 5838 24.3565
+5840 24.5082
+Finished 5840 24.5082
+5852 23.5493
+Finished 5852 23.5493
+5855 24.0324
+Finished 5855 24.0324
+5881 22.1539
+Finished 5881 22.1539
+5882 22.8378
+Finished 5882 22.8378
+5887 22.7599
+Finished 5887 22.7599
+5888 24.8213
+Finished 5888 24.8213
+5891 24.3449
+Finished 5891 24.3449
+5900 24.5927
+Finished 5900 24.5927
+5907 23.5036
+Finished 5907 23.5036
+5910 23.2238
+Finished 5910 23.2238
+5915 23.9523
+Finished 5915 23.9523
+5917 24.5058
+Finished 5917 24.5058
+5923 23.4851
+Finished 5923 23.4851
+5925 24.6469
+Finished 5925 24.6469
+5928 24.4657
+Finished 5928 24.4657
+5936 24.859
+Finished 5936 24.859
+5937 24.3441
+Finished 5937 24.3441
+5945 24.8686
+Finished 5945 24.8686
+5970 24.8284
+Finished 5970 24.8284
+5973 24.2707
+Finished 5973 24.2707
+5979 24.3943
+Finished 5979 24.3943
+5981 23.7677
+Finished 5981 23.7677
+5985 23.5326
+Finished 5985 23.5326
+5993 24.7879
+Finished 5993 24.7879
+6005 23.9935
+Finished 6005 23.9935
+6013 24.3101
+Finished 6013 24.3101
+6014 24.678
+Finished 6014 24.678
+6022 24.8988
+Finished 6022 24.8988
+6042 23.9804
+Finished 6042 23.9804
+6045 23.4056
+Finished 6045 23.4056
+6055 24.6563
+Finished 6055 24.6563
+6059 22.659
+Finished 6059 22.659
+6069 23.396
+Finished 6069 23.396
+6084 24.8486
+Finished 6084 24.8486
+6089 24.7765
+Finished 6089 24.7765
+6091 24.1267
+Finished 6091 24.1267
+6095 23.8525
+Finished 6095 23.8525
+6102 24.233
+Finished 6102 24.233
+6105 24.3833
+Finished 6105 24.3833
+6117 22.5476
+Finished 6117 22.5476
+6120 24.2994
+Finished 6120 24.2994
+6122 22.2727
+Finished 6122 22.2727
+6149 24.6619
+Finished 6149 24.6619
+6164 24.6209
+Finished 6164 24.6209
+6165 24.4573
+Finished 6165 24.4573
+6175 24.7416
+Finished 6175 24.7416
+6185 24.2919
+Finished 6185 24.2919
+6187 24.0361
+Finished 6187 24.0361
+6204 23.571
+Finished 6204 23.571
+6209 23.1309
+Finished 6209 23.1309
+6211 24.7206
+Finished 6211 24.7206
+6212 24.8377
+Finished 6212 24.8377
+6213 24.434
+Finished 6213 24.434
+6217 22.0888
+Finished 6217 22.0888
+6232 24.4173
+Finished 6232 24.4173
+6238 24.6935
+Finished 6238 24.6935
+6242 24.2615
+Finished 6242 24.2615
+6244 24.0919
+Finished 6244 24.0919
+6259 23.6305
+Finished 6259 23.6305
+6270 24.5132
+Finished 6270 24.5132
+6278 24.247
+Finished 6278 24.247
+6289 24.3089
+Finished 6289 24.3089
+6290 24.6876
+Finished 6290 24.6876
+6312 24.0171
+Finished 6312 24.0171
+6314 24.8437
+Finished 6314 24.8437
+6316 23.5819
+Finished 6316 23.5819
+6318 23.9754
+Finished 6318 23.9754
+6324 24.0442
+Finished 6324 24.0442
+6331 23.0519
+Finished 6331 23.0519
+6333 24.5044
+Finished 6333 24.5044
+6339 23.7105
+Finished 6339 23.7105
+6342 24.6303
+Finished 6342 24.6303
+6344 23.778
+Finished 6344 23.778
+6359 24.044
+Finished 6359 24.044
+6370 24.4746
+Finished 6370 24.4746
+6375 24.3955
+Finished 6375 24.3955
+6378 22.6252
+Finished 6378 22.6252
+6380 23.3629
+Finished 6380 23.3629
+6381 22.5136
+Finished 6381 22.5136
+6382 23.8758
+Finished 6382 23.8758
+6383 24.593
+Finished 6383 24.593
+6390 24.8249
+Finished 6390 24.8249
+6394 24.3949
+Finished 6394 24.3949
+6400 24.8163
+Finished 6400 24.8163
+6406 24.587
+Finished 6406 24.587
+6412 23.5077
+Finished 6412 23.5077
+6415 22.2418
+Finished 6415 22.2418
+6416 24.5209
+Finished 6416 24.5209
+6419 24.45
+Finished 6419 24.45
+6437 24.0949
+Finished 6437 24.0949
+6448 23.8967
+Finished 6448 23.8967
+6465 23.0382
+Finished 6465 23.0382
+6469 24.5584
+Finished 6469 24.5584
+6470 24.3377
+Finished 6470 24.3377
+6481 24.8128
+Finished 6481 24.8128
+6482 24.616
+Finished 6482 24.616
+6488 24.5395
+Finished 6488 24.5395
+6489 24.3857
+Finished 6489 24.3857
+6490 24.5287
+Finished 6490 24.5287
+6494 22.2244
+Finished 6494 22.2244
+6501 22.5892
+Finished 6501 22.5892
+6505 23.8105
+Finished 6505 23.8105
+6507 24.5309
+Finished 6507 24.5309
+6514 24.7391
+Finished 6514 24.7391
+6517 24.477
+Finished 6517 24.477
+6523 22.4128
+Finished 6523 22.4128
+6530 23.914
+Finished 6530 23.914
+6538 22.8329
+Finished 6538 22.8329
+6550 24.9777
+Finished 6550 24.9777
+6552 24.9008
+Finished 6552 24.9008
+6553 24.395
+Finished 6553 24.395
+6558 22.8105
+Finished 6558 22.8105
+6566 23.8741
+Finished 6566 23.8741
+6568 24.3555
+Finished 6568 24.3555
+6569 24.0177
+Finished 6569 24.0177
+6585 24.1387
+Finished 6585 24.1387
+6609 22.2614
+Finished 6609 22.2614
+6626 24.4016
+Finished 6626 24.4016
+6632 22.7927
+Finished 6632 22.7927
+6633 23.7703
+Finished 6633 23.7703
+6640 24.772
+Finished 6640 24.772
+6643 23.2197
+Finished 6643 23.2197
+6646 24.5944
+Finished 6646 24.5944
+6651 23.2037
+Finished 6651 23.2037
+6652 23.5359
+Finished 6652 23.5359
+6654 23.3282
+Finished 6654 23.3282
+6659 23.5846
+Finished 6659 23.5846
+6667 23.4541
+Finished 6667 23.4541
+6674 24.5308
+Finished 6674 24.5308
+6683 23.5485
+Finished 6683 23.5485
+6688 24.1659
+Finished 6688 24.1659
+6705 22.141
+Finished 6705 22.141
+6721 23.0737
+Finished 6721 23.0737
+6725 24.3324
+Finished 6725 24.3324
+6737 22.8987
+Finished 6737 22.8987
+6738 24.9882
+Finished 6738 24.9882
+6739 24.5402
+Finished 6739 24.5402
+6743 24.7297
+Finished 6743 24.7297
+6750 23.8469
+Finished 6750 23.8469
+6755 24.9292
+Finished 6755 24.9292
+6760 24.2634
+Finished 6760 24.2634
+6762 22.6962
+Finished 6762 22.6962
+6766 24.1931
+Finished 6766 24.1931
+6768 23.8402
+Finished 6768 23.8402
+6778 24.1008
+Finished 6778 24.1008
+6783 24.9468
+Finished 6783 24.9468
+6788 23.945
+Finished 6788 23.945
+6791 22.1075
+Finished 6791 22.1075
+6795 23.4116
+Finished 6795 23.4116
+6797 24.056
+Finished 6797 24.056
+6824 24.7121
+Finished 6824 24.7121
+6830 24.0266
+Finished 6830 24.0266
+6836 23.3544
+Finished 6836 23.3544
+6838 24.9269
+Finished 6838 24.9269
+6846 24.2537
+Finished 6846 24.2537
+6850 24.5994
+Finished 6850 24.5994
+6851 22.8773
+Finished 6851 22.8773
+6853 22.6475
+Finished 6853 22.6475
+6869 24.5385
+Finished 6869 24.5385
+6874 24.2562
+Finished 6874 24.2562
+6875 24.0895
+Finished 6875 24.0895
+6883 22.5395
+Finished 6883 22.5395
+6886 23.7166
+Finished 6886 23.7166
+6890 22.1045
+Finished 6890 22.1045
+6901 23.8967
+Finished 6901 23.8967
+6906 24.9804
+Finished 6906 24.9804
+6907 24.6632
+Finished 6907 24.6632
+6913 24.9782
+Finished 6913 24.9782
+6923 24.1237
+Finished 6923 24.1237
+6927 22.0282
+Finished 6927 22.0282
+6928 24.7988
+Finished 6928 24.7988
+6936 24.6079
+Finished 6936 24.6079
+6955 24.8333
+Finished 6955 24.8333
+6957 24.0918
+Finished 6957 24.0918
+6959 24.0957
+Finished 6959 24.0957
+6961 23.2514
+Finished 6961 23.2514
+6964 24.3185
+Finished 6964 24.3185
+6965 24.9742
+Finished 6965 24.9742
+6983 24.2916
+Finished 6983 24.2916
+6984 24.8874
+Finished 6984 24.8874
+6985 24.8189
+Finished 6985 24.8189
+6991 22.8726
+Finished 6991 22.8726
+6995 24.2281
+Finished 6995 24.2281
+7009 24.1247
+Finished 7009 24.1247
+7016 24.0195
+Finished 7016 24.0195
+7024 22.5466
+Finished 7024 22.5466
+7025 22.6296
+Finished 7025 22.6296
+7045 24.2765
+Finished 7045 24.2765
+7062 24.6179
+Finished 7062 24.6179
+7075 24.9948
+Finished 7075 24.9948
+7078 23.6995
+Finished 7078 23.6995
+7080 24.6077
+Finished 7080 24.6077
+7083 24.2525
+Finished 7083 24.2525
+7093 23.1013
+Finished 7093 23.1013
+7095 24.8912
+Finished 7095 24.8912
+7116 24.475
+Finished 7116 24.475
+7117 24.0143
+Finished 7117 24.0143
+7126 23.6501
+Finished 7126 23.6501
+7134 22.4693
+Finished 7134 22.4693
+7137 24.1937
+Finished 7137 24.1937
+7144 24.9592
+Finished 7144 24.9592
+7150 22.2939
+Finished 7150 22.2939
+7158 22.2803
+Finished 7158 22.2803
+7169 23.8762
+Finished 7169 23.8762
+7183 24.2479
+Finished 7183 24.2479
+7187 24.4405
+Finished 7187 24.4405
+7191 23.6343
+Finished 7191 23.6343
+7201 22.7266
+Finished 7201 22.7266
+7202 24.167
+Finished 7202 24.167
+7207 22.7162
+Finished 7207 22.7162
+7208 24.5568
+Finished 7208 24.5568
+7215 24.8548
+Finished 7215 24.8548
+7218 24.09
+Finished 7218 24.09
+7220 23.5075
+Finished 7220 23.5075
+7225 23.735
+Finished 7225 23.735
+7228 23.6942
+Finished 7228 23.6942
+7240 24.0851
+Finished 7240 24.0851
+7244 24.3111
+Finished 7244 24.3111
+7255 24.2255
+Finished 7255 24.2255
+7256 23.3034
+Finished 7256 23.3034
+7285 24.6307
+Finished 7285 24.6307
+7291 24.7196
+Finished 7291 24.7196
+7293 24.3891
+Finished 7293 24.3891
+7297 23.8937
+Finished 7297 23.8937
+7307 24.9933
+Finished 7307 24.9933
+7308 23.9464
+Finished 7308 23.9464
+7311 23.4142
+Finished 7311 23.4142
+7315 24.7655
+Finished 7315 24.7655
+7329 24.123
+Finished 7329 24.123
+7339 23.9604
+Finished 7339 23.9604
+7350 23.1216
+Finished 7350 23.1216
+7352 23.3083
+Finished 7352 23.3083
+7353 24.633
+Finished 7353 24.633
+7357 23.1521
+Finished 7357 23.1521
+7363 24.3712
+Finished 7363 24.3712
+7374 24.1547
+Finished 7374 24.1547
+7376 24.5475
+Finished 7376 24.5475
+7384 24.361
+Finished 7384 24.361
+7393 24.4933
+Finished 7393 24.4933
+7399 24.9757
+Finished 7399 24.9757
+7406 23.463
+Finished 7406 23.463
+7407 23.5931
+Finished 7407 23.5931
+7422 24.4322
+Finished 7422 24.4322
+7434 23.7273
+Finished 7434 23.7273
+7435 23.631
+Finished 7435 23.631
+7440 24.176
+Finished 7440 24.176
+7444 22.9046
+Finished 7444 22.9046
+7451 24.7533
+Finished 7451 24.7533
+7452 24.8687
+Finished 7452 24.8687
+7456 22.4617
+Finished 7456 22.4617
+7457 22.7934
+Finished 7457 22.7934
+7467 24.1349
+Finished 7467 24.1349
+7485 24.752
+Finished 7485 24.752
+7490 22.5412
+Finished 7490 22.5412
+7493 23.2699
+Finished 7493 23.2699
+7495 22.1188
+Finished 7495 22.1188
+7507 24.397
+Finished 7507 24.397
+7509 22.4557
+Finished 7509 22.4557
+7513 24.9801
+Finished 7513 24.9801
+7517 24.6629
+Finished 7517 24.6629
+7522 24.9574
+Finished 7522 24.9574
+7526 24.1303
+Finished 7526 24.1303
+7548 24.7724
+Finished 7548 24.7724
+7557 24.9933
+Finished 7557 24.9933
+7578 24.8395
+Finished 7578 24.8395
+7584 23.5593
+Finished 7584 23.5593
+7588 24.7322
+Finished 7588 24.7322
+7592 24.9104
+Finished 7592 24.9104
+7593 23.9384
+Finished 7593 23.9384
+7598 24.1892
+Finished 7598 24.1892
+7599 23.7989
+Finished 7599 23.7989
+7603 24.8141
+Finished 7603 24.8141
+7604 23.0307
+Finished 7604 23.0307
+7606 24.9194
+Finished 7606 24.9194
+7609 24.7625
+Finished 7609 24.7625
+7639 22.1599
+Finished 7639 22.1599
+7651 23.5287
+Finished 7651 23.5287
+7657 23.0879
+Finished 7657 23.0879
+7665 24.2273
+Finished 7665 24.2273
+7666 22.5096
+Finished 7666 22.5096
+7678 23.1832
+Finished 7678 23.1832
+7680 22.823
+Finished 7680 22.823
+7683 24.6819
+Finished 7683 24.6819
+7686 24.0129
+Finished 7686 24.0129
+7699 24.92
+Finished 7699 24.92
+7718 24.7775
+Finished 7718 24.7775
+7724 24.5161
+Finished 7724 24.5161
+7726 23.988
+Finished 7726 23.988
+7752 23.4733
+Finished 7752 23.4733
+7755 24.4066
+Finished 7755 24.4066
+7756 23.0292
+Finished 7756 23.0292
+7766 24.2638
+Finished 7766 24.2638
+7779 23.7684
+Finished 7779 23.7684
+7801 24.9748
+Finished 7801 24.9748
+7808 24.5742
+Finished 7808 24.5742
+7809 24.3581
+Finished 7809 24.3581
+7816 23.6602
+Finished 7816 23.6602
+7820 24.4954
+Finished 7820 24.4954
+7822 23.7465
+Finished 7822 23.7465
+7823 23.4873
+Finished 7823 23.4873
+7825 24.7998
+Finished 7825 24.7998
+7832 24.7704
+Finished 7832 24.7704
+7836 22.7947
+Finished 7836 22.7947
+7841 24.8933
+Finished 7841 24.8933
+7845 23.4602
+Finished 7845 23.4602
+7846 23.864
+Finished 7846 23.864
+7870 23.3424
+Finished 7870 23.3424
+7882 24.8907
+Finished 7882 24.8907
+7890 24.1922
+Finished 7890 24.1922
+7897 24.6112
+Finished 7897 24.6112
+7903 22.1962
+Finished 7903 22.1962
+7904 23.0051
+Finished 7904 23.0051
+7912 22.0162
+Finished 7912 22.0162
+7919 24.4877
+Finished 7919 24.4877
+7922 23.4726
+Finished 7922 23.4726
+7928 23.0726
+Finished 7928 23.0726
+7929 23.6157
+Finished 7929 23.6157
+7938 23.4661
+Finished 7938 23.4661
+7941 24.1858
+Finished 7941 24.1858
+7944 24.7872
+Finished 7944 24.7872
+7945 24.9344
+Finished 7945 24.9344
+7949 23.1936
+Finished 7949 23.1936
+7970 24.2251
+Finished 7970 24.2251
+7971 22.5847
+Finished 7971 22.5847
+7972 24.6364
+Finished 7972 24.6364
+7973 24.2527
+Finished 7973 24.2527
+7974 24.845
+Finished 7974 24.845
+7982 23.4099
+Finished 7982 23.4099
+7984 24.7156
+Finished 7984 24.7156
+7999 24.9469
+Finished 7999 24.9469
+8002 22.5594
+Finished 8002 22.5594
+8003 24.865
+Finished 8003 24.865
+8009 23.9445
+Finished 8009 23.9445
+8016 23.7996
+Finished 8016 23.7996
+8018 23.273
+Finished 8018 23.273
+8054 23.3995
+Finished 8054 23.3995
+8058 24.3418
+Finished 8058 24.3418
+8062 24.1886
+Finished 8062 24.1886
+8064 23.6789
+Finished 8064 23.6789
+8065 24.6781
+Finished 8065 24.6781
+8066 24.8096
+Finished 8066 24.8096
+8067 24.8833
+Finished 8067 24.8833
+8069 24.9707
+Finished 8069 24.9707
+8096 23.9722
+Finished 8096 23.9722
+8098 24.3886
+Finished 8098 24.3886
+8105 23.9762
+Finished 8105 23.9762
+8110 24.8601
+Finished 8110 24.8601
+8123 24.2212
+Finished 8123 24.2212
+8129 23.2132
+Finished 8129 23.2132
+8130 24.6636
+Finished 8130 24.6636
+8133 24.1771
+Finished 8133 24.1771
+8136 24.4194
+Finished 8136 24.4194
+8137 24.7605
+Finished 8137 24.7605
+8140 23.5084
+Finished 8140 23.5084
+8150 24.7092
+Finished 8150 24.7092
+8153 24.9452
+Finished 8153 24.9452
+8178 24.2667
+Finished 8178 24.2667
+8189 23.4995
+Finished 8189 23.4995
+8200 24.5882
+Finished 8200 24.5882
+8205 24.7251
+Finished 8205 24.7251
+8207 22.5139
+Finished 8207 22.5139
+8212 23.2935
+Finished 8212 23.2935
+8222 24.0714
+Finished 8222 24.0714
+8248 24.6463
+Finished 8248 24.6463
+8249 24.9704
+Finished 8249 24.9704
+8256 22.9742
+Finished 8256 22.9742
+8257 24.1535
+Finished 8257 24.1535
+8265 24.6869
+Finished 8265 24.6869
+8279 24.3089
+Finished 8279 24.3089
+8280 23.6003
+Finished 8280 23.6003
+8281 24.7456
+Finished 8281 24.7456
+8303 22.6875
+Finished 8303 22.6875
+8306 24.9103
+Finished 8306 24.9103
+8315 22.2103
+Finished 8315 22.2103
+8319 22.9052
+Finished 8319 22.9052
+8336 24.7986
+Finished 8336 24.7986
+8353 24.2714
+Finished 8353 24.2714
+8355 24.8053
+Finished 8355 24.8053
+8359 24.0679
+Finished 8359 24.0679
+8372 24.1828
+Finished 8372 24.1828
+8377 23.3824
+Finished 8377 23.3824
+8378 23.6115
+Finished 8378 23.6115
+8380 24.6678
+Finished 8380 24.6678
+8381 24.7881
+Finished 8381 24.7881
+8404 22.1111
+Finished 8404 22.1111
+8421 24.8906
+Finished 8421 24.8906
+8422 22.6379
+Finished 8422 22.6379
+8426 23.9133
+Finished 8426 23.9133
+8432 23.2907
+Finished 8432 23.2907
+8433 24.7284
+Finished 8433 24.7284
+8448 23.9839
+Finished 8448 23.9839
+8449 24.4572
+Finished 8449 24.4572
+8451 24.9351
+Finished 8451 24.9351
+8465 22.7497
+Finished 8465 22.7497
+8474 23.6949
+Finished 8474 23.6949
+8478 24.7745
+Finished 8478 24.7745
+8479 24.7371
+Finished 8479 24.7371
+8498 24.3603
+Finished 8498 24.3603
+8500 22.5231
+Finished 8500 22.5231
+8501 24.1488
+Finished 8501 24.1488
+8512 24.7775
+Finished 8512 24.7775
+8520 23.9714
+Finished 8520 23.9714
+8521 24.7749
+Finished 8521 24.7749
+8523 24.9492
+Finished 8523 24.9492
+8540 23.5852
+Finished 8540 23.5852
+8563 24.7878
+Finished 8563 24.7878
+8566 23.8185
+Finished 8566 23.8185
+8570 24.8645
+Finished 8570 24.8645
+8573 23.7765
+Finished 8573 23.7765
+8595 24.1701
+Finished 8595 24.1701
+8603 23.5132
+Finished 8603 23.5132
+8636 22.6779
+Finished 8636 22.6779
+8650 23.3049
+Finished 8650 23.3049
+8667 24.0233
+Finished 8667 24.0233
+8676 24.5756
+Finished 8676 24.5756
+8678 24.9332
+Finished 8678 24.9332
+8679 23.206
+Finished 8679 23.206
+8683 24.1997
+Finished 8683 24.1997
+8690 22.2319
+Finished 8690 22.2319
+8703 23.3073
+Finished 8703 23.3073
+8704 24.2034
+Finished 8704 24.2034
+8715 22.7195
+Finished 8715 22.7195
+8725 24.4692
+Finished 8725 24.4692
+8729 24.3166
+Finished 8729 24.3166
+8732 24.1616
+Finished 8732 24.1616
+8742 24.7432
+Finished 8742 24.7432
+8743 24.3034
+Finished 8743 24.3034
+8747 24.5361
+Finished 8747 24.5361
+8751 24.8541
+Finished 8751 24.8541
+8756 22.8504
+Finished 8756 22.8504
+8770 22.2339
+Finished 8770 22.2339
+8771 23.7328
+Finished 8771 23.7328
+8777 23.5565
+Finished 8777 23.5565
+8804 24.1577
+Finished 8804 24.1577
+8806 24.8415
+Finished 8806 24.8415
+8810 24.5955
+Finished 8810 24.5955
+8814 23.9962
+Finished 8814 23.9962
+8818 24.9595
+Finished 8818 24.9595
+8824 24.0276
+Finished 8824 24.0276
+8831 23.5856
+Finished 8831 23.5856
+8842 23.9237
+Finished 8842 23.9237
+8843 24.9349
+Finished 8843 24.9349
+8863 23.9703
+Finished 8863 23.9703
+8866 24.2594
+Finished 8866 24.2594
+8870 23.7871
+Finished 8870 23.7871
+8879 24.759
+Finished 8879 24.759
+8909 24.6502
+Finished 8909 24.6502
+8953 23.0392
+Finished 8953 23.0392
+8967 22.7287
+Finished 8967 22.7287
+8981 24.8301
+Finished 8981 24.8301
+8982 24.5211
+Finished 8982 24.5211
+8993 24.4634
+Finished 8993 24.4634
+8996 24.2397
+Finished 8996 24.2397
+9000 24.7622
+Finished 9000 24.7622
+9001 24.7305
+Finished 9001 24.7305
+9010 23.519
+Finished 9010 23.519
+9016 24.2729
+Finished 9016 24.2729
+9024 24.3641
+Finished 9024 24.3641
+9025 23.5289
+Finished 9025 23.5289
+9034 23.044
+Finished 9034 23.044
+9037 24.6523
+Finished 9037 24.6523
+9041 24.6393
+Finished 9041 24.6393
+9046 23.8044
+Finished 9046 23.8044
+9058 22.8975
+Finished 9058 22.8975
+9062 24.7801
+Finished 9062 24.7801
+9063 22.846
+Finished 9063 22.846
+9065 24.6351
+Finished 9065 24.6351
+9066 24.6582
+Finished 9066 24.6582
+9071 24.6718
+Finished 9071 24.6718
+9075 22.2222
+Finished 9075 22.2222
+9079 22.5509
+Finished 9079 22.5509
+9081 24.9298
+Finished 9081 24.9298
+9092 24.1729
+Finished 9092 24.1729
+9104 24.7599
+Finished 9104 24.7599
+9105 24.5146
+Finished 9105 24.5146
+9106 23.7332
+Finished 9106 23.7332
+9118 24.045
+Finished 9118 24.045
+9122 22.8998
+Finished 9122 22.8998
+9145 24.8881
+Finished 9145 24.8881
+9151 22.707
+Finished 9151 22.707
+9156 24.5472
+Finished 9156 24.5472
+9163 23.1864
+Finished 9163 23.1864
+9169 24.7996
+Finished 9169 24.7996
+9171 24.7882
+Finished 9171 24.7882
+9207 24.6643
+Finished 9207 24.6643
+9226 23.8127
+Finished 9226 23.8127
+9238 23.0393
+Finished 9238 23.0393
+9246 23.1322
+Finished 9246 23.1322
+9253 24.8127
+Finished 9253 24.8127
+9264 24.809
+Finished 9264 24.809
+9265 24.522
+Finished 9265 24.522
+9270 24.5307
+Finished 9270 24.5307
+9281 22.9969
+Finished 9281 22.9969
+9294 22.8897
+Finished 9294 22.8897
+9301 24.0533
+Finished 9301 24.0533
+9326 24.857
+Finished 9326 24.857
+9329 22.2219
+Finished 9329 22.2219
+9330 22.3627
+Finished 9330 22.3627
+9339 22.2017
+Finished 9339 22.2017
+9353 24.1336
+Finished 9353 24.1336
+9372 24.2367
+Finished 9372 24.2367
+9374 24.5698
+Finished 9374 24.5698
+9376 22.656
+Finished 9376 22.656
+9384 23.1931
+Finished 9384 23.1931
+9388 23.343
+Finished 9388 23.343
+9391 24.5875
+Finished 9391 24.5875
+9396 23.3152
+Finished 9396 23.3152
+9399 22.8484
+Finished 9399 22.8484
+9414 23.7211
+Finished 9414 23.7211
+9421 24.8887
+Finished 9421 24.8887
+9422 23.4253
+Finished 9422 23.4253
+9427 24.1093
+Finished 9427 24.1093
+9439 24.359
+Finished 9439 24.359
+9450 23.6129
+Finished 9450 23.6129
+9457 22.275
+Finished 9457 22.275
+9463 24.3341
+Finished 9463 24.3341
+9465 22.8266
+Finished 9465 22.8266
+9471 24.3497
+Finished 9471 24.3497
+9484 24.3282
+Finished 9484 24.3282
+9491 24.3547
+Finished 9491 24.3547
+9493 24.9122
+Finished 9493 24.9122
+9494 22.8799
+Finished 9494 22.8799
+9507 24.0964
+Finished 9507 24.0964
+9517 23.8213
+Finished 9517 23.8213
+9518 24.6957
+Finished 9518 24.6957
+9526 24.3265
+Finished 9526 24.3265
+9550 22.5346
+Finished 9550 22.5346
+9566 24.6641
+Finished 9566 24.6641
+9574 24.8373
+Finished 9574 24.8373
+9578 23.3379
+Finished 9578 23.3379
+9606 24.6942
+Finished 9606 24.6942
+9614 23.7718
+Finished 9614 23.7718
+9621 23.9373
+Finished 9621 23.9373
+9639 22.9798
+Finished 9639 22.9798
+9654 24.3366
+Finished 9654 24.3366
+9662 24.5048
+Finished 9662 24.5048
+9664 22.9535
+Finished 9664 22.9535
+9672 24.8617
+Finished 9672 24.8617
+9674 23.6016
+Finished 9674 23.6016
+9681 22.1837
+Finished 9681 22.1837
+9684 23.0128
+Finished 9684 23.0128
+9685 23.2747
+Finished 9685 23.2747
+9688 24.8625
+Finished 9688 24.8625
+9698 23.9994
+Finished 9698 23.9994
+9699 23.6816
+Finished 9699 23.6816
+9701 23.0816
+Finished 9701 23.0816
+9704 22.1449
+Finished 9704 22.1449
+9710 24.2352
+Finished 9710 24.2352
+9734 24.6418
+Finished 9734 24.6418
+9737 24.2114
+Finished 9737 24.2114
+9741 22.9936
+Finished 9741 22.9936
+9743 24.4964
+Finished 9743 24.4964
+9746 24.0947
+Finished 9746 24.0947
+9747 24.4241
+Finished 9747 24.4241
+9751 24.5028
+Finished 9751 24.5028
+9757 23.0542
+Finished 9757 23.0542
+9759 24.1049
+Finished 9759 24.1049
+9761 24.8881
+Finished 9761 24.8881
+9770 24.8757
+Finished 9770 24.8757
+9783 24.3743
+Finished 9783 24.3743
+9794 23.6131
+Finished 9794 23.6131
+9795 22.0661
+Finished 9795 22.0661
+9806 23.1405
+Finished 9806 23.1405
+9807 24.6924
+Finished 9807 24.6924
+9813 24.8392
+Finished 9813 24.8392
+9826 22.4873
+Finished 9826 22.4873
+9832 24.4
+Finished 9832 24.4
+9834 23.4737
+Finished 9834 23.4737
+9835 24.9608
+Finished 9835 24.9608
+9841 24.6592
+Finished 9841 24.6592
+9842 24.8543
+Finished 9842 24.8543
+9849 24.401
+Finished 9849 24.401
+9856 24.601
+Finished 9856 24.601
+9862 23.1869
+Finished 9862 23.1869
+9864 24.092
+Finished 9864 24.092
+9878 24.3801
+Finished 9878 24.3801
+9884 22.9979
+Finished 9884 22.9979
+9892 24.798
+Finished 9892 24.798
+9898 23.857
+Finished 9898 23.857
+9902 24.609
+Finished 9902 24.609
+9904 24.3533
+Finished 9904 24.3533
+9908 24.3502
+Finished 9908 24.3502
+9913 24.6564
+Finished 9913 24.6564
+9923 22.8986
+Finished 9923 22.8986
+9933 24.5478
+Finished 9933 24.5478
+9951 23.147
+Finished 9951 23.147
+9975 22.5535
+Finished 9975 22.5535
+10000 24.4126
+Finished 10000 24.4126
+10009 24.4473
+Finished 10009 24.4473
+10010 23.4255
+Finished 10010 23.4255
+10015 24.2492
+Finished 10015 24.2492
+10018 24.8136
+Finished 10018 24.8136
+10019 23.6175
+Finished 10019 23.6175
+10026 24.9272
+Finished 10026 24.9272
+10035 24.8363
+Finished 10035 24.8363
+10039 24.6569
+Finished 10039 24.6569
+10044 24.6895
+Finished 10044 24.6895
+10052 23.6235
+Finished 10052 23.6235
+10059 24.2759
+Finished 10059 24.2759
+10060 24.908
+Finished 10060 24.908
+10070 24.3311
+Finished 10070 24.3311
+10082 23.2709
+Finished 10082 23.2709
+10083 22.7802
+Finished 10083 22.7802
+10102 22.7518
+Finished 10102 22.7518
+10107 24.1185
+Finished 10107 24.1185
+10126 22.9907
+Finished 10126 22.9907
+10130 24.2631
+Finished 10130 24.2631
+10140 24.4076
+Finished 10140 24.4076
+10144 23.9853
+Finished 10144 23.9853
+10149 24.4098
+Finished 10149 24.4098
+10154 24.3605
+Finished 10154 24.3605
+10175 24.0778
+Finished 10175 24.0778
+10185 23.4999
+Finished 10185 23.4999
+10187 23.8923
+Finished 10187 23.8923
+10207 24.8607
+Finished 10207 24.8607
+10216 23.1003
+Finished 10216 23.1003
+10221 22.5532
+Finished 10221 22.5532
+10224 24.2037
+Finished 10224 24.2037
+10232 24.6143
+Finished 10232 24.6143
+10247 24.4368
+Finished 10247 24.4368
+10248 22.7672
+Finished 10248 22.7672
+10253 24.097
+Finished 10253 24.097
+10256 24.3426
+Finished 10256 24.3426
+10259 22.7422
+Finished 10259 22.7422
+10281 23.6869
+Finished 10281 23.6869
+10297 24.126
+Finished 10297 24.126
+10299 22.6046
+Finished 10299 22.6046
+10303 24.1169
+Finished 10303 24.1169
+10327 24.8157
+Finished 10327 24.8157
+10328 23.4882
+Finished 10328 23.4882
+10330 23.7002
+Finished 10330 23.7002
+10331 24.1031
+Finished 10331 24.1031
+10333 22.5646
+Finished 10333 22.5646
+10338 24.7052
+Finished 10338 24.7052
+10344 24.5305
+Finished 10344 24.5305
+10351 24.5786
+Finished 10351 24.5786
+10388 24.1859
+Finished 10388 24.1859
+10389 24.7608
+Finished 10389 24.7608
+10392 22.5139
+Finished 10392 22.5139
+10394 23.035
+Finished 10394 23.035
+10396 24.4493
+Finished 10396 24.4493
+10398 24.0542
+Finished 10398 24.0542
+10401 24.3344
+Finished 10401 24.3344
+10402 24.5983
+Finished 10402 24.5983
+10408 24.3915
+Finished 10408 24.3915
+10415 24.7564
+Finished 10415 24.7564
+10416 24.4363
+Finished 10416 24.4363
+10417 23.2964
+Finished 10417 23.2964
+10427 22.8688
+Finished 10427 22.8688
+10432 24.0424
+Finished 10432 24.0424
+10436 23.77
+Finished 10436 23.77
+10446 24.6878
+Finished 10446 24.6878
+10451 23.9527
+Finished 10451 23.9527
+10467 22.0986
+Finished 10467 22.0986
+10477 24.4071
+Finished 10477 24.4071
+10486 24.8649
+Finished 10486 24.8649
+10492 23.6884
+Finished 10492 23.6884
+10497 24.8186
+Finished 10497 24.8186
+10500 24.1551
+Finished 10500 24.1551
+10505 24.3109
+Finished 10505 24.3109
+10512 24.6912
+Finished 10512 24.6912
+10524 23.8343
+Finished 10524 23.8343
+10530 23.5301
+Finished 10530 23.5301
+10533 22.1917
+Finished 10533 22.1917
+10536 23.9924
+Finished 10536 23.9924
+10541 24.2102
+Finished 10541 24.2102
+10554 24.9757
+Finished 10554 24.9757
+10555 24.3279
+Finished 10555 24.3279
+10556 24.8985
+Finished 10556 24.8985
+10562 23.0707
+Finished 10562 23.0707
+10563 23.7526
+Finished 10563 23.7526
+10565 24.7138
+Finished 10565 24.7138
+10566 22.5843
+Finished 10566 22.5843
+10574 24.6169
+Finished 10574 24.6169
+10577 24.9613
+Finished 10577 24.9613
+10591 23.649
+Finished 10591 23.649
+10603 24.2725
+Finished 10603 24.2725
+10606 24.3117
+Finished 10606 24.3117
+10607 24.6018
+Finished 10607 24.6018
+10617 24.5413
+Finished 10617 24.5413
+10633 23.8236
+Finished 10633 23.8236
+10635 24.4407
+Finished 10635 24.4407
+10643 24.6772
+Finished 10643 24.6772
+10645 24.449
+Finished 10645 24.449
+10649 23.1064
+Finished 10649 23.1064
+10659 24.4947
+Finished 10659 24.4947
+10663 23.617
+Finished 10663 23.617
+10682 23.2228
+Finished 10682 23.2228
+10704 24.5074
+Finished 10704 24.5074
+10710 24.61
+Finished 10710 24.61
+10715 24.4314
+Finished 10715 24.4314
+10751 23.774
+Finished 10751 23.774
+10752 23.2831
+Finished 10752 23.2831
+10753 24.3556
+Finished 10753 24.3556
+10762 24.7252
+Finished 10762 24.7252
+10765 23.6726
+Finished 10765 23.6726
+10767 24.8375
+Finished 10767 24.8375
+10770 24.5077
+Finished 10770 24.5077
+10771 24.8247
+Finished 10771 24.8247
+10784 22.5744
+Finished 10784 22.5744
+10789 24.0708
+Finished 10789 24.0708
+10795 23.8643
+Finished 10795 23.8643
+10799 23.949
+Finished 10799 23.949
+10800 23.4019
+Finished 10800 23.4019
+10809 23.6056
+Finished 10809 23.6056
+10819 24.8989
+Finished 10819 24.8989
+10840 22.9688
+Finished 10840 22.9688
+10842 24.5962
+Finished 10842 24.5962
+10860 22.7509
+Finished 10860 22.7509
+10874 23.8236
+Finished 10874 23.8236
+10876 24.8939
+Finished 10876 24.8939
+10877 22.9884
+Finished 10877 22.9884
+10888 24.7211
+Finished 10888 24.7211
+10894 23.3558
+Finished 10894 23.3558
+10902 23.1272
+Finished 10902 23.1272
+10909 24.3321
+Finished 10909 24.3321
+10935 23.4572
+Finished 10935 23.4572
+10951 24.8885
+Finished 10951 24.8885
+10955 24.8287
+Finished 10955 24.8287
+10958 23.3105
+Finished 10958 23.3105
+10965 24.5705
+Finished 10965 24.5705
+10983 24.1588
+Finished 10983 24.1588
+10984 22.4487
+Finished 10984 22.4487
+10988 24.2166
+Finished 10988 24.2166
+10993 24.7109
+Finished 10993 24.7109
+11001 24.1963
+Finished 11001 24.1963
+11016 24.2674
+Finished 11016 24.2674
+11023 23.8952
+Finished 11023 23.8952
+11028 22.5966
+Finished 11028 22.5966
+11030 22.8043
+Finished 11030 22.8043
+11031 24.0806
+Finished 11031 24.0806
+11035 24.0509
+Finished 11035 24.0509
+11048 23.7441
+Finished 11048 23.7441
+11050 23.7884
+Finished 11050 23.7884
+11055 24.4195
+Finished 11055 24.4195
+11057 24.7807
+Finished 11057 24.7807
+11065 24.111
+Finished 11065 24.111
+11073 24.2951
+Finished 11073 24.2951
+11076 24.5109
+Finished 11076 24.5109
+11081 23.7001
+Finished 11081 23.7001
+11086 23.3688
+Finished 11086 23.3688
+11108 24.7819
+Finished 11108 24.7819
+11113 24.4331
+Finished 11113 24.4331
+11118 24.3706
+Finished 11118 24.3706
+11125 22.1266
+Finished 11125 22.1266
+11135 23.8577
+Finished 11135 23.8577
+11138 22.1909
+Finished 11138 22.1909
+11140 22.9124
+Finished 11140 22.9124
+11141 24.1021
+Finished 11141 24.1021
+11166 24.9217
+Finished 11166 24.9217
+11182 24.8381
+Finished 11182 24.8381
+11184 22.6371
+Finished 11184 22.6371
+11194 24.4047
+Finished 11194 24.4047
+11195 22.9702
+Finished 11195 22.9702
+11199 24.158
+Finished 11199 24.158
+11207 24.1539
+Finished 11207 24.1539
+11211 23.4187
+Finished 11211 23.4187
+11212 24.5213
+Finished 11212 24.5213
+11223 24.6976
+Finished 11223 24.6976
+11230 24.8422
+Finished 11230 24.8422
+11233 24.7609
+Finished 11233 24.7609
+11235 23.2502
+Finished 11235 23.2502
+11254 24.4848
+Finished 11254 24.4848
+11256 24.0413
+Finished 11256 24.0413
+11264 24.4884
+Finished 11264 24.4884
+11269 22.2001
+Finished 11269 22.2001
+11270 24.3459
+Finished 11270 24.3459
+11272 24.573
+Finished 11272 24.573
+11275 24.9254
+Finished 11275 24.9254
+11322 23.6704
+Finished 11322 23.6704
+11334 22.7527
+Finished 11334 22.7527
+11359 24.9553
+Finished 11359 24.9553
+11365 23.8633
+Finished 11365 23.8633
+11369 24.2585
+Finished 11369 24.2585
+11374 23.6176
+Finished 11374 23.6176
+11381 24.8288
+Finished 11381 24.8288
+11405 23.8935
+Finished 11405 23.8935
+11406 24.6701
+Finished 11406 24.6701
+11428 22.1393
+Finished 11428 22.1393
+11435 24.354
+Finished 11435 24.354
+11438 24.2609
+Finished 11438 24.2609
+11442 22.8421
+Finished 11442 22.8421
+11449 24.5149
+Finished 11449 24.5149
+11450 24.5347
+Finished 11450 24.5347
+11476 24.7007
+Finished 11476 24.7007
+11478 24.3944
+Finished 11478 24.3944
+11485 24.3137
+Finished 11485 24.3137
+11498 23.1357
+Finished 11498 23.1357
+11504 23.3652
+Finished 11504 23.3652
+11525 24.2779
+Finished 11525 24.2779
+11527 24.9461
+Finished 11527 24.9461
+11569 24.7449
+Finished 11569 24.7449
+11571 23.8309
+Finished 11571 23.8309
+11589 24.8823
+Finished 11589 24.8823
+11593 24.5101
+Finished 11593 24.5101
+11596 23.2732
+Finished 11596 23.2732
+11598 24.1155
+Finished 11598 24.1155
+11605 24.3985
+Finished 11605 24.3985
+11612 23.7379
+Finished 11612 23.7379
+11614 24.9541
+Finished 11614 24.9541
+11622 24.5555
+Finished 11622 24.5555
+11633 24.3733
+Finished 11633 24.3733
+11634 24.1285
+Finished 11634 24.1285
+11640 22.4806
+Finished 11640 22.4806
+11641 24.041
+Finished 11641 24.041
+11647 23.3626
+Finished 11647 23.3626
+11649 24.7084
+Finished 11649 24.7084
+11694 22.3316
+Finished 11694 22.3316
+11697 24.5618
+Finished 11697 24.5618
+11707 24.3616
+Finished 11707 24.3616
+11709 22.6313
+Finished 11709 22.6313
+11710 24.8493
+Finished 11710 24.8493
+11712 22.9224
+Finished 11712 22.9224
+11724 24.6991
+Finished 11724 24.6991
+11731 24.4825
+Finished 11731 24.4825
+11735 23.1159
+Finished 11735 23.1159
+11741 24.7031
+Finished 11741 24.7031
+11742 22.8175
+Finished 11742 22.8175
+11761 24.9656
+Finished 11761 24.9656
+11763 23.2924
+Finished 11763 23.2924
+11766 24.7211
+Finished 11766 24.7211
+11768 24.5169
+Finished 11768 24.5169
+11771 23.9367
+Finished 11771 23.9367
+11780 24.4837
+Finished 11780 24.4837
+11784 24.6364
+Finished 11784 24.6364
+11786 24.4175
+Finished 11786 24.4175
+11794 23.8795
+Finished 11794 23.8795
+11800 23.5028
+Finished 11800 23.5028
+11808 24.1221
+Finished 11808 24.1221
+11813 24.6455
+Finished 11813 24.6455
+11839 24.8321
+Finished 11839 24.8321
+11843 24.097
+Finished 11843 24.097
+11853 23.2575
+Finished 11853 23.2575
+11857 24.5363
+Finished 11857 24.5363
+11859 23.8645
+Finished 11859 23.8645
+11864 24.9819
+Finished 11864 24.9819
+11883 24.9174
+Finished 11883 24.9174
+11892 24.1055
+Finished 11892 24.1055
+11919 23.9537
+Finished 11919 23.9537
+11920 23.9289
+Finished 11920 23.9289
+11921 24.8745
+Finished 11921 24.8745
+11923 23.1101
+Finished 11923 23.1101
+11934 24.8283
+Finished 11934 24.8283
+11935 24.5872
+Finished 11935 24.5872
+11939 24.4285
+Finished 11939 24.4285
+11957 22.7165
+Finished 11957 22.7165
+11973 24.6168
+Finished 11973 24.6168
+11987 22.949
+Finished 11987 22.949
+12000 24.7837
+Finished 12000 24.7837
+12005 23.8286
+Finished 12005 23.8286
+12011 24.2838
+Finished 12011 24.2838
+12024 23.003
+Finished 12024 23.003
+12028 24.2342
+Finished 12028 24.2342
+12036 24.9158
+Finished 12036 24.9158
+12079 24.4728
+Finished 12079 24.4728
+12080 23.1706
+Finished 12080 23.1706
+12100 23.3492
+Finished 12100 23.3492
+12102 23.3954
+Finished 12102 23.3954
+12105 23.7015
+Finished 12105 23.7015
+12106 24.0855
+Finished 12106 24.0855
+12116 23.7588
+Finished 12116 23.7588
+12124 24.5366
+Finished 12124 24.5366
+12130 24.6447
+Finished 12130 24.6447
+12135 24.9539
+Finished 12135 24.9539
+12143 24.8938
+Finished 12143 24.8938
+12178 22.6134
+Finished 12178 22.6134
+12179 24.1784
+Finished 12179 24.1784
+12187 24.5261
+Finished 12187 24.5261
+12197 24.2656
+Finished 12197 24.2656
+12204 24.2539
+Finished 12204 24.2539
+12224 24.547
+Finished 12224 24.547
+12251 24.8207
+Finished 12251 24.8207
+12259 24.4534
+Finished 12259 24.4534
+12262 22.9288
+Finished 12262 22.9288
+12268 22.3829
+Finished 12268 22.3829
+12271 24.1137
+Finished 12271 24.1137
+12294 23.9363
+Finished 12294 23.9363
+12304 24.4385
+Finished 12304 24.4385
+12305 24.3429
+Finished 12305 24.3429
+12306 24.4802
+Finished 12306 24.4802
+12316 23.3331
+Finished 12316 23.3331
+12318 24.5566
+Finished 12318 24.5566
+12327 23.8027
+Finished 12327 23.8027
+12332 24.3588
+Finished 12332 24.3588
+12345 24.9863
+Finished 12345 24.9863
+12350 22.5162
+Finished 12350 22.5162
+12363 22.4262
+Finished 12363 22.4262
+12367 23.8678
+Finished 12367 23.8678
+12378 24.2399
+Finished 12378 24.2399
+12379 23.6657
+Finished 12379 23.6657
+12395 24.5252
+Finished 12395 24.5252
+12417 23.9673
+Finished 12417 23.9673
+12418 22.0254
+Finished 12418 22.0254
+12432 23.6426
+Finished 12432 23.6426
+12457 23.9141
+Finished 12457 23.9141
+12479 24.4656
+Finished 12479 24.4656
+12490 22.4659
+Finished 12490 22.4659
+12491 23.6882
+Finished 12491 23.6882
+12497 24.2695
+Finished 12497 24.2695
+12509 24.1842
+Finished 12509 24.1842
+12513 24.351
+Finished 12513 24.351
+12517 24.871
+Finished 12517 24.871
+12538 22.3486
+Finished 12538 22.3486
+12555 23.9674
+Finished 12555 23.9674
+12560 24.5534
+Finished 12560 24.5534
+12562 24.9868
+Finished 12562 24.9868
+12569 22.2163
+Finished 12569 22.2163
+12578 23.3632
+Finished 12578 23.3632
+12590 23.3132
+Finished 12590 23.3132
+12599 23.6917
+Finished 12599 23.6917
+12629 22.1347
+Finished 12629 22.1347
+12637 23.3711
+Finished 12637 23.3711
+12676 24.7978
+Finished 12676 24.7978
+12686 22.2646
+Finished 12686 22.2646
+12689 23.3123
+Finished 12689 23.3123
+12696 24.1385
+Finished 12696 24.1385
+12697 23.5649
+Finished 12697 23.5649
+12702 22.2053
+Finished 12702 22.2053
+12703 24.4513
+Finished 12703 24.4513
+12716 24.6822
+Finished 12716 24.6822
+12741 22.053
+Finished 12741 22.053
+12743 23.0387
+Finished 12743 23.0387
+12745 24.3055
+Finished 12745 24.3055
+12754 24.4798
+Finished 12754 24.4798
+12767 24.2959
+Finished 12767 24.2959
+12768 24.5517
+Finished 12768 24.5517
+12772 22.7533
+Finished 12772 22.7533
+12791 22.6023
+Finished 12791 22.6023
+12792 23.2632
+Finished 12792 23.2632
+12798 24.3414
+Finished 12798 24.3414
+12815 24.1437
+Finished 12815 24.1437
+12823 23.6054
+Finished 12823 23.6054
+12826 23.7652
+Finished 12826 23.7652
+12832 23.8358
+Finished 12832 23.8358
+12837 24.0185
+Finished 12837 24.0185
+12847 24.2757
+Finished 12847 24.2757
+12873 24.1863
+Finished 12873 24.1863
+12876 22.051
+Finished 12876 22.051
+12880 23.1569
+Finished 12880 23.1569
+12889 24.5517
+Finished 12889 24.5517
+12894 24.2029
+Finished 12894 24.2029
+12899 24.852
+Finished 12899 24.852
+12901 23.8801
+Finished 12901 23.8801
+12903 23.4174
+Finished 12903 23.4174
+12909 24.2259
+Finished 12909 24.2259
+12912 22.6636
+Finished 12912 22.6636
+12914 22.9541
+Finished 12914 22.9541
+12918 22.8801
+Finished 12918 22.8801
+12919 24.5504
+Finished 12919 24.5504
+12926 24.4621
+Finished 12926 24.4621
+12943 24.6437
+Finished 12943 24.6437
+12948 22.1013
+Finished 12948 22.1013
+12949 22.8853
+Finished 12949 22.8853
+12954 24.9408
+Finished 12954 24.9408
+12960 22.4341
+Finished 12960 22.4341
+12971 22.7522
+Finished 12971 22.7522
+12973 24.305
+Finished 12973 24.305
+12975 24.9905
+Finished 12975 24.9905
+12976 24.4354
+Finished 12976 24.4354
+12985 22.6475
+Finished 12985 22.6475
+12987 23.9222
+Finished 12987 23.9222
+12995 24.6965
+Finished 12995 24.6965
+12998 24.2014
+Finished 12998 24.2014
+13002 24.542
+Finished 13002 24.542
+13020 22.5384
+Finished 13020 22.5384
+13029 23.5952
+Finished 13029 23.5952
+13035 24.7329
+Finished 13035 24.7329
+13041 24.9809
+Finished 13041 24.9809
+13046 24.9051
+Finished 13046 24.9051
+13054 23.2871
+Finished 13054 23.2871
+13056 24.1563
+Finished 13056 24.1563
+13063 22.5088
+Finished 13063 22.5088
+13074 23.6826
+Finished 13074 23.6826
+13078 22.1044
+Finished 13078 22.1044
+13099 24.9791
+Finished 13099 24.9791
+13114 24.6832
+Finished 13114 24.6832
+13119 23.8282
+Finished 13119 23.8282
+13121 24.5401
+Finished 13121 24.5401
+13129 22.5435
+Finished 13129 22.5435
+13134 24.6518
+Finished 13134 24.6518
+13136 24.8131
+Finished 13136 24.8131
+13139 24.8085
+Finished 13139 24.8085
+13143 22.0212
+Finished 13143 22.0212
+13150 24.8913
+Finished 13150 24.8913
+13153 24.007
+Finished 13153 24.007
+13160 24.8863
+Finished 13160 24.8863
+13162 22.6885
+Finished 13162 22.6885
+13174 23.4824
+Finished 13174 23.4824
+13177 22.2369
+Finished 13177 22.2369
+13184 23.2759
+Finished 13184 23.2759
+13189 22.4962
+Finished 13189 22.4962
+13219 22.1072
+Finished 13219 22.1072
+13225 24.9723
+Finished 13225 24.9723
+13226 24.3224
+Finished 13226 24.3224
+13234 24.5745
+Finished 13234 24.5745
+13246 24.5572
+Finished 13246 24.5572
+13262 24.8234
+Finished 13262 24.8234
+13275 23.3878
+Finished 13275 23.3878
+13279 24.94
+Finished 13279 24.94
+13283 24.7077
+Finished 13283 24.7077
+13298 23.6554
+Finished 13298 23.6554
+13304 23.6018
+Finished 13304 23.6018
+13309 24.4215
+Finished 13309 24.4215
+13311 22.2457
+Finished 13311 22.2457
+13321 24.3488
+Finished 13321 24.3488
+13328 23.2551
+Finished 13328 23.2551
+13334 24.738
+Finished 13334 24.738
+13351 24.2424
+Finished 13351 24.2424
+13353 24.627
+Finished 13353 24.627
+13354 24.9598
+Finished 13354 24.9598
+13369 22.7801
+Finished 13369 22.7801
+13394 24.4109
+Finished 13394 24.4109
+13398 24.1836
+Finished 13398 24.1836
+13404 24.2659
+Finished 13404 24.2659
+13410 24.1894
+Finished 13410 24.1894
+13414 23.6861
+Finished 13414 23.6861
+13421 23.4724
+Finished 13421 23.4724
+13434 23.2586
+Finished 13434 23.2586
+13439 23.6204
+Finished 13439 23.6204
+13451 23.9633
+Finished 13451 23.9633
+13463 23.371
+Finished 13463 23.371
+13464 24.2603
+Finished 13464 24.2603
+13467 24.3843
+Finished 13467 24.3843
+13473 23.2942
+Finished 13473 23.2942
+13481 24.4536
+Finished 13481 24.4536
+13492 23.1903
+Finished 13492 23.1903
+13507 23.4208
+Finished 13507 23.4208
+13519 23.9978
+Finished 13519 23.9978
+13526 22.631
+Finished 13526 22.631
+13528 24.4178
+Finished 13528 24.4178
+13530 23.5315
+Finished 13530 23.5315
+13563 24.2927
+Finished 13563 24.2927
+13564 24.99
+Finished 13564 24.99
+13567 23.2945
+Finished 13567 23.2945
+13568 24.4165
+Finished 13568 24.4165
+13573 22.5544
+Finished 13573 22.5544
+13576 22.768
+Finished 13576 22.768
+13589 23.6784
+Finished 13589 23.6784
+13596 24.7573
+Finished 13596 24.7573
+13597 24.9425
+Finished 13597 24.9425
+13614 24.6482
+Finished 13614 24.6482
+13622 24.623
+Finished 13622 24.623
+13627 22.3048
+Finished 13627 22.3048
+13635 22.1248
+Finished 13635 22.1248
+13638 24.1987
+Finished 13638 24.1987
+13651 24.846
+Finished 13651 24.846
+13679 24.4214
+Finished 13679 24.4214
+13682 22.9955
+Finished 13682 22.9955
+13683 23.8483
+Finished 13683 23.8483
+13698 23.8374
+Finished 13698 23.8374
+13703 24.2742
+Finished 13703 24.2742
+13704 23.7358
+Finished 13704 23.7358
+13708 24.4899
+Finished 13708 24.4899
+13716 24.6778
+Finished 13716 24.6778
+13729 22.8816
+Finished 13729 22.8816
+13731 23.3295
+Finished 13731 23.3295
+13734 22.6178
+Finished 13734 22.6178
+13759 23.5694
+Finished 13759 23.5694
+13769 24.1733
+Finished 13769 24.1733
+13770 24.9559
+Finished 13770 24.9559
+13771 22.8103
+Finished 13771 22.8103
+13773 22.4928
+Finished 13773 22.4928
+13782 24.7846
+Finished 13782 24.7846
+13783 24.3165
+Finished 13783 24.3165
+13796 24.0589
+Finished 13796 24.0589
+13807 24.5817
+Finished 13807 24.5817
+13811 24.2716
+Finished 13811 24.2716
+13818 23.318
+Finished 13818 23.318
+13821 24.7364
+Finished 13821 24.7364
+13822 22.1635
+Finished 13822 22.1635
+13828 22.5363
+Finished 13828 22.5363
+13835 24.1051
+Finished 13835 24.1051
+13844 24.5282
+Finished 13844 24.5282
+13846 24.108
+Finished 13846 24.108
+13848 24.7782
+Finished 13848 24.7782
+13855 23.7753
+Finished 13855 23.7753
+13870 22.6135
+Finished 13870 22.6135
+13882 23.2887
+Finished 13882 23.2887
+13888 24.9658
+Finished 13888 24.9658
+13900 23.5951
+Finished 13900 23.5951
+13901 24.8632
+Finished 13901 24.8632
+13902 24.5433
+Finished 13902 24.5433
+13904 23.3978
+Finished 13904 23.3978
+13919 23.5669
+Finished 13919 23.5669
+13925 22.7493
+Finished 13925 22.7493
+13926 24.4501
+Finished 13926 24.4501
+13933 24.3384
+Finished 13933 24.3384
+13936 22.8962
+Finished 13936 22.8962
+13940 24.66
+Finished 13940 24.66
+13950 24.1839
+Finished 13950 24.1839
+13965 22.4617
+Finished 13965 22.4617
+13966 23.408
+Finished 13966 23.408
+13972 23.7689
+Finished 13972 23.7689
+13977 24.4111
+Finished 13977 24.4111
+13982 24.6526
+Finished 13982 24.6526
+13994 23.0668
+Finished 13994 23.0668
+14005 23.6539
+Finished 14005 23.6539
+14009 23.7131
+Finished 14009 23.7131
+14013 24.9001
+Finished 14013 24.9001
+14015 24.1389
+Finished 14015 24.1389
+14037 24.8306
+Finished 14037 24.8306
+14041 23.6776
+Finished 14041 23.6776
+14045 24.923
+Finished 14045 24.923
+14046 24.4939
+Finished 14046 24.4939
+14070 23.7222
+Finished 14070 23.7222
+14078 24.5961
+Finished 14078 24.5961
+14090 23.0812
+Finished 14090 23.0812
+14094 22.9428
+Finished 14094 22.9428
+14095 24.8605
+Finished 14095 24.8605
+14101 24.779
+Finished 14101 24.779
+14102 24.5288
+Finished 14102 24.5288
+14116 23.1846
+Finished 14116 23.1846
+14118 23.1272
+Finished 14118 23.1272
+14127 23.7558
+Finished 14127 23.7558
+14132 24.6168
+Finished 14132 24.6168
+14155 23.3588
+Finished 14155 23.3588
+14172 23.7244
+Finished 14172 23.7244
+14183 24.7099
+Finished 14183 24.7099
+14192 24.9121
+Finished 14192 24.9121
+14195 24.5065
+Finished 14195 24.5065
+14197 23.3032
+Finished 14197 23.3032
+14199 24.5615
+Finished 14199 24.5615
+14200 24.9151
+Finished 14200 24.9151
+14226 24.8972
+Finished 14226 24.8972
+14228 24.6403
+Finished 14228 24.6403
+14235 24.9417
+Finished 14235 24.9417
+14248 24.8008
+Finished 14248 24.8008
+14252 23.8442
+Finished 14252 23.8442
+14256 22.2143
+Finished 14256 22.2143
+14263 23.2605
+Finished 14263 23.2605
+14264 24.5462
+Finished 14264 24.5462
+14287 22.3889
+Finished 14287 22.3889
+14292 22.6832
+Finished 14292 22.6832
+14305 24.3935
+Finished 14305 24.3935
+14335 24.2066
+Finished 14335 24.2066
+14341 23.0955
+Finished 14341 23.0955
+14342 23.287
+Finished 14342 23.287
+14347 22.9241
+Finished 14347 22.9241
+14371 24.0779
+Finished 14371 24.0779
+14374 24.0331
+Finished 14374 24.0331
+14396 23.997
+Finished 14396 23.997
+14416 22.5282
+Finished 14416 22.5282
+14419 23.2572
+Finished 14419 23.2572
+14450 23.6504
+Finished 14450 23.6504
+14451 24.2872
+Finished 14451 24.2872
+14458 24.8155
+Finished 14458 24.8155
+14461 24.8656
+Finished 14461 24.8656
+14472 24.4487
+Finished 14472 24.4487
+14478 24.9181
+Finished 14478 24.9181
+14486 22.3084
+Finished 14486 22.3084
+14496 24.0583
+Finished 14496 24.0583
+14498 24.4169
+Finished 14498 24.4169
+14507 24.4015
+Finished 14507 24.4015
+14526 22.7483
+Finished 14526 22.7483
+14530 24.7169
+Finished 14530 24.7169
+14548 24.5665
+Finished 14548 24.5665
+14549 23.7824
+Finished 14549 23.7824
+14550 24.9176
+Finished 14550 24.9176
+14562 24.6234
+Finished 14562 24.6234
+14564 22.8221
+Finished 14564 22.8221
+14567 23.1959
+Finished 14567 23.1959
+14579 24.3681
+Finished 14579 24.3681
+14583 24.6719
+Finished 14583 24.6719
+14586 24.4934
+Finished 14586 24.4934
+14592 23.2756
+Finished 14592 23.2756
+14601 24.6366
+Finished 14601 24.6366
+14604 23.2403
+Finished 14604 23.2403
+14609 24.8251
+Finished 14609 24.8251
+14622 22.1922
+Finished 14622 22.1922
+14624 24.4886
+Finished 14624 24.4886
+14636 24.7897
+Finished 14636 24.7897
+14646 23.8514
+Finished 14646 23.8514
+14649 23.1511
+Finished 14649 23.1511
+14653 24.8347
+Finished 14653 24.8347
+14666 24.1895
+Finished 14666 24.1895
+14668 23.7694
+Finished 14668 23.7694
+14671 23.5751
+Finished 14671 23.5751
+14677 24.0279
+Finished 14677 24.0279
+14688 24.9208
+Finished 14688 24.9208
+14689 24.688
+Finished 14689 24.688
+14693 22.4592
+Finished 14693 22.4592
+14700 24.4983
+Finished 14700 24.4983
+14707 24.6711
+Finished 14707 24.6711
+14708 23.2291
+Finished 14708 23.2291
+14714 24.4874
+Finished 14714 24.4874
+14715 24.9
+Finished 14715 24.9
+14720 23.8534
+Finished 14720 23.8534
+14745 24.9659
+Finished 14745 24.9659
+14747 24.2492
+Finished 14747 24.2492
+14764 24.1804
+Finished 14764 24.1804
+14767 24.0423
+Finished 14767 24.0423
+14777 24.6219
+Finished 14777 24.6219
+14781 23.2079
+Finished 14781 23.2079
+14792 23.1571
+Finished 14792 23.1571
+14813 23.1741
+Finished 14813 23.1741
+14819 24.4363
+Finished 14819 24.4363
+14825 24.5436
+Finished 14825 24.5436
+14831 23.3188
+Finished 14831 23.3188
+14843 22.754
+Finished 14843 22.754
+14844 24.8556
+Finished 14844 24.8556
+14851 24.6767
+Finished 14851 24.6767
+14858 24.8298
+Finished 14858 24.8298
+14866 22.539
+Finished 14866 22.539
+14867 24.6179
+Finished 14867 24.6179
+14868 24.1429
+Finished 14868 24.1429
+14878 22.5863
+Finished 14878 22.5863
+14879 24.5437
+Finished 14879 24.5437
+14881 24.6066
+Finished 14881 24.6066
+14888 23.3517
+Finished 14888 23.3517
+14895 24.0758
+Finished 14895 24.0758
+14902 24.1618
+Finished 14902 24.1618
+14915 24.5428
+Finished 14915 24.5428
+14919 24.0112
+Finished 14919 24.0112
+14921 24.0449
+Finished 14921 24.0449
+14923 22.7979
+Finished 14923 22.7979
+14938 24.1918
+Finished 14938 24.1918
+14944 24.4627
+Finished 14944 24.4627
+14945 24.397
+Finished 14945 24.397
+14956 24.4172
+Finished 14956 24.4172
+14961 24.9436
+Finished 14961 24.9436
+14962 23.2957
+Finished 14962 23.2957
+14965 24.1735
+Finished 14965 24.1735
+14966 22.4012
+Finished 14966 22.4012
+14972 24.5778
+Finished 14972 24.5778
+14973 23.8146
+Finished 14973 23.8146
+14982 24.2081
+Finished 14982 24.2081
+14984 24.7815
+Finished 14984 24.7815
+14994 23.0953
+Finished 14994 23.0953
+14998 24.8548
+Finished 14998 24.8548
+15002 24.9508
+Finished 15002 24.9508
+15004 24.656
+Finished 15004 24.656
+15011 22.1933
+Finished 15011 22.1933
+15012 24.9811
+Finished 15012 24.9811
+15017 24.2079
+Finished 15017 24.2079
+15018 23.6681
+Finished 15018 23.6681
+15028 24.7791
+Finished 15028 24.7791
+15030 24.9428
+Finished 15030 24.9428
+15035 24.6524
+Finished 15035 24.6524
+15046 24.6085
+Finished 15046 24.6085
+15048 24.2926
+Finished 15048 24.2926
+15055 24.1428
+Finished 15055 24.1428
+15063 24.8047
+Finished 15063 24.8047
+15084 23.8305
+Finished 15084 23.8305
+15090 23.8807
+Finished 15090 23.8807
+15110 24.8567
+Finished 15110 24.8567
+15114 23.5812
+Finished 15114 23.5812
+15127 22.7795
+Finished 15127 22.7795
+15128 24.6954
+Finished 15128 24.6954
+15131 23.2721
+Finished 15131 23.2721
+15135 22.7447
+Finished 15135 22.7447
+15144 22.6626
+Finished 15144 22.6626
+15175 22.5586
+Finished 15175 22.5586
+15179 22.6064
+Finished 15179 22.6064
+15187 23.9017
+Finished 15187 23.9017
+15189 22.5946
+Finished 15189 22.5946
+15196 24.7719
+Finished 15196 24.7719
+15203 23.7864
+Finished 15203 23.7864
+15204 24.3895
+Finished 15204 24.3895
+15214 22.5026
+Finished 15214 22.5026
+15221 23.6227
+Finished 15221 23.6227
+15232 24.3833
+Finished 15232 24.3833
+15234 24.982
+Finished 15234 24.982
+15246 24.9379
+Finished 15246 24.9379
+15259 23.9057
+Finished 15259 23.9057
+15279 24.1194
+Finished 15279 24.1194
+15287 24.3632
+Finished 15287 24.3632
+15291 24.4711
+Finished 15291 24.4711
+15306 24.1327
+Finished 15306 24.1327
+15315 23.4973
+Finished 15315 23.4973
+15316 23.5694
+Finished 15316 23.5694
+15328 22.3726
+Finished 15328 22.3726
+15350 23.6696
+Finished 15350 23.6696
+15377 24.6779
+Finished 15377 24.6779
+15382 23.1886
+Finished 15382 23.1886
+15396 23.6331
+Finished 15396 23.6331
+15414 24.5869
+Finished 15414 24.5869
+15418 24.506
+Finished 15418 24.506
+15419 24.139
+Finished 15419 24.139
+15428 23.0882
+Finished 15428 23.0882
+15429 24.6111
+Finished 15429 24.6111
+15432 24.7514
+Finished 15432 24.7514
+15455 23.8342
+Finished 15455 23.8342
+15457 22.7747
+Finished 15457 22.7747
+15472 22.5513
+Finished 15472 22.5513
+15479 22.1711
+Finished 15479 22.1711
+15486 24.4944
+Finished 15486 24.4944
+15500 24.2938
+Finished 15500 24.2938
+15508 22.3612
+Finished 15508 22.3612
+15509 24.4531
+Finished 15509 24.4531
+15511 23.6578
+Finished 15511 23.6578
+15514 23.5072
+Finished 15514 23.5072
+15524 24.3718
+Finished 15524 24.3718
+15527 24.408
+Finished 15527 24.408
+15528 23.8228
+Finished 15528 23.8228
+15532 22.5326
+Finished 15532 22.5326
+15541 22.3474
+Finished 15541 22.3474
+15542 24.4988
+Finished 15542 24.4988
+15550 23.3943
+Finished 15550 23.3943
+15555 24.2803
+Finished 15555 24.2803
+15560 24.7515
+Finished 15560 24.7515
+15563 24.6831
+Finished 15563 24.6831
+15574 22.1521
+Finished 15574 22.1521
+15575 22.7334
+Finished 15575 22.7334
+15579 24.0829
+Finished 15579 24.0829
+15586 24.8048
+Finished 15586 24.8048
+15611 24.2192
+Finished 15611 24.2192
+15613 23.7883
+Finished 15613 23.7883
+15614 22.5556
+Finished 15614 22.5556
+15621 23.7513
+Finished 15621 23.7513
+15633 24.5761
+Finished 15633 24.5761
+15647 23.0588
+Finished 15647 23.0588
+15654 24.7173
+Finished 15654 24.7173
+15661 22.3752
+Finished 15661 22.3752
+15662 24.7081
+Finished 15662 24.7081
+15673 23.6273
+Finished 15673 23.6273
+15682 24.2789
+Finished 15682 24.2789
+15683 24.8044
+Finished 15683 24.8044
+15686 24.4941
+Finished 15686 24.4941
+15695 24.7557
+Finished 15695 24.7557
+15702 23.6451
+Finished 15702 23.6451
+15727 24.8107
+Finished 15727 24.8107
+15730 24.6104
+Finished 15730 24.6104
+15735 24.2557
+Finished 15735 24.2557
+15748 23.449
+Finished 15748 23.449
+15754 24.336
+Finished 15754 24.336
+15765 24.7551
+Finished 15765 24.7551
+15767 23.1003
+Finished 15767 23.1003
+15772 22.044
+Finished 15772 22.044
+15791 23.7379
+Finished 15791 23.7379
+15798 24.8229
+Finished 15798 24.8229
+15803 22.2852
+Finished 15803 22.2852
+15806 22.8754
+Finished 15806 22.8754
+15818 23.419
+Finished 15818 23.419
+15819 23.5934
+Finished 15819 23.5934
+15823 22.6865
+Finished 15823 22.6865
+15825 24.3845
+Finished 15825 24.3845
+15826 23.0249
+Finished 15826 23.0249
+15831 22.3457
+Finished 15831 22.3457
+15836 23.9007
+Finished 15836 23.9007
+15843 24.334
+Finished 15843 24.334
+15847 24.7096
+Finished 15847 24.7096
+15851 23.556
+Finished 15851 23.556
+15858 24.2334
+Finished 15858 24.2334
+15882 24.8046
+Finished 15882 24.8046
+15888 23.4552
+Finished 15888 23.4552
+15919 24.0474
+Finished 15919 24.0474
+15940 24.1288
+Finished 15940 24.1288
+15966 23.1851
+Finished 15966 23.1851
+15973 24.3037
+Finished 15973 24.3037
+15975 24.9223
+Finished 15975 24.9223
+15993 24.8942
+Finished 15993 24.8942
+15997 24.9401
+Finished 15997 24.9401
+16006 24.004
+Finished 16006 24.004
+16008 22.8593
+Finished 16008 22.8593
+16015 24.7459
+Finished 16015 24.7459
+16046 24.4959
+Finished 16046 24.4959
+16047 24.8801
+Finished 16047 24.8801
+16066 24.3337
+Finished 16066 24.3337
+16075 24.6223
+Finished 16075 24.6223
+16078 23.4506
+Finished 16078 23.4506
+16085 23.2049
+Finished 16085 23.2049
+16086 24.4954
+Finished 16086 24.4954
+16090 22.5521
+Finished 16090 22.5521
+16092 23.9128
+Finished 16092 23.9128
+16104 24.0413
+Finished 16104 24.0413
+16110 24.8081
+Finished 16110 24.8081
+16121 24.5173
+Finished 16121 24.5173
+16136 24.5593
+Finished 16136 24.5593
+16140 24.524
+Finished 16140 24.524
+16155 24.9825
+Finished 16155 24.9825
+16166 23.3489
+Finished 16166 23.3489
+16167 24.8683
+Finished 16167 24.8683
+16183 23.0054
+Finished 16183 23.0054
+16187 23.987
+Finished 16187 23.987
+16195 23.0684
+Finished 16195 23.0684
+16214 24.1031
+Finished 16214 24.1031
+16226 24.6217
+Finished 16226 24.6217
+16229 24.6768
+Finished 16229 24.6768
+16230 24.2679
+Finished 16230 24.2679
+16246 22.2637
+Finished 16246 22.2637
+16251 23.0541
+Finished 16251 23.0541
+16271 24.2122
+Finished 16271 24.2122
+16276 22.8561
+Finished 16276 22.8561
+16277 24.68
+Finished 16277 24.68
+16284 22.5563
+Finished 16284 22.5563
+16302 24.8562
+Finished 16302 24.8562
+16326 24.9175
+Finished 16326 24.9175
+16336 22.1793
+Finished 16336 22.1793
+16339 23.1196
+Finished 16339 23.1196
+16347 23.3974
+Finished 16347 23.3974
+16348 22.1356
+Finished 16348 22.1356
+16358 22.7885
+Finished 16358 22.7885
+16365 24.432
+Finished 16365 24.432
+16370 24.3942
+Finished 16370 24.3942
+16377 24.672
+Finished 16377 24.672
+16389 23.3491
+Finished 16389 23.3491
+16394 23.8823
+Finished 16394 23.8823
+16396 23.2196
+Finished 16396 23.2196
+16397 22.7503
+Finished 16397 22.7503
+16402 22.0152
+Finished 16402 22.0152
+16417 24.5686
+Finished 16417 24.5686
+16418 24.0897
+Finished 16418 24.0897
+16429 24.9044
+Finished 16429 24.9044
+16432 24.6244
+Finished 16432 24.6244
+16437 24.491
+Finished 16437 24.491
+16464 24.1348
+Finished 16464 24.1348
+16468 22.8823
+Finished 16468 22.8823
+16478 23.0641
+Finished 16478 23.0641
+16488 24.5262
+Finished 16488 24.5262
+16489 24.802
+Finished 16489 24.802
+16496 24.0754
+Finished 16496 24.0754
+16498 23.6877
+Finished 16498 23.6877
+16505 22.3633
+Finished 16505 22.3633
+16523 24.8666
+Finished 16523 24.8666
+16528 24.7247
+Finished 16528 24.7247
+16531 24.9313
+Finished 16531 24.9313
+16537 22.5868
+Finished 16537 22.5868
+16538 24.1293
+Finished 16538 24.1293
+16550 23.5817
+Finished 16550 23.5817
+16552 24.3685
+Finished 16552 24.3685
+16569 23.0103
+Finished 16569 23.0103
+16572 24.7582
+Finished 16572 24.7582
+16574 23.0819
+Finished 16574 23.0819
+16578 24.8093
+Finished 16578 24.8093
+16592 24.0069
+Finished 16592 24.0069
+16603 22.3779
+Finished 16603 22.3779
+16625 24.7162
+Finished 16625 24.7162
+16634 24.9363
+Finished 16634 24.9363
+16636 23.4722
+Finished 16636 23.4722
+16637 24.9663
+Finished 16637 24.9663
+16638 24.6495
+Finished 16638 24.6495
+16640 23.5291
+Finished 16640 23.5291
+16642 24.6506
+Finished 16642 24.6506
+16647 24.8893
+Finished 16647 24.8893
+16656 24.1376
+Finished 16656 24.1376
+16665 24.66
+Finished 16665 24.66
+16669 24.9129
+Finished 16669 24.9129
+16677 23.8879
+Finished 16677 23.8879
+16678 24.9122
+Finished 16678 24.9122
+16679 22.4643
+Finished 16679 22.4643
+16680 23.3356
+Finished 16680 23.3356
+16685 22.9462
+Finished 16685 22.9462
+16693 24.7222
+Finished 16693 24.7222
+16704 24.9783
+Finished 16704 24.9783
+16706 23.4147
+Finished 16706 23.4147
+16710 24.9296
+Finished 16710 24.9296
+16718 24.7563
+Finished 16718 24.7563
+16725 24.1144
+Finished 16725 24.1144
+16727 23.665
+Finished 16727 23.665
+16737 22.9367
+Finished 16737 22.9367
+16740 23.1334
+Finished 16740 23.1334
+16741 22.3158
+Finished 16741 22.3158
+16744 23.4039
+Finished 16744 23.4039
+16748 23.938
+Finished 16748 23.938
+16759 24.4958
+Finished 16759 24.4958
+16764 23.0683
+Finished 16764 23.0683
+16765 23.3774
+Finished 16765 23.3774
+16769 22.8602
+Finished 16769 22.8602
+16776 23.1628
+Finished 16776 23.1628
+16777 24.3605
+Finished 16777 24.3605
+16788 24.3594
+Finished 16788 24.3594
+16798 24.6701
+Finished 16798 24.6701
+16799 22.403
+Finished 16799 22.403
+16801 24.1898
+Finished 16801 24.1898
+16802 23.5421
+Finished 16802 23.5421
+16807 24.8308
+Finished 16807 24.8308
+16814 23.128
+Finished 16814 23.128
+16821 23.0393
+Finished 16821 23.0393
+16823 24.0749
+Finished 16823 24.0749
+16832 23.1004
+Finished 16832 23.1004
+16840 24.6707
+Finished 16840 24.6707
+16852 22.3123
+Finished 16852 22.3123
+16855 24.3199
+Finished 16855 24.3199
+16859 24.6818
+Finished 16859 24.6818
+16862 24.2895
+Finished 16862 24.2895
+16870 24.1033
+Finished 16870 24.1033
+16872 24.4515
+Finished 16872 24.4515
+16874 23.2681
+Finished 16874 23.2681
+16877 23.3749
+Finished 16877 23.3749
+16880 23.2887
+Finished 16880 23.2887
+16887 22.262
+Finished 16887 22.262
+16889 23.9468
+Finished 16889 23.9468
+16894 24.2614
+Finished 16894 24.2614
+16904 24.3745
+Finished 16904 24.3745
+16916 24.5184
+Finished 16916 24.5184
+16919 24.4856
+Finished 16919 24.4856
+16921 24.4848
+Finished 16921 24.4848
+16923 23.5816
+Finished 16923 23.5816
+16928 24.9183
+Finished 16928 24.9183
+16931 24.5753
+Finished 16931 24.5753
+16938 24.671
+Finished 16938 24.671
+16943 24.7997
+Finished 16943 24.7997
+16945 24.5866
+Finished 16945 24.5866
+16947 23.0637
+Finished 16947 23.0637
+16960 22.6396
+Finished 16960 22.6396
+16961 24.4245
+Finished 16961 24.4245
+16976 23.2499
+Finished 16976 23.2499
+16980 24.6067
+Finished 16980 24.6067
+16994 22.8641
+Finished 16994 22.8641
+17007 23.7021
+Finished 17007 23.7021
+17029 24.4146
+Finished 17029 24.4146
+17033 22.6553
+Finished 17033 22.6553
+17035 24.1369
+Finished 17035 24.1369
+17038 24.2679
+Finished 17038 24.2679
+17040 23.0723
+Finished 17040 23.0723
+17041 24.0543
+Finished 17041 24.0543
+17042 22.9319
+Finished 17042 22.9319
+17049 24.5762
+Finished 17049 24.5762
+17051 24.262
+Finished 17051 24.262
+17052 23.9454
+Finished 17052 23.9454
+17053 22.9352
+Finished 17053 22.9352
+17057 23.7251
+Finished 17057 23.7251
+17058 24.1048
+Finished 17058 24.1048
+17066 23.4875
+Finished 17066 23.4875
+17072 22.565
+Finished 17072 22.565
+17073 23.9092
+Finished 17073 23.9092
+17074 24.806
+Finished 17074 24.806
+17083 22.7193
+Finished 17083 22.7193
+17088 24.5046
+Finished 17088 24.5046
+17092 23.0035
+Finished 17092 23.0035
+17104 24.5523
+Finished 17104 24.5523
+17109 24.8742
+Finished 17109 24.8742
+17111 24.2788
+Finished 17111 24.2788
+17119 22.9828
+Finished 17119 22.9828
+17124 23.0341
+Finished 17124 23.0341
+17130 24.2523
+Finished 17130 24.2523
+17131 24.5308
+Finished 17131 24.5308
+17141 23.4256
+Finished 17141 23.4256
+17142 24.4915
+Finished 17142 24.4915
+17146 24.0977
+Finished 17146 24.0977
+17149 24.1293
+Finished 17149 24.1293
+17155 24.5994
+Finished 17155 24.5994
+17167 24.9359
+Finished 17167 24.9359
+17178 23.7539
+Finished 17178 23.7539
+17182 24.5334
+Finished 17182 24.5334
+17183 23.6123
+Finished 17183 23.6123
+17184 24.3792
+Finished 17184 24.3792
+17211 24.723
+Finished 17211 24.723
+17219 24.3461
+Finished 17219 24.3461
+17224 24.9283
+Finished 17224 24.9283
+17237 24.3808
+Finished 17237 24.3808
+17244 24.9156
+Finished 17244 24.9156
+17257 23.0245
+Finished 17257 23.0245
+17259 24.6218
+Finished 17259 24.6218
+17262 23.5324
+Finished 17262 23.5324
+17266 23.835
+Finished 17266 23.835
+17269 24.2635
+Finished 17269 24.2635
+17275 23.4136
+Finished 17275 23.4136
+17281 23.6349
+Finished 17281 23.6349
+17286 24.7997
+Finished 17286 24.7997
+17310 23.0445
+Finished 17310 23.0445
+17311 23.9635
+Finished 17311 23.9635
+17317 23.4852
+Finished 17317 23.4852
+17321 24.8237
+Finished 17321 24.8237
+17322 22.4878
+Finished 17322 22.4878
+17328 23.8808
+Finished 17328 23.8808
+17333 23.7685
+Finished 17333 23.7685
+17341 24.8946
+Finished 17341 24.8946
+17347 22.7897
+Finished 17347 22.7897
+17348 22.1832
+Finished 17348 22.1832
+17349 23.5454
+Finished 17349 23.5454
+17353 23.9728
+Finished 17353 23.9728
+17357 24.9775
+Finished 17357 24.9775
+17362 23.9611
+Finished 17362 23.9611
+17364 24.4436
+Finished 17364 24.4436
+17377 23.5359
+Finished 17377 23.5359
+17378 24.9299
+Finished 17378 24.9299
+17386 24.1241
+Finished 17386 24.1241
+17387 23.7346
+Finished 17387 23.7346
+17395 24.1887
+Finished 17395 24.1887
+17401 23.1257
+Finished 17401 23.1257
+17402 23.4622
+Finished 17402 23.4622
+17405 22.5684
+Finished 17405 22.5684
+17411 23.3277
+Finished 17411 23.3277
+17415 23.2904
+Finished 17415 23.2904
+17416 24.4618
+Finished 17416 24.4618
+17418 24.1083
+Finished 17418 24.1083
+17419 23.1065
+Finished 17419 23.1065
+17424 24.5693
+Finished 17424 24.5693
+17454 23.1238
+Finished 17454 23.1238
+17459 23.9526
+Finished 17459 23.9526
+17462 24.2684
+Finished 17462 24.2684
+17469 23.4767
+Finished 17469 23.4767
+17475 24.9622
+Finished 17475 24.9622
+17479 24.4665
+Finished 17479 24.4665
+17494 24.0797
+Finished 17494 24.0797
+17495 24.6325
+Finished 17495 24.6325
+17500 23.7607
+Finished 17500 23.7607
+17503 24.5485
+Finished 17503 24.5485
+17506 24.8361
+Finished 17506 24.8361
+17509 24.3623
+Finished 17509 24.3623
+17518 24.5011
+Finished 17518 24.5011
+17524 22.9664
+Finished 17524 22.9664
+17531 22.5453
+Finished 17531 22.5453
+17535 23.8496
+Finished 17535 23.8496
+17541 23.4692
+Finished 17541 23.4692
+17552 23.6914
+Finished 17552 23.6914
+17553 23.4105
+Finished 17553 23.4105
+17554 22.9174
+Finished 17554 22.9174
+17559 23.5917
+Finished 17559 23.5917
+17575 24.9023
+Finished 17575 24.9023
+17577 24.7779
+Finished 17577 24.7779
+17596 24.6548
+Finished 17596 24.6548
+17597 23.4153
+Finished 17597 23.4153
+17607 23.9991
+Finished 17607 23.9991
+17615 24.9299
+Finished 17615 24.9299
+17620 23.3188
+Finished 17620 23.3188
+17624 24.195
+Finished 17624 24.195
+17625 23.1324
+Finished 17625 23.1324
+17634 22.2198
+Finished 17634 22.2198
+17639 24.8537
+Finished 17639 24.8537
+17640 23.3304
+Finished 17640 23.3304
+17650 24.7638
+Finished 17650 24.7638
+17660 24.2032
+Finished 17660 24.2032
+17668 22.1403
+Finished 17668 22.1403
+17677 23.2505
+beams:  [<grizli.model.BeamCutout object at 0x7f4b00085438>, <grizli.model.BeamCutout object at 0x7f4b00096e10>, <grizli.model.BeamCutout object at 0x7f4b00096e80>, <grizli.model.BeamCutout object at 0x7f4af3fd6fd0>]
+GS4_17677.beams.fits
+drizzle!!
+drizzle!!
+drizzle!!
+drizzle!!
+drizzle!!
+drizzle!!
+drizzle!!
+1 ibhj07ygq_flt.fits G141
+2 ibhj07ynq_flt.fits G141
+3 ibhj07yuq_flt.fits G141
+4 ibhj07z1q_flt.fits G141
+Load file GS4_17677.stack.fits
+  G141
+User templates! N=16 
+
+[1A[1M  0.0000   12299.5 (0.0000) 1/377
+[1A[1M  0.0040   12302.5 (0.0000) 2/377
+[1A[1M  0.0080   12300.8 (0.0000) 3/377
+[1A[1M  0.0121    9891.5 (0.0121) 4/377
+[1A[1M  0.0161    9890.9 (0.0161) 5/377
+[1A[1M  0.0202    9891.6 (0.0161) 6/377
+[1A[1M  0.0243    9892.9 (0.0161) 7/377
+[1A[1M  0.0284    9892.8 (0.0161) 8/377
+[1A[1M  0.0325    9892.5 (0.0161) 9/377
+[1A[1M  0.0367    9892.7 (0.0161) 10/377
+[1A[1M  0.0408    9892.6 (0.0161) 11/377
+[1A[1M  0.0450    9892.1 (0.0161) 12/377
+[1A[1M  0.0492    9891.0 (0.0161) 13/377
+[1A[1M  0.0534    9889.5 (0.0534) 14/377
+[1A[1M  0.0576    9887.1 (0.0576) 15/377
+[1A[1M  0.0618    9884.3 (0.0618) 16/377
+[1A[1M  0.0661    9881.5 (0.0661) 17/377
+[1A[1M  0.0704    9878.4 (0.0704) 18/377
+[1A[1M  0.0747    9875.3 (0.0747) 19/377
+[1A[1M  0.0790    9872.1 (0.0790) 20/377
+[1A[1M  0.0833    9868.6 (0.0833) 21/377
+[1A[1M  0.0876    9864.9 (0.0876) 22/377
+[1A[1M  0.0920    9861.3 (0.0920) 23/377
+[1A[1M  0.0964    9857.9 (0.0964) 24/377
+[1A[1M  0.1008    9854.8 (0.1008) 25/377
+[1A[1M  0.1052    9851.8 (0.1052) 26/377
+[1A[1M  0.1096    9849.3 (0.1096) 27/377
+[1A[1M  0.1140    9847.0 (0.1140) 28/377
+[1A[1M  0.1185    9845.0 (0.1185) 29/377
+[1A[1M  0.1230    9843.4 (0.1230) 30/377
+[1A[1M  0.1275    9842.1 (0.1275) 31/377
+[1A[1M  0.1320    9840.9 (0.1320) 32/377
+[1A[1M  0.1366    9839.9 (0.1366) 33/377
+[1A[1M  0.1411    9839.1 (0.1411) 34/377
+[1A[1M  0.1457    9838.6 (0.1457) 35/377
+[1A[1M  0.1503    9838.4 (0.1503) 36/377
+[1A[1M  0.1549    9838.3 (0.1549) 37/377
+[1A[1M  0.1595    9838.5 (0.1549) 38/377
+[1A[1M  0.1642    9838.8 (0.1549) 39/377
+[1A[1M  0.1688    9839.0 (0.1549) 40/377
+[1A[1M  0.1735    9839.1 (0.1549) 41/377
+[1A[1M  0.1782    9839.6 (0.1549) 42/377
+[1A[1M  0.1829    9840.5 (0.1549) 43/377
+[1A[1M  0.1877    9841.7 (0.1549) 44/377
+[1A[1M  0.1924    9843.2 (0.1549) 45/377
+[1A[1M  0.1972    9844.7 (0.1549) 46/377
+[1A[1M  0.2020    9845.7 (0.1549) 47/377
+[1A[1M  0.2068    9846.2 (0.1549) 48/377
+[1A[1M  0.2117    9846.4 (0.1549) 49/377
+[1A[1M  0.2165    9846.5 (0.1549) 50/377
+[1A[1M  0.2214    9846.6 (0.1549) 51/377
+[1A[1M  0.2263    9846.8 (0.1549) 52/377
+[1A[1M  0.2312    9846.8 (0.1549) 53/377
+[1A[1M  0.2361    9846.7 (0.1549) 54/377
+[1A[1M  0.2411    9846.7 (0.1549) 55/377
+[1A[1M  0.2461    9846.9 (0.1549) 56/377
+[1A[1M  0.2511    9847.2 (0.1549) 57/377
+[1A[1M  0.2561    9847.5 (0.1549) 58/377
+[1A[1M  0.2611    9848.3 (0.1549) 59/377
+[1A[1M  0.2662    9849.5 (0.1549) 60/377
+[1A[1M  0.2712    9850.6 (0.1549) 61/377
+[1A[1M  0.2763    9851.2 (0.1549) 62/377
+[1A[1M  0.2815    9850.7 (0.1549) 63/377
+[1A[1M  0.2866    9849.3 (0.1549) 64/377
+[1A[1M  0.2918    9847.9 (0.1549) 65/377
+[1A[1M  0.2969    9846.0 (0.1549) 66/377
+[1A[1M  0.3021    9842.9 (0.1549) 67/377
+[1A[1M  0.3073    9840.2 (0.1549) 68/377
+[1A[1M  0.3126    9838.5 (0.1549) 69/377
+[1A[1M  0.3178    9837.1 (0.3178) 70/377
+[1A[1M  0.3231    9835.8 (0.3231) 71/377
+[1A[1M  0.3284    9835.0 (0.3284) 72/377
+[1A[1M  0.3338    9834.9 (0.3338) 73/377
+[1A[1M  0.3391    9835.3 (0.3338) 74/377
+[1A[1M  0.3445    9835.4 (0.3338) 75/377
+[1A[1M  0.3499    9835.0 (0.3338) 76/377
+[1A[1M  0.3553    9834.5 (0.3553) 77/377
+[1A[1M  0.3607    9834.4 (0.3607) 78/377
+[1A[1M  0.3662    9834.3 (0.3662) 79/377
+[1A[1M  0.3716    9834.1 (0.3716) 80/377
+[1A[1M  0.3771    9833.9 (0.3771) 81/377
+[1A[1M  0.3826    9834.0 (0.3771) 82/377
+[1A[1M  0.3882    9834.4 (0.3771) 83/377
+[1A[1M  0.3938    9834.6 (0.3771) 84/377
+[1A[1M  0.3993    9834.8 (0.3771) 85/377
+[1A[1M  0.4049    9836.1 (0.3771) 86/377
+[1A[1M  0.4106    9838.2 (0.3771) 87/377
+[1A[1M  0.4162    9841.2 (0.3771) 88/377
+[1A[1M  0.4219    9845.1 (0.3771) 89/377
+[1A[1M  0.4276    9848.8 (0.3771) 90/377
+[1A[1M  0.4333    9852.2 (0.3771) 91/377
+[1A[1M  0.4391    9855.5 (0.3771) 92/377
+[1A[1M  0.4448    9859.4 (0.3771) 93/377
+[1A[1M  0.4506    9864.8 (0.3771) 94/377
+[1A[1M  0.4564    9870.0 (0.3771) 95/377
+[1A[1M  0.4623    9873.8 (0.3771) 96/377
+[1A[1M  0.4681    9876.8 (0.3771) 97/377
+[1A[1M  0.4740    9880.5 (0.3771) 98/377
+[1A[1M  0.4799    9884.1 (0.3771) 99/377
+[1A[1M  0.4859    9886.9 (0.3771) 100/377
+[1A[1M  0.4918    9888.8 (0.3771) 101/377
+[1A[1M  0.4978    9889.6 (0.3771) 102/377
+[1A[1M  0.5038    9891.1 (0.3771) 103/377
+[1A[1M  0.5098    9893.0 (0.3771) 104/377
+[1A[1M  0.5159    9894.5 (0.3771) 105/377
+[1A[1M  0.5220    9895.7 (0.3771) 106/377
+[1A[1M  0.5281    9897.6 (0.3771) 107/377
+[1A[1M  0.5342    9899.8 (0.3771) 108/377
+[1A[1M  0.5403    9901.4 (0.3771) 109/377
+[1A[1M  0.5465    9902.5 (0.3771) 110/377
+[1A[1M  0.5527    9901.1 (0.3771) 111/377
+[1A[1M  0.5589    9894.1 (0.3771) 112/377
+[1A[1M  0.5652    9884.8 (0.3771) 113/377
+[1A[1M  0.5715    9876.0 (0.3771) 114/377
+[1A[1M  0.5778    9864.2 (0.3771) 115/377
+[1A[1M  0.5841    9851.3 (0.3771) 116/377
+[1A[1M  0.5904    9845.7 (0.3771) 117/377
+[1A[1M  0.5968    9845.2 (0.3771) 118/377
+[1A[1M  0.6032    9850.4 (0.3771) 119/377
+[1A[1M  0.6096    9859.0 (0.3771) 120/377
+[1A[1M  0.6161    9875.5 (0.3771) 121/377
+[1A[1M  0.6226    9891.9 (0.3771) 122/377
+[1A[1M  0.6291    9899.3 (0.3771) 123/377
+[1A[1M  0.6356    9900.0 (0.3771) 124/377
+[1A[1M  0.6421    9896.1 (0.3771) 125/377
+[1A[1M  0.6487    9888.9 (0.3771) 126/377
+[1A[1M  0.6553    9880.7 (0.3771) 127/377
+[1A[1M  0.6620    9871.5 (0.3771) 128/377
+[1A[1M  0.6686    9863.6 (0.3771) 129/377
+[1A[1M  0.6753    9861.9 (0.3771) 130/377
+[1A[1M  0.6820    9863.3 (0.3771) 131/377
+[1A[1M  0.6888    9865.4 (0.3771) 132/377
+[1A[1M  0.6955    9865.2 (0.3771) 133/377
+[1A[1M  0.7023    9866.8 (0.3771) 134/377
+[1A[1M  0.7092    9871.7 (0.3771) 135/377
+[1A[1M  0.7160    9877.2 (0.3771) 136/377
+[1A[1M  0.7229    9883.4 (0.3771) 137/377
+[1A[1M  0.7298    9887.8 (0.3771) 138/377
+[1A[1M  0.7367    9890.3 (0.3771) 139/377
+[1A[1M  0.7437    9893.2 (0.3771) 140/377
+[1A[1M  0.7507    9895.8 (0.3771) 141/377
+[1A[1M  0.7577    9897.7 (0.3771) 142/377
+[1A[1M  0.7647    9900.3 (0.3771) 143/377
+[1A[1M  0.7718    9904.0 (0.3771) 144/377
+[1A[1M  0.7789    9905.8 (0.3771) 145/377
+[1A[1M  0.7860    9902.9 (0.3771) 146/377
+[1A[1M  0.7932    9898.8 (0.3771) 147/377
+[1A[1M  0.8004    9897.6 (0.3771) 148/377
+[1A[1M  0.8076    9898.5 (0.3771) 149/377
+[1A[1M  0.8148    9898.5 (0.3771) 150/377
+[1A[1M  0.8221    9896.8 (0.3771) 151/377
+[1A[1M  0.8294    9892.9 (0.3771) 152/377
+[1A[1M  0.8368    9891.1 (0.3771) 153/377
+[1A[1M  0.8441    9890.5 (0.3771) 154/377
+[1A[1M  0.8515    9884.5 (0.3771) 155/377
+[1A[1M  0.8589    9872.5 (0.3771) 156/377
+[1A[1M  0.8664    9859.7 (0.3771) 157/377
+[1A[1M  0.8739    9846.9 (0.3771) 158/377
+[1A[1M  0.8814    9838.6 (0.3771) 159/377
+[1A[1M  0.8889    9830.0 (0.8889) 160/377
+[1A[1M  0.8965    9819.0 (0.8965) 161/377
+[1A[1M  0.9041    9808.7 (0.9041) 162/377
+[1A[1M  0.9117    9807.8 (0.9117) 163/377
+[1A[1M  0.9194    9810.1 (0.9117) 164/377
+[1A[1M  0.9271    9806.1 (0.9271) 165/377
+[1A[1M  0.9348    9793.0 (0.9348) 166/377
+[1A[1M  0.9425    9781.9 (0.9425) 167/377
+[1A[1M  0.9503    9782.5 (0.9425) 168/377
+[1A[1M  0.9581    9787.7 (0.9425) 169/377
+[1A[1M  0.9660    9788.2 (0.9425) 170/377
+[1A[1M  0.9739    9783.9 (0.9425) 171/377
+[1A[1M  0.9818    9777.2 (0.9818) 172/377
+[1A[1M  0.9897    9769.1 (0.9897) 173/377
+[1A[1M  0.9977    9759.3 (0.9977) 174/377
+[1A[1M  1.0057    9750.6 (1.0057) 175/377
+[1A[1M  1.0138    9742.2 (1.0138) 176/377
+[1A[1M  1.0218    9731.1 (1.0218) 177/377
+[1A[1M  1.0299    9714.3 (1.0299) 178/377
+[1A[1M  1.0381    9709.7 (1.0381) 179/377
+[1A[1M  1.0462    9708.4 (1.0462) 180/377
+[1A[1M  1.0544    9706.1 (1.0544) 181/377
+[1A[1M  1.0627    9711.2 (1.0544) 182/377
+[1A[1M  1.0709    9718.0 (1.0544) 183/377
+[1A[1M  1.0792    9720.2 (1.0544) 184/377
+[1A[1M  1.0876    9716.1 (1.0544) 185/377
+[1A[1M  1.0959    9721.4 (1.0544) 186/377
+[1A[1M  1.1043    9740.0 (1.0544) 187/377
+[1A[1M  1.1128    9761.0 (1.0544) 188/377
+[1A[1M  1.1212    9771.7 (1.0544) 189/377
+[1A[1M  1.1297    9773.7 (1.0544) 190/377
+[1A[1M  1.1383    9774.5 (1.0544) 191/377
+[1A[1M  1.1468    9759.6 (1.0544) 192/377
+[1A[1M  1.1555    9739.4 (1.0544) 193/377
+[1A[1M  1.1641    9716.0 (1.0544) 194/377
+[1A[1M  1.1728    9692.0 (1.1728) 195/377
+[1A[1M  1.1815    9683.4 (1.1815) 196/377
+[1A[1M  1.1902    9695.3 (1.1815) 197/377
+[1A[1M  1.1990    9709.2 (1.1815) 198/377
+[1A[1M  1.2078    9717.8 (1.1815) 199/377
+[1A[1M  1.2167    9724.2 (1.1815) 200/377
+[1A[1M  1.2255    9729.1 (1.1815) 201/377
+[1A[1M  1.2345    9734.2 (1.1815) 202/377
+[1A[1M  1.2434    9738.3 (1.1815) 203/377
+[1A[1M  1.2524    9739.3 (1.1815) 204/377
+[1A[1M  1.2614    9736.7 (1.1815) 205/377
+[1A[1M  1.2705    9729.8 (1.1815) 206/377
+[1A[1M  1.2796    9727.9 (1.1815) 207/377
+[1A[1M  1.2887    9730.3 (1.1815) 208/377
+[1A[1M  1.2979    9733.7 (1.1815) 209/377
+[1A[1M  1.3071    9743.4 (1.1815) 210/377
+[1A[1M  1.3164    9759.7 (1.1815) 211/377
+[1A[1M  1.3257    9776.3 (1.1815) 212/377
+[1A[1M  1.3350    9786.9 (1.1815) 213/377
+[1A[1M  1.3443    9787.7 (1.1815) 214/377
+[1A[1M  1.3537    9786.5 (1.1815) 215/377
+[1A[1M  1.3632    9786.6 (1.1815) 216/377
+[1A[1M  1.3726    9788.1 (1.1815) 217/377
+[1A[1M  1.3821    9790.2 (1.1815) 218/377
+[1A[1M  1.3917    9792.3 (1.1815) 219/377
+[1A[1M  1.4013    9794.0 (1.1815) 220/377
+[1A[1M  1.4109    9796.7 (1.1815) 221/377
+[1A[1M  1.4206    9799.6 (1.1815) 222/377
+[1A[1M  1.4303    9801.1 (1.1815) 223/377
+[1A[1M  1.4400    9801.2 (1.1815) 224/377
+[1A[1M  1.4498    9800.0 (1.1815) 225/377
+[1A[1M  1.4596    9798.5 (1.1815) 226/377
+[1A[1M  1.4695    9798.2 (1.1815) 227/377
+[1A[1M  1.4794    9797.6 (1.1815) 228/377
+[1A[1M  1.4893    9796.4 (1.1815) 229/377
+[1A[1M  1.4993    9796.4 (1.1815) 230/377
+[1A[1M  1.5093    9801.0 (1.1815) 231/377
+[1A[1M  1.5193    9805.3 (1.1815) 232/377
+[1A[1M  1.5294    9807.4 (1.1815) 233/377
+[1A[1M  1.5396    9805.6 (1.1815) 234/377
+[1A[1M  1.5498    9808.2 (1.1815) 235/377
+[1A[1M  1.5600    9815.8 (1.1815) 236/377
+[1A[1M  1.5702    9823.6 (1.1815) 237/377
+[1A[1M  1.5805    9829.6 (1.1815) 238/377
+[1A[1M  1.5909    9834.4 (1.1815) 239/377
+[1A[1M  1.6013    9835.1 (1.1815) 240/377
+[1A[1M  1.6117    9832.2 (1.1815) 241/377
+[1A[1M  1.6222    9828.7 (1.1815) 242/377
+[1A[1M  1.6327    9826.8 (1.1815) 243/377
+[1A[1M  1.6432    9823.1 (1.1815) 244/377
+[1A[1M  1.6538    9814.4 (1.1815) 245/377
+[1A[1M  1.6645    9802.1 (1.1815) 246/377
+[1A[1M  1.6751    9798.0 (1.1815) 247/377
+[1A[1M  1.6859    9785.9 (1.1815) 248/377
+[1A[1M  1.6966    9776.8 (1.1815) 249/377
+[1A[1M  1.7074    9775.9 (1.1815) 250/377
+[1A[1M  1.7183    9737.8 (1.1815) 251/377
+[1A[1M  1.7292    9738.3 (1.1815) 252/377
+[1A[1M  1.7401    9734.9 (1.1815) 253/377
+[1A[1M  1.7511    9741.6 (1.1815) 254/377
+[1A[1M  1.7621    9754.7 (1.1815) 255/377
+[1A[1M  1.7732    9766.3 (1.1815) 256/377
+[1A[1M  1.7843    9767.1 (1.1815) 257/377
+[1A[1M  1.7955    9754.7 (1.1815) 258/377
+[1A[1M  1.8067    9739.7 (1.1815) 259/377
+[1A[1M  1.8179    9727.8 (1.1815) 260/377
+[1A[1M  1.8292    9733.4 (1.1815) 261/377
+[1A[1M  1.8406    9752.8 (1.1815) 262/377
+[1A[1M  1.8519    9773.3 (1.1815) 263/377
+[1A[1M  1.8634    9784.4 (1.1815) 264/377
+[1A[1M  1.8748    9785.5 (1.1815) 265/377
+[1A[1M  1.8864    9779.1 (1.1815) 266/377
+[1A[1M  1.8979    9775.0 (1.1815) 267/377
+[1A[1M  1.9096    9773.0 (1.1815) 268/377
+[1A[1M  1.9212    9771.4 (1.1815) 269/377
+[1A[1M  1.9329    9784.7 (1.1815) 270/377
+[1A[1M  1.9447    9806.3 (1.1815) 271/377
+[1A[1M  1.9565    9822.8 (1.1815) 272/377
+[1A[1M  1.9683    9827.8 (1.1815) 273/377
+[1A[1M  1.9802    9827.5 (1.1815) 274/377
+[1A[1M  1.9922    9824.3 (1.1815) 275/377
+[1A[1M  2.0042    9818.1 (1.1815) 276/377
+[1A[1M  2.0162    9814.6 (1.1815) 277/377
+[1A[1M  2.0283    9819.5 (1.1815) 278/377
+[1A[1M  2.0404    9828.6 (1.1815) 279/377
+[1A[1M  2.0526    9838.4 (1.1815) 280/377
+[1A[1M  2.0649    9857.3 (1.1815) 281/377
+[1A[1M  2.0771    9889.9 (1.1815) 282/377
+[1A[1M  2.0895    9913.8 (1.1815) 283/377
+[1A[1M  2.1019    9921.5 (1.1815) 284/377
+[1A[1M  2.1143    9928.0 (1.1815) 285/377
+[1A[1M  2.1268    9934.2 (1.1815) 286/377
+[1A[1M  2.1393    9935.9 (1.1815) 287/377
+[1A[1M  2.1519    9933.4 (1.1815) 288/377
+[1A[1M  2.1645    9930.3 (1.1815) 289/377
+[1A[1M  2.1772    9929.8 (1.1815) 290/377
+[1A[1M  2.1899    9933.4 (1.1815) 291/377
+[1A[1M  2.2027    9937.3 (1.1815) 292/377
+[1A[1M  2.2156    9936.5 (1.1815) 293/377
+[1A[1M  2.2284    9935.7 (1.1815) 294/377
+[1A[1M  2.2414    9939.2 (1.1815) 295/377
+[1A[1M  2.2544    9941.0 (1.1815) 296/377
+[1A[1M  2.2674    9935.7 (1.1815) 297/377
+[1A[1M  2.2805    9926.1 (1.1815) 298/377
+[1A[1M  2.2937    9912.6 (1.1815) 299/377
+[1A[1M  2.3069    9908.0 (1.1815) 300/377
+[1A[1M  2.3201    9909.5 (1.1815) 301/377
+[1A[1M  2.3334    9908.9 (1.1815) 302/377
+[1A[1M  2.3468    9899.9 (1.1815) 303/377
+[1A[1M  2.3602    9897.8 (1.1815) 304/377
+[1A[1M  2.3737    9908.0 (1.1815) 305/377
+[1A[1M  2.3872    9915.3 (1.1815) 306/377
+[1A[1M  2.4008    9911.6 (1.1815) 307/377
+[1A[1M  2.4144    9900.6 (1.1815) 308/377
+[1A[1M  2.4281    9904.5 (1.1815) 309/377
+[1A[1M  2.4418    9918.0 (1.1815) 310/377
+[1A[1M  2.4556    9932.0 (1.1815) 311/377
+[1A[1M  2.4695    9937.7 (1.1815) 312/377
+[1A[1M  2.4834    9939.5 (1.1815) 313/377
+[1A[1M  2.4973    9937.6 (1.1815) 314/377
+[1A[1M  2.5113    9933.6 (1.1815) 315/377
+[1A[1M  2.5254    9930.9 (1.1815) 316/377
+[1A[1M  2.5396    9927.0 (1.1815) 317/377
+[1A[1M  2.5537    9921.4 (1.1815) 318/377
+[1A[1M  2.5680    9913.0 (1.1815) 319/377
+[1A[1M  2.5823    9921.9 (1.1815) 320/377
+[1A[1M  2.5966    9945.7 (1.1815) 321/377
+[1A[1M  2.6111    9957.2 (1.1815) 322/377
+[1A[1M  2.6255    9975.0 (1.1815) 323/377
+[1A[1M  2.6401    9998.1 (1.1815) 324/377
+[1A[1M  2.6546   10022.9 (1.1815) 325/377
+[1A[1M  2.6693   10033.0 (1.1815) 326/377
+[1A[1M  2.6840   10038.5 (1.1815) 327/377
+[1A[1M  2.6988   10062.0 (1.1815) 328/377
+[1A[1M  2.7136   10110.5 (1.1815) 329/377
+[1A[1M  2.7285   10149.3 (1.1815) 330/377
+[1A[1M  2.7434   10175.8 (1.1815) 331/377
+[1A[1M  2.7584   10207.2 (1.1815) 332/377
+[1A[1M  2.7735   10239.5 (1.1815) 333/377
+[1A[1M  2.7886   10263.7 (1.1815) 334/377
+[1A[1M  2.8038   10279.5 (1.1815) 335/377
+[1A[1M  2.8190   10281.6 (1.1815) 336/377
+[1A[1M  2.8344   10277.9 (1.1815) 337/377
+[1A[1M  2.8497   10280.0 (1.1815) 338/377
+[1A[1M  2.8651   10290.2 (1.1815) 339/377
+[1A[1M  2.8806   10297.6 (1.1815) 340/377
+[1A[1M  2.8962   10304.1 (1.1815) 341/377
+[1A[1M  2.9118   10311.9 (1.1815) 342/377
+[1A[1M  2.9275   10324.7 (1.1815) 343/377
+[1A[1M  2.9432   10341.7 (1.1815) 344/377
+[1A[1M  2.9590   10350.9 (1.1815) 345/377
+[1A[1M  2.9749   10346.9 (1.1815) 346/377
+[1A[1M  2.9908   10338.0 (1.1815) 347/377
+[1A[1M  3.0068   10341.0 (1.1815) 348/377
+[1A[1M  3.0229   10348.4 (1.1815) 349/377
+[1A[1M  3.0390   10347.9 (1.1815) 350/377
+[1A[1M  3.0552   10347.5 (1.1815) 351/377
+[1A[1M  3.0715   10359.1 (1.1815) 352/377
+[1A[1M  3.0878   10380.8 (1.1815) 353/377
+[1A[1M  3.1042   10404.5 (1.1815) 354/377
+[1A[1M  3.1206   10426.0 (1.1815) 355/377
+[1A[1M  3.1371   10433.5 (1.1815) 356/377
+[1A[1M  3.1537   10433.9 (1.1815) 357/377
+[1A[1M  3.1704   10437.0 (1.1815) 358/377
+[1A[1M  3.1871   10439.3 (1.1815) 359/377
+[1A[1M  3.2038   10440.6 (1.1815) 360/377
+[1A[1M  3.2207   10441.9 (1.1815) 361/377
+[1A[1M  3.2376   10442.7 (1.1815) 362/377
+[1A[1M  3.2546   10443.1 (1.1815) 363/377
+[1A[1M  3.2716   10444.1 (1.1815) 364/377
+[1A[1M  3.2888   10447.4 (1.1815) 365/377
+[1A[1M  3.3060   10453.2 (1.1815) 366/377
+[1A[1M  3.3232   10460.9 (1.1815) 367/377
+[1A[1M  3.3405   10469.3 (1.1815) 368/377
+[1A[1M  3.3579   10477.3 (1.1815) 369/377
+[1A[1M  3.3754   10483.9 (1.1815) 370/377
+[1A[1M  3.3929   10488.6 (1.1815) 371/377
+[1A[1M  3.4106   10491.8 (1.1815) 372/377
+[1A[1M  3.4282   10494.6 (1.1815) 373/377
+[1A[1M  3.4460   10497.7 (1.1815) 374/377
+[1A[1M  3.4638   10502.0 (1.1815) 375/377
+[1A[1M  3.4817   10507.0 (1.1815) 376/377
+[1A[1M  3.4997   10513.2 (1.1815) 377/377
+First iteration: z_best=1.1815
+
+[1A[1M- 1.1728    9691.9 (1.1728) 1/33
+[1A[1M- 1.1733    9690.7 (1.1733) 2/33
+[1A[1M- 1.1738    9689.6 (1.1738) 3/33
+[1A[1M- 1.1743    9688.5 (1.1743) 4/33
+[1A[1M- 1.1748    9687.6 (1.1748) 5/33
+[1A[1M- 1.1753    9686.7 (1.1753) 6/33
+[1A[1M- 1.1758    9686.0 (1.1758) 7/33
+[1A[1M- 1.1763    9685.3 (1.1763) 8/33
+[1A[1M- 1.1768    9684.8 (1.1768) 9/33
+[1A[1M- 1.1773    9684.3 (1.1773) 10/33
+[1A[1M- 1.1778    9684.0 (1.1778) 11/33
+[1A[1M- 1.1783    9683.7 (1.1783) 12/33
+[1A[1M- 1.1788    9683.5 (1.1788) 13/33
+[1A[1M- 1.1793    9683.3 (1.1793) 14/33
+[1A[1M- 1.1798    9683.3 (1.1798) 15/33
+[1A[1M- 1.1803    9683.2 (1.1803) 16/33
+[1A[1M- 1.1808    9683.3 (1.1803) 17/33
+[1A[1M- 1.1813    9683.4 (1.1803) 18/33
+[1A[1M- 1.1818    9683.5 (1.1803) 19/33
+[1A[1M- 1.1823    9683.7 (1.1803) 20/33
+[1A[1M- 1.1828    9683.9 (1.1803) 21/33
+[1A[1M- 1.1833    9684.3 (1.1803) 22/33
+[1A[1M- 1.1838    9684.8 (1.1803) 23/33
+[1A[1M- 1.1843    9685.3 (1.1803) 24/33
+[1A[1M- 1.1848    9686.0 (1.1803) 25/33
+[1A[1M- 1.1853    9686.7 (1.1803) 26/33
+[1A[1M- 1.1858    9687.6 (1.1803) 27/33
+[1A[1M- 1.1863    9688.4 (1.1803) 28/33
+[1A[1M- 1.1868    9689.3 (1.1803) 29/33
+[1A[1M- 1.1873    9690.2 (1.1803) 30/33
+[1A[1M- 1.1878    9691.1 (1.1803) 31/33
+[1A[1M- 1.1883    9692.0 (1.1803) 32/33
+[1A[1M- 1.1888    9692.9 (1.1803) 33/33
+User templates! N=16 
+
+[1A[1M  1.1367    4369.1 (1.1367) 1/41
+[1A[1M  1.1388    4369.4 (1.1367) 2/41
+[1A[1M  1.1410    4369.8 (1.1367) 3/41
+[1A[1M  1.1431    4370.2 (1.1367) 4/41
+[1A[1M  1.1453    4370.3 (1.1367) 5/41
+[1A[1M  1.1474    4370.1 (1.1367) 6/41
+[1A[1M  1.1495    4369.7 (1.1367) 7/41
+[1A[1M  1.1517    4369.1 (1.1517) 8/41
+[1A[1M  1.1539    4368.2 (1.1539) 9/41
+[1A[1M  1.1560    4366.7 (1.1560) 10/41
+[1A[1M  1.1582    4364.7 (1.1582) 11/41
+[1A[1M  1.1603    4362.4 (1.1603) 12/41
+[1A[1M  1.1625    4360.1 (1.1625) 13/41
+[1A[1M  1.1646    4358.0 (1.1646) 14/41
+[1A[1M  1.1668    4356.3 (1.1668) 15/41
+[1A[1M  1.1690    4355.3 (1.1690) 16/41
+[1A[1M  1.1712    4354.8 (1.1712) 17/41
+[1A[1M  1.1733    4354.6 (1.1733) 18/41
+[1A[1M  1.1755    4354.2 (1.1755) 19/41
+[1A[1M  1.1777    4353.9 (1.1777) 20/41
+[1A[1M  1.1799    4354.2 (1.1777) 21/41
+[1A[1M  1.1820    4354.7 (1.1777) 22/41
+[1A[1M  1.1842    4355.5 (1.1777) 23/41
+[1A[1M  1.1864    4357.1 (1.1777) 24/41
+[1A[1M  1.1886    4359.2 (1.1777) 25/41
+[1A[1M  1.1908    4361.3 (1.1777) 26/41
+[1A[1M  1.1930    4363.2 (1.1777) 27/41
+[1A[1M  1.1952    4365.0 (1.1777) 28/41
+[1A[1M  1.1974    4366.5 (1.1777) 29/41
+[1A[1M  1.1996    4367.9 (1.1777) 30/41
+[1A[1M  1.2018    4369.1 (1.1777) 31/41
+[1A[1M  1.2040    4370.2 (1.1777) 32/41
+[1A[1M  1.2062    4371.4 (1.1777) 33/41
+[1A[1M  1.2084    4372.4 (1.1777) 34/41
+[1A[1M  1.2106    4373.2 (1.1777) 35/41
+[1A[1M  1.2128    4373.5 (1.1777) 36/41
+[1A[1M  1.2150    4373.5 (1.1777) 37/41
+[1A[1M  1.2172    4373.4 (1.1777) 38/41
+[1A[1M  1.2194    4373.2 (1.1777) 39/41
+[1A[1M  1.2217    4373.1 (1.1777) 40/41
+[1A[1M  1.2239    4373.1 (1.1777) 41/41
+First iteration: z_best=1.1777
+
+[1A[1M- 1.1757    4354.1 (1.1757) 1/21
+[1A[1M- 1.1759    4354.1 (1.1759) 2/21
+[1A[1M- 1.1761    4354.1 (1.1761) 3/21
+[1A[1M- 1.1763    4354.0 (1.1763) 4/21
+[1A[1M- 1.1765    4354.0 (1.1765) 5/21
+[1A[1M- 1.1767    4354.0 (1.1767) 6/21
+[1A[1M- 1.1769    4354.0 (1.1769) 7/21
+[1A[1M- 1.1771    4354.0 (1.1771) 8/21
+[1A[1M- 1.1773    4354.0 (1.1773) 9/21
+[1A[1M- 1.1775    4353.9 (1.1775) 10/21
+[1A[1M- 1.1777    4353.9 (1.1777) 11/21
+[1A[1M- 1.1779    4353.9 (1.1779) 12/21
+[1A[1M- 1.1781    4353.9 (1.1779) 13/21
+[1A[1M- 1.1783    4354.0 (1.1779) 14/21
+[1A[1M- 1.1785    4354.0 (1.1779) 15/21
+[1A[1M- 1.1787    4354.0 (1.1779) 16/21
+[1A[1M- 1.1789    4354.0 (1.1779) 17/21
+[1A[1M- 1.1791    4354.0 (1.1779) 18/21
+[1A[1M- 1.1793    4354.1 (1.1779) 19/21
+[1A[1M- 1.1795    4354.1 (1.1779) 20/21
+[1A[1M- 1.1797    4354.1 (1.1779) 21/21
+Drizzle line -> SII  (7.64 6.99)
+drizzle!!
+Drizzle line -> Ha   (12.80 7.02)
+drizzle!!
+Drizzle line -> OIII (166.00 38.40)
+drizzle!!
+Problem in fitting.run_all
+Finished 17677 23.2505
+17678 24.4213
+Finished 17678 24.4213
+17682 24.1864
+Finished 17682 24.1864
+17684 24.7769
+Finished 17684 24.7769
+17686 23.9197
+Finished 17686 23.9197
+17687 24.8519
+Finished 17687 24.8519
+17688 24.9293
+Finished 17688 24.9293
+17700 24.9481
+Finished 17700 24.9481
+17701 24.8003
+Finished 17701 24.8003
+17708 24.4464
+Finished 17708 24.4464
+17713 23.5109
+beams:  [<grizli.model.BeamCutout object at 0x7f4af3359668>, <grizli.model.BeamCutout object at 0x7f4af338e390>]
+GS4_17713.beams.fits
+drizzle!!
+drizzle!!
+drizzle!!
+drizzle!!
+drizzle!!
+drizzle!!
+drizzle!!
+1 ibhj07ygq_flt.fits G141
+2 ibhj07ynq_flt.fits G141
+Load file GS4_17713.stack.fits
+  G141
+User templates! N=16 
+
+[1A[1M  0.0000    5467.8 (0.0000) 1/377
+[1A[1M  0.0040    5466.8 (0.0040) 2/377
+[1A[1M  0.0080    5466.1 (0.0080) 3/377
+[1A[1M  0.0121     491.5 (0.0121) 4/377
+[1A[1M  0.0161     492.4 (0.0121) 5/377
+[1A[1M  0.0202     494.2 (0.0121) 6/377
+[1A[1M  0.0243     496.5 (0.0121) 7/377
+[1A[1M  0.0284     497.5 (0.0121) 8/377
+[1A[1M  0.0325     498.1 (0.0121) 9/377
+[1A[1M  0.0367     499.4 (0.0121) 10/377
+[1A[1M  0.0408     500.5 (0.0121) 11/377
+[1A[1M  0.0450     501.6 (0.0121) 12/377
+[1A[1M  0.0492     501.9 (0.0121) 13/377
+[1A[1M  0.0534     501.4 (0.0121) 14/377
+[1A[1M  0.0576     499.7 (0.0121) 15/377
+[1A[1M  0.0618     496.7 (0.0121) 16/377
+[1A[1M  0.0661     494.0 (0.0121) 17/377
+[1A[1M  0.0704     492.4 (0.0121) 18/377
+[1A[1M  0.0747     491.3 (0.0747) 19/377
+[1A[1M  0.0790     490.0 (0.0790) 20/377
+[1A[1M  0.0833     488.4 (0.0833) 21/377
+[1A[1M  0.0876     485.9 (0.0876) 22/377
+[1A[1M  0.0920     483.0 (0.0920) 23/377
+[1A[1M  0.0964     479.8 (0.0964) 24/377
+[1A[1M  0.1008     477.1 (0.1008) 25/377
+[1A[1M  0.1052     475.1 (0.1052) 26/377
+[1A[1M  0.1096     473.6 (0.1096) 27/377
+[1A[1M  0.1140     471.7 (0.1140) 28/377
+[1A[1M  0.1185     469.1 (0.1185) 29/377
+[1A[1M  0.1230     466.2 (0.1230) 30/377
+[1A[1M  0.1275     463.1 (0.1275) 31/377
+[1A[1M  0.1320     460.1 (0.1320) 32/377
+[1A[1M  0.1366     457.4 (0.1366) 33/377
+[1A[1M  0.1411     455.1 (0.1411) 34/377
+[1A[1M  0.1457     452.9 (0.1457) 35/377
+[1A[1M  0.1503     450.7 (0.1503) 36/377
+[1A[1M  0.1549     448.4 (0.1549) 37/377
+[1A[1M  0.1595     446.2 (0.1595) 38/377
+[1A[1M  0.1642     444.4 (0.1642) 39/377
+[1A[1M  0.1688     442.8 (0.1688) 40/377
+[1A[1M  0.1735     441.3 (0.1735) 41/377
+[1A[1M  0.1782     439.7 (0.1782) 42/377
+[1A[1M  0.1829     438.0 (0.1829) 43/377
+[1A[1M  0.1877     436.3 (0.1877) 44/377
+[1A[1M  0.1924     435.2 (0.1924) 45/377
+[1A[1M  0.1972     434.6 (0.1972) 46/377
+[1A[1M  0.2020     434.8 (0.1972) 47/377
+[1A[1M  0.2068     435.9 (0.1972) 48/377
+[1A[1M  0.2117     437.4 (0.1972) 49/377
+[1A[1M  0.2165     438.8 (0.1972) 50/377
+[1A[1M  0.2214     439.9 (0.1972) 51/377
+[1A[1M  0.2263     440.8 (0.1972) 52/377
+[1A[1M  0.2312     441.3 (0.1972) 53/377
+[1A[1M  0.2361     441.7 (0.1972) 54/377
+[1A[1M  0.2411     441.9 (0.1972) 55/377
+[1A[1M  0.2461     442.8 (0.1972) 56/377
+[1A[1M  0.2511     444.1 (0.1972) 57/377
+[1A[1M  0.2561     445.1 (0.1972) 58/377
+[1A[1M  0.2611     446.1 (0.1972) 59/377
+[1A[1M  0.2662     447.3 (0.1972) 60/377
+[1A[1M  0.2712     448.4 (0.1972) 61/377
+[1A[1M  0.2763     450.2 (0.1972) 62/377
+[1A[1M  0.2815     453.0 (0.1972) 63/377
+[1A[1M  0.2866     455.5 (0.1972) 64/377
+[1A[1M  0.2918     457.2 (0.1972) 65/377
+[1A[1M  0.2969     458.2 (0.1972) 66/377
+[1A[1M  0.3021     459.1 (0.1972) 67/377
+[1A[1M  0.3073     461.2 (0.1972) 68/377
+[1A[1M  0.3126     464.1 (0.1972) 69/377
+[1A[1M  0.3178     466.7 (0.1972) 70/377
+[1A[1M  0.3231     468.8 (0.1972) 71/377
+[1A[1M  0.3284     470.5 (0.1972) 72/377
+[1A[1M  0.3338     472.2 (0.1972) 73/377
+[1A[1M  0.3391     475.1 (0.1972) 74/377
+[1A[1M  0.3445     478.7 (0.1972) 75/377
+[1A[1M  0.3499     482.2 (0.1972) 76/377
+[1A[1M  0.3553     485.8 (0.1972) 77/377
+[1A[1M  0.3607     489.8 (0.1972) 78/377
+[1A[1M  0.3662     494.6 (0.1972) 79/377
+[1A[1M  0.3716     499.8 (0.1972) 80/377
+[1A[1M  0.3771     505.6 (0.1972) 81/377
+[1A[1M  0.3826     511.5 (0.1972) 82/377
+[1A[1M  0.3882     517.8 (0.1972) 83/377
+[1A[1M  0.3938     524.4 (0.1972) 84/377
+[1A[1M  0.3993     531.0 (0.1972) 85/377
+[1A[1M  0.4049     537.9 (0.1972) 86/377
+[1A[1M  0.4106     545.4 (0.1972) 87/377
+[1A[1M  0.4162     553.0 (0.1972) 88/377
+[1A[1M  0.4219     560.8 (0.1972) 89/377
+[1A[1M  0.4276     569.2 (0.1972) 90/377
+[1A[1M  0.4333     578.2 (0.1972) 91/377
+[1A[1M  0.4391     586.8 (0.1972) 92/377
+[1A[1M  0.4448     594.6 (0.1972) 93/377
+[1A[1M  0.4506     601.6 (0.1972) 94/377
+[1A[1M  0.4564     608.5 (0.1972) 95/377
+[1A[1M  0.4623     615.8 (0.1972) 96/377
+[1A[1M  0.4681     623.4 (0.1972) 97/377
+[1A[1M  0.4740     630.7 (0.1972) 98/377
+[1A[1M  0.4799     636.4 (0.1972) 99/377
+[1A[1M  0.4859     640.5 (0.1972) 100/377
+[1A[1M  0.4918     644.6 (0.1972) 101/377
+[1A[1M  0.4978     648.6 (0.1972) 102/377
+[1A[1M  0.5038     653.5 (0.1972) 103/377
+[1A[1M  0.5098     658.3 (0.1972) 104/377
+[1A[1M  0.5159     662.0 (0.1972) 105/377
+[1A[1M  0.5220     664.5 (0.1972) 106/377
+[1A[1M  0.5281     664.9 (0.1972) 107/377
+[1A[1M  0.5342     665.9 (0.1972) 108/377
+[1A[1M  0.5403     668.8 (0.1972) 109/377
+[1A[1M  0.5465     674.1 (0.1972) 110/377
+[1A[1M  0.5527     680.8 (0.1972) 111/377
+[1A[1M  0.5589     688.7 (0.1972) 112/377
+[1A[1M  0.5652     696.5 (0.1972) 113/377
+[1A[1M  0.5715     704.5 (0.1972) 114/377
+[1A[1M  0.5778     712.0 (0.1972) 115/377
+[1A[1M  0.5841     718.1 (0.1972) 116/377
+[1A[1M  0.5904     724.8 (0.1972) 117/377
+[1A[1M  0.5968     733.0 (0.1972) 118/377
+[1A[1M  0.6032     742.1 (0.1972) 119/377
+[1A[1M  0.6096     749.7 (0.1972) 120/377
+[1A[1M  0.6161     757.9 (0.1972) 121/377
+[1A[1M  0.6226     767.8 (0.1972) 122/377
+[1A[1M  0.6291     778.0 (0.1972) 123/377
+[1A[1M  0.6356     786.9 (0.1972) 124/377
+[1A[1M  0.6421     795.7 (0.1972) 125/377
+[1A[1M  0.6487     805.2 (0.1972) 126/377
+[1A[1M  0.6553     814.6 (0.1972) 127/377
+[1A[1M  0.6620     821.9 (0.1972) 128/377
+[1A[1M  0.6686     828.9 (0.1972) 129/377
+[1A[1M  0.6753     838.2 (0.1972) 130/377
+[1A[1M  0.6820     849.9 (0.1972) 131/377
+[1A[1M  0.6888     863.2 (0.1972) 132/377
+[1A[1M  0.6955     876.9 (0.1972) 133/377
+[1A[1M  0.7023     889.8 (0.1972) 134/377
+[1A[1M  0.7092     901.9 (0.1972) 135/377
+[1A[1M  0.7160     914.0 (0.1972) 136/377
+[1A[1M  0.7229     925.9 (0.1972) 137/377
+[1A[1M  0.7298     937.3 (0.1972) 138/377
+[1A[1M  0.7367     949.5 (0.1972) 139/377
+[1A[1M  0.7437     961.8 (0.1972) 140/377
+[1A[1M  0.7507     973.1 (0.1972) 141/377
+[1A[1M  0.7577     983.0 (0.1972) 142/377
+[1A[1M  0.7647     992.9 (0.1972) 143/377
+[1A[1M  0.7718    1003.8 (0.1972) 144/377
+[1A[1M  0.7789    1015.1 (0.1972) 145/377
+[1A[1M  0.7860    1025.3 (0.1972) 146/377
+[1A[1M  0.7932    1035.6 (0.1972) 147/377
+[1A[1M  0.8004    1046.5 (0.1972) 148/377
+[1A[1M  0.8076    1057.2 (0.1972) 149/377
+[1A[1M  0.8148    1067.0 (0.1972) 150/377
+[1A[1M  0.8221    1075.9 (0.1972) 151/377
+[1A[1M  0.8294    1084.6 (0.1972) 152/377
+[1A[1M  0.8368    1093.8 (0.1972) 153/377
+[1A[1M  0.8441    1101.5 (0.1972) 154/377
+[1A[1M  0.8515    1106.5 (0.1972) 155/377
+[1A[1M  0.8589    1110.9 (0.1972) 156/377
+[1A[1M  0.8664    1115.0 (0.1972) 157/377
+[1A[1M  0.8739    1119.0 (0.1972) 158/377
+[1A[1M  0.8814    1122.6 (0.1972) 159/377
+[1A[1M  0.8889    1126.1 (0.1972) 160/377
+[1A[1M  0.8965    1129.7 (0.1972) 161/377
+[1A[1M  0.9041    1132.9 (0.1972) 162/377
+[1A[1M  0.9117    1135.8 (0.1972) 163/377
+[1A[1M  0.9194    1139.1 (0.1972) 164/377
+[1A[1M  0.9271    1142.5 (0.1972) 165/377
+[1A[1M  0.9348    1146.2 (0.1972) 166/377
+[1A[1M  0.9425    1150.9 (0.1972) 167/377
+[1A[1M  0.9503    1156.2 (0.1972) 168/377
+[1A[1M  0.9581    1162.4 (0.1972) 169/377
+[1A[1M  0.9660    1169.4 (0.1972) 170/377
+[1A[1M  0.9739    1177.0 (0.1972) 171/377
+[1A[1M  0.9818    1184.8 (0.1972) 172/377
+[1A[1M  0.9897    1191.8 (0.1972) 173/377
+[1A[1M  0.9977    1197.9 (0.1972) 174/377
+[1A[1M  1.0057    1203.7 (0.1972) 175/377
+[1A[1M  1.0138    1210.8 (0.1972) 176/377
+[1A[1M  1.0218    1219.2 (0.1972) 177/377
+[1A[1M  1.0299    1226.9 (0.1972) 178/377
+[1A[1M  1.0381    1234.3 (0.1972) 179/377
+[1A[1M  1.0462    1242.4 (0.1972) 180/377
+[1A[1M  1.0544    1250.8 (0.1972) 181/377
+[1A[1M  1.0627    1259.3 (0.1972) 182/377
+[1A[1M  1.0709    1267.4 (0.1972) 183/377
+[1A[1M  1.0792    1275.3 (0.1972) 184/377
+[1A[1M  1.0876    1284.0 (0.1972) 185/377
+[1A[1M  1.0959    1292.9 (0.1972) 186/377
+[1A[1M  1.1043    1301.2 (0.1972) 187/377
+[1A[1M  1.1128    1309.1 (0.1972) 188/377
+[1A[1M  1.1212    1317.0 (0.1972) 189/377
+[1A[1M  1.1297    1325.2 (0.1972) 190/377
+[1A[1M  1.1383    1333.3 (0.1972) 191/377
+[1A[1M  1.1468    1339.9 (0.1972) 192/377
+[1A[1M  1.1555    1344.7 (0.1972) 193/377
+[1A[1M  1.1641    1349.0 (0.1972) 194/377
+[1A[1M  1.1728    1353.3 (0.1972) 195/377
+[1A[1M  1.1815    1356.9 (0.1972) 196/377
+[1A[1M  1.1902    1358.9 (0.1972) 197/377
+[1A[1M  1.1990    1359.6 (0.1972) 198/377
+[1A[1M  1.2078    1360.3 (0.1972) 199/377
+[1A[1M  1.2167    1362.0 (0.1972) 200/377
+[1A[1M  1.2255    1364.0 (0.1972) 201/377
+[1A[1M  1.2345    1365.8 (0.1972) 202/377
+[1A[1M  1.2434    1367.0 (0.1972) 203/377
+[1A[1M  1.2524    1367.9 (0.1972) 204/377
+[1A[1M  1.2614    1370.0 (0.1972) 205/377
+[1A[1M  1.2705    1372.3 (0.1972) 206/377
+[1A[1M  1.2796    1374.5 (0.1972) 207/377
+[1A[1M  1.2887    1377.9 (0.1972) 208/377
+[1A[1M  1.2979    1383.3 (0.1972) 209/377
+[1A[1M  1.3071    1389.6 (0.1972) 210/377
+[1A[1M  1.3164    1394.9 (0.1972) 211/377
+[1A[1M  1.3257    1398.4 (0.1972) 212/377
+[1A[1M  1.3350    1399.8 (0.1972) 213/377
+[1A[1M  1.3443    1400.0 (0.1972) 214/377
+[1A[1M  1.3537    1401.8 (0.1972) 215/377
+[1A[1M  1.3632    1405.2 (0.1972) 216/377
+[1A[1M  1.3726    1408.7 (0.1972) 217/377
+[1A[1M  1.3821    1412.2 (0.1972) 218/377
+[1A[1M  1.3917    1415.7 (0.1972) 219/377
+[1A[1M  1.4013    1418.9 (0.1972) 220/377
+[1A[1M  1.4109    1421.8 (0.1972) 221/377
+[1A[1M  1.4206    1424.2 (0.1972) 222/377
+[1A[1M  1.4303    1426.6 (0.1972) 223/377
+[1A[1M  1.4400    1428.8 (0.1972) 224/377
+[1A[1M  1.4498    1431.8 (0.1972) 225/377
+[1A[1M  1.4596    1435.9 (0.1972) 226/377
+[1A[1M  1.4695    1439.8 (0.1972) 227/377
+[1A[1M  1.4794    1443.0 (0.1972) 228/377
+[1A[1M  1.4893    1447.0 (0.1972) 229/377
+[1A[1M  1.4993    1451.5 (0.1972) 230/377
+[1A[1M  1.5093    1456.3 (0.1972) 231/377
+[1A[1M  1.5193    1461.2 (0.1972) 232/377
+[1A[1M  1.5294    1465.0 (0.1972) 233/377
+[1A[1M  1.5396    1467.9 (0.1972) 234/377
+[1A[1M  1.5498    1474.7 (0.1972) 235/377
+[1A[1M  1.5600    1485.6 (0.1972) 236/377
+[1A[1M  1.5702    1496.3 (0.1972) 237/377
+[1A[1M  1.5805    1504.3 (0.1972) 238/377
+[1A[1M  1.5909    1509.0 (0.1972) 239/377
+[1A[1M  1.6013    1512.2 (0.1972) 240/377
+[1A[1M  1.6117    1514.9 (0.1972) 241/377
+[1A[1M  1.6222    1516.5 (0.1972) 242/377
+[1A[1M  1.6327    1516.6 (0.1972) 243/377
+[1A[1M  1.6432    1515.1 (0.1972) 244/377
+[1A[1M  1.6538    1512.8 (0.1972) 245/377
+[1A[1M  1.6645    1510.5 (0.1972) 246/377
+[1A[1M  1.6751    1508.5 (0.1972) 247/377
+[1A[1M  1.6859    1506.0 (0.1972) 248/377
+[1A[1M  1.6966    1502.6 (0.1972) 249/377
+[1A[1M  1.7074    1499.2 (0.1972) 250/377
+[1A[1M  1.7183    1496.5 (0.1972) 251/377
+[1A[1M  1.7292    1494.0 (0.1972) 252/377
+[1A[1M  1.7401    1491.3 (0.1972) 253/377
+[1A[1M  1.7511    1488.4 (0.1972) 254/377
+[1A[1M  1.7621    1486.3 (0.1972) 255/377
+[1A[1M  1.7732    1485.5 (0.1972) 256/377
+[1A[1M  1.7843    1485.8 (0.1972) 257/377
+[1A[1M  1.7955    1484.8 (0.1972) 258/377
+[1A[1M  1.8067    1479.9 (0.1972) 259/377
+[1A[1M  1.8179    1395.0 (0.1972) 260/377
+[1A[1M  1.8292    1408.2 (0.1972) 261/377
+[1A[1M  1.8406    1440.3 (0.1972) 262/377
+[1A[1M  1.8519    1466.8 (0.1972) 263/377
+[1A[1M  1.8634    1472.1 (0.1972) 264/377
+[1A[1M  1.8748    1470.1 (0.1972) 265/377
+[1A[1M  1.8864    1466.3 (0.1972) 266/377
+[1A[1M  1.8979    1462.5 (0.1972) 267/377
+[1A[1M  1.9096    1456.1 (0.1972) 268/377
+[1A[1M  1.9212    1449.2 (0.1972) 269/377
+[1A[1M  1.9329    1442.8 (0.1972) 270/377
+[1A[1M  1.9447    1438.3 (0.1972) 271/377
+[1A[1M  1.9565    1435.4 (0.1972) 272/377
+[1A[1M  1.9683    1432.1 (0.1972) 273/377
+[1A[1M  1.9802    1426.3 (0.1972) 274/377
+[1A[1M  1.9922    1417.9 (0.1972) 275/377
+[1A[1M  2.0042    1407.9 (0.1972) 276/377
+[1A[1M  2.0162    1398.1 (0.1972) 277/377
+[1A[1M  2.0283    1389.5 (0.1972) 278/377
+[1A[1M  2.0404    1380.4 (0.1972) 279/377
+[1A[1M  2.0526    1371.5 (0.1972) 280/377
+[1A[1M  2.0649    1361.3 (0.1972) 281/377
+[1A[1M  2.0771    1349.8 (0.1972) 282/377
+[1A[1M  2.0895    1339.0 (0.1972) 283/377
+[1A[1M  2.1019    1328.9 (0.1972) 284/377
+[1A[1M  2.1143    1319.6 (0.1972) 285/377
+[1A[1M  2.1268    1309.7 (0.1972) 286/377
+[1A[1M  2.1393    1299.6 (0.1972) 287/377
+[1A[1M  2.1519    1289.7 (0.1972) 288/377
+[1A[1M  2.1645    1280.0 (0.1972) 289/377
+[1A[1M  2.1772    1270.0 (0.1972) 290/377
+[1A[1M  2.1899    1261.4 (0.1972) 291/377
+[1A[1M  2.2027    1254.6 (0.1972) 292/377
+[1A[1M  2.2156    1249.5 (0.1972) 293/377
+[1A[1M  2.2284    1246.6 (0.1972) 294/377
+[1A[1M  2.2414    1246.3 (0.1972) 295/377
+[1A[1M  2.2544    1247.1 (0.1972) 296/377
+[1A[1M  2.2674    1249.4 (0.1972) 297/377
+[1A[1M  2.2805    1251.9 (0.1972) 298/377
+[1A[1M  2.2937    1254.2 (0.1972) 299/377
+[1A[1M  2.3069    1253.5 (0.1972) 300/377
+[1A[1M  2.3201    1249.2 (0.1972) 301/377
+[1A[1M  2.3334    1243.7 (0.1972) 302/377
+[1A[1M  2.3468    1238.7 (0.1972) 303/377
+[1A[1M  2.3602    1234.9 (0.1972) 304/377
+[1A[1M  2.3737    1231.3 (0.1972) 305/377
+[1A[1M  2.3872    1224.5 (0.1972) 306/377
+[1A[1M  2.4008    1214.7 (0.1972) 307/377
+[1A[1M  2.4144    1203.3 (0.1972) 308/377
+[1A[1M  2.4281    1190.2 (0.1972) 309/377
+[1A[1M  2.4418    1176.2 (0.1972) 310/377
+[1A[1M  2.4556    1162.4 (0.1972) 311/377
+[1A[1M  2.4695    1149.5 (0.1972) 312/377
+[1A[1M  2.4834    1138.6 (0.1972) 313/377
+[1A[1M  2.4973    1129.7 (0.1972) 314/377
+[1A[1M  2.5113    1123.6 (0.1972) 315/377
+[1A[1M  2.5254    1115.9 (0.1972) 316/377
+[1A[1M  2.5396    1107.5 (0.1972) 317/377
+[1A[1M  2.5537    1094.7 (0.1972) 318/377
+[1A[1M  2.5680    1080.1 (0.1972) 319/377
+[1A[1M  2.5823    1069.0 (0.1972) 320/377
+[1A[1M  2.5966    1058.6 (0.1972) 321/377
+[1A[1M  2.6111    1042.9 (0.1972) 322/377
+[1A[1M  2.6255    1032.5 (0.1972) 323/377
+[1A[1M  2.6401    1025.7 (0.1972) 324/377
+[1A[1M  2.6546    1017.5 (0.1972) 325/377
+[1A[1M  2.6693    1003.6 (0.1972) 326/377
+[1A[1M  2.6840     987.2 (0.1972) 327/377
+[1A[1M  2.6988     971.7 (0.1972) 328/377
+[1A[1M  2.7136     958.7 (0.1972) 329/377
+[1A[1M  2.7285     941.2 (0.1972) 330/377
+[1A[1M  2.7434     934.4 (0.1972) 331/377
+[1A[1M  2.7584     938.0 (0.1972) 332/377
+[1A[1M  2.7735     929.8 (0.1972) 333/377
+[1A[1M  2.7886     919.9 (0.1972) 334/377
+[1A[1M  2.8038     912.1 (0.1972) 335/377
+[1A[1M  2.8190     904.9 (0.1972) 336/377
+[1A[1M  2.8344     896.7 (0.1972) 337/377
+[1A[1M  2.8497     888.9 (0.1972) 338/377
+[1A[1M  2.8651     881.6 (0.1972) 339/377
+[1A[1M  2.8806     876.7 (0.1972) 340/377
+[1A[1M  2.8962     871.0 (0.1972) 341/377
+[1A[1M  2.9118     865.3 (0.1972) 342/377
+[1A[1M  2.9275     860.5 (0.1972) 343/377
+[1A[1M  2.9432     858.5 (0.1972) 344/377
+[1A[1M  2.9590     859.2 (0.1972) 345/377
+[1A[1M  2.9749     859.5 (0.1972) 346/377
+[1A[1M  2.9908     857.9 (0.1972) 347/377
+[1A[1M  3.0068     853.9 (0.1972) 348/377
+[1A[1M  3.0229     849.9 (0.1972) 349/377
+[1A[1M  3.0390     845.7 (0.1972) 350/377
+[1A[1M  3.0552     842.1 (0.1972) 351/377
+[1A[1M  3.0715     840.9 (0.1972) 352/377
+[1A[1M  3.0878     842.1 (0.1972) 353/377
+[1A[1M  3.1042     846.3 (0.1972) 354/377
+[1A[1M  3.1206     852.8 (0.1972) 355/377
+[1A[1M  3.1371     863.1 (0.1972) 356/377
+[1A[1M  3.1537     874.5 (0.1972) 357/377
+[1A[1M  3.1704     885.9 (0.1972) 358/377
+[1A[1M  3.1871     895.5 (0.1972) 359/377
+[1A[1M  3.2038     901.5 (0.1972) 360/377
+[1A[1M  3.2207     904.8 (0.1972) 361/377
+[1A[1M  3.2376     906.0 (0.1972) 362/377
+[1A[1M  3.2546     908.2 (0.1972) 363/377
+[1A[1M  3.2716     915.4 (0.1972) 364/377
+[1A[1M  3.2888     929.0 (0.1972) 365/377
+[1A[1M  3.3060     944.3 (0.1972) 366/377
+[1A[1M  3.3232     960.9 (0.1972) 367/377
+[1A[1M  3.3405     977.3 (0.1972) 368/377
+[1A[1M  3.3579     990.3 (0.1972) 369/377
+[1A[1M  3.3754    1002.1 (0.1972) 370/377
+[1A[1M  3.3929    1012.9 (0.1972) 371/377
+[1A[1M  3.4106    1022.1 (0.1972) 372/377
+[1A[1M  3.4282    1032.3 (0.1972) 373/377
+[1A[1M  3.4460    1043.1 (0.1972) 374/377
+[1A[1M  3.4638    1055.5 (0.1972) 375/377
+[1A[1M  3.4817    1069.5 (0.1972) 376/377
+[1A[1M  3.4997    1088.1 (0.1972) 377/377
+First iteration: z_best=0.1972
+
+[1A[1M- 0.1905     435.6 (0.1905) 1/33
+[1A[1M- 0.1910     435.5 (0.1910) 2/33
+[1A[1M- 0.1915     435.4 (0.1915) 3/33
+[1A[1M- 0.1920     435.2 (0.1920) 4/33
+[1A[1M- 0.1925     435.1 (0.1925) 5/33
+[1A[1M- 0.1930     435.1 (0.1930) 6/33
+[1A[1M- 0.1935     435.0 (0.1935) 7/33
+[1A[1M- 0.1940     434.9 (0.1940) 8/33
+[1A[1M- 0.1945     434.9 (0.1945) 9/33
+[1A[1M- 0.1950     434.8 (0.1950) 10/33
+[1A[1M- 0.1955     434.7 (0.1955) 11/33
+[1A[1M- 0.1960     434.7 (0.1960) 12/33
+[1A[1M- 0.1965     434.6 (0.1965) 13/33
+[1A[1M- 0.1970     434.6 (0.1970) 14/33
+[1A[1M- 0.1975     434.6 (0.1975) 15/33
+[1A[1M- 0.1980     434.5 (0.1980) 16/33
+[1A[1M- 0.1985     434.5 (0.1985) 17/33
+[1A[1M- 0.1990     434.5 (0.1990) 18/33
+[1A[1M- 0.1995     434.5 (0.1990) 19/33
+[1A[1M- 0.2000     434.5 (0.1990) 20/33
+[1A[1M- 0.2005     434.6 (0.1990) 21/33
+[1A[1M- 0.2010     434.6 (0.1990) 22/33
+[1A[1M- 0.2015     434.7 (0.1990) 23/33
+[1A[1M- 0.2020     434.8 (0.1990) 24/33
+[1A[1M- 0.2025     434.8 (0.1990) 25/33
+[1A[1M- 0.2030     434.9 (0.1990) 26/33
+[1A[1M- 0.2035     435.0 (0.1990) 27/33
+[1A[1M- 0.2040     435.2 (0.1990) 28/33
+[1A[1M- 0.2045     435.3 (0.1990) 29/33
+[1A[1M- 0.2050     435.4 (0.1990) 30/33
+[1A[1M- 0.2055     435.5 (0.1990) 31/33
+[1A[1M- 0.2060     435.7 (0.1990) 32/33
+[1A[1M- 0.2065     435.8 (0.1990) 33/33
+User templates! N=16 
+
+[1A[1M  0.1750     761.2 (0.1750) 1/41
+[1A[1M  0.1762     760.8 (0.1762) 2/41
+[1A[1M  0.1774     760.4 (0.1774) 3/41
+[1A[1M  0.1786     760.0 (0.1786) 4/41
+[1A[1M  0.1797     759.5 (0.1797) 5/41
+[1A[1M  0.1809     759.1 (0.1809) 6/41
+[1A[1M  0.1821     758.7 (0.1821) 7/41
+[1A[1M  0.1833     758.2 (0.1833) 8/41
+[1A[1M  0.1845     757.8 (0.1845) 9/41
+[1A[1M  0.1856     757.4 (0.1856) 10/41
+[1A[1M  0.1868     756.9 (0.1868) 11/41
+[1A[1M  0.1880     756.6 (0.1880) 12/41
+[1A[1M  0.1892     756.3 (0.1892) 13/41
+[1A[1M  0.1904     756.0 (0.1904) 14/41
+[1A[1M  0.1916     755.7 (0.1916) 15/41
+[1A[1M  0.1928     755.5 (0.1928) 16/41
+[1A[1M  0.1940     755.3 (0.1940) 17/41
+[1A[1M  0.1952     755.1 (0.1952) 18/41
+[1A[1M  0.1964     755.0 (0.1964) 19/41
+[1A[1M  0.1976     754.9 (0.1976) 20/41
+[1A[1M  0.1988     754.9 (0.1988) 21/41
+[1A[1M  0.2000     754.9 (0.1988) 22/41
+[1A[1M  0.2012     755.0 (0.1988) 23/41
+[1A[1M  0.2024     755.2 (0.1988) 24/41
+[1A[1M  0.2036     755.4 (0.1988) 25/41
+[1A[1M  0.2048     755.7 (0.1988) 26/41
+[1A[1M  0.2060     756.0 (0.1988) 27/41
+[1A[1M  0.2072     756.3 (0.1988) 28/41
+[1A[1M  0.2084     756.7 (0.1988) 29/41
+[1A[1M  0.2096     757.1 (0.1988) 30/41
+[1A[1M  0.2108     757.5 (0.1988) 31/41
+[1A[1M  0.2120     757.8 (0.1988) 32/41
+[1A[1M  0.2132     758.3 (0.1988) 33/41
+[1A[1M  0.2144     758.6 (0.1988) 34/41
+[1A[1M  0.2157     759.0 (0.1988) 35/41
+[1A[1M  0.2169     759.3 (0.1988) 36/41
+[1A[1M  0.2181     759.6 (0.1988) 37/41
+[1A[1M  0.2193     759.8 (0.1988) 38/41
+[1A[1M  0.2205     760.1 (0.1988) 39/41
+[1A[1M  0.2218     760.4 (0.1988) 40/41
+[1A[1M  0.2230     760.6 (0.1988) 41/41
+First iteration: z_best=0.1988
+
+[1A[1M- 0.1970     754.9 (0.1970) 1/21
+[1A[1M- 0.1972     754.9 (0.1972) 2/21
+[1A[1M- 0.1974     754.9 (0.1974) 3/21
+[1A[1M- 0.1976     754.9 (0.1976) 4/21
+[1A[1M- 0.1978     754.9 (0.1978) 5/21
+[1A[1M- 0.1980     754.9 (0.1980) 6/21
+[1A[1M- 0.1982     754.9 (0.1982) 7/21
+[1A[1M- 0.1984     754.9 (0.1984) 8/21
+[1A[1M- 0.1986     754.9 (0.1986) 9/21
+[1A[1M- 0.1988     754.9 (0.1988) 10/21
+[1A[1M- 0.1990     754.9 (0.1990) 11/21
+[1A[1M- 0.1992     754.9 (0.1990) 12/21
+[1A[1M- 0.1994     754.9 (0.1990) 13/21
+[1A[1M- 0.1996     754.9 (0.1990) 14/21
+[1A[1M- 0.1998     754.9 (0.1990) 15/21
+[1A[1M- 0.2000     754.9 (0.1990) 16/21
+[1A[1M- 0.2002     754.9 (0.1990) 17/21
+[1A[1M- 0.2004     754.9 (0.1990) 18/21
+[1A[1M- 0.2006     754.9 (0.1990) 19/21
+[1A[1M- 0.2008     754.9 (0.1990) 20/21
+[1A[1M- 0.2010     755.0 (0.1990) 21/21
+drizzle!!
+Problem in fitting.run_all
+Finished 17713 23.5109
+17716 23.6542
+Finished 17716 23.6542
+17726 24.1865
+Finished 17726 24.1865
+17727 22.6648
+Finished 17727 22.6648
+17736 24.6866
+Finished 17736 24.6866
+17744 24.3675
+Finished 17744 24.3675
+17747 22.5235
+Finished 17747 22.5235
+17757 24.4451
+Finished 17757 24.4451
+17759 24.2647
+Finished 17759 24.2647
+17762 24.3892
+Finished 17762 24.3892
+17764 24.9549
+Finished 17764 24.9549
+17767 24.6325
+Finished 17767 24.6325
+17768 23.2323
+Finished 17768 23.2323
+17777 24.6148
+Finished 17777 24.6148
+17786 22.9405
+beams:  [<grizli.model.BeamCutout object at 0x7f4af2f1e208>, <grizli.model.BeamCutout object at 0x7f4af2f1e2b0>, <grizli.model.BeamCutout object at 0x7f4af2eb2be0>]
+GS4_17786.beams.fits
+Traceback (most recent call last):
+  File "grizli_reduction.py", line 590, in <module>
+    templ0 = templ0, templ1 = templ1, ez = ez, ep = ep, pline = pline,) for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/joblib/parallel.py", line 920, in __call__
+    while self.dispatch_one_batch(iterator):
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/joblib/parallel.py", line 759, in dispatch_one_batch
+    self._dispatch(tasks)
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/joblib/parallel.py", line 716, in _dispatch
+    job = self._backend.apply_async(batch, callback=cb)
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/joblib/_parallel_backends.py", line 182, in apply_async
+    result = ImmediateResult(func)
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/joblib/_parallel_backends.py", line 549, in __init__
+    self.results = batch()
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/joblib/parallel.py", line 225, in __call__
+    for func, args, kwargs in self.items]
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/joblib/parallel.py", line 225, in <listcomp>
+    for func, args, kwargs in self.items]
+  File "grizli_reduction.py", line 392, in grizli_fit
+    get_uncertainties=2)
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/grizli-0.8.0_36_g3491a27-py3.5-linux-x86_64.egg/grizli/fitting.py", line 1833, in template_at_z
+    include_photometry=include_photometry)
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/grizli-0.8.0_36_g3491a27-py3.5-linux-x86_64.egg/grizli/fitting.py", line 1378, in xfit_at_z
+    coeffs_i, residuals, rank, s = np.linalg.lstsq(AxT, data, rcond=None)
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/numpy/linalg/linalg.py", line 2125, in lstsq
+    _assertNoEmpty2d(a, b)  # TODO: relax this constraint
+  File "/home/rsimons/miniconda2/envs/grizli-dev/lib/python3.5/site-packages/numpy/linalg/linalg.py", line 229, in _assertNoEmpty2d
+    raise LinAlgError("Arrays cannot be empty")
+numpy.linalg.linalg.LinAlgError: Arrays cannot be empty
