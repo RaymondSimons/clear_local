@@ -553,6 +553,12 @@ if __name__ == '__main__':
                                              fsps_templates=True)
 
 
+        templ0, templ1 = grizli.utils.load_quasar_templates(uv_line_complex = False, broad_fwhm = 2800, 
+                                                    narrow_fwhm = 1000, fixed_narrow_lines = True)
+
+
+
+
         p = Pointing(field = field, ref_filter = 'F105W')
 
 
