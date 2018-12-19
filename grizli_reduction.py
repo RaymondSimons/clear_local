@@ -368,10 +368,8 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         
 def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None):
     if fit_bool == False: return
-    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
-
-    #if id in to_fits:
-    #if id == id_choose:
+    #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
+    if id == id_choose:
         print(id, mag)
 
         beams = grp.get_beams(id, size=80)
@@ -381,7 +379,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
 
         if beams != []:
             print("beams: ", beams)
-            mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
+            mb = grizli.multifit.MultiBeam(beams, fcontam=0.2, group_name=field)
             mb.write_master_fits()
             
             # Fit polynomial model for initial continuum subtraction
@@ -443,20 +441,20 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         t0=templ0, 
                         t1=templ1, 
                         fwhm=1200, 
-                        zr=[0.0, 12.0],         #Gabe suggests zr = [0, 12.0]
+                        zr=[0.0, 12.0],         #suggests zr = [0, 12.0] if we want to extend redshift fit
                         dz=[0.004, 0.0005], 
                         fitter='nnls',
                         group_name=field,
-                        fit_stacks=False,       #Gabe suggests fit_stacks = False, fit to FLT files
+                        fit_stacks=False,       #suggests fit_stacks = False, fit to FLT files
                         prior=None, 
-                        fcontam=0.2,            #Gabe suggests fcontam = 0.2
+                        fcontam=0.2,            #suggests fcontam = 0.2
                         pline=pline, 
-                        mask_sn_limit=np.inf,   #Gabe suggests mask_sn_limit = np.inf
+                        mask_sn_limit=np.inf,   #suggests mask_sn_limit = np.inf
                         fit_only_beams=True,    #suggests fit_only_beams = True
                         fit_beams=False,        #suggests fit_beams = False
                         root=field,
                         fit_trace_shift=False, 
-                        bad_pa_threshold = np.inf, # Gabe suggests bad_pa_threshold = np.inf
+                        bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
                         phot=phot, 
                         verbose=True, 
                         scale_photometry=phot_scale_order, 
