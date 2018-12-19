@@ -379,7 +379,9 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
 
         if beams != []:
             print("beams: ", beams)
+            #mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
             mb = grizli.multifit.MultiBeam(beams, fcontam=0.2, group_name=field)
+
             mb.write_master_fits()
             
             # Fit polynomial model for initial continuum subtraction
