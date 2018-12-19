@@ -541,8 +541,8 @@ if __name__ == '__main__':
 
 
     if fit_bool:
-        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', 
-                     path_is_env=False)
+        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
+
         templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
                                              full_line_list=None,  continuum_list=None, 
                                              fsps_templates=True)
@@ -553,8 +553,8 @@ if __name__ == '__main__':
                                              fsps_templates=True)
 
 
-        templ0, templ1 = grizli.utils.load_quasar_templates(uv_line_complex = False, broad_fwhm = 2800, 
-                                                    narrow_fwhm = 1000, fixed_narrow_lines = True)
+        #templ0, templ1 = grizli.utils.load_quasar_templates(uv_line_complex = False, broad_fwhm = 2800, 
+        #                                                    narrow_fwhm = 1000, fixed_narrow_lines = True)
 
 
 
