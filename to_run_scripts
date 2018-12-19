@@ -7,7 +7,10 @@ nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -mag_
 
 
 
-nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -n_jobs 8 -- > /user/rsimons/grizli_extractions/outfiles/GN2_fit_new.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -n_jobs 8 --fit_min_id 20894 > /user/rsimons/grizli_extractions/outfiles/GN2_fit_new.out  &
+
+
+python grizli_reduction.py --do_fit --field GN2 -n_jobs 8 --id_fit 8855
 
 
 
