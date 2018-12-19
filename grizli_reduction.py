@@ -366,7 +366,11 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
     
     return grp
         
-def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, fcontam = 0.0):
+def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
+               id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
+               scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
+               fcontam = 0.2):
+
     if fit_bool == False: return
     #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
     if id == id_choose:
