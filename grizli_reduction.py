@@ -21,35 +21,9 @@ import eazy
 from joblib import Parallel, delayed
 from glob import glob
 from mastquery import query, overlaps
-'''
-try: 
-    from mastquery import query, overlaps
-    use_mquery = True
-except: 
-    from hsaquery import query, overlaps
-    use_mquery = False
-'''
-
-
 
 plt.ioff()
 plt.close('all')
-### A lot of this is working from the Grizli cookbook described here:
-### https://github.com/gbrammer/grizli/blob/master/examples/WFC3IR_Reduction.ipynb
-### and Katie and Iva's grizli pipeline for CLEAR
-
-
-'''
-overlapping_fields = {'GN1':['GDN20'],
-                      'GN2':['GDN8', 'GDN12', 'GDN21', 'GDN25'],
-                      'GN3':['GDN18', 'GDN19', 'GDN22', 'GDN23'],
-                      'GN4':['GDN21', 'GDN22', 'GDN25', 'GDN26'],
-                      'GN5':['GDN17', 'GDN18'],
-                      'GN7':['GDN3', 'GDN6', 'GDN7', 'GDN11'],
-                      'ERSPRIME':['WFC3-ERSII-G01']}
-'''
-
-
 
 def parse():
     '''
