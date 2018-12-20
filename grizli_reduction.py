@@ -354,13 +354,13 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                fcontam = 0.2, phot_scale_order = 1, use_psf = False):
 
     if fit_bool == False: return
-    #if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
-    if id == id_choose:
+    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
+    #if id == id_choose:
         print(id, mag)
 
         beams = grp.get_beams(id, size=80)
 
-        #separate beams extraction, save, load in without needing models
+        # can separate beams extraction, save, load in without needing models
 
 
         if beams != []:
@@ -387,20 +387,11 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
 
 
             if pfit != None:
-            #    pass
             # Drizzle grisms / PAs
                 try:
-                    hdu, fig = mb.drizzle_grisms_and_PAs(
-                        size=32, 
-                        fcontam=fcontam, 
-                        flambda=False, 
-                        scale=1, 
-                        pixfrac=0.5, 
-                        kernel='point', 
-                        make_figure=True, 
-                        usewcs=False, 
-                        zfit=pfit,
-                        diff=True)
+                    hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
+                                                        pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
+                                                        zfit=pfit,diff=True)
                     # Save drizzled ("stacked") 2D trace as PNG and FITS
                     fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
                     hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
@@ -414,12 +405,8 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                     else:
                         prior = None 
 
-
-
                     tab = utils.GTable()
-                    tab['ra'] = [mb.ra]
-                    tab['dec'] = [mb.dec]
-                    tab['id'] = id
+                    tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
                     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
                     # Gabe suggests use_psf = True for point sources
