@@ -197,15 +197,17 @@ class Pointing():
             self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
 
-            self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodsn_3dhst.v4.1', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
+            self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodsn_3dhst.v4.3', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
 
 
             self.params = {}
-            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.1')
+            #self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.3')
+            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.3')
+
             self.params['Z_STEP'] = 0.002
             self.params['Z_MAX'] = 4
 
-            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodsn', 'v4.1')
+            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodsn', 'v4.3')
             self.params['PRIOR_FILTER'] = 205
 
 
@@ -213,7 +215,8 @@ class Pointing():
                                     'uds':0.0195, 'goodsn':0.0103}['goodsn']
 
             self.params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
-            self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodsn', 'v4.1')
+            #self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodsn', 'v4.3')
+            self.translate_file = PATH_TO_CATS + '/{0}_{1}.translate'.format('goodsn', 'v4.3')
 
 
 
@@ -227,15 +230,16 @@ class Pointing():
             self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
             self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits' 
 
-            self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodss_3dhst.v4.1', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
+            self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodss_3dhst.v4.3', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
 
 
             self.params = {}
-            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodss', 'v4.1')
+            #self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodss', 'v4.3')
+            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cat'.format('goodss', 'v4.3')
             self.params['Z_STEP'] = 0.002
             self.params['Z_MAX'] = 4
 
-            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodss', 'v4.1')
+            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodss', 'v4.3')
             self.params['PRIOR_FILTER'] = 205
 
 
@@ -243,7 +247,8 @@ class Pointing():
                                     'uds':0.0195, 'goodsn':0.0103}['goodsn']
 
             self.params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
-            self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodss', 'v4.1')
+            #self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodss', 'v4.3')
+            self.translate_file = PATH_TO_CATS + '/{0}_{1}.translate'.format('goodss', 'v4.3')
 
 
 
@@ -423,25 +428,25 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         t0=templ0, 
                         t1=templ1, 
                         fwhm=1200, 
-                        zr=[0., 0.5],      #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
+                        zr=[0., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
                         dz=[0.004, 0.0005], 
                         fitter='nnls',
                         group_name=field,
-                        fit_stacks=False,       #suggests fit_stacks = False, fit to FLT files
+                        fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
                         prior=None, 
-                        fcontam=fcontam,            #suggests fcontam = 0.2
+                        fcontam=fcontam,           #suggests fcontam = 0.2
                         pline=pline, 
-                        mask_sn_limit=np.inf,   #suggests mask_sn_limit = np.inf
-                        fit_only_beams=True,    #suggests fit_only_beams = True
-                        fit_beams=False,        #suggests fit_beams = False
+                        mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
+                        fit_only_beams=True,       #suggests fit_only_beams = True
+                        fit_beams=False,           #suggests fit_beams = False
                         root=field,
-                        fit_trace_shift=False, 
+                        fit_trace_shift=False,  
                         bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
                         phot=phot, 
                         verbose=True, 
                         scale_photometry=phot_scale_order, 
                         show_beams=True,
-                        use_psf = use_psf)
+                        use_psf = use_psf)          #default: False
 
                 except:
                     print ('Problem in fitting.run_all')
