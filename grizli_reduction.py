@@ -353,25 +353,18 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
    
 
 
-def grizli_write_beams(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
-               id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
-               scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
-               fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
-
+def grizli_write_beams(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35):
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
-        if (id_choose is not None) & (id != id_choose): 
-            return
-        else:
-            print(id, mag)
-            beams = grp.get_beams(id, size=80)
-            # can separate beams extraction, save, load in without needing models
-            if beams != []:
-                print("beams: ", beams)
-                #mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
-                mb = grizli.multifit.MultiBeam(beams, fcontam=fcontam, group_name=field)
+        print(id, mag)
+        beams = grp.get_beams(id, size=80)
+        # can separate beams extraction, save, load in without needing models
+        if beams != []:
+            print("beams: ", beams)
+            #mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
+            mb = grizli.multifit.MultiBeam(beams, fcontam=fcontam, group_name=field)
 
-                mb.write_master_fits()
-                
+            mb.write_master_fits()
+            
 
 
 
@@ -627,11 +620,8 @@ if __name__ == '__main__':
 
         if beams_bool == True: 
             Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
-                                                                                 mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
-                                                                                 id_choose = id_fit, use_pz_prior = False, use_phot = True, 
-                                                                                 scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
-                                                                                 ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
-                                                                                 for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+                                                                                   mag_lim = mag_lim, mag_lim_lower = mag_max)
+                                                                                   for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
          
         if fit_bool == True: 
