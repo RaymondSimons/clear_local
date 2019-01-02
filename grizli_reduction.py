@@ -506,6 +506,10 @@ if __name__ == '__main__':
     PATH_TO_HOME        = args['PATH_TO_HOME']
     HOME_PATH           = PATH_TO_HOME + '/' + field
 
+
+    if fit_without_phot == True: phot_scale_order = -1
+
+
     print('\n\n\n\n###################\nParameters\n\n')
     print('field            ', field            )
     print('mag_lim          ', mag_lim          )
@@ -527,7 +531,6 @@ if __name__ == '__main__':
     print('PATH_TO_HOME     ', PATH_TO_HOME     )
     print('HOME_PATH        ', HOME_PATH        )
     print('\n\n\n\n####################\n\n\n\n')
-
 
 
 
