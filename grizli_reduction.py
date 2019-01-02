@@ -353,7 +353,7 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
    
 
 
-def grizli_write_beams(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35):
+def grizli_beams(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35):
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
         print(id, mag)
         beams = grp.get_beams(id, size=80)
