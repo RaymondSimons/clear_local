@@ -35,6 +35,9 @@ def parse():
     parser.add_argument('-mag_max',     '--mag_max',        type = int, default= 0, help='field to extract')
     parser.add_argument('-do_files',    '--do_files',       default = True, help = 'bool to load files')
     parser.add_argument('-do_model',    '--do_model',       default = True, help = 'bool to model spectra')
+
+    parser.add_argument('-fwp', '--fwp',    action = "store_false", default = True, help = 'fit with photometry')
+
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-new_model',   '--new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
@@ -407,9 +410,14 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                         else:
                             prior = None 
 
-                        tab = utils.GTable()
-                        tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
-                        phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
+
+
+                        if fit_with_phot == False: 
+                            phot = None
+                        else:
+                            tab = utils.GTable()
+                            tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
+                            phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
                         # Gabe suggests use_psf = True for point sources
                         out = grizli.fitting.run_all(
@@ -478,29 +486,51 @@ if __name__ == '__main__':
     #to_fits = np.array([17829])
     #id_choose = 23116
 
-    field           = args['field']
-    mag_lim         = args['mag_lim']
-    mag_max         = args['mag_max']
-    files_bool      = args['do_files']
-    retrieve_bool   = args['do_retrieve']
-    prep_bool       = args['do_prep']
-    model_bool      = args['do_model']
-    new_model       = args['new_model']
-    fit_bool        = args['do_fit']
-    use_psf         = args['use_psf']
-    fit_min_id      = args['fit_min_id']
-    n_jobs          = args['n_jobs']
-    id_fit          = args['id_fit']
-    phot_scale_order = args['pso']
-
-
-
+    field               = args['field']
+    mag_lim             = args['mag_lim']
+    mag_max             = args['mag_max']
+    files_bool          = args['do_files']
+    retrieve_bool       = args['do_retrieve']
+    prep_bool           = args['do_prep']
+    model_bool          = args['do_model']
+    new_model           = args['new_model']
+    fit_bool            = args['do_fit']
+    use_psf             = args['use_psf']
+    fit_min_id          = args['fit_min_id']
+    n_jobs              = args['n_jobs']
+    id_fit              = args['id_fit']
+    phot_scale_order    = args['pso']
+    fit_with_phot       = args['fwp']
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
     PATH_TO_CATS        = args['PATH_TO_CATS']    
     #PATH_TO_CATS = '/Users/rsimons/Desktop/clear/Catalogs'
     PATH_TO_HOME        = args['PATH_TO_HOME']
-
     HOME_PATH           = PATH_TO_HOME + '/' + field
+
+
+    print('field            ', field            )
+    print('mag_lim          ', mag_lim          )
+    print('mag_max          ', mag_max          )
+    print('files_bool       ', files_bool       )
+    print('retrieve_bool    ', retrieve_bool    )
+    print('prep_bool        ', prep_bool        )
+    print('model_bool       ', model_bool       )
+    print('new_model        ', new_model        )
+    print('fit_bool         ', fit_bool         )
+    print('use_psf          ', use_psf          )
+    print('fit_min_id       ', fit_min_id       )
+    print('n_jobs           ', n_jobs           )
+    print('id_fit           ', id_fit           )
+    print('phot_scale_order ', phot_scale_order )
+    print('fit_with_phot    ', fit_with_phot    )
+    print('PATH_TO_SCRIPTS  ', PATH_TO_SCRIPTS  )
+    print('PATH_TO_CATS     ', PATH_TO_CATS     )
+    print('PATH_TO_HOME     ', PATH_TO_HOME     )
+    print('HOME_PATH        ', HOME_PATH        )
+
+
+
+
 
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
 
