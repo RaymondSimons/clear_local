@@ -428,7 +428,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                             mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
                             fit_only_beams=True,       #suggests fit_only_beams = True
                             fit_beams=False,           #suggests fit_beams = False
-                            root=field,
+                            root=field + '_%i'%phot_scale_order,
                             fit_trace_shift=False,  
                             bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
                             phot=phot, 
