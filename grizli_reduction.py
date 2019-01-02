@@ -519,6 +519,7 @@ if __name__ == '__main__':
     new_model           = args['new_model']
     beams_model         = args['new_model']
     fit_bool            = args['do_fit']
+    beams_bool          = args['do_beams']
     use_psf             = args['use_psf']
     fit_min_id          = args['fit_min_id']
     n_jobs              = args['n_jobs']
