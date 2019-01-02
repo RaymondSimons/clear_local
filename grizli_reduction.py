@@ -41,6 +41,7 @@ def parse():
     parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-new_model',   '--new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
     parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
+    parser.add_argument('-do_beams',    '--do_beams',         action = "store_true", default = False, help = 'bool to write beams files')
     parser.add_argument('-use_psf',      '--use_psf',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
 
     parser.add_argument('-fit_min_id',  '--fit_min_id',     type = int, default = 0, help = 'ID to start on for the fit')
@@ -349,24 +350,21 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
         grp.save_full_data()
     
     return grp
-        
-def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
+   
+
+
+def grizli_write_beams(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
                id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
                scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
                fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
 
-    if fit_bool == False: return
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
         if (id_choose is not None) & (id != id_choose): 
             return
         else:
             print(id, mag)
-
             beams = grp.get_beams(id, size=80)
-
             # can separate beams extraction, save, load in without needing models
-
-
             if beams != []:
                 print("beams: ", beams)
                 #mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
@@ -374,80 +372,112 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
 
                 mb.write_master_fits()
                 
-                # Fit polynomial model for initial continuum subtraction
-                wave = np.linspace(2000,2.5e4,100)
-                poly_templates = grizli.utils.polynomial_templates(
-                    wave=wave, 
-                    order=7,
-                    line=False)
-
-                pfit = mb.template_at_z(
-                    z=0, 
-                    templates=poly_templates, 
-                    fit_background=True, 
-                    fitter='lstsq', 
-                    fwhm=1400, 
-                    get_uncertainties=2)
-
-
-                if pfit != None:
-                # Drizzle grisms / PAs
-                    try:
-                        hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
-                                                            pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
-                                                            zfit=pfit,diff=True)
-                        # Save drizzled ("stacked") 2D trace as PNG and FITS
-                        fig.savefig('{0}_{1:05d}.stack.png'.format(field + '_%i'%phot_scale_order, id))
-                        hdu.writeto('{0}_{1:05d}.stack.fits'.format(field + '_%i'%phot_scale_order, id), clobber=True)
-
-
-                        if use_pz_prior:
-                            #use redshift prior from z_phot
-                            prior = np.zeros((2, len(p.tempfilt['zgrid'])))
-                            prior[0] = p.tempfilt['zgrid']
-                            prior[1] = p.pz['chi2fit'][:,id]
-                        else:
-                            prior = None 
 
 
 
-                        if fit_without_phot == True: 
-                            phot = None
-                        else:
-                            tab = utils.GTable()
-                            tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
-                            phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
-                        # Gabe suggests use_psf = True for point sources
-                        out = grizli.fitting.run_all(
-                            id, 
-                            t0=templ0, 
-                            t1=templ1, 
-                            fwhm=1200, 
-                            zr=[0., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
-                            dz=[0.004, 0.0005], 
-                            fitter='nnls',
-                            group_name=field + '_%i'%phot_scale_order,
-                            fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
-                            prior=None, 
-                            fcontam=fcontam,           #suggests fcontam = 0.2
-                            pline=pline, 
-                            mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
-                            fit_only_beams=True,       #suggests fit_only_beams = True
-                            fit_beams=False,           #suggests fit_beams = False
-                            root=field,
-                            fit_trace_shift=False,  
-                            bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
-                            phot=phot, 
-                            verbose=True, 
-                            scale_photometry=phot_scale_order, 
-                            show_beams=True,
-                            use_psf = use_psf)          #default: False
 
-                    except:
-                        print ('Problem in fitting.run_all')
+def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
+               id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
+               scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
+               fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
 
-                        plt.close('all')
+    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
+        if (id_choose is not None) & (id != id_choose): 
+            return
+        else:
+            print(id, mag)
+
+            #beams = grp.get_beams(id, size=80)
+
+            # can separate beams extraction, save, load in without needing models
+
+
+            #if beams != []:
+
+
+            #print("beams: ", beams)
+            #mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
+            try:
+                mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
+            except:
+                return
+            #mb.write_master_fits()
+            
+            # Fit polynomial model for initial continuum subtraction
+            wave = np.linspace(2000,2.5e4,100)
+            poly_templates = grizli.utils.polynomial_templates(
+                wave=wave, 
+                order=7,
+                line=False)
+
+            pfit = mb.template_at_z(
+                z=0, 
+                templates=poly_templates, 
+                fit_background=True, 
+                fitter='lstsq', 
+                fwhm=1400, 
+                get_uncertainties=2)
+
+
+            if pfit != None:
+            # Drizzle grisms / PAs
+                try:
+                    hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
+                                                        pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
+                                                        zfit=pfit,diff=True)
+                    # Save drizzled ("stacked") 2D trace as PNG and FITS
+                    fig.savefig('{0}_{1:05d}.stack.png'.format(field + '_%i'%phot_scale_order, id))
+                    hdu.writeto('{0}_{1:05d}.stack.fits'.format(field + '_%i'%phot_scale_order, id), clobber=True)
+
+
+                    if use_pz_prior:
+                        #use redshift prior from z_phot
+                        prior = np.zeros((2, len(p.tempfilt['zgrid'])))
+                        prior[0] = p.tempfilt['zgrid']
+                        prior[1] = p.pz['chi2fit'][:,id]
+                    else:
+                        prior = None 
+
+
+
+                    if fit_without_phot == True: 
+                        phot = None
+                    else:
+                        tab = utils.GTable()
+                        tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
+                        phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
+
+                    # Gabe suggests use_psf = True for point sources
+                    out = grizli.fitting.run_all(
+                        id, 
+                        t0=templ0, 
+                        t1=templ1, 
+                        fwhm=1200, 
+                        zr=[0., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
+                        dz=[0.004, 0.0005], 
+                        fitter='nnls',
+                        group_name=field + '_%i'%phot_scale_order,
+                        fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
+                        prior=None, 
+                        fcontam=fcontam,           #suggests fcontam = 0.2
+                        pline=pline, 
+                        mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
+                        fit_only_beams=True,       #suggests fit_only_beams = True
+                        fit_beams=False,           #suggests fit_beams = False
+                        root=field,
+                        fit_trace_shift=False,  
+                        bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
+                        phot=phot, 
+                        verbose=True, 
+                        scale_photometry=phot_scale_order, 
+                        show_beams=True,
+                        use_psf = use_psf)          #default: False
+
+                except:
+                    print ('Problem in fitting.run_all')
+
+                    plt.close('all')
             print('Finished', id, mag)
 
 
@@ -494,6 +524,7 @@ if __name__ == '__main__':
     prep_bool           = args['do_prep']
     model_bool          = args['do_model']
     new_model           = args['new_model']
+    beams_model         = args['new_model']
     fit_bool            = args['do_fit']
     use_psf             = args['use_psf']
     fit_min_id          = args['fit_min_id']
@@ -520,6 +551,7 @@ if __name__ == '__main__':
     print('prep_bool        ', prep_bool        )
     print('model_bool       ', model_bool       )
     print('new_model        ', new_model        )
+    print('beams_bool       ', beams_bool       )
     print('fit_bool         ', fit_bool         )
     print('use_psf          ', use_psf          )
     print('fit_min_id       ', fit_min_id       )
@@ -591,14 +623,24 @@ if __name__ == '__main__':
                                 load_prior=True, load_products=False)
 
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
-            
+   
 
-        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
-                                                                             mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
-                                                                             id_choose = id_fit, use_pz_prior = False, use_phot = True, 
-                                                                             scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
-                                                                             ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
-                                                                             for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+        if beams_bool == True: 
+            Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
+                                                                                 mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
+                                                                                 id_choose = id_fit, use_pz_prior = False, use_phot = True, 
+                                                                                 scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
+                                                                                 ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
+                                                                                 for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+
+         
+        if fit_bool == True: 
+            Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
+                                                                                 mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
+                                                                                 id_choose = id_fit, use_pz_prior = False, use_phot = True, 
+                                                                                 scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
+                                                                                 ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
+                                                                                 for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
 
 
