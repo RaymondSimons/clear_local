@@ -507,7 +507,7 @@ if __name__ == '__main__':
     PATH_TO_HOME        = args['PATH_TO_HOME']
     HOME_PATH           = PATH_TO_HOME + '/' + field
 
-    print('\n\n\n\n####################Parameters\n\n')
+    print('\n\n\n\n###################\nParameters\n\n')
     print('field            ', field            )
     print('mag_lim          ', mag_lim          )
     print('mag_max          ', mag_max          )
