@@ -619,14 +619,14 @@ if __name__ == '__main__':
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
    
 
-        if beams_bool == True: 
+        if beams_bool:
             print('hi')
             Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                    mag_lim = mag_lim, mag_lim_lower = mag_max)
                                                                                    for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
          
-        if fit_bool == True: 
+        if fit_bool:
             Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                  mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                                  id_choose = id_fit, use_pz_prior = False, use_phot = True, 
