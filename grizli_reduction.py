@@ -370,7 +370,7 @@ def grizli_beams(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower =
 
 
 
-def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
+def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
                id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
                scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
                fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
@@ -622,7 +622,7 @@ if __name__ == '__main__':
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
          
-        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
+        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                              id_choose = id_fit, use_pz_prior = False, use_phot = True, 
                                                                              scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
