@@ -451,6 +451,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
             print('Finished', id, mag)
 
 
+
 def retrieve_archival_data(field, retrieve_bool = False):
     if retrieve_bool == False: return
 
