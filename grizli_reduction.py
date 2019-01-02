@@ -588,6 +588,13 @@ if __name__ == '__main__':
 
 
 
+   
+
+    if beams_bool == True:
+        print('hi')
+        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
+                                                                               mag_lim = mag_lim, mag_lim_lower = mag_max)
+                                                                               for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
     if fit_bool:
         eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
@@ -601,12 +608,8 @@ if __name__ == '__main__':
                                              full_line_list=None, continuum_list=None, 
                                              fsps_templates=True)
 
-
         #templ0, templ1 = grizli.utils.load_quasar_templates(uv_line_complex = False, broad_fwhm = 2800, 
         #                                                    narrow_fwhm = 1000, fixed_narrow_lines = True)
-
-
-
 
         p = Pointing(field = field, ref_filter = 'F105W')
 
@@ -617,22 +620,14 @@ if __name__ == '__main__':
                                 load_prior=True, load_products=False)
 
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
-   
-
-        if beams_bool:
-            print('hi')
-            Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
-                                                                                   mag_lim = mag_lim, mag_lim_lower = mag_max)
-                                                                                   for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
          
-        if fit_bool:
-            Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
-                                                                                 mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
-                                                                                 id_choose = id_fit, use_pz_prior = False, use_phot = True, 
-                                                                                 scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
-                                                                                 ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
-                                                                                 for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
+                                                                             mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
+                                                                             id_choose = id_fit, use_pz_prior = False, use_phot = True, 
+                                                                             scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
+                                                                             ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
+                                                                             for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
 
 
