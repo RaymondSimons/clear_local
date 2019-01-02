@@ -420,7 +420,7 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                             zr=[0., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
                             dz=[0.004, 0.0005], 
                             fitter='nnls',
-                            group_name=field '_%i_'%phot_scale_order,
+                            group_name=field + '_%i_'%phot_scale_order,
                             fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
                             prior=None, 
                             fcontam=fcontam,           #suggests fcontam = 0.2
