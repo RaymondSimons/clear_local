@@ -395,8 +395,8 @@ def grizli_fit(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 3
                                                             pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
                                                             zfit=pfit,diff=True)
                         # Save drizzled ("stacked") 2D trace as PNG and FITS
-                        fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
-                        hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
+                        fig.savefig('{0}_{1:05d}.stack.png'.format(field + '_%i_'%phot_scale_order, id))
+                        hdu.writeto('{0}_{1:05d}.stack.fits'.format(field + '_%i_'%phot_scale_order, id), clobber=True)
 
 
                         if use_pz_prior:
