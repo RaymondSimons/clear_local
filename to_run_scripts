@@ -36,6 +36,7 @@ nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -n_jobs 8 -mag_li
 
 
 
+
 #How to copy files based on timestamp to directory
 find . -type f -newermt '19 dec 2018 22:00:00' -exec cp {} new_ps1/ \;
 
