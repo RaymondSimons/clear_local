@@ -46,7 +46,7 @@ def parse():
 
     parser.add_argument('-fit_min_id',  '--fit_min_id',     type = int, default = 0, help = 'ID to start on for the fit')
     parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = 2, help = 'number of threads')
-    parser.add_argument('-id_fit',      '--id_fit',         type = int, default = None, help = 'ID to fit')
+    parser.add_argument('-id_choose',   '--id_choose',         type = int, default = None, help = 'ID to fit')
     parser.add_argument('-pso',         '--pso',         type = int, default = 1, help = 'phot_scale_order')
 
 
@@ -489,7 +489,7 @@ if __name__ == '__main__':
     use_psf             = args['use_psf']
     fit_min_id          = args['fit_min_id']
     n_jobs              = args['n_jobs']
-    id_fit              = args['id_fit']
+    id_choose           = args['id_choose']
     phot_scale_order    = args['pso']
     fit_without_phot    = args['fwop']
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
