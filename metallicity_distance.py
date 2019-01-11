@@ -5,17 +5,9 @@ import matplotlib.pyplot as plt
 from astropy.io import fits
 import matplotlib as mpl
 mpl.rcParams['text.usetex'] = True
-#import drizzlepac
-#import grizli
 import glob
-#from grizli import utils
 import importlib
-#from grizli.prep import process_direct_grism_visit
-#from hsaquery import query, overlaps
-#from grizli.pipeline import auto_script
-#from grizli.multifit import GroupFLT, MultiBeam, get_redshift_fit_defaults
 import os
-#from grizli.pipeline import photoz
 from astropy.table import Table
 from matplotlib.colors import LogNorm
 from IPython.display import Image
@@ -29,18 +21,43 @@ from astropy.convolution import Gaussian2DKernel, convolve_fft
 from scipy.interpolate import interp1d
 
 
-
+seed(1)
 def OH(O3, O2, eO3, eO2):
-    if O3 < 0: return nan, nan
-    if O2 < 0: return nan, nan
+    #if O3 < 0: return nan, nan
+    #if O2 < 0: return nan, nan
+    O32_arr = zeros(O3.shape) * nan
+    O32_e_arr = zeros(O3.shape) * nan
 
-    O3_arr = np.random.normal(O3, eO3, 10000)
-    O2_arr = np.random.normal(O2, eO2, 10000)
-    OH_z_arr = 8.54 - 0.59 * O3_arr/O2_arr
-    e_an = 0.59*((O3/O2) * sqrt((eO3/O3)**2. + (eO2/O2)**2.))
+    OH_arr = zeros(O3.shape) * nan
+    OH_e_arr = zeros(O3.shape) * nan
+
+    for i in arange(O3.shape[0]):
+        for j in arange(O3.shape[1]):
+            O2_arr_temp = np.random.normal(O2[i,j], eO2[i,j], 200)
+            O3_arr_temp = np.random.normal(O3[i,j], eO3[i,j], 200)
+
+            O32_arr[i,j] = np.nanmean(O3_arr_temp/O2_arr_temp)
+            O32_e_arr[i,j] = np.nanstd(O3_arr_temp/O2_arr_temp)
+
+            OH_arr[i,j]   = np.nanmean(8.54 - 0.59 * O3_arr_temp/O2_arr_temp)
+            OH_e_arr[i,j] = np.nanstd(8.54 - 0.59 * O3_arr_temp/O2_arr_temp)
+
+
+
+    #O3_arr = np.random.normal(O3, eO3, 10000)
+    #O2_arr = np.random.normal(O2, eO2, 10000)
+    #OH_z_arr = 8.54 - 0.59 * O3/O2
+    #e_an = 0.59*((O3/O2) * sqrt((eO3/O3)**2. + (eO2/O2)**2.))
+
+    #OH_arr[O3/eO3 < 1.] = nan
+    #OH_arr[O2/eO2 < 1.] = nan
+    #e_an[O3 < 0.] = nan
+    #e_an[O2 < 0.] = nan
+
+
     #print ('%.2f  %.2f  %.2f  %.2f   %.2f  %.2f' %(np.mean(OH_z_arr), np.std(OH_z_arr), O3, O2, eO3, eO2))
     
-    return np.mean(OH_z_arr), e_an#np.std(OH_z_arr)
+    return O32_arr, O32_e_arr, OH_arr, OH_e_arr#np.std(OH_z_arr)
 
 def load_galfit(field, id_fit,  ra, dec, gfit_cat_gdn, gfit_cat_gds):
     if 'GN' in field: gfit_cat = gfit_cat_gdn
@@ -74,19 +91,10 @@ plt.close('all')
 lines = ['OII', 'OIII']#, 'Hb']
 
 
-mnx = 15
-mxx = 65
 
 
-min_a = 0.001
-max_a = (mxx - mnx)/2. - 4.
 
-da = 1.
-
-a_arr = np.arange(min_a, max_a, da)
-
-
-fluxes_direct = zeros((len(a_arr), 5))*nan
+#fluxes_direct = zeros((len(a_arr), 5))*nan
 
 
 
@@ -102,29 +110,17 @@ objects = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/z_r_sample.cat', dtype = 
 for o, obj in enumerate(objects):
     field = obj[0]
     id_fit = int(obj[1])
-    #PATH_TO_PREP = '/Users/rsimons/Desktop/clear/for_hackday/Prep'
-    #PATH_TO_PREP = glob('/Volumes/wd/clear/%s/*/Prep'%field)[0]
     PATH_TO_PREP = glob('/Volumes/gdrive/clear/grizli_extractions/' + field + '/j*/Prep')[0]
-
     fits_file = PATH_TO_PREP + '/{0}_{1:05d}.full.fits'.format(field, id_fit)
     fit_hdu = fits.open(fits_file)
     pix_scale = abs(fit_hdu['DSCI'].header['CD1_1'] * 60. * 60.)
-
-
-
     ra, dec = fit_hdu[0].header['ra'], fit_hdu[0].header['dec']
-
     tht, ab = load_galfit(field, id_fit, ra, dec, gfit_cat_gdn, gfit_cat_gds)
-    #tht = obj[2]
-    #ab  = obj[3]
     tht_rad = tht*pi/180.
-    #tht_rad = 320
-
-
     if (tht != -999) & (~isnan(tht)):
         with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/%s_%i.pdf'%(field, id_fit)) as pdf:
             print('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/%s_%i.pdf'%(field, id_fit))
-            fig, axes = plt.subplots(len(lines)+1,2, figsize = (14, 5 * (len(lines)+1)))
+            fig, axes = plt.subplots(len(lines)+2,2, figsize = (14, 5 * (len(lines)+2)))
 
             for ax in axes[:,0]:
                 ax.set_xticklabels([])
@@ -135,13 +131,17 @@ for o, obj in enumerate(objects):
 
 
 
-            direct_im = fit_hdu['DSCI'].data[mnx:mxx, mnx:mxx]
-            seg_im = fit_hdu['SEG'].data[mnx:mxx, mnx:mxx]
+            direct_im = fit_hdu['DSCI'].data
+            seg_im = fit_hdu['SEG'].data
             direct_im_temp = direct_im.copy()
             direct_im_temp[seg_im != seg_im[int(shape(seg_im)[0]/2.), int(shape(seg_im)[0]/2.)]] = nan
             x1, y1 = photutils.centroid_2dg(direct_im_temp)
-            #x1+= 20
-            #y1+= 20
+
+            x = (np.arange(0, shape(direct_im)[0]) - x1 + 0.5) * pix_scale
+            y = (np.arange(0, shape(direct_im)[1]) - y1 + 0.5) * pix_scale
+
+            xv, yv = np.meshgrid(x, y)
+            r = sqrt(xv**2. + yv**2.)
 
             axes[0,0].plot(x1, y1, marker = 'x', color = 'Grey', markersize = 30)
 
@@ -154,12 +154,109 @@ for o, obj in enumerate(objects):
 
 
             derr = 1./np.sqrt(fit_hdu['DWHT'].data)
-
-
-
             axes[0,0].imshow(direct_im)
-            axes[0,0].set_title('direct')
+            axes[0,0].set_title('direct', fontsize = 40)
+            axes[0,0].set_xlim(x1 - 1.25/pix_scale, x1 + 1.25/pix_scale, )                
+            axes[0,0].set_ylim(y1 - 1.25/pix_scale, y1 + 1.25/pix_scale, )                
 
+
+            for l, line in enumerate(lines):
+                line_im = fit_hdu['LINE', line].data
+                line_err = 1/np.sqrt(fit_hdu['LINEWHT', line].data)
+                kern = Gaussian2DKernel(0.5)
+                line_im = convolve_fft(line_im, kern)
+                line_im[~isfinite(line_err)] = 0.
+                line_err[~isfinite(line_err)] = 0.
+
+                srt_rvl = np.sort(line_im.ravel())
+                vmn = srt_rvl[int(0.1*len(srt_rvl))]
+                vmx = srt_rvl[int(0.9*len(srt_rvl))]
+                
+                axes[l+1, 0].plot(x1, y1, marker = 'x', color = 'Grey', markersize = 30)
+
+                axes[l+1, 0].imshow(line_im, vmin = vmn, vmax = vmx)
+
+
+                axes[l+1,1].set_xlabel('r along major axis (arcsec)', fontsize = 20)
+                axes[l+1,1].set_ylabel('surface brightness', fontsize = 20)
+
+                gd = where(line_im !=0.)
+
+                axes[l+1, 1].errorbar(r[gd].ravel(), line_im[gd].ravel(), yerr = line_err[gd].ravel(),  color = 'black', fmt = 'o', ms = 4, linewidth = 0.4, alpha = 0.3)
+                axes[l+1, 1].annotate(line, (0.75, 0.85), xycoords = 'axes fraction', color = 'black', fontweight = 'bold', fontsize = 40)
+                axes[l+1,1].set_xlim(0,2)
+                axes[l+1,1].set_ylim(-0.2,0.5)
+                axes[l+1,0].set_xlim(x1 - 1.25/pix_scale, x1 + 1.25/pix_scale, )                
+                axes[l+1,0].set_ylim(y1 - 1.25/pix_scale, y1 + 1.25/pix_scale, )                
+
+
+            O2_im = fit_hdu['LINE', 'OII'].data
+            O3_im = fit_hdu['LINE', 'OIII'].data
+            O2_err = 1/np.sqrt(fit_hdu['LINEWHT', 'OII'].data)
+            O3_err = 1/np.sqrt(fit_hdu['LINEWHT', 'OIII'].data)
+            kern = Gaussian2DKernel(0.5)
+            line_im[~isfinite(line_err)] = 0.
+            line_err[~isfinite(line_err)] = 0.
+
+
+            gd = where((O2_im!=0) & (O3_im!=0))
+
+
+            O32_arr, O32_e_arr, OH_z, eOH_z = OH(O3 = O3_im, O2 = O2_im, eO3 = O3_err, eO2 = O3_err)
+
+
+            axes[len(lines)+1, 1].errorbar(r[gd].ravel(), O32_arr[gd].ravel(), yerr = O32_e_arr[gd].ravel(),  color = 'black', fmt = 'o', ms = 4, linewidth = 0.4, alpha = 0.3)
+            axes[len(lines)+1, 1].annotate('OIII/OII', (0.58, 0.85), xycoords = 'axes fraction', color = 'black', fontweight = 'bold', fontsize = 40)
+            axes[len(lines)+1, 1].set_xlim(0,2)
+            axes[len(lines)+1, 1].set_ylim(-5,5.)
+            #axes[len(lines)+1, 0].set_xlim(x1 - 1.25/pix_scale, x1 + 1.25/pix_scale, )                
+            #axes[len(lines)+1, 0].set_ylim(y1 - 1.25/pix_scale, y1 + 1.25/pix_scale, )                
+
+
+
+
+
+            pdf.savefig()
+
+
+
+            fig3, ax3 = plt.subplots(1,1, figsize = (15, 6))
+
+            gd = where((O3_im !=0.) & (O2_im !=0.) & (eOH_z > 1.))
+            ax3.errorbar(r[gd].ravel(), OH_z[gd].ravel(), yerr = eOH_z[gd].ravel(),color = 'grey', fmt = 'o', alpha = 0.2, markersize = 4, linewidth = 0.05,zorder = 2)
+
+
+            gd = where((O3_im != 0.) & (O2_im != 0.) & (O2_im/O2_err > 1.) & (O3_im/O3_err > 1.) & (eOH_z < 1.))
+            ax3.errorbar(r[gd].ravel(), OH_z[gd].ravel(), yerr = eOH_z[gd].ravel(),color = 'blue', fmt = 'o', alpha = 1.0, markersize = 8, linewidth = 1.,zorder = 2)
+
+
+            ax3.set_ylim(3., 12)
+
+            ax3.set_ylabel(r'12 + log(O/H)', fontsize = 20)
+            ax3.set_xlabel(r'Semi-major axis radius [arcsec]', fontsize = 20)
+            kpc_ticks = np.arange(0, 25, 5)
+
+            z = fit_hdu[1].header['Z50']
+            arc_ticks = np.array([cosmo.arcsec_per_kpc_proper(z).value * k for k in kpc_ticks])
+            ax3_t = ax3.twiny()
+
+
+            ax3_t.set_xticks(arc_ticks)
+            for ax in [ax3, ax3_t]:
+                ax.set_xlim(0,2)
+
+
+
+            ax3_t.set_xticklabels(np.array(['%i'%k for k in kpc_ticks]))
+            ax3_t.set_xlabel('Semi-major axis radius [kpc]', fontsize = 20, labelpad = 12)
+
+            pdf.savefig()
+
+
+
+
+
+            '''
             for a, a_in in enumerate(a_arr):
                 a_out = a_in + da
                 ea = photutils.EllipticalAnnulus(positions = (x1, y1), a_in = a_in, a_out = a_out, b_out = a_out/ab, theta = tht_rad)
@@ -174,7 +271,7 @@ for o, obj in enumerate(objects):
                 axes[0,1].set_xlabel('r along major axis (arcsec)', fontsize = 20)
 
                 ea.plot(ax = axes[0, 0], alpha = 0.2)
-
+            
             #axes[0, 1].errorbar(fluxes[0, :, 0], fluxes[0, :, 3], xerr = da/2. * pix_scale, yerr = fluxes[0, :, 4], ls = 'none', color = 'black', marker = 'o', ms = 10)
             
             csf = concatenate(([0], cumsum(fluxes_direct[:, 3])))
@@ -326,10 +423,7 @@ for o, obj in enumerate(objects):
                 except:
                     print ('bad fit')
 
-
-
-            pdf.savefig()
-
+            '''
 
 
 
