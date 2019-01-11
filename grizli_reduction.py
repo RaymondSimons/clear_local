@@ -516,7 +516,7 @@ if __name__ == '__main__':
     print('use_psf          ', use_psf          )
     print('fit_min_id       ', fit_min_id       )
     print('n_jobs           ', n_jobs           )
-    print('id_fit           ', id_fit           )
+    print('id_choose           ', id_choose           )
     print('phot_scale_order ', phot_scale_order )
     print('fit_without_phot ', fit_without_phot )
     print('PATH_TO_SCRIPTS  ', PATH_TO_SCRIPTS  )
@@ -590,7 +590,7 @@ if __name__ == '__main__':
          
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
-                                                                             id_choose = id_fit, use_pz_prior = False, use_phot = True, 
+                                                                             id_choose = id_choose, use_pz_prior = False, use_phot = True, 
                                                                              scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
                                                                              ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
                                                                              for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
