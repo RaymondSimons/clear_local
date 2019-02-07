@@ -190,6 +190,7 @@ class Pointing():
     only need to change them here.
 
     """
+    
     def __init__(self, field, ref_filter):
         if 'N' in field.upper():
             self.pad = 200
