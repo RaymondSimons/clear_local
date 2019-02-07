@@ -199,6 +199,7 @@ class Pointing():
             
             self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
             self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
+
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
 
             #self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodsn_3dhst.v4.4', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
@@ -374,7 +375,8 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
             return
         else:
             print(id, mag)
-            mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
+            try: mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
+            except: return
             #try: mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
             #except:
             #    print ('no beam')
@@ -388,7 +390,6 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
             print (pfit)
             if pfit != None:
                 try:
-                    print ('hi')
                     hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
                                                         pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
                                                         zfit=pfit,diff=True)
@@ -563,7 +564,7 @@ if __name__ == '__main__':
 
    
 
-    if beams_bool == True:
+    if beams_bool:
         print ('making beams')
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                mag_lim = mag_lim, mag_lim_lower = mag_max)
