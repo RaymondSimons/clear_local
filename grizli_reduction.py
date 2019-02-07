@@ -200,17 +200,17 @@ class Pointing():
             self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
 
-            #self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodsn_3dhst.v4.3', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
+            self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodsn_3dhst.v4.4', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
 
 
             self.params = {}
             #self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.3')
-            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.3')
+            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.4')
 
             self.params['Z_STEP'] = 0.002
             self.params['Z_MAX'] = 4
 
-            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodsn', 'v4.3')
+            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodsn', 'v4.4')
             self.params['PRIOR_FILTER'] = 205
 
 
@@ -219,7 +219,7 @@ class Pointing():
 
             self.params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
             #self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodsn', 'v4.3')
-            self.translate_file = PATH_TO_CATS + '/{0}_{1}.translate'.format('goodsn', 'v4.3')
+            self.translate_file = PATH_TO_CATS + '/{0}_{1}.translate'.format('goodsn', 'v4.4')
 
 
 
@@ -233,16 +233,16 @@ class Pointing():
             self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
             self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits' 
 
-            #self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodss_3dhst.v4.3', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
+            self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodss_3dhst.v4.3', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
 
 
             self.params = {}
             #self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodss', 'v4.3')
-            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cat'.format('goodss', 'v4.3')
+            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cat'.format('goodss', 'v4.4')
             self.params['Z_STEP'] = 0.002
             self.params['Z_MAX'] = 4
 
-            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodss', 'v4.3')
+            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodss', 'v4.4')
             self.params['PRIOR_FILTER'] = 205
 
 
@@ -251,7 +251,7 @@ class Pointing():
 
             self.params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
             #self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodss', 'v4.3')
-            self.translate_file = PATH_TO_CATS + '/{0}_{1}.translate'.format('goodss', 'v4.3')
+            self.translate_file = PATH_TO_CATS + '/{0}_{1}.translate'.format('goodss', 'v4.4')
 
 
 
@@ -557,7 +557,6 @@ if __name__ == '__main__':
    
 
     if beams_bool == True:
-        print('hi')
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                mag_lim = mag_lim, mag_lim_lower = mag_max)
                                                                                for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
