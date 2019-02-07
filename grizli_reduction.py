@@ -383,6 +383,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
 
             if pfit != None:
                 try:
+                    print ('hi')
                     hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
                                                         pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
                                                         zfit=pfit,diff=True)
