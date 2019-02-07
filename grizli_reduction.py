@@ -374,13 +374,17 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
             return
         else:
             print(id, mag)
-            mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
-            #except: return
-            # Fit polynomial model for initial continuum subtraction
+            try: mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
+            except:
+                print ('no beam')
+                return
+
             wave = np.linspace(2000,2.5e4,100)
             poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
             pfit = mb.template_at_z(z=0, templates=poly_templates, fit_background=True, fitter='lstsq', fwhm=1400, get_uncertainties=2)
-
+            #except: return
+            # Fit polynomial model for initial continuum subtraction
+            print (pfit)
             if pfit != None:
                 try:
                     print ('hi')
