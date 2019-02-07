@@ -564,6 +564,7 @@ if __name__ == '__main__':
    
 
     if beams_bool == True:
+        print ('making beams')
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                mag_lim = mag_lim, mag_lim_lower = mag_max)
                                                                                for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
