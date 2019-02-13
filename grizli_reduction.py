@@ -369,8 +369,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
                fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
-        if (id_choose is not None) & (id != id_choose): 
-            print ('not the right id')
+        if (id_choose is not None) & (id != id_choose):             
             return
         else:
             print(id, mag)
