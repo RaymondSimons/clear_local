@@ -370,11 +370,14 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
         if (id_choose is not None) & (id != id_choose): 
+            print ('not the right id')
             return
         else:
             print(id, mag)
             try: mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
-            except: return
+            except:
+                print ('something bad happened')
+                return
             #try: mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
             #except:
             #    print ('no beam')
