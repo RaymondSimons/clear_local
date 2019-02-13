@@ -48,8 +48,6 @@ def parse():
     parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = 2, help = 'number of threads')
     parser.add_argument('-id_choose',   '--id_choose',         type = int, default = None, help = 'ID to fit')
     parser.add_argument('-pso',         '--pso',         type = int, default = 1, help = 'phot_scale_order')
-
-
     parser.add_argument('-PATH_TO_RAW'    , '--PATH_TO_RAW'    , default = '/user/rsimons/grizli_extractions/RAW', help = 'path to RAW directory')
     parser.add_argument('-PATH_TO_PREP'   , '--PATH_TO_PREP'   , default = '/user/rsimons/grizli_extractions/PREP', help = 'path to prep directory')
     parser.add_argument('-PATH_TO_SCRIPTS', '--PATH_TO_SCRIPTS', default = '/home/rsimons/git/clear_local', help = 'path to scripts directory')
@@ -408,8 +406,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
 
 
 
-                    if fit_without_phot == True: 
-                        phot = None
+                    if fit_without_phot == True:  phot = None
                     else:
                         tab = utils.GTable()
                         tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
