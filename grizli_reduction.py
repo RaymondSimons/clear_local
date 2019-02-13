@@ -532,13 +532,13 @@ if __name__ == '__main__':
 
 
 
-    '''
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
 
     print ('Changing to %s'%HOME_PATH)
     os.chdir(HOME_PATH)
 
 
+    '''
 
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
 
