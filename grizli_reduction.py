@@ -538,7 +538,6 @@ if __name__ == '__main__':
     os.chdir(HOME_PATH)
 
 
-    '''
 
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
 
@@ -549,6 +548,7 @@ if __name__ == '__main__':
 
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
+    '''
 
     visits, filters = grizli_getfiles(run = files_bool)
 
