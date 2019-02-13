@@ -548,7 +548,7 @@ if __name__ == '__main__':
 
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
-    '''
+
 
     visits, filters = grizli_getfiles(run = files_bool)
 
@@ -556,10 +556,6 @@ if __name__ == '__main__':
 
     grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                        run = model_bool, new_model = new_model, mag_lim = mag_lim)
-    '''
-
-
-
    
 
     if beams_bool:
