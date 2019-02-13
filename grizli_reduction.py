@@ -532,7 +532,7 @@ if __name__ == '__main__':
 
 
 
-
+    '''
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
 
     print ('Changing to %s'%HOME_PATH)
@@ -566,7 +566,7 @@ if __name__ == '__main__':
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                mag_lim = mag_lim, mag_lim_lower = mag_max)
                                                                                for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
-
+    '''
     if fit_bool:
         eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
 
