@@ -568,7 +568,7 @@ if __name__ == '__main__':
                                                                                for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
     if fit_bool:
-        #eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
+        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
 
         templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
                                              full_line_list=None,  continuum_list=None, 
