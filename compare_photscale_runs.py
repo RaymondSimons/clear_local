@@ -42,8 +42,8 @@ for i, di in enumerate(ids):
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
 
-    axes3[0].plot(scale_orders, (bics - bics[1])/(bics), '-', marker = 'o', alpha = 0.3, linewidth = 1.)
-    axes3[1].plot(scale_orders, (chi - chi[1])/chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
+    axes3[0].plot(scale_orders, (array(bics) - bics[1])/array(bics), '-', marker = 'o', alpha = 0.3, linewidth = 1.)
+    axes3[1].plot(scale_orders, (array(chi )- chi[1])/array(chi), '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
 
 
