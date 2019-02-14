@@ -59,7 +59,7 @@ for ax in axes2.ravel():
     ax.set_xlabel('z(0)', fontsize = 20)
 
 for ax in axes:
-    ax.set_xlabel('Order of Photometric Scaling')
+    ax.set_xlabel('Spectrum/Photometry Scaling Order')
     ax.set_xticks([-1, 0, 1, 2, 3])
     ax.set_xticklabels(['-1', '0', '+1', '+2', '+3'])
 
