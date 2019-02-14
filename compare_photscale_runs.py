@@ -4,6 +4,7 @@ import astropy
 from astropy.io import fits
 import matplotlib.pyplot as plt
 from numpy import *
+import numpy as np
 plt.close('all')
 plt.ioff()
 
