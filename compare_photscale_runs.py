@@ -68,14 +68,12 @@ for ax in axes2.ravel():
 
 for ax in axes:
     ax.set_xlim(-1.1,3.3)
-    ax.set_ylim(-1.1,3.3)    
     ax.set_xlabel('Spectrum/Photometry Scaling Order')
     ax.set_xticks([-1, 0, 1, 2, 3])
     ax.set_xticklabels(['-1', '0', '+1', '+2', '+3'])
 
 for ax in axes3:
     ax.set_xlim(-1.1,3.3)
-    ax.set_ylim(-1.1,3.3)    
     ax.set_xlabel('Spectrum/Photometry Scaling Order')
     ax.set_xticks([-1, 0, 1, 2, 3])
     ax.set_xticklabels(['-1', '0', '+1', '+2', '+3'])
