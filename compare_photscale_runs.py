@@ -35,7 +35,7 @@ for i, di in enumerate(ids):
             bics.append(nan)
             chi.append(nan)
             zs.append([nan, nan, nan])
-    if di == 15178:
+    if di == '15178':
         print (bics, chi)
 
     axes[0].plot(scale_orders, bics, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
