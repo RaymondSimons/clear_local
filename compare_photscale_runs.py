@@ -25,12 +25,16 @@ for i, di in enumerate(ids):
     chi = []
     zs = []
     for s, scale_order in enumerate(scale_orders):
-        fit_d = fits.open(full_dir + '/GN2_%i_%s.full.fits'%(scale_order, di))
-        bic = fit_d[1].header['BIC_TEMP']
-        bics.append(bic)
-        chi.append(fit_d[1].header['CHIMIN']/fit_d[1].header['DOF'])
-        zs.append([fit_d[1].header['Z50'], fit_d[1].header['Z16'], fit_d[1].header['Z84']])
-
+        try:
+            fit_d = fits.open(full_dir + '/GN2_%i_%s.full.fits'%(scale_order, di))
+            bic = fit_d[1].header['BIC_TEMP']
+            bics.append(bic)
+            chi.append(fit_d[1].header['CHIMIN']/fit_d[1].header['DOF'])
+            zs.append([fit_d[1].header['Z50'], fit_d[1].header['Z16'], fit_d[1].header['Z84']])
+        except:
+            bics.append(nan)
+            chi.append(nan)
+            zs.append(nan)
     axes[0].plot(scale_orders, bics, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
