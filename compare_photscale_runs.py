@@ -52,8 +52,6 @@ axes2[1, 0].set_ylabel('z(+1)')
 axes2[1, 1].set_ylabel('z(+2)')
 axes2[1, 1].set_ylabel('z(+3)')
 
-axes2[0, 1].axis('off')
-
 
 for ax in axes2.ravel():
     ax.set_xlim(0,3)
@@ -66,6 +64,7 @@ for ax in axes:
     ax.set_xticklabels(['-1', '0', '+1', '+2', '+3'])
 
 axes[0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = first-order scaling, +3 = second-order scaling', (0.5, 0.9), ha = 'center', xycoords = 'figure fraction')    
+axes2[0,0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = first-order scaling, +3 = second-order scaling', (0.5, 0.9), ha = 'center', xycoords = 'figure fraction')    
 axes[0].set_ylabel('Bayesian Information Criterion, Template Fit \n("BIC_TEMP")')
 axes[1].set_ylabel('Minimium reduced chi$^2$, Template Fit \n("CHIMIN"/"DOF")')
 axes[1].set_ylim(0.5,100)
