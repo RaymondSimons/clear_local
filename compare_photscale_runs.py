@@ -42,8 +42,8 @@ for i, di in enumerate(ids):
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
 
-    axes3[0].plot(scale_orders, (array(bics) - bics[1])/array(bics), 'k.', marker = 'o', alpha = 0.3, linewidth = 1.)
-    axes3[1].plot(scale_orders, (array(chi )- chi[1])/array(chi), 'k.', alpha = 0.3, linewidth = 1.)
+    axes3[0].plot(scale_orders, (array(bics) - bics[1])/array(bics[1]), 'k.', marker = 'o', alpha = 0.3, linewidth = 1.)
+    axes3[1].plot(scale_orders, (array(chi )- chi[1])/array(chi[1]), 'k.', alpha = 0.3, linewidth = 1.)
 
 
 
@@ -80,7 +80,14 @@ for ax in axes3:
 axes[0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = first-order scaling, +3 = second-order scaling', (0.5, 0.9), ha = 'center', xycoords = 'figure fraction')    
 axes2[0,0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = first-order scaling, +3 = second-order scaling', (0.5, 0.9), ha = 'center', xycoords = 'figure fraction')    
 axes[0].set_ylabel('Bayesian Information Criterion, Template Fit \n("BIC_TEMP")')
-axes[1].set_ylabel('Minimium reduced chi$^2$, Template Fit \n("CHIMIN"/"DOF")')
+axes[1].set_ylabel(r'Minimium reduced $\chi^2$, Template Fit \n("CHIMIN"/"DOF")')
+
+
+axes3[0].set_ylabel('(BIC - BIC[0])/BIC[0]')
+axes3[0].set_ylabel(r'($\chi^2$ - $\chi^2$[0])/$\chi^2$[0]')
+
+
+
 
 
 axes[1].set_ylim(0.5,100)
