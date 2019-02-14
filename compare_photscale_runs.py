@@ -43,8 +43,8 @@ for i, di in enumerate(ids):
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
 
-    axes3[0].plot(scale_orders + np.random.normal(0, 0.05, len(scale_orders)), (array(bics) - bics[1])/array(bics[1]), 'k.', marker = 'o', alpha = 0.3, linewidth = 1.)
-    axes3[1].plot(scale_orders + np.random.normal(0, 0.05, len(scale_orders)), (array(chi )- chi[1])/array(chi[1]), 'k.', marker = 'o', alpha = 0.3, linewidth = 1.)
+    axes3[0].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), (array(bics) - bics[1])/array(bics[1]), 'k.', marker = 'o', markersize = 5, alpha = 0.3, linewidth = 1.)
+    axes3[1].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), (array(chi )- chi[1])/array(chi[1]), 'k.', marker = 'o', markersize = 5,alpha = 0.3, linewidth = 1.)
 
 
 
@@ -67,15 +67,15 @@ for ax in axes2.ravel():
     ax.set_xlabel('z(0)', fontsize = 20)
 
 for ax in axes:
-    ax.set_xlim(0,3.3)
-    ax.set_ylim(0,3.3)    
+    ax.set_xlim(-1.1,3.3)
+    ax.set_ylim(-1.1,3.3)    
     ax.set_xlabel('Spectrum/Photometry Scaling Order')
     ax.set_xticks([-1, 0, 1, 2, 3])
     ax.set_xticklabels(['-1', '0', '+1', '+2', '+3'])
 
 for ax in axes3:
-    ax.set_xlim(0,3.3)
-    ax.set_ylim(0,3.3)    
+    ax.set_xlim(-1.1,3.3)
+    ax.set_ylim(-1.1,3.3)    
     ax.set_xlabel('Spectrum/Photometry Scaling Order')
     ax.set_xticks([-1, 0, 1, 2, 3])
     ax.set_xticklabels(['-1', '0', '+1', '+2', '+3'])
