@@ -3,6 +3,7 @@ from glob import glob
 import astropy
 from astropy.io import fits
 import matplotlib.pyplot as plt
+from numpy import *
 plt.close('all')
 plt.ioff()
 
