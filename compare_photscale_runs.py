@@ -41,14 +41,16 @@ for i, di in enumerate(ids):
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
     axes2[0, 0].plot(zs[1][0], zs[0][0],'k.', alpha = 0.3, linewidth = 1.)
-    axes2[1, 0].plot(zs[1][0], zs[2][0],'k.', alpha = 0.3, linewidth = 1.)
-    axes2[1, 1].plot(zs[1][0], zs[3][0],'k.', alpha = 0.3, linewidth = 1.)
+    axes2[0, 1].plot(zs[1][0], zs[2][0],'k.', alpha = 0.3, linewidth = 1.)
+    axes2[1, 0].plot(zs[1][0], zs[3][0],'k.', alpha = 0.3, linewidth = 1.)
+    axes2[1, 1].plot(zs[1][0], zs[4][0],'k.', alpha = 0.3, linewidth = 1.)
 
 
 
 axes2[0, 0].set_ylabel('z(-1)')
 axes2[1, 0].set_ylabel('z(+1)')
 axes2[1, 1].set_ylabel('z(+2)')
+axes2[1, 1].set_ylabel('z(+3)')
 
 axes2[0, 1].axis('off')
 
