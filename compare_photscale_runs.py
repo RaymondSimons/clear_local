@@ -83,8 +83,8 @@ axes[0].set_ylabel('Bayesian Information Criterion, Template Fit \n("BIC_TEMP")'
 axes[1].set_ylabel(r'Minimium reduced $\chi^2$, Template Fit \n("CHIMIN"/"DOF")')
 
 
-axes3[0].set_ylabel('(BIC - BIC[0])/BIC[0]')
-axes3[0].set_ylabel(r'($\chi^2$ - $\chi^2$[0])/$\chi^2$[0]')
+axes3[0].set_ylabel(r'$\Delta$BIC/BIC[0]')
+axes3[0].set_ylabel(r'$\Delta\chi^2$/$\chi^2$[0]')
 
 
 axes3[0].axhline(y = 0, color = 'grey', linestyle = '--')
