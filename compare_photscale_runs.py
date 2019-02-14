@@ -70,5 +70,5 @@ axes[1].set_ylim(0.5,100)
 axes[1].set_yscale('log')
 
 
-fig.savefig('/home/rsimons/figures/bics_scale_phot.png', dpi = 300)
-fig2.savefig('/home/rsimons/figures/z_comparison.png', dpi = 300)
+fig.savefig('/home/rsimons/git/clear_local/bics_scale_phot.png', dpi = 300)
+fig2.savefig('/home/rsimons/git/clear_local/z_comparison.png', dpi = 300)
