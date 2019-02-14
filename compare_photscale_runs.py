@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from numpy import *
 plt.close('all')
 plt.ioff()
-plt.rcParams['text.usetex'] = True
+
 
 full_dir = '/Volumes/gdrive/clear/scalephot_testing'
 full_dir = '/user/rsimons/grizli_extractions/GN2/j123652p6215/Prep'
