@@ -24,7 +24,7 @@ for fl in fls[0:1]:
     data = fits.open(fl)
 
     di = int(fl.split('/')[-1].split('_')[-1].strip('full.fits'))
-    mb = MultiBeam('{0}_{1:05d}.beams.fits'.format(field, di), group_name=field)
+    mb = MultiBeam(prep_dir + '/{0}_{1:05d}.beams.fits'.format(field, di), group_name=field)
 
     BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
     templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
