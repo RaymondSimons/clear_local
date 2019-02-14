@@ -16,7 +16,7 @@ ids = [fl.split('/')[-1].split('_')[-1].strip('full.fits') for fl in fls]
 
 
 
-scale_orders = arange(-1,3)
+scale_orders = arange(-1,4)
 fig, axes = plt.subplots(1,2, figsize = (14, 5))
 fig2, axes2 = plt.subplots(2,2, figsize = (10, 10))
 
@@ -35,6 +35,8 @@ for i, di in enumerate(ids):
             bics.append(nan)
             chi.append(nan)
             zs.append([nan, nan, nan])
+    if di == 15178:
+        print (bics, chi)
 
     axes[0].plot(scale_orders, bics, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
