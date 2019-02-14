@@ -125,6 +125,10 @@ for fl in fls[0:1]:
     mb = MultiBeam(prep_dir + '/{0}_{1:05d}.beams.fits'.format(field, di), group_name=field)
 
     BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
+    templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                         full_line_list=None,  continuum_list=None, 
+                                         fsps_templates=True)
+
     templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
                                      full_line_list=None, continuum_list=None, 
                                      fsps_templates=True)
