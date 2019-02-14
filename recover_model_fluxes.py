@@ -117,7 +117,7 @@ os.chdir(prep_dir)
 out_dir = '/user/rsimons/grizli_extractions/Catalogs/bestfit_model_fluxes/%s/'%field
 PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
 
-for fl in fls[0:1]:
+for fl in fls[1:2]:
     out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'fluxes.cat')
     data = fits.open(fl)
 
@@ -150,15 +150,40 @@ for fl in fls[0:1]:
     tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
-    mb.set_photometry(phot)
+    mb.set_photometry(**phot)
 
 
     A_phot = mb._interpolate_photometry(z=tfit['z'], templates=templ1)
-    A_model = A_phot.T.dot(data[1].data['coeffs'])
+    A_model = A_phot.T.dot(tfit['coeffs'])
 
     print (out_file)
 
 os.chdir('/home/rsimons/git/clear_local')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
