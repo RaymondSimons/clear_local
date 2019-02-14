@@ -117,7 +117,7 @@ os.chdir(prep_dir)
 out_dir = '/user/rsimons/grizli_extractions/Catalogs/bestfit_model_fluxes/%s/'%field
 PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
 
-for fl in fls[1:2]:
+for fl in fls[2:3]:
     out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'fluxes.cat')
     data = fits.open(fl)
 
@@ -147,14 +147,18 @@ for fl in fls[1:2]:
     ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
     tab = utils.GTable()
-    tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
+    tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], di
     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
     mb.set_photometry(**phot)
 
 
+    #A_phot = mb._interpolate_photometry(z=data[1].data['zgrid'], templates=data[1])
+    #A_model = A_phot.T.dot(data[1].data['coeffs'])
+
     A_phot = mb._interpolate_photometry(z=tfit['z'], templates=templ1)
     A_model = A_phot.T.dot(tfit['coeffs'])
+
 
     print (out_file)
 
