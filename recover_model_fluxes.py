@@ -161,6 +161,8 @@ for fl in fls[2:3]:
 
 
     print (out_file)
+    mb.photom_pivot
+    A_model
 
 os.chdir('/home/rsimons/git/clear_local')
 
