@@ -23,7 +23,7 @@ for fl in fls[0:1]:
     out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'fluxes.cat')
     data = fits.open(fl)
 
-    di = int(fl.split('/')[-1].split('_').strip('full.fits'))
+    di = int(fl.split('/')[-1].split('_')[-1].strip('full.fits'))
     mb = MultiBeam('{0}_{1:05d}.beams.fits'.format(field, di), group_name=field)
 
     BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
