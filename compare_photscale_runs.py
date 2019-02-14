@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from numpy import *
 plt.close('all')
 plt.ioff()
-plt.rcParams['text.usetext'] = True
+plt.rcParams['text.usetex'] = True
 
 full_dir = '/Volumes/gdrive/clear/scalephot_testing'
 full_dir = '/user/rsimons/grizli_extractions/GN2/j123652p6215/Prep'
@@ -36,8 +36,6 @@ for i, di in enumerate(ids):
             bics.append(nan)
             chi.append(nan)
             zs.append([nan, nan, nan])
-    if di == '15178':
-        print (bics, chi)
 
     axes[0].plot(scale_orders, bics, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
