@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from numpy import *
 plt.close('all')
 plt.ioff()
+plt.rcParams['text.usetext'] = True
 
 full_dir = '/Volumes/gdrive/clear/scalephot_testing'
 full_dir = '/user/rsimons/grizli_extractions/GN2/j123652p6215/Prep'
@@ -63,7 +64,7 @@ for ax in axes:
     ax.set_xlabel('Order of Photometric Scaling')
     ax.set_xticks([-1, 0, 1, 2, 3])
 
-axes[0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = lambda-tilted scaling', (0.3, 0.9), xycoords = 'figure fraction')    
+axes[0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = first-order scaling, +3 = second-order scaling', (0.5, 0.9), ha = 'center', xycoords = 'figure fraction')    
 axes[0].set_ylabel('Bayesian Information Criterion, Template Fit \n("BIC_TEMP")')
 axes[1].set_ylabel('Minimium reduced chi$^2$, Template Fit \n("CHIMIN"/"DOF")')
 axes[1].set_ylim(0.5,100)
