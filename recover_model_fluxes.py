@@ -112,6 +112,8 @@ prep_dir = '/user/rsimons/grizli_extractions/%s/j123652p6215/Prep'%field
 fls = glob(prep_dir + '/%s_*_*.full.fits'%field)
 
 
+os.chdir(prep_dir)
+
 out_dir = '/user/rsimons/grizli_extractions/Catalogs/bestfit_model_fluxes/%s/'%field
 
 
@@ -132,7 +134,8 @@ for fl in fls[0:1]:
 
     p = Pointing(field = field, ref_filter = 'F105W')
 
-
+    eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
+    
     ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
                             zeropoint_file=None, params=p.params, 
                             load_prior=True, load_products=False)
@@ -151,6 +154,7 @@ for fl in fls[0:1]:
 
     print (out_file)
 
+os.chdir('/home/rsimons/git/clear_local')
 
 
 
