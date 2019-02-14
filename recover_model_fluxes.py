@@ -33,7 +33,7 @@ for fl in fls[0:1]:
 
     tfit = mb.template_at_z(z = data[1].header['Z_MAP'], templates = templ1, fit_background=True, fitter='nnls', bounded_kwargs=BOUNDED_DEFAULTS)
 
-    A_phot = mb._interpolate_photometry(z=tfit['z'], templates=t1)
+    A_phot = mb._interpolate_photometry(z=tfit['z'], templates=templ1)
     A_model = A_phot.T.dot(data[1].data['coeffs'])
 
     print (out_file)
