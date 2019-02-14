@@ -43,8 +43,8 @@ for i, di in enumerate(ids):
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
 
-    axes3[0].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), (array(bics) - bics[1])/array(bics[1]), 'k.', marker = 'o', markersize = 5, alpha = 0.3, linewidth = 1.)
-    axes3[1].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), (array(chi )- chi[1])/array(chi[1]), 'k.', marker = 'o', markersize = 5,alpha = 0.3, linewidth = 1.)
+    axes3[0].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), 100.*(array(bics) - bics[1])/array(bics[1]), 'k.', marker = 'o', markersize = 5, alpha = 0.3, linewidth = 1.)
+    axes3[1].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), 100.*(array(chi )- chi[1])/array(chi[1]), 'k.', marker = 'o', markersize = 5,alpha = 0.3, linewidth = 1.)
 
 
 
@@ -88,8 +88,8 @@ axes[0].set_ylabel('Bayesian Information Criterion, Template Fit \n("BIC_TEMP")'
 axes[1].set_ylabel(r'Minimium reduced $\chi^2$, Template Fit \n("CHIMIN"/"DOF")')
 
 
-axes3[0].set_ylabel(r'$\Delta$BIC/BIC[0]')
-axes3[1].set_ylabel(r'$\Delta\chi_{min}^2$/$\chi_{min}^2$[0]')
+axes3[0].set_ylabel(r'$\Delta$BIC/BIC[0] (%)')
+axes3[1].set_ylabel(r'$\Delta\chi_{min}^2$/$\chi_{min}^2$[0]  (%)')
 
 
 axes3[0].axhline(y = 0, color = 'grey', linestyle = '--')
