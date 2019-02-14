@@ -56,7 +56,7 @@ axes2[1, 1].set_ylabel('z(+3)', fontsize = 20)
 for ax in axes2.ravel():
     ax.set_xlim(0,3)
     ax.set_ylim(0,3)
-    ax.set_xlabel('z(0)')
+    ax.set_xlabel('z(0)', fontsize = 20)
 
 for ax in axes:
     ax.set_xlabel('Order of Photometric Scaling')
