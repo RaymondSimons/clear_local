@@ -6,6 +6,8 @@ plt.close('all')
 plt.ioff()
 
 full_dir = '/Volumes/gdrive/clear/scalephot_testing'
+full_dir = '/user/rsimons/grizli_extractions/GN2/j123652p6215/Prep'
+
 fls = glob(full_dir + '/GN2_2_*full.fits')
 
 ids = [fl.split('/')[-1].split('_')[-1].strip('full.fits') for fl in fls]
