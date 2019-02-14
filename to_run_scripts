@@ -50,6 +50,16 @@ nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -n_jobs 4 -mag_li
 
 
 
+nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -n_jobs 4 -mag_lim 22 --fwop > /user/rsimons/grizli_extractions/outfiles/GN2_fit_phot_scaling_-1.out &
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -n_jobs 4 -mag_lim 22 --pso -1 > /user/rsimons/grizli_extractions/outfiles/GN2_fit_phot_scaling_-1.out &
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -n_jobs 4 -mag_lim 22 --pso 3 > /user/rsimons/grizli_extractions/outfiles/GN2_fit_phot_scaling_3.out &
+
+
+nohup nice -19 python grizli_reduction.py --do_beams --field GN2 -n_jobs 8 > /user/rsimons/grizli_extractions/outfiles/GN2_makebeams.out &
+
+
 
 #How to copy files based on timestamp to directory
 find . -type f -newermt '19 dec 2018 22:00:00' -exec cp {} new_ps1/ \;
