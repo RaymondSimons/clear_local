@@ -115,7 +115,7 @@ fls = glob(prep_dir + '/%s_*_*.full.fits'%field)
 os.chdir(prep_dir)
 
 out_dir = '/user/rsimons/grizli_extractions/Catalogs/bestfit_model_fluxes/%s/'%field
-
+PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
 
 for fl in fls[0:1]:
     out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'fluxes.cat')
