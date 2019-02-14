@@ -34,7 +34,8 @@ for i, di in enumerate(ids):
         except:
             bics.append(nan)
             chi.append(nan)
-            zs.append(nan)
+            zs.append([nan, nan, nan])
+
     axes[0].plot(scale_orders, bics, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
