@@ -69,5 +69,5 @@ axes[1].set_ylabel('Minimium reduced chi$^2$, Template Fit \n("CHIMIN"/"DOF")')
 axes[1].set_ylim(0.5,2.5)
 
 
-fig.savefig('bics_scale_phot.png', dpi = 300)
-fig2.savefig('z_comparison.png', dpi = 300)
+fig.savefig('/home/rsimons/bics_scale_phot.png', dpi = 300)
+fig2.savefig('/home/rsimons/z_comparison.png', dpi = 300)
