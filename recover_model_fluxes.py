@@ -12,7 +12,7 @@ from glob import glob
 
 
 field = 'GN2'
-prep_dir = '/user/rsimons/grizli_extractions/%s/*/Prep'%field
+prep_dir = '/user/rsimons/grizli_extractions/%s/j123652p6215/Prep'%field
 fls = glob(prep_dir + '/%s_*_*.full.fits'%field)
 
 
