@@ -17,8 +17,9 @@ fls = glob(prep_dir + '/%s_*_*.full.fits'%field)
 out_dir = '/user/rsimons/grizli_extractions/Catalogs/bestfit_model_fluxes/%s/'%field
 
 
-for fl in fls:
+for fl in fls[0:1]:
     out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'fluxes.cat')
+    data = fits.open(fl)
     print (out_file)
 
 
