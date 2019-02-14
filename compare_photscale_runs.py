@@ -2,6 +2,7 @@ import glob
 from glob import glob
 import astropy
 from astropy.io import fits
+import matplotlib.pyplot as plt
 plt.close('all')
 plt.ioff()
 
