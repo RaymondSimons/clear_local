@@ -43,8 +43,8 @@ for i, di in enumerate(ids):
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
 
 
-    axes3[0].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), 100.*(array(bics) - bics[1])/array(bics[1]), 'k.', marker = 'o', markersize = 5, alpha = 0.3, linewidth = 1.)
-    axes3[1].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), 100.*(array(chi )- chi[1])/array(chi[1]), 'k.', marker = 'o', markersize = 5,alpha = 0.3, linewidth = 1.)
+    axes3[0].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), (array(bics) - bics[1])/array(bics[1]), 'k.', marker = 'o', markersize = 3, alpha = 0.3, linewidth = 1.)
+    axes3[1].plot(scale_orders + np.random.normal(0, 0.1, len(scale_orders)), (array(chi )- chi[1])/array(chi[1]), 'k.', marker = 'o', markersize = 3,alpha = 0.3, linewidth = 1.)
 
 
 
@@ -99,8 +99,8 @@ axes3[1].axhline(y = 0, color = 'grey', linestyle = '--')
 axes[1].set_ylim(0.5,100)
 axes[1].set_yscale('log')
 
-axes3[0].set_ylim(-100, 100)
-axes3[1].set_ylim(-100, 100)
+axes3[0].set_ylim(-1, 1)
+axes3[1].set_ylim(-1, 1)
 
 fig.savefig('/home/rsimons/git/clear_local/bics_scale_phot.png', dpi = 300)
 fig2.savefig('/home/rsimons/git/clear_local/z_comparison.png', dpi = 300)
