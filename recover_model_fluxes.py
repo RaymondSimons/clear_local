@@ -14,11 +14,12 @@ prep_dir = '/user/rsimons/grizli_extractions/%s/*/Prep'%field
 fls = glob(prep_dir + '/%s_*_*.full.fits'%field)
 
 
-
+out_dir = '/user/rsimons/grizli_extractions/Catalogs/bestfit_model_fluxes/%s/'%field
 
 
 for fl in fls:
-    print (fl)
+    out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'fluxes.cat')
+    print (out_file)
 
 
 
