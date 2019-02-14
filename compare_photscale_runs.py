@@ -20,6 +20,7 @@ ids = [fl.split('/')[-1].split('_')[-1].strip('full.fits') for fl in fls]
 scale_orders = arange(-1,4)
 fig, axes = plt.subplots(1,2, figsize = (14, 5))
 fig2, axes2 = plt.subplots(2,2, figsize = (10, 10))
+fig3, axes3 = plt.subplots(1,2, figsize = (14, 5))
 
 for i, di in enumerate(ids):
     bics = []
@@ -39,6 +40,12 @@ for i, di in enumerate(ids):
 
     axes[0].plot(scale_orders, bics, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
     axes[1].plot(scale_orders, chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
+
+
+    axes3[0].plot(scale_orders, (bics - bics[1])/(bics), '-', marker = 'o', alpha = 0.3, linewidth = 1.)
+    axes3[1].plot(scale_orders, (chi - chi[1])/chi, '-', marker = 'o', alpha = 0.3, linewidth = 1.)
+
+
 
     axes2[0, 0].plot(zs[1][0], zs[0][0],'k.', alpha = 0.3, linewidth = 1.)
     axes2[0, 1].plot(zs[1][0], zs[2][0],'k.', alpha = 0.3, linewidth = 1.)
@@ -63,13 +70,32 @@ for ax in axes:
     ax.set_xticks([-1, 0, 1, 2, 3])
     ax.set_xticklabels(['-1', '0', '+1', '+2', '+3'])
 
+for ax in axes3:
+    ax.set_xlabel('Spectrum/Photometry Scaling Order')
+    ax.set_xticks([-1, 0, 1, 2, 3])
+    ax.set_xticklabels(['-1', '0', '+1', '+2', '+3'])
+
+
+
 axes[0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = first-order scaling, +3 = second-order scaling', (0.5, 0.9), ha = 'center', xycoords = 'figure fraction')    
 axes2[0,0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = first-order scaling, +3 = second-order scaling', (0.5, 0.9), ha = 'center', xycoords = 'figure fraction')    
 axes[0].set_ylabel('Bayesian Information Criterion, Template Fit \n("BIC_TEMP")')
 axes[1].set_ylabel('Minimium reduced chi$^2$, Template Fit \n("CHIMIN"/"DOF")')
+
+
 axes[1].set_ylim(0.5,100)
 axes[1].set_yscale('log')
 
+axes3[0].set_ylim(-2, 2)
+axes3[1].set_ylim(-2, 2)
 
 fig.savefig('/home/rsimons/git/clear_local/bics_scale_phot.png', dpi = 300)
 fig2.savefig('/home/rsimons/git/clear_local/z_comparison.png', dpi = 300)
+fig3.savefig('/home/rsimons/git/clear_local/scale_phot.png', dpi = 300)
+
+
+
+
+
+
+
