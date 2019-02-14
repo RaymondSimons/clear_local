@@ -61,7 +61,7 @@ for ax in axes2.ravel():
 
 for ax in axes:
     ax.set_xlabel('Order of Photometric Scaling')
-    ax.set_xticks([-1, 0, 1, 2])
+    ax.set_xticks([-1, 0, 1, 2, 3])
 
 axes[0].annotate('-1 = no photometry, 0 = no scaling, +1 = constant scaling, +2 = lambda-tilted scaling', (0.3, 0.9), xycoords = 'figure fraction')    
 axes[0].set_ylabel('Bayesian Information Criterion, Template Fit \n("BIC_TEMP")')
