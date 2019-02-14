@@ -47,10 +47,10 @@ for i, di in enumerate(ids):
 
 
 
-axes2[0, 0].set_ylabel('z(-1)')
-axes2[1, 0].set_ylabel('z(+1)')
-axes2[1, 1].set_ylabel('z(+2)')
-axes2[1, 1].set_ylabel('z(+3)')
+axes2[0, 0].set_ylabel('z(-1)', fontsize = 20)
+axes2[0, 1].set_ylabel('z(+1)', fontsize = 20)
+axes2[1, 0].set_ylabel('z(+2)', fontsize = 20)
+axes2[1, 1].set_ylabel('z(+3)', fontsize = 20)
 
 
 for ax in axes2.ravel():
