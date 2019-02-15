@@ -117,52 +117,66 @@ os.chdir(prep_dir)
 out_dir = '/user/rsimons/grizli_extractions/Catalogs/bestfit_model_fluxes/%s/'%field
 PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
 
+
+
+
+BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
+templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                     full_line_list=None,  continuum_list=None, 
+                                     fsps_templates=True)
+
+templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
+                                 full_line_list=None, continuum_list=None, 
+                                 fsps_templates=True)
+
+p = Pointing(field = field, ref_filter = 'F105W')
+
+eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
+
+ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
+                        zeropoint_file=None, params=p.params, 
+                        load_prior=True, load_products=False)
+
+ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
+
+
+
 for fl in fls[2:3]:
     out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'fluxes.cat')
     data = fits.open(fl)
 
     di = int(fl.split('/')[-1].split('_')[-1].strip('full.fits'))
-    mb = MultiBeam(prep_dir + '/{0}_{1:05d}.beams.fits'.format(field, di), group_name=field)
+    mb = MultiBeam(prep_dir + '/{0}_{1:05d}.beams.fits'.format(field, di), fcontam = 0.2, group_name=field, MW_EBV = 0., sys_err = 0.03, psf = False, min_mask=0.01, min_sens=0.08)
+    mb.initialize_masked_arrays()
 
-    BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
-    templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                         full_line_list=None,  continuum_list=None, 
-                                         fsps_templates=True)
 
-    templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                     full_line_list=None, continuum_list=None, 
-                                     fsps_templates=True)
+
 
     tfit = mb.template_at_z(z = data[1].header['Z_MAP'], templates = templ1, fit_background=True, fitter='nnls', bounded_kwargs=BOUNDED_DEFAULTS)
-
-
-    p = Pointing(field = field, ref_filter = 'F105W')
-
-    eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
-    
-    ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
-                            zeropoint_file=None, params=p.params, 
-                            load_prior=True, load_products=False)
-
-    ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
     tab = utils.GTable()
     tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], di
     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
-    mb.set_photometry(**phot)
+    mb.set_photometry(**phot, min_err = 0.03)
 
 
-    #A_phot = mb._interpolate_photometry(z=data[1].data['zgrid'], templates=data[1])
-    #A_model = A_phot.T.dot(data[1].data['coeffs'])
+    zg = data[1].data['zgrid']
+    c = data[1].data['coeffs']
+    temp = data['TEMPL'].data
 
-    A_phot = mb._interpolate_photometry(z=tfit['z'], templates=templ1)
-    A_model = A_phot.T.dot(tfit['coeffs'])
+
+    zg = tfit['z']
+    c = tfit['coeffs']
+    temp = tfit['templates']
+    A_phot = mb._interpolate_photometry(z=zg, templates=templ1)
+    A_model = A_phot.T.dot(c)
 
 
     print (out_file)
-    mb.photom_pivot
-    A_model
+    print (mb.photom_pivot)
+    print (mb.photom_flam)
+    print (A_model)
 
 os.chdir('/home/rsimons/git/clear_local')
 

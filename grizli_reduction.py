@@ -205,7 +205,7 @@ class Pointing():
 
             self.params = {}
             #self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.3')
-            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.4')
+            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.4', 'goodsn', 'v4.4')
 
             self.params['Z_STEP'] = 0.002
             self.params['Z_MAX'] = 4
@@ -238,7 +238,7 @@ class Pointing():
 
             self.params = {}
             #self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodss', 'v4.3')
-            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cat'.format('goodss', 'v4.4')
+            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodss', 'v4.4', 'goodss', 'v4.4')
             self.params['Z_STEP'] = 0.002
             self.params['Z_MAX'] = 4
 
@@ -417,7 +417,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                         zr=[0., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
                         dz=[0.004, 0.0005], 
                         fitter='nnls',
-                        group_name=field + '_%i'%phot_scale_order,
+                        group_name=field,# + '_%i'%phot_scale_order,
                         fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
                         prior=None, 
                         fcontam=fcontam,           #suggests fcontam = 0.2

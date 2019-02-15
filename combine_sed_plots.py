@@ -21,7 +21,7 @@ ids = unique(array([fl.strip('.sed.png')[-5:] for fl in fls]))
 
 
 
-typ = 'full'
+typ = 'sed'
 for i, di in enumerate(ids):
     imgs1 = []
     for ii in arange(-1, 4):
