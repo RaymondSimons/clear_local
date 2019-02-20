@@ -38,12 +38,21 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
     ras = []
     decs = []
     nlines = []
+    chimins = []
+    dofs = []
+    bics = []
     for f, fl in enumerate(fls):
         a = fits.open(fl)
         IDs.append(int(a[0].header['ID']))
         ras.append(a[0].header['ra'])
         decs.append(a[0].header['dec'])
         nlines.append(a[0].header['NUMLINES'])
+        chimins.append(a[1].header['CHIMIN'])
+        dofs.append(a[1].header['DOF'])
+        bics.append(a[1].header['BIC_TEMP'])
+        
+
+
         try:
             exptime[0,f] = float(a[0].header['T_G102'])
         except:
@@ -84,6 +93,7 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
     fits.Column(name='RA', format = 'D', array=array(ras)),
     fits.Column(name='DEC',format = 'D', array=array(decs)),
     fits.Column(name='nlines',format = 'J', array=array(nlines).astype('int')),
+
     fits.Column(name='z_50',format = 'D', array=zs[0,:]),
     fits.Column(name='z_02',format = 'D', array=zs[1,:]),
     fits.Column(name='z_16',format = 'D', array=zs[2,:]),
@@ -94,6 +104,9 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
         col_list.append(fits.Column(name='%s_FLUX_ERR'%line,format = 'D', array=fluxs[ll,1,:]))
     col_list.append(fits.Column(name='T_G102',format = 'D', array=exptime[0,:]))
     col_list.append(fits.Column(name='T_G141',format = 'D', array=exptime[1,:]))
+    col_list.append(fits.Column(name='BIC_TEMP',format = 'D', array=array(bics)))
+    col_list.append(fits.Column(name='CHIMIN',format = 'D', array=array(chimins)))
+    col_list.append(fits.Column(name='DOF',format = 'D', array=array(dofs)))        
 
     coldefs = fits.ColDefs(col_list)
     table_hdu = fits.BinTableHDU.from_columns(coldefs)
