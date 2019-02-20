@@ -2,7 +2,6 @@ import astropy
 from astropy.io import fits
 import grizli
 from grizli import utils
-
 from grizli.pipeline import auto_script
 from grizli.multifit import GroupFLT, MultiBeam, get_redshift_fit_defaults
 import glob
@@ -117,6 +116,10 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
     os.chdir(prep_dir)
 
     out_dir = '/user/rsimons/grizli_extractions/Catalogs/bestfit_model_fluxes/%s/'%field
+    try: os.mkdir(out_dir)
+    except: pass
+    
+
     PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
 
 
