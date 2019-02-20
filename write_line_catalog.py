@@ -6,9 +6,9 @@ import numpy as np
 from numpy import *
 
 for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
-
-    fls = glob('/user/rsimons/grizli_extractions/%s/*/Prep/*.full.fits'%field)
-    fits_name = '/user/rsimons/grizli_extractions/Catalogs/%s_lines_grizli.fits'%field
+    print field
+    fls = glob('/Users/rsimons/Dropbox/rcs_clear/grizli_v2.1/all_full/*%s*.full.fits'%field)
+    fits_name = '/Users/rsimons/Desktop/clear/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
 
     lines = ['Lya',
              'CIV',
@@ -39,7 +39,6 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
     decs = []
     nlines = []
     for f, fl in enumerate(fls):
-        print f, len(fls)
         a = fits.open(fl)
         IDs.append(int(a[0].header['ID']))
         ras.append(a[0].header['ra'])
@@ -57,7 +56,6 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
 
 
         lines_f = a[0].header['HASLINES'].split(' ')
-        print lines_f
         if (len(lines_f) > 0) & (lines_f[0] !=''):
             zs[0, f] = a[1].header['Z50']
             zs[1, f] = a[1].header['Z02']
