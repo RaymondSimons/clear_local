@@ -119,9 +119,6 @@ def per_field(field):
     except: pass
     
 
-    PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
-
-
 
 
     BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
@@ -180,6 +177,9 @@ def per_field(field):
 
 
 if __name__ == '__main__':
+    global PATH_TO_CATS
+    PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
+
     fields = np.array(['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7'])
     Parallel(n_jobs = -1, backend = 'threading')(delayed(per_field)(field = field) for field in fields)
 
