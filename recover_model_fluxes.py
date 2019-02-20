@@ -171,7 +171,7 @@ for fl in fls:
     print (mb.photom_pivot)
     print (mb.photom_flam)
     print (A_model)
-    to_save = np.array([mb.photom_pivot, mb.photom_flam,photom_eflam, A_model])
+    to_save = np.array([mb.photom_pivot, mb.photom_flam, mb.photom_eflam, A_model])
     np.save(out_file, to_save)
 
 os.chdir('/home/rsimons/git/clear_local')
