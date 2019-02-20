@@ -140,6 +140,7 @@ ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file,
 ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
 
+tab = utils.GTable()
 
 for fl in fls:
     out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'model_fluxes.npy')
@@ -148,13 +149,7 @@ for fl in fls:
     di = int(fl.split('/')[-1].split('_')[-1].strip('full.fits'))
     mb = MultiBeam(prep_dir + '/{0}_{1:05d}.beams.fits'.format(field, di), fcontam = 0.2, group_name=field, MW_EBV = 0., sys_err = 0.03, psf = False, min_mask=0.01, min_sens=0.08)
     mb.initialize_masked_arrays()
-
-
-
-
     tfit = mb.template_at_z(z = data[1].header['Z_MAP'], templates = templ0, fit_background=True, fitter='nnls', bounded_kwargs=BOUNDED_DEFAULTS)
-
-    tab = utils.GTable()
     tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], di
     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
