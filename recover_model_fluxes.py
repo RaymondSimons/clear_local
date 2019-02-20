@@ -107,7 +107,7 @@ class Pointing():
 
 
 
-field = 'GN2'
+#field = 'GN2'
 for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
 
     prep_dir = glob('/user/rsimons/grizli_extractions/%s/*/Prep'%field)[0]
@@ -170,9 +170,6 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
 
 
         print (out_file)
-        print (mb.photom_pivot)
-        print (mb.photom_flam)
-        print (A_model)
         to_save = np.array([mb.photom_pivot, mb.photom_flam, mb.photom_eflam, A_model])
         np.save(out_file, to_save)
 
