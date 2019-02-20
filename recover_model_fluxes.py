@@ -107,7 +107,7 @@ class Pointing():
 
 
 #field = 'GN2'
-def per_field(field):
+def per_field(field,templ0, BOUNDED_DEFAULTS):
     prep_dir = glob('/user/rsimons/grizli_extractions/%s/*/Prep'%field)[0]
     fls = glob(prep_dir + '/%s_*.full.fits'%field)
 
@@ -120,15 +120,6 @@ def per_field(field):
     
 
 
-
-    BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
-    templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                         full_line_list=None,  continuum_list=None, 
-                                         fsps_templates=True)
-
-    templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                     full_line_list=None, continuum_list=None, 
-                                     fsps_templates=True)
 
     p = Pointing(field = field, ref_filter = 'F105W')
 
@@ -180,8 +171,13 @@ if __name__ == '__main__':
     global PATH_TO_CATS
     PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
 
+    BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
+    templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                         full_line_list=None,  continuum_list=None, 
+                                         fsps_templates=True)
+
     fields = np.array(['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7'])
-    Parallel(n_jobs = -1, backend = 'threading')(delayed(per_field)(field = field) for field in fields)
+    Parallel(n_jobs = 4, backend = 'threading')(delayed(per_field)(field = field, templ0 = templ0, BOUNDED_DEFAULTS = BOUNDED_DEFAULTS) for field in fields)
 
 
 
