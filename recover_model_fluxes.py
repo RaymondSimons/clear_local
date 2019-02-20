@@ -141,8 +141,8 @@ ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
 
 
-for fl in fls[2:3]:
-    out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'fluxes.cat')
+for fl in fls:
+    out_file = out_dir + fl.split('/')[-1].replace('full.fits', 'model_fluxes.npy')
     data = fits.open(fl)
 
     di = int(fl.split('/')[-1].split('_')[-1].strip('full.fits'))
@@ -152,7 +152,7 @@ for fl in fls[2:3]:
 
 
 
-    tfit = mb.template_at_z(z = data[1].header['Z_MAP'], templates = templ1, fit_background=True, fitter='nnls', bounded_kwargs=BOUNDED_DEFAULTS)
+    tfit = mb.template_at_z(z = data[1].header['Z_MAP'], templates = templ0, fit_background=True, fitter='nnls', bounded_kwargs=BOUNDED_DEFAULTS)
 
     tab = utils.GTable()
     tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], di
@@ -176,6 +176,8 @@ for fl in fls[2:3]:
     print (mb.photom_pivot)
     print (mb.photom_flam)
     print (A_model)
+    to_save = np.array([mb.photom_pivot, mb.photom_flam,photom_eflam, A_model])
+    np.save(out_file, to_save)
 
 os.chdir('/home/rsimons/git/clear_local')
 
