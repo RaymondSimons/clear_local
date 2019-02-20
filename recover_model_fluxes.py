@@ -171,7 +171,7 @@ if __name__ == '__main__':
     global PATH_TO_CATS
     PATH_TO_CATS = '/user/rsimons/grizli_extractions/Catalogs'
 
-    grizli.utils.symlink_templates(force=True)
+    #grizli.utils.symlink_templates(force=True)
     BOUNDED_DEFAULTS = {'method':'bvls', 'tol':1.e-8, 'verbose':0}
     templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
                                          full_line_list=None,  continuum_list=None, 
