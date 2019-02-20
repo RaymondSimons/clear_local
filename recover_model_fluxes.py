@@ -180,7 +180,7 @@ def per_field(field):
 
 
 if __name__ == '__main__':
-    fields = array(['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7'])
+    fields = np.array(['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7'])
     Parallel(n_jobs = -1, backend = 'threading')(delayed(per_field)(field = field) for field in fields)
 
 
