@@ -109,7 +109,7 @@ class Pointing():
 
 field = 'GN2'
 prep_dir = '/user/rsimons/grizli_extractions/%s/j123652p6215/Prep'%field
-fls = glob(prep_dir + '/%s_*_*.full.fits'%field)
+fls = glob(prep_dir + '/%s_*.full.fits'%field)
 
 
 os.chdir(prep_dir)
