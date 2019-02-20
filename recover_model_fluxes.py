@@ -107,8 +107,7 @@ class Pointing():
 
 
 #field = 'GN2'
-for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
-
+def per_field(field):
     prep_dir = glob('/user/rsimons/grizli_extractions/%s/*/Prep'%field)[0]
     fls = glob(prep_dir + '/%s_*.full.fits'%field)
 
@@ -180,6 +179,9 @@ for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7
 
 
 
+if __name__ == '__main__':
+    fields = array(['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7'])
+    Parallel(n_jobs = -1, backend = 'threading')(delayed(per_field)(field = field) for field in fields)
 
 
 
