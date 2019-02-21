@@ -4,7 +4,7 @@ import glob
 from glob import glob
 
 
-cat_fls = glob('/Users/rsimons/Dropbox/grizli_v2.0_cats/*_lines_grizli.fits')
+cat_fls = glob('/Users/rsimons/Desktop/clear/Catalogs/grizli_v2.1_cats/*_lines_grizli.fits')
 
 f = open('/Users/rsimons/Dropbox/rcs_clear/z_r_sample.cat', 'w+')
 

@@ -147,14 +147,6 @@ def per_field(field,templ0, BOUNDED_DEFAULTS):
 
         mb.set_photometry(**phot, min_err = 0.03)
 
-
-        #zg = data[1].data['zgrid']
-        #c = data[1].data['coeffs']
-        #temp = data['TEMPL'].data
-
-
-        #zg = tfit['z']
-        #temp = tfit['templates']
         A_phot = mb._interpolate_photometry(z=tfit['z'], templates=tfit['templates'])
         A_model = A_phot.T.dot(tfit['coeffs'])
 
