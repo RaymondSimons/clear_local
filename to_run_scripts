@@ -106,7 +106,7 @@ nohup nice -19 python grizli_reduction.py --do_prep --new_model --do_beams --do_
 nohup nice -19 python grizli_reduction.py --do_prep --new_model --do_beams --do_fit --field GS2 -mag_lim 25 -n_jobs 4 --pso 2 > GS2_25.out  &
 
 
-nohup nice -19 python grizli_reduction.py --do_prep --new_model --do_beams --do_fit --field GS3 -mag_lim 25 -n_jobs 4 --pso 2 > GS3_25.out  &
+nohup nice -19 python grizli_reduction.py --do_prep --new_model --do_beams --do_fit --field GS3 -mag_lim 25 -n_jobs 8 --pso 2 > GS3_25.out  &
 
 nohup nice -19 python grizli_reduction.py --do_prep --new_model --do_beams --do_fit --field GS5 -mag_lim 25 -n_jobs 4 --pso 2 > GS5_25.out  &
 

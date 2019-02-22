@@ -6,25 +6,31 @@ plt.close('all')
 mpl.rcParams['text.usetex'] = True
 
 
-cat = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/catalogs/z_radius.cat',dtype = 'str')
+cat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat',dtype = 'str')
+
+
+
+
+
 ma_cat = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/catalogs/ma17.cat')
 wang_cat = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/catalogs/wang17.cat')
 wang18_cat = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/catalogs/wang18.cat')
 jones_cat = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/catalogs/jones+13.cat')
 swinbank_cat = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/catalogs/swinbank12.cat')
 
-GN1_physcat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/GN1_physcat.cat')
-GN2_physcat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/GN2_physcat.cat')
-GN3_physcat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/GN3_physcat.cat')
+#GN1_physcat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/GN1_physcat.cat')
+#GN2_physcat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/GN2_physcat.cat')
+#GN3_physcat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/GN3_physcat.cat')
 
 
+gs_fout = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodss_3dhst.v4.1.fout.FITS')
+gn_fout = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.1.fout.FITS')
 
 
-
-if False:
+if True:
     with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/z_radius.pdf') as pdf:
 
-        fig, ax = plt.subplots(1,1, figsize = (6.0, 3))
+        fig, ax = plt.subplots(1,1, figsize = (10, 5))
         ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', color = 'blue', label = 'Wang+ 17', zorder = 1)
         ax.errorbar(wang18_cat[:,3], wang18_cat[:,1], yerr =wang18_cat[:,2], fmt = 'o', color = 'darkblue', label = 'Wang+ 18', zorder = 1)
         ax.errorbar(jones_cat[:,0], jones_cat[:,1], yerr =jones_cat[:,2], fmt = 'o', color = 'skyblue', label = 'Jones+ 13', zorder = 1)
@@ -40,29 +46,43 @@ if False:
         to_pl = []
         for c in cat:
             fld = c[0]
-            if fld == 'GN1': physcat = GN1_physcat
-            if fld == 'GN2': physcat = GN2_physcat
-            if fld == 'GN3': physcat = GN3_physcat
+            di = c[1]
+            if 'N'   in fld: fout = gn_fout
+            elif 'S' in fld: fout = gs_fout
+            mstar = fout[1].data['lmass'][fout[1].data['id'] == int(di)]
 
-            #mstar = physcat[where(physcat[:,0] == int(c[1]))[0][0],1]
-            mstar = float(c[-5])
-            print mstar
-            ax.errorbar(mstar, float(c[2]), yerr = float(c[3]), fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10)
-        ax.errorbar(-99, float(c[2]), yerr = float(c[3]), fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR G102\n+ archival G141\n(2 of 10 pointings)', zorder = 10)
+            ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = 'o', color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 10)
 
-        ax.annotate(r'$z\,\sim\,1.5$', (0.05, 0.85), xycoords = 'axes fraction', fontsize = 20, fontweight = 'bold')
-        ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 15)
-        ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 15)
-        ax.legend(bbox_to_anchor=(1.0, 1.05), frameon = False)
 
-        ax.set_ylim(-0.33, 0.3)
+        ax.errorbar(-99, -1, yerr = 0.01, fmt = 'o', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, INDIV.', zorder = 10)
+
+
+
+        ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
+        ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
+        ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
+        ax.errorbar(10.75, 0.0055, xerr = 0.25, yerr = 0.008,  fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
+
+
+
+
+
+
+
+
+        ax.annotate(r'$0.7 < z < 1.5$', (0.60, 0.85), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
+        ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 20)
+        ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 20)
+        ax.legend(bbox_to_anchor=(1.0, 1.05), frameon = False, fontsize = 18)
+
+        ax.set_ylim(-0.33, 0.50)
         ax.set_xlim(8.0, 11.5)
 
         fig.subplots_adjust(bottom = 0.20, left = 0.15, right = 0.70, top = 0.95)
         pdf.savefig()
 
 
-if True:
+if False:
     with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/mstar_sfr.pdf') as pdf:
 
             fig, ax = plt.subplots(1,1, figsize = (6.5, 3))
