@@ -373,10 +373,12 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
             return
         else:
             print(id, mag)
-            try: mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
+            try: 
+                mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
             except:
                 print ('beams.fits file not read in correctly')
                 return
+            '''
             wave = np.linspace(2000,2.5e4,100)
             poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
             pfit = mb.template_at_z(z=0, templates=poly_templates, fit_background=True, fitter='lstsq', fwhm=1400, get_uncertainties=2)
@@ -438,8 +440,8 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                     print ('Problem in fitting.run_all')
 
                     plt.close('all')
+            '''
             print('Finished', id, mag)
-
 
 
 def retrieve_archival_data(field, retrieve_bool = False):
