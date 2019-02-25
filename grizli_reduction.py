@@ -375,10 +375,9 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
             #mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
             
             try: mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
-            except:
-                print ('beams.fits file not read in correctly')
-                return
-
+            except: return
+            #print ('beams.fits file not read in correctly')
+                           
 
 
             wave = np.linspace(2000,2.5e4,100)
