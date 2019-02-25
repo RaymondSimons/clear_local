@@ -369,15 +369,19 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
                fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
-        if (id_choose is not None) & (id != id_choose):             
-            return
+        if (id_choose is not None) & (id != id_choose):  return
         else:
             print(id, mag)
+            mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
+            '''
             try: 
                 mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
             except:
                 print ('beams.fits file not read in correctly')
                 return
+            '''
+
+
             '''
             wave = np.linspace(2000,2.5e4,100)
             poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
