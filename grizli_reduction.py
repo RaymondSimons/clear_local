@@ -366,13 +366,14 @@ def grizli_beams(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower =
 
 def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
                id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
-               scale_phot = True, templ0 = None, templ1 = None, ez = None, ep = None, pline = None, 
+               scale_phot = True, templ0 = None, templ1 = None, ep = None, pline = None, 
                fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
         if (id_choose is not None) & (id != id_choose):  return
         if os.path.isfile(field + '_' + '%.5i.full.fits'%id): return
         if os.path.isfile(field + '_' + '%.5i.beams.fits'%id):
-            print(id, mag)
+            print('Reading in beams.fits file for %.5i'%id)
+
             mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
             wave = np.linspace(2000,2.5e4,100)
             poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
@@ -585,7 +586,7 @@ if __name__ == '__main__':
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                              id_choose = id_choose, use_pz_prior = False, use_phot = True, 
-                                                                             scale_phot = True, templ0 = templ0, templ1 = templ1, ez = ez, 
+                                                                             scale_phot = True, templ0 = templ0, templ1 = templ1, 
                                                                              ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
                                                                              for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
