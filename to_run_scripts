@@ -114,7 +114,6 @@ nohup nice -19 python grizli_reduction.py --do_prep --new_model --do_beams --do_
 
 
 
-
 #all on science8
 nohup nice -19 python grizli_reduction.py --do_fit --field GN3 -mag_lim 25 -mag_max 22 -n_jobs 4 & > GN3_22_25.out &
 nohup nice -19 python grizli_reduction.py --do_fit --field GN4 -mag_lim 25 -mag_max 22 -n_jobs 3 & > GN4_22_25.out &
@@ -187,6 +186,35 @@ nohup nice -19 tar -czvf GN2.tar.gz GN2 > tar_GN2.out &
 nohup nice -19 tar -czvf GS1.tar.gz GS4 & > tar_.out &
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+02/25/19
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS3 -mag_lim 25 -n_jobs 2 --pso 2 --fit_min_id 38808 > GS3_25.out  &
+
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GN5 -mag_lim 25 -n_jobs 2 --pso 2 > GN5_25.out  &
+
+
+
+
+
+
+
+
+nohup nice -19 python grizli_reduction.py --do_beams --field GS4 -mag_lim 25 -n_jobs 1 --pso 2 > GS4_beams_25.out  &
 
 
 
