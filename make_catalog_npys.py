@@ -267,42 +267,6 @@ def grizli_getfiles(run = True):
     visits, filters = grizli.utils.parse_flt_files(info=info, uniquename=True)
     return visits, filters
 
-def grizli_prep(visits, field = '', run = True):
-    if run == False: return
-    else: 'Running grizli_prep...'
-
-    print ('\n\n\n\n\n\n\n')
-    product_names = np.array([visit['product'] for visit in visits])
-    filter_names = np.array([visit['product'].split('-')[-1] for visit in visits])
-    basenames = np.array([visit['product'].split('.')[0]+'.0' for visit in visits])
-    for ref_grism, ref_filter in [('G102', 'F105W'), ('G141', 'F140W')]:
-        print ('Processing %s + %s visits'%(ref_grism, ref_filter))
-        for v, visit in enumerate(visits):
-            product = product_names[v]
-            basename = basenames[v]
-            filt1 = filter_names[v]
-            #print (filt1.lower())
-            field_in_contest = basename.split('-')[0]
-
-            #print (field_in_contest)
-            #if field_in_contest.upper() == field.upper() or field_in_contest.upper() in overlapping_fields[field]:
-            if (ref_filter.lower() == filt1.lower()):
-                #found a direct image, now search for grism counterpart
-                if len(np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0]) > 0:
-                    grism_index= np.where((basenames == basename) & (filter_names == ref_grism.lower()))[0][0]
-                    #print(grism_index)
-                    p = Pointing(field = field, ref_filter = ref_filter)
-                    radec_catalog = p.radec_catalog
-                    print (field_in_contest, visits[grism_index], radec_catalog)
-                    #radec_catalog = None
-                    status = process_direct_grism_visit(direct = visit,
-                                                        grism = visits[grism_index],
-                                                        radec = radec_catalog, 
-                                                        align_mag_limits = [14, 24])
-            else:
-                print ('no grism associated with direct image %s'%basename)
-    return visits, filters
-
 def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141', run = True, new_model = False, mag_lim = 25):
     if run == False: return
 
@@ -353,118 +317,6 @@ def grizli_model(visits, field = '', ref_filter_1 = 'F105W', ref_grism_1 = 'G102
    
 
 
-def grizli_beams(grp, id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35,fcontam = 0.2):
-    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
-        print(id, mag)
-        beams = grp.get_beams(id, size=80)
-        # can separate beams extraction, save, load in without needing models
-        if beams != []:
-            print("beams: ", beams)
-            #mb = grizli.multifit.MultiBeam(beams, fcontam=1.0, group_name=field)
-            mb = grizli.multifit.MultiBeam(beams, fcontam=fcontam, group_name=field)
-            mb.write_master_fits()            
-
-def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, run = True, 
-               id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
-               scale_phot = True, templ0 = None, templ1 = None, ep = None, pline = None, 
-               fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_with_phot = True):
-    if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
-        if (id_choose is not None) & (id != id_choose):  return
-        if os.path.isfile(field + '_' + '%.5i.full.fits'%id): return
-        if os.path.isfile(field + '_' + '%.5i.beams.fits'%id):
-            print('Reading in beams.fits file for %.5i'%id)
-
-            mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
-            wave = np.linspace(2000,2.5e4,100)
-            try:
-                poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
-                pfit = mb.template_at_z(z=0, templates=poly_templates, fit_background=True, fitter='lstsq', fwhm=1400, get_uncertainties=2)
-            except: return
-            # Fit polynomial model for initial continuum subtraction
-            if pfit != None:
-                #try:
-                hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
-                                                    pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
-                                                    zfit=pfit,diff=True)
-                # Save drizzled ("stacked") 2D trace as PNG and FITS
-                fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
-                hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
-
-
-                if use_pz_prior:
-                    #use redshift prior from z_phot
-                    prior = np.zeros((2, len(p.tempfilt['zgrid'])))
-                    prior[0] = p.tempfilt['zgrid']
-                    prior[1] = p.pz['chi2fit'][:,id]
-                else:
-                    prior = None 
-
-
-
-                if fit_without_phot == True:  phot = None
-                else:
-                    tab = utils.GTable()
-                    tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
-                    phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
-
-                # Gabe suggests use_psf = True for point sources
-                out = grizli.fitting.run_all(
-                    id, 
-                    t0=templ0, 
-                    t1=templ1, 
-                    fwhm=1200, 
-                    zr=[0., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
-                    dz=[0.004, 0.0005], 
-                    fitter='nnls',
-                    group_name=field,# + '_%i'%phot_scale_order,
-                    fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
-                    prior=None, 
-                    fcontam=fcontam,           #suggests fcontam = 0.2
-                    pline=pline, 
-                    mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
-                    fit_only_beams=True,       #suggests fit_only_beams = True
-                    fit_beams=False,           #suggests fit_beams = False
-                    root=field,
-                    fit_trace_shift=False,  
-                    bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
-                    phot=phot, 
-                    verbose=True, 
-                    scale_photometry=phot_scale_order, 
-                    show_beams=True,
-                    use_psf = use_psf)          #default: False
-                '''
-                except:
-                    print ('Problem in fitting.run_all')
-
-                    plt.close('all')
-                '''
-            print('Finished', id, mag)
-
-
-def retrieve_archival_data(field, retrieve_bool = False):
-    if retrieve_bool == False: return
-
-    os.chdir(HOME_PATH)    
-    
-    parent = query.run_query(box = None, proposal_id = [14227], instruments=['WFC3/IR', 'ACS/WFC'], 
-                         filters = ['G102'], target_name = field)
-
-
-    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
-                                  filters=['G102', 'G141'], 
-                                  instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
-
-    pids = list(np.unique(tabs[0]['proposal_id']))
-
-    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, proposal_id = pids,
-                                  filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
-                                  instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
-    footprint_fits_file = glob('*footprint.fits')[0]
-    jtargname = footprint_fits_file.strip('_footprint.fits')
-
-    auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True)
-
-    print (pids)
 
 
 if __name__ == '__main__':
@@ -532,71 +384,20 @@ if __name__ == '__main__':
     print ('Changing to %s'%HOME_PATH)
     os.chdir(HOME_PATH)
 
-
-
-    extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
-
     PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
     PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
-
-
 
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
 
 
     visits, filters = grizli_getfiles(run = files_bool)
-
-    grizli_prep(visits = visits, field = field, run = prep_bool)
-
-   if new_model:
-        grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
-                           run = model_bool, new_model = new_model, mag_lim = mag_lim)    
-
-    if beams_bool:
-        print ('making beams')
-        grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
-                           run = model_bool, new_model = new_model, mag_lim = mag_lim)
-        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
-                                                                               mag_lim = mag_lim, mag_lim_lower = mag_max)
-                                                                               for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
-    if fit_bool:
-        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
-
-        templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                             full_line_list=None,  continuum_list=None, 
-                                             fsps_templates=True)
-
-        # Load individual line templates for fitting the line fluxes
-        templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                             full_line_list=None, continuum_list=None, 
-                                             fsps_templates=True)
-
-        #templ0, templ1 = grizli.utils.load_quasar_templates(uv_line_complex = False, broad_fwhm = 2800, 
-        #                                                    narrow_fwhm = 1000, fixed_narrow_lines = True)
-
-        p = Pointing(field = field, ref_filter = 'F105W')
+    grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
+                       run = model_bool, new_model = new_model, mag_lim = mag_lim)    
 
 
-        pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-        ez = eazy.photoz.PhotoZ(param_file=None, translate_file=p.translate_file, 
-                                zeropoint_file=None, params=p.params, 
-                                load_prior=True, load_products=False)
-
-        ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
-
-         
-        Parallel(n_jobs = n_jobs)(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
-                                                                             mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
-                                                                             id_choose = id_choose, use_pz_prior = False, use_phot = True, 
-                                                                             scale_phot = True, templ0 = templ0, templ1 = templ1, 
-                                                                             ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
-                                                                             for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
-
-
-
-
-
+    to_save = np.array([grp.catalog['NUMBER'], grp.catalog['MAG_AUTO']])
+    np.save('/user/rsimons/grizli_extractions/Catalogs/model_catalog/%s_catalog.npy'%field, to_save)
 
     print ('Changing to %s'%PATH_TO_SCRIPTS)
     os.chdir(PATH_TO_SCRIPTS)
