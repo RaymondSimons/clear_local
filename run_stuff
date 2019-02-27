@@ -1,0 +1,67 @@
+ls /user/rsimons/grizli_extractions/GS4/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS4/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GN5/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN5/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GS3/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS3/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GS2/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS2/*/Prep/*full.fits | wc -l
+
+
+
+
+
+
+
+ls /user/rsimons/grizli_extractions/GS1/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS1/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GS2/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS2/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GS3/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS3/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GS4/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS4/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GS5/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS5/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GN1/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN1/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GN2/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN2/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GN3/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN3/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GN4/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN4/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GN5/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN5/*/Prep/*full.fits | wc -l
+
+ls /user/rsimons/grizli_extractions/GN7/*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN7/*/Prep/*full.fits | wc -l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
