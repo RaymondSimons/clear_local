@@ -596,7 +596,7 @@ if __name__ == '__main__':
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
 
-        cat_ = np.load('/user/rsimons/grizli_extractions/Catalogs/model_catalogs/%s_catalog.npy'%field)
+        cat_ = np.load('/user/rsimons/grizli_extractions/Catalogs/model_catalogs/%s_catalog.npy'%field)[()]
         nums = cat_[0]
         mags = cat_[1]
 
