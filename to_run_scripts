@@ -202,20 +202,48 @@ nohup nice -19 tar -czvf GS1.tar.gz GS4 & > tar_.out &
 
 02/25/19
 
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS2 -mag_lim 25 -n_jobs 2 --pso 2 > GS2_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS3 -mag_lim 25 -n_jobs 2 --pso 2 > GS3_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 2 --pso 2 > GS4_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS5 -mag_lim 25 -n_jobs 2 --pso 2 > GS5_25.out  &
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 nohup nice -19 python grizli_reduction.py --do_fit --field GS3 -mag_lim 25 -n_jobs 2 --pso 2 > GS3_25.out  &
 
 nohup nice -19 python grizli_reduction.py --do_fit --field GN5 -mag_lim 25 -n_jobs 2 --pso 2 > GN5_25.out  &
 
-nohup nice -19 python grizli_reduction.py --do_fit --field GS2 -mag_lim 25 -n_jobs 2 --pso 2 > GS2_25.out  &
-
-nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1 --pso 2 > GS4_25.out  &
 
 
+nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -mag_lim 25 -n_jobs 4 --pso 2 > GN2_25.out  &
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS5 -mag_lim 25 -n_jobs 4 --pso 2 > GS5_25.out  &
 
 
 
 
-nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -mag_lim 25 -n_jobs 1 --pso 2 > GN2_25.out  &
+
 
 
 
