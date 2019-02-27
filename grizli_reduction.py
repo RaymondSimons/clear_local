@@ -43,6 +43,7 @@ def parse():
     parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
     parser.add_argument('-do_beams',    '--do_beams',         action = "store_true", default = False, help = 'bool to write beams files')
     parser.add_argument('-use_psf',      '--use_psf',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
+    parser.add_argument('-make_catalog',      '--make_catalog',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
 
     parser.add_argument('-fit_min_id',  '--fit_min_id',     type = int, default = 0, help = 'ID to start on for the fit')
     parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = 2, help = 'number of threads')
@@ -497,7 +498,7 @@ if __name__ == '__main__':
     #PATH_TO_CATS = '/Users/rsimons/Desktop/clear/Catalogs'
     PATH_TO_HOME        = args['PATH_TO_HOME']
     HOME_PATH           = PATH_TO_HOME + '/' + field
-
+    make_catalog        = args['make_catalog']
 
     if fit_without_phot == True: phot_scale_order = -1
 
@@ -560,6 +561,15 @@ if __name__ == '__main__':
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                mag_lim = mag_lim, mag_lim_lower = mag_max)
                                                                                for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+
+    if make_catalog:
+        grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
+                           run = model_bool, new_model = new_model, mag_lim = mag_lim)    
+        to_save = np.array([grp.catalog['NUMBER'], grp.catalog['MAG_AUTO']])
+        np.save('/user/rsimons/grizli_extractions/Catalogs/model_catalogs/%s_catalog.npy'%field, to_save)
+
+
+
     if fit_bool:
         eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data', path_is_env=False)
 
@@ -585,13 +595,18 @@ if __name__ == '__main__':
 
         ep = photoz.EazyPhot(ez, grizli_templates=templ0, zgrid=ez.zgrid)
 
+
+        cat_ = np.load('/user/rsimons/grizli_extractions/Catalogs/model_catalogs/%s_catalog.npy'%field)
+        nums = cat_[0]
+        mags = cat_[1]
+
          
         Parallel(n_jobs = n_jobs)(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                              id_choose = id_choose, use_pz_prior = False, use_phot = True, 
                                                                              scale_phot = True, templ0 = templ0, templ1 = templ1, 
                                                                              ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
-                                                                             for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
+                                                                             for id, mag in zip(nums, mags)
 
 
 
