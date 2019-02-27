@@ -203,6 +203,25 @@ nohup nice -19 tar -czvf GS1.tar.gz GS4 & > tar_.out &
 02/25/19
 
 
+nice -19 python grizli_reduction.py --make_catalog --field GS1
+nice -19 python grizli_reduction.py --make_catalog --field GS2
+nice -19 python grizli_reduction.py --make_catalog --field GS3
+nice -19 python grizli_reduction.py --make_catalog --field GS4
+nice -19 python grizli_reduction.py --make_catalog --field GS5
+
+
+nice -19 python grizli_reduction.py --make_catalog --field GN1
+nice -19 python grizli_reduction.py --make_catalog --field GN2
+nice -19 python grizli_reduction.py --make_catalog --field GN3
+
+
+nice -19 python grizli_reduction.py --make_catalog --field GN4
+nice -19 python grizli_reduction.py --make_catalog --field GN5
+nice -19 python grizli_reduction.py --make_catalog --field GN7
+
+
+
+
 nohup nice -19 python grizli_reduction.py --do_fit --field GS2 -mag_lim 25 -n_jobs 2 --pso 2 > GS2_25.out  &
 nohup nice -19 python grizli_reduction.py --do_fit --field GS3 -mag_lim 25 -n_jobs 2 --pso 2 > GS3_25.out  &
 nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 2 --pso 2 > GS4_25.out  &
