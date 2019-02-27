@@ -397,7 +397,7 @@ if __name__ == '__main__':
 
 
     to_save = np.array([grp.catalog['NUMBER'], grp.catalog['MAG_AUTO']])
-    np.save('/user/rsimons/grizli_extractions/Catalogs/model_catalog/%s_catalog.npy'%field, to_save)
+    np.save('/user/rsimons/grizli_extractions/Catalogs/model_catalogs/%s_catalog.npy'%field, to_save)
 
     print ('Changing to %s'%PATH_TO_SCRIPTS)
     os.chdir(PATH_TO_SCRIPTS)
