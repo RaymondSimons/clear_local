@@ -555,14 +555,14 @@ if __name__ == '__main__':
     if beams_bool:
         print ('making beams')
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
-                           run = model_bool, new_model = new_model, mag_lim = mag_lim)
+                           run = model_bool, new_model = False, mag_lim = mag_lim)
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                mag_lim = mag_lim, mag_lim_lower = mag_max)
                                                                                for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
     if make_catalog:
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
-                           run = model_bool, new_model = new_model, mag_lim = mag_lim)    
+                           run = model_bool, new_model = False, mag_lim = mag_lim)    
         to_save = np.array([grp.catalog['NUMBER'], grp.catalog['MAG_AUTO']])
         np.save('/user/rsimons/grizli_extractions/Catalogs/model_catalogs/%s_catalog.npy'%field, to_save)
 
