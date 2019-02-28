@@ -222,13 +222,19 @@ nice -19 python grizli_reduction.py --make_catalog --field GN7
 
 
 
-nohup nice -19 python grizli_reduction.py --do_fit --field GS2 -mag_lim 25 -n_jobs 2 --pso 2 > GS2_25.out  &
-nohup nice -19 python grizli_reduction.py --do_fit --field GS3 -mag_lim 25 -n_jobs 2 --pso 2 > GS3_25.out  &
-nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 2 --pso 2 > GS4_25.out  &
-nohup nice -19 python grizli_reduction.py --do_fit --field GS5 -mag_lim 25 -n_jobs 2 --pso 2 > GS5_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS2 -mag_lim 25 -n_jobs 1 --pso 2 > GS2_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS3 -mag_lim 25 -n_jobs 1 --pso 2 > GS3_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1 --pso 2 > GS4_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS5 -mag_lim 25 -n_jobs 1 --pso 2 > GS5_25.out  &
 
 
+nohup nice -19 python grizli_reduction.py --do_fit --field GN1 -mag_lim 25 -n_jobs 1 --pso 2 > GN1_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GN2 -mag_lim 25 -n_jobs 1 --pso 2 > GN2_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GN3 -mag_lim 25 -n_jobs 1 --pso 2 > GN3_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GN4 -mag_lim 25 -n_jobs 1 --pso 2 > GN4_25.out  &
 
+nohup nice -19 python grizli_reduction.py --do_fit --field GN5 -mag_lim 25 -n_jobs 1 --pso 2 > GN5_25.out  &
+nohup nice -19 python grizli_reduction.py --do_fit --field GN7 -mag_lim 25 -n_jobs 1 --pso 2 > GN7_25.out  &
 
 
 
