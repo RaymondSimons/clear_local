@@ -538,12 +538,12 @@ if __name__ == '__main__':
     PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
 
 
+    visits, filters = grizli_getfiles(run = files_bool)
 
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
 
 
-    visits, filters = grizli_getfiles(run = files_bool)
 
     grizli_prep(visits = visits, field = field, run = prep_bool)
 
