@@ -39,7 +39,7 @@ def parse():
     parser.add_argument('-fwop', '--fwop',    action = "store_true", default = False, help = 'fit with photometry')
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
-    parser.add_argument('-new_model',   '--new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
+    parser.add_argument('-do_new_model',   '--do_new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
     parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
     parser.add_argument('-do_beams',    '--do_beams',         action = "store_true", default = False, help = 'bool to write beams files')
     parser.add_argument('-use_psf',      '--use_psf',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
