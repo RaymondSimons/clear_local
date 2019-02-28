@@ -560,6 +560,7 @@ if __name__ == '__main__':
                                                                                mag_lim = mag_lim, mag_lim_lower = mag_max)
                                                                                for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
 
+
     if make_catalog:
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, new_model = False, mag_lim = mag_lim)    
