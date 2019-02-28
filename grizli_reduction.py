@@ -461,7 +461,7 @@ def retrieve_archival_data(field, retrieve_bool = False):
     footprint_fits_file = glob('*footprint.fits')[0]
     jtargname = footprint_fits_file.strip('_footprint.fits')
 
-    auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=True)
+    auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=False)
 
     print (pids)
 
