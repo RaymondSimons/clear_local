@@ -263,7 +263,7 @@ def grizli_getfiles(run = True):
     else: 'Running grizli_getfiles...'
 
     os.chdir(PATH_TO_PREP)
-    files = glob('%s/*flt.fits'%PATH_TO_RAW)
+    files = glob('%s/*RAW.fits'%PATH_TO_RAW)
     info = grizli.utils.get_flt_info(files)
     visits, filters = grizli.utils.parse_flt_files(info=info, uniquename=True)
     return visits, filters
@@ -538,11 +538,11 @@ if __name__ == '__main__':
     PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
 
 
-    visits, filters = grizli_getfiles(run = files_bool)
 
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
 
+    visits, filters = grizli_getfiles(run = files_bool)
 
 
     grizli_prep(visits = visits, field = field, run = prep_bool)
