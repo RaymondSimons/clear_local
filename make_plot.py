@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
-from astropy.io import fits
+from astropy.io import fits, ascii
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
@@ -27,6 +27,14 @@ gs_fout = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodss_3dhst.v4.1.fou
 gn_fout = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.1.fout.FITS')
 
 
+gn_cat = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.1.cats/Catalog/goodsn_3dhst.v4.1.cat.FITS')
+gs_cat = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodss_3dhst.v4.1.cats/Catalog/goodss_3dhst.v4.1.cat.FITS')
+
+
+x_gds = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/xray_GDS.txt')
+x_gdn = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/xray_GDN.txt')
+
+
 if True:
     with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/z_radius.pdf') as pdf:
 
@@ -47,17 +55,44 @@ if True:
         for c in cat:
             fld = c[0]
             di = c[1]
-            if 'N'   in fld: fout = gn_fout
-            elif 'S' in fld: fout = gs_fout
+            if 'N'   in fld: ct = gn_cat
+            elif 'S' in fld: ct = gs_cat
+
+            match_cat = where(int(di) == ct[1].data['id'])[0]
+            ra_c = ct[1].data['ra'][match_cat]
+            dec_c = ct[1].data['dec'][match_cat]
+
+            if 'N'   in fld: 
+                fout = gn_fout
+                xcat = x_gdn
+                deg_hms = SkyCoord(ra = ra_c * u.degree, dec = dec_c * u.degree)
+                dist = sqrt(((xcat['RAm'] * 60. + xcat['RAs']) - (deg_hms.ra.hms.m * 60. + deg_hms.ra.hms.s))**2. + ((xcat['DEm'] * 60. + xcat['DEs']) - (deg_hms.dec.dms.m * 60. + deg_hms.dec.dms.s))**2.)
+                tp = 'Type'
+
+            elif 'S' in fld: 
+                fout = gs_fout
+                xcat = x_gds
+                dist = sqrt((xcat['RAdeg'] - ra_c)**2. + (xcat['DEdeg'] - dec_c)**2.) * 3600.
+                tp = 'OType'
+
+
+            gd_xcat = argmin(dist)
+            
+            print fld, dist[gd_xcat]
+            if dist[gd_xcat] > 2.: xobj = 'none'
+            else: xobj = xcat[tp][gd_xcat]
+
+            if xobj == 'AGN': mrker = '*'
+            elif xobj == 'none': mrker = 's'
+            elif xobj == 'Galaxy': mrker = 'o'
+            elif xobj == 'Star': mrker = 'D'
+
             mstar = fout[1].data['lmass'][fout[1].data['id'] == int(di)]
 
-            ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = 'o', color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 10)
+            ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = mrker, color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 10)
 
 
         ax.errorbar(-99, -1, yerr = 0.01, fmt = 'o', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, INDIV.', zorder = 10)
-
-
-
         ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
         ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
         ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
