@@ -377,12 +377,17 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
             mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
             wave = np.linspace(2000,2.5e4,100)
             try:
+                print ('creating poly_templates...')
                 poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
                 pfit = mb.template_at_z(z=0, templates=poly_templates, fit_background=True, fitter='lstsq', fwhm=1400, get_uncertainties=2)
-            except: return
+            except: 
+                print ('exception in poly_templates...')
+                return
             # Fit polynomial model for initial continuum subtraction
             if pfit != None:
                 #try:
+                print ('drizzle_grisms_and_PAs...')
+
                 hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
                                                     pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
                                                     zfit=pfit,diff=True)
@@ -403,12 +408,16 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
 
                 if fit_without_phot == True:  phot = None
                 else:
+                    print ('reading phot...')
+
                     tab = utils.GTable()
                     tab['ra'], tab['dec'], tab['id']  = [mb.ra], [mb.dec], id
                     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
                 # Gabe suggests use_psf = True for point sources
                 try:
+                    print ('doing fit...')
+
                     out = grizli.fitting.run_all(
                         id, 
                         t0=templ0, 
