@@ -21,6 +21,7 @@ import eazy
 from joblib import Parallel, delayed
 from glob import glob
 from mastquery import query, overlaps
+import gc
 
 plt.ioff()
 plt.close('all')
@@ -417,7 +418,8 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                 # Gabe suggests use_psf = True for point sources
                 try:
                     print ('doing fit...')
-
+                    del(mb)
+                    gc.collect()
                     out = grizli.fitting.run_all(
                         id, 
                         t0=templ0, 
