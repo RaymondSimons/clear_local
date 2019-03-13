@@ -5,10 +5,13 @@ from glob import glob
 import numpy as np
 from numpy import *
 
-for field in ['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
+for field in ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
     print field
-    fls = glob('/Users/rsimons/Dropbox/rcs_clear/grizli_v2.1/all_full/*%s*.full.fits'%field)
+    fls = glob('/Users/rsimons/Desktop/clear/grizli_v2.1/all_full/*%s*.full.fits'%field)
     fits_name = '/Users/rsimons/Desktop/clear/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
+    #fls = glob('/Users/rsimons/Dropbox/rcs_clear/grizli_v2.1/all_full/*%s*.full.fits'%field)
+    #fits_name = '/user/rsimons/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
+
 
     lines = ['Lya',
              'CIV',
