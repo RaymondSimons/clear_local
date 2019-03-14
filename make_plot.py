@@ -1,6 +1,8 @@
 import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
 from astropy.io import fits, ascii
+from astropy.coordinates import SkyCoord 
+import astropy.units as u
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
@@ -89,10 +91,10 @@ if True:
 
             mstar = fout[1].data['lmass'][fout[1].data['id'] == int(di)]
 
-            ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = mrker, color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 10)
+            ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = mrker, color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 8)
 
 
-        ax.errorbar(-99, -1, yerr = 0.01, fmt = 'o', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, INDIV.', zorder = 10)
+        ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 130)', zorder = 10)
         ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
         ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
         ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
@@ -105,7 +107,7 @@ if True:
 
 
 
-        ax.annotate(r'$0.7 < z < 1.5$', (0.60, 0.85), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
+        ax.annotate(r'$0.7 < z < 1.5$', (0.63, 0.08), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
         ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 20)
         ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 20)
         ax.legend(bbox_to_anchor=(1.0, 1.05), frameon = False, fontsize = 18)

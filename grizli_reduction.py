@@ -615,7 +615,7 @@ if __name__ == '__main__':
                                                                              id_choose = id_choose, use_pz_prior = False, use_phot = True, 
                                                                              scale_phot = True, templ0 = templ0, templ1 = templ1, 
                                                                              ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_with_phot = fit_without_phot,) 
-                                                                             for id, mag in zip(nums.astype('int'), mags))
+                                                                             for id, mag in zip(nums.astype('int')[::-1], mags[::-1]))
 
     print ('Changing to %s'%PATH_TO_SCRIPTS)
     os.chdir(PATH_TO_SCRIPTS)
