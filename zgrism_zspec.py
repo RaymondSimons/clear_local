@@ -1,13 +1,14 @@
 import numpy as np
 import astropy
 from astropy.io import fits
+from matplotlib.ticker import NullFormatter
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
 
 
 
-fields = np.array(['GS1','GS2', 'GS3', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7'])
+fields = np.array(['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7'])
 
 gdn_zout = fits.open('/Users/rsimons/Dropbox/rcs_clear/catalogs/goodsn_3dhst.v4.4.cats/Eazy/goodsn_3dhst.v4.4.zout.fits')
 gds_zout = fits.open('/Users/rsimons/Dropbox/rcs_clear/catalogs/goodss_3dhst.v4.4.cats/Eazy/goodss_3dhst.v4.4.zout.fits')
@@ -17,13 +18,9 @@ gds_zout = fits.open('/Users/rsimons/Dropbox/rcs_clear/catalogs/goodss_3dhst.v4.
 
 fig, ax = plt.subplots(1,3, figsize = (12,4))
 
-ax[0].set_xlim(0,4)
-ax[1].set_xlim(0,4)
-ax[0].set_ylim(0,4)
-ax[1].set_ylim(-1,1)
-ax[2].set_ylim(-1,1)
 
-ax[0].plot([0,10], [0,10], '-', color = 'grey')
+ax[0].plot([0,10], [0,10], '-', color = 'blue')
+ax[1].plot([0,10], [0,0], '-', color = 'blue')
 
 fh = []
 for f, field in enumerate(fields):
@@ -67,24 +64,89 @@ for f, field in enumerate(fields):
     for i in arange(len(zg)):
         gd = where(zout[1].data['id'] == di[i])[0][0]
         if zs[gd] > 0:
-            ax[0].errorbar(zs[gd], zg[i], yerr = zg_le[i], fmt = 'o', color = 'black', markersize = 3)
-            ax[1].plot(zs[gd], zg[i] - zs[gd],'k.')
-            if False:
-                if nlines[i] == 0:
-                    ax[1].plot(zs[gd], zg[i] - zs[gd],'k.')
-                elif nlines[i] == 1:
-                    ax[1].plot(zs[gd], zg[i] - zs[gd],'g.')
-                elif nlines[i] > 1:
-                    ax[1].plot(zs[gd], zg[i] - zs[gd],'r.')
 
-            fh.append( zg[i] - zs[gd])
+            if False:
+                if nlines[i]   == 0: clr = 'black'
+                elif nlines[i] == 1: clr = 'green'
+                elif nlines[i] >  1: clr = 'red'
+            else: clr = 'black'
+
+            #ax[0].errorbar(1 + zs[gd], 1+zg[i], yerr = zg_le[i], fmt = 'o', color = clr, markersize = 2.)
+            ax[0].plot(1 + zs[gd], 1+zg[i], '.', color = clr, markersize = 3, alpha = 0.2)
+            ax[1].plot(1 + zs[gd], (zg[i] - zs[gd])/(1+zs[gd]),'.', color = clr, markersize = 3, alpha = 0.2)
+
+            fh.append(zg[i] - zs[gd])
 
 ax[2].hist(fh, bins = linspace(-1,1, 100), color = 'black', orientation = 'horizontal')
 ax[2].axis('off')
 ax[0].set_xlabel(r'z$_{spec}$', fontsize = 18)
 ax[1].set_xlabel(r'z$_{spec}$', fontsize = 18)
 ax[0].set_ylabel(r'z$_{grism}$', fontsize = 18)
-ax[1].set_ylabel(r'z$_{grism}$ - z$_{spec}$', fontsize = 18)
+ax[1].set_ylabel(r'(z$_{grism}$ - z$_{spec}$)/(1 + $z_{spec}$)', fontsize = 18)
+
+
+
+
+#Ha confused with OIII
+
+ax[1].set_xlim(1,6)
+ax[1].set_xscale('log')
+ax[1].set_ylim(-1,1)
+
+ax[2].set_ylim(-1,1)
+
+
+
+
+
+z_temp = arange(8)
+ax[0].plot(1 + z_temp, (1+z_temp)*6563./(5007), 'k--', alpha = 0.2)
+ax[0].plot(1 + z_temp, (1+z_temp)*5007./(6563), 'k--', alpha = 0.2)
+ax[0].plot(1 + z_temp, (1+z_temp)*3726./(5007), 'k--', alpha = 0.2)
+ax[0].plot(1 + z_temp, (1+z_temp)*5007./(3726), 'k--', alpha = 0.2)
+ax[0].plot(1 + z_temp, (1+z_temp)*3726./(6563), 'k--', alpha = 0.2)
+ax[0].plot(1 + z_temp, (1+z_temp)*6563./(3726), 'k--', alpha = 0.2)
+
+
+ax[0].set_xscale('log')
+ax[0].set_yscale('log')
+
+
+for a in [ax[0], ax[1]]:
+    #a.yaxis.set_major_formatter(NullFormatter())
+    a.yaxis.set_minor_formatter(NullFormatter())
+    #a.xaxis.set_major_formatter(NullFormatter())
+    a.xaxis.set_minor_formatter(NullFormatter())
+    a.set_xlim(1, 6)
+    a.set_xticks(arange(1, 7))
+    a.set_xticklabels('%i'%(i-1) for i in arange(1, 7))
+
+ax[0].set_ylim(1, 6)
+ax[0].set_yticks(arange(1, 7))
+
+
+ax[0].set_yticklabels('%i'%(i-1) for i in arange(1, 7))
+ax[0].annotate(r'H$\alpha$ : [OIII]', (0.70, 0.95) , xycoords = 'axes fraction', color = 'grey', rotation = 45)
+ax[0].annotate(r'[OII] : [OIII]',(0.51, 0.88) , xycoords = 'axes fraction', color = 'grey', rotation = 45)
+ax[0].annotate(r'H$\alpha$ : [OII]', (0.37, 0.86), xycoords = 'axes fraction', color = 'grey', rotation = 45)
+
+
+
 
 fig.tight_layout()
-fig.savefig('/Users/rsimons/Desktop/clear/figures/zspec_zgrism_v2.1.png', dpi = 300)
+fig.savefig('/Users/rsimons/Desktop/clear/figures/zspec_zgrism_v2.1_v2.png', dpi = 300)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
