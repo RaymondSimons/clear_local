@@ -7,10 +7,13 @@ from glob import glob
 gals = ['VELA%.2i'%i for i in arange(1, 36)]
 
 
+
 runs_dir = '/astro/snyder_lab2/New_HydroART_images/VELA_v2'
 for g, gal in enumerate(gals):
     if gal != 'VELA18':
-        print g, gal
+        f = open('../%s_sunrise_centers.cat'%gal, 'w+')
+        f.write('#galaxy centers used for SUNRISE calculations\n')        
+        f.write('simname   scale   x     y    z\n')
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
         for f, fl in enumerate(fls):
             a = fl.split('/')[-3].split('_')[-2].lstrip('a')
@@ -18,5 +21,6 @@ for g, gal in enumerate(gals):
             x = data['SFRHIST'].header['translate_originX']
             y = data['SFRHIST'].header['translate_originY']
             z = data['SFRHIST'].header['translate_originZ']
+            f.write('%s\t%.3f\t%.2f\t%.2f\t%.2f\n')%(gal, a, x, y, z)
 
-            print gal, a, x, y, z
+        f.close()
