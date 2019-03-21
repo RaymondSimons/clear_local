@@ -21,6 +21,6 @@ for g, gal in enumerate(gals):
             x = data['SFRHIST'].header['translate_originX']
             y = data['SFRHIST'].header['translate_originY']
             z = data['SFRHIST'].header['translate_originZ']
-            cat.write('%s\t%.3f\t%.2f\t%.2f\t%.2f\n')%(gal, a, x, y, z)
+            cat.write('%s\t%s\t%.2f\t%.2f\t%.2f\n'%(gal, a, x, y, z))
 
         cat.close()
