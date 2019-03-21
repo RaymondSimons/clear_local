@@ -14,7 +14,7 @@ for g, gal in enumerate(gals):
     if gal != 'VELA18':
         cat = open('../../sunrise_centers/%s_sunrise_centers.cat'%gal, 'w+')
         cat.write('#%s, galaxy centers used for SUNRISE calculations\n'%gal)        
-        cat.write('simname   scale   x     y    z\n')
+        cat.write('simname\tscale\tx\ty\tz\n')
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
         for f, fl in enumerate(fls):
             a = fl.split('/')[-3].split('_')[-2].lstrip('a')
