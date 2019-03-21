@@ -13,4 +13,5 @@ for g, gal in enumerate(gals):
         print g, gal
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
         for f, fl in enumerate(fls):
-            print fl
+            a = fls.split('/')[-3].split('_')[-2].lstrip('a')
+            print a, fl
