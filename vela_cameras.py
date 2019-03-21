@@ -16,6 +16,7 @@ for g, gal in enumerate(gals):
         cat.write('#%s, galaxy centers used for SUNRISE calculations\n'%gal)        
         cat.write('simname\tscale\tx\ty\tz\n')
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
+        fls = sort(fls)
         for f, fl in enumerate(fls):
             a = fl.split('/')[-3].split('_')[-2].lstrip('a')
             print a
