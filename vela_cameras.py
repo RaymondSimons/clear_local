@@ -11,9 +11,9 @@ gals = ['VELA%.2i'%i for i in arange(1, 36)]
 runs_dir = '/astro/snyder_lab2/New_HydroART_images/VELA_v2'
 for g, gal in enumerate(gals):
     if gal != 'VELA18':
-        f = open('../%s_sunrise_centers.cat'%gal, 'w+')
-        f.write('#galaxy centers used for SUNRISE calculations\n')        
-        f.write('simname   scale   x     y    z\n')
+        cat = open('../%s_sunrise_centers.cat'%gal, 'w+')
+        cat.write('#galaxy centers used for SUNRISE calculations\n')        
+        cat.write('simname   scale   x     y    z\n')
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
         for f, fl in enumerate(fls):
             a = fl.split('/')[-3].split('_')[-2].lstrip('a')
@@ -21,6 +21,6 @@ for g, gal in enumerate(gals):
             x = data['SFRHIST'].header['translate_originX']
             y = data['SFRHIST'].header['translate_originY']
             z = data['SFRHIST'].header['translate_originZ']
-            f.write('%s\t%.3f\t%.2f\t%.2f\t%.2f\n')%(gal, a, x, y, z)
+            cat.write('%s\t%.3f\t%.2f\t%.2f\t%.2f\n')%(gal, a, x, y, z)
 
-        f.close()
+        cat.close()
