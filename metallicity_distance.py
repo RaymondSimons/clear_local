@@ -2,6 +2,7 @@ import time
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import astropy
 from astropy.io import fits
 import matplotlib as mpl
 mpl.rcParams['text.usetex'] = True
@@ -29,6 +30,36 @@ mpl.rcParams['xtick.labelsize'] = 14
 
 
 seed(1)
+
+
+
+
+def R23_OH(O2, O3, Hb, eO3 = 0., eO2 = 0., eHb = 0.):
+    return
+
+def R2_OH(O2, Hb, eO2 = 0., eO3 = 0.):
+    return
+
+def R3_OH(O3, Hb, eO3 = 0., eHb = 0.):
+    return
+
+def S2_OH(S2, Ha, eS2 = 0., eHa = 0.):
+    return
+
+def O32_OH(O2, O3, eO2 = 0., eO3 = 0.):
+    return
+
+def O3S2_OH(O3, Hb, S2, Ha, eO3 = 0., eHb = 0., eS2 = 0., eHa = 0.):
+    return
+
+
+
+
+
+
+
+'''
+
 def O32_OH(O3, O2, eO3, eO2):
     O32_arr = zeros(O3.shape) * nan
     O32_e_arr = zeros(O3.shape) * nan
@@ -261,12 +292,12 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
 
                     gd = where((O2_im!=0) & (O3_im!=0))# & (O32_im/O32_eim > 1/3.))
 
-                    '''
-                    O32_im = O3_im/O2_im
+                    
+                    #O32_im = O3_im/O2_im
 
-                    O32_im[O3_im < 0] = nan
-                    O32_im[O2_im < 0] = nan
-                    '''
+                    #O32_im[O3_im < 0] = nan
+                    #O32_im[O2_im < 0] = nan
+                    
                     srt_rvl = np.sort(O32_im.ravel())
 
                     vmn = srt_rvl[int(0.1*len(srt_rvl))]
@@ -398,7 +429,7 @@ if __name__ == '__main__':
 
     cat.close()
 
-
+'''
 
 
 
