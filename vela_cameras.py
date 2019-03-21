@@ -2,8 +2,15 @@ import numpy as np
 from numpy import *
 import astropy
 from astropy.io import fits
-gals = ['VELA%.2i'%i for i in arange(36)]
+import glob
+from glob import glob
+gals = ['VELA%.2i'%i for i in arange(1, 36)]
 
 
+runs_dir = '/astro/snyder_lab2/New_HydroART_images/VELA_v2'
 for g, gal in enumerate(gals):
-    print g, gal
+    if gal != 'VELA18':
+        print g, gal
+        fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits')
+        for f, fl in fls:
+            print fl
