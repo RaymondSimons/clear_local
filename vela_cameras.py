@@ -14,4 +14,9 @@ for g, gal in enumerate(gals):
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
         for f, fl in enumerate(fls):
             a = fl.split('/')[-3].split('_')[-2].lstrip('a')
-            print a, fl
+            data = fits.open(fl)
+            x = data['SFRHIST'].header['translate_originX']
+            y = data['SFRHIST'].header['translate_originY']
+            z = data['SFRHIST'].header['translate_originZ']
+
+            print gal, a, x, y, z
