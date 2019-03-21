@@ -10,6 +10,10 @@ for field in ['GS4']:
     print field
     fls = glob('/Users/rsimons/Desktop/clear/grizli_v2.1/all_full/*%s*.full.fits'%field)
     fits_name = '/Users/rsimons/Desktop/clear/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
+
+    fls = glob('/user/rsimons/grizli_extractions/%s/*/Prep/*%s*full.fits'%(field, field))
+    fits_name = '/user/rsimons/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
+
     #fls = glob('/Users/rsimons/Dropbox/rcs_clear/grizli_v2.1/all_full/*%s*.full.fits'%field)
     #fits_name = '/user/rsimons/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
 
