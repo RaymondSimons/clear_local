@@ -11,7 +11,7 @@ gals = ['VELA%.2i'%i for i in arange(1, 36)]
 runs_dir = '/astro/snyder_lab2/New_HydroART_images/VELA_v2'
 for g, gal in enumerate(gals):
     if gal != 'VELA18':
-        cat = open('../sunrise_centers/%s_sunrise_centers.cat'%gal, 'w+')
+        cat = open('../../sunrise_centers/%s_sunrise_centers.cat'%gal, 'w+')
         cat.write('#%s, galaxy centers used for SUNRISE calculations\n'%gal)        
         cat.write('simname   scale   x     y    z\n')
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
