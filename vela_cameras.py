@@ -12,5 +12,5 @@ for g, gal in enumerate(gals):
     if gal != 'VELA18':
         print g, gal
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
-        for f, fl in fls:
+        for f, fl in enumerate(fls):
             print fl
