@@ -13,7 +13,7 @@ for g, gal in enumerate(gals):
     print gal
     if gal != 'VELA18':
         cat = open('../../sunrise_centers/%s_sunrise_centers.cat'%gal, 'w+')
-        cat.write('#%s, galaxy centers used for SUNRISE calculations\n'%gal)        
+        cat.write('#%s, galaxy centers (kpc) used in SUNRISE calculations\n'%gal)        
         cat.write('simname\tscale\tx\ty\tz\n')
         fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
         fls = sort(fls)
