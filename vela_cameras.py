@@ -11,6 +11,6 @@ runs_dir = '/astro/snyder_lab2/New_HydroART_images/VELA_v2'
 for g, gal in enumerate(gals):
     if gal != 'VELA18':
         print g, gal
-        fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits')
+        fls = glob(runs_dir + '/%s/%s_a*_sunrise/images/broadbandz.fits'%(gal, gal))
         for f, fl in fls:
             print fl
