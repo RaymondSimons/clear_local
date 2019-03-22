@@ -41,8 +41,8 @@ def parse():
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-do_new_model',   '--do_new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
-    parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
     parser.add_argument('-do_beams',    '--do_beams',         action = "store_true", default = False, help = 'bool to write beams files')
+    parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'bool to fit modeled spectra')
     parser.add_argument('-use_psf',      '--use_psf',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
     parser.add_argument('-make_catalog',      '--make_catalog',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
 
@@ -416,7 +416,8 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
                 # Gabe suggests use_psf = True for point sources
-                try:
+                #try:
+                if True:
                     print ('doing fit...')
                     del(mb)
                     gc.collect()
@@ -445,9 +446,9 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                         show_beams=True,
                         use_psf = use_psf)          #default: False
 
-                except:
-                    print ('Problem in fitting.run_all')
-                    plt.close('all')
+                #except:
+                #    print ('Problem in fitting.run_all')
+                #    plt.close('all')
             print('Finished', id, mag)
         else: return
 
@@ -608,6 +609,7 @@ if __name__ == '__main__':
         cat_ = np.load('/user/rsimons/grizli_extractions/Catalogs/model_catalogs/%s_catalog.npy'%field)[()]
         nums = cat_[0]
         mags = cat_[1]
+
 
          
         Parallel(n_jobs = n_jobs)(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 

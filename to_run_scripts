@@ -1,3 +1,10 @@
+run grizli_reduction.py --do_retrieve --field ERSPRIME -mag_lim 25 -n_jobs 1
+run grizli_reduction.py --do_prep --field ERSPRIME -mag_lim 25 -n_jobs 1
+run grizli_reduction.py --do_new_model --field ERSPRIME -mag_lim 25 -n_jobs 1
+run grizli_reduction.py --do_beams --field ERSPRIME -mag_lim 25 -n_jobs 1
+
+
+
 03/15/2019
 nohup tar czvf GS1.tar.gz GS1 > GS1_tar.out &
 nohup tar czvf GS2.tar.gz GS2 > GS2_tar.out &
@@ -25,6 +32,10 @@ nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jo
 nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1 --pso 2 > GS4_25_new_reverse.out  &
 
 
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -fit_min_id 29600 -n_jobs 1 --pso 2 > GS4_25_new_29600.out  &
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -fit_min_id 29200 -n_jobs 1 --pso 2 > GS4_25_new_29200.out  &
 
 
 
