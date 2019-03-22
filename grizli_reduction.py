@@ -416,8 +416,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                     phot, ii, dd = ep.get_phot_dict(tab['ra'][0], tab['dec'][0])
 
                 # Gabe suggests use_psf = True for point sources
-                #try:
-                if True:
+                try:
                     print ('doing fit...')
                     del(mb)
                     gc.collect()
@@ -446,9 +445,9 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                         show_beams=True,
                         use_psf = use_psf)          #default: False
 
-                #except:
-                #    print ('Problem in fitting.run_all')
-                #    plt.close('all')
+                except:
+                    print ('Problem in fitting.run_all')
+                    plt.close('all')
             print('Finished', id, mag)
         else: return
 
