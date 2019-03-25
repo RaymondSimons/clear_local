@@ -2,22 +2,32 @@ import astropy
 from astropy.io import fits
 import glob
 from glob import glob
+from numpy import *
+
+#cat_fls = glob('/Users/rsimons/Desktop/clear/Catalogs/grizli_v2.1_cats/*_lines_grizli.fits')
 
 
-cat_fls = glob('/Users/rsimons/Desktop/clear/Catalogs/grizli_v2.1_cats/*_lines_grizli.fits')
+if False: cat_dir = '/Users/rsimons/Dropbox/rcs_clear/catalogs'
+else: cat_dir = '/Users/rsimons/Dropbox/rcs_clear/catalogs'
 
+
+
+cat_fls = glob(cat_dir + '/grizli_v2.1_cats/*_lines_grizli.fits')
 
 #all of the strong line metallicity diagnostics
 #not including those with N2 (which is blended in our data)
 
-f_R23   = open('/Users/rsimons/Dropbox/rcs_clear/catalogs/R23_sample.cat', 'w+')
-f_R2    = open('/Users/rsimons/Dropbox/rcs_clear/catalogs/R2_sample.cat', 'w+')
-f_R3    = open('/Users/rsimons/Dropbox/rcs_clear/catalogs/R3_sample.cat', 'w+')
-f_S2    = open('/Users/rsimons/Dropbox/rcs_clear/catalogs/S2_sample.cat', 'w+')
-f_O32   = open('/Users/rsimons/Dropbox/rcs_clear/catalogs/O32_sample.cat', 'w+')
-f_Ne3O2 = open('/Users/rsimons/Dropbox/rcs_clear/catalogs/Ne3O2_sample.cat', 'w+')
-f_O3S2  = open('/Users/rsimons/Dropbox/rcs_clear/catalogs/O3S2_sample.cat', 'w+')
-f_HaHb  = open('/Users/rsimons/Dropbox/rcs_clear/catalogs/HaHb_sample.cat', 'w+')
+
+
+
+f_R23   = open(cat_dir + '/sample_cats/R23_sample.cat', 'w+')
+f_R2    = open(cat_dir + '/sample_cats/R2_sample.cat', 'w+')
+f_R3    = open(cat_dir + '/sample_cats/R3_sample.cat', 'w+')
+f_S2    = open(cat_dir + '/sample_cats/S2_sample.cat', 'w+')
+f_O32   = open(cat_dir + '/sample_cats/O32_sample.cat', 'w+')
+f_Ne3O2 = open(cat_dir + '/sample_cats/Ne3O2_sample.cat', 'w+')
+f_O3S2  = open(cat_dir + '/sample_cats/O3S2_sample.cat', 'w+')
+f_HaHb  = open(cat_dir + '/sample_cats/HaHb_sample.cat', 'w+')
 
 
 tot_R23    = 0
@@ -44,8 +54,10 @@ tot_7      = 0
 
 for c, cat_fl in enumerate(cat_fls):
     cat = fits.open(cat_fl)
-    cat_data = cat[1].data
+    #cat_data = cat[1].data
     cat_data = cat[1].data[cat[1].data['T_G102'] > 0.]
+    sn = 5
+
     O2_f   = cat_data['OII_FLUX']
     O2_ef  = cat_data['OII_FLUX_ERR']
     O3_f   = cat_data['OIII_FLUX']
@@ -66,7 +78,6 @@ for c, cat_fl in enumerate(cat_fls):
     S2_sn  = S2_f/S2_ef 
     Ne3_sn = Ne3_f/Ne3_ef
 
-    sn = 5
 
 
     bw_good_R23   = (O2_sn > sn)  & (O3_sn > sn) & (Hb_sn > sn)
