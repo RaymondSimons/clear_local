@@ -4,39 +4,25 @@ import glob
 from glob import glob
 import numpy as np
 from numpy import *
+import joblib
+from joblib import Parallel, delayed
 
-#for field in ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7']:
-for field in ['GS4']:
+
+
+
+fields = ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7', 'ERSPRIME']
+
+
+def write_catalog(field):
     print field
-    fls = glob('/Users/rsimons/Desktop/clear/grizli_v2.1/all_full/*%s*.full.fits'%field)
-    fits_name = '/Users/rsimons/Desktop/clear/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
-
     fls = glob('/user/rsimons/grizli_extractions/%s/*/Prep/*%s*full.fits'%(field, field))
     fits_name = '/user/rsimons/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
 
-    #fls = glob('/Users/rsimons/Dropbox/rcs_clear/grizli_v2.1/all_full/*%s*.full.fits'%field)
-    #fits_name = '/user/rsimons/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
-
-
-    lines = ['Lya',
-             'CIV',
-             'MgII',
-             'OII',
-             'Hd',
-             'Hg',
-             'OIIIx',
-             'HeII',
-             'Hb',
-             'OIII',
-             'Ha',
-             'SII',
-             'SIII',
-             'HeI',
-             'HeIb',
-             'NeIII',
-             'NeV',
-             'NeVI',
-             'OI']
+    lines = ['Lya', 'CIV', 'MgII', 'OII',
+             'Hd', 'Hg', 'OIIIx', 'HeII',
+             'Hb', 'OIII', 'Ha', 'SII',
+             'SIII', 'HeI', 'HeIb', 'NeIII',
+             'NeV', 'NeVI', 'OI']
 
     fluxs = zeros((len(lines),2, len(fls))) - 99.
     exptime = zeros((2, len(fls)))
@@ -125,6 +111,9 @@ for field in ['GS4']:
 
 
 
+
+if __name__ == '__main__':
+    Parallel(n_jobs = -1)(delayed(write_line_catalog) (field = field) for field in fields)
 
 
 

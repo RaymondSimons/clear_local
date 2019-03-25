@@ -4,7 +4,23 @@ run grizli_reduction.py --do_new_model --field ERSPRIME -mag_lim 25 -n_jobs 1
 run grizli_reduction.py --do_beams --field ERSPRIME -mag_lim 25 -n_jobs 1
 run grizli_reduction.py --make_catalog --field ERSPRIME -mag_lim 25 -n_jobs 1
 
-nohup nice -19 python grizli_reduction.py --do_fit --field ERSPRIME -mag_lim 25 -n_jobs 1  --pso 2 > ERSPRIME_25_v2_reverse.out &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 > GS4_25_v2_reverse.out &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 > GS4_25_v2.out &
+
+
+
+nohup nice -19 python grizli_reduction.py --do_fit --field ERSPRIME -mag_lim 25 -n_jobs 1 -fit_min_id 40750  --pso 2 > ERSPRIME_25_v2_40750.out &
+
+
+nohup nice -19 python grizli_reduction.py --do_fit --field ERSPRIME -mag_lim 25 -n_jobs 1 -fit_min_id 41300  --pso 2 > ERSPRIME_25_v2_41300.out &
+
+
+
+ls /user/rsimons/grizli_extractions/GS4/j033236m2748/Prep/*full.fits | wc -l; ls /user/rsimons/grizli_extractions/ERSPRIME/j033216m2743/Prep/*full.fits | wc -l
+
+
+
+
 
 
 
