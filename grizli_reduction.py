@@ -611,7 +611,7 @@ if __name__ == '__main__':
 
 
          
-        Parallel(n_jobs = n_jobs)(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
+        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                              id_choose = id_choose, use_pz_prior = False, use_phot = True, 
                                                                              scale_phot = True, templ0 = templ0, templ1 = templ1, 
