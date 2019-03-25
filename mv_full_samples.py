@@ -1,7 +1,7 @@
 import os
 import glob
-
-
+import numpy as np
+from glob import glob
 
 line_sets = ['R23',
              'R2',
