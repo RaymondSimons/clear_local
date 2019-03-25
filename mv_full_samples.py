@@ -3,13 +3,13 @@ import glob
 
 
 
-line_sets = [R23,
-             R2,
-             R3,
-             S3,
-             O32,
-             O3S2,
-             HaHb]
+line_sets = ['R23',
+             'R2',
+             'R3',
+             'S3',
+             'O32',
+             'O3S2',
+             'HaHb']
 
 
 
