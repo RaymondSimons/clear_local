@@ -22,4 +22,4 @@ for line in line_sets:
     cat = np.loadtxt(cat_dir + '/sample_cats/%s_sample.cat'%line, dtype = 'str')
     for c in cat:
         fl = glob('/user/rsimons/grizli_extractions/%s/*/Prep/%s_%s.full.fits'%(c[0], c[0], c[1]))[0]
-        print fl
+        os.system('cp %s %s/%s/'%(fl, sample_fulls_dir, line))
