@@ -2,7 +2,7 @@ import os
 import glob
 import numpy as np
 from glob import glob
-
+'''
 line_sets = ['R23',
              'R2',
              'R3',
@@ -10,8 +10,9 @@ line_sets = ['R23',
              'O32',
              'O3S2',
              'HaHb']
+'''
 
-
+line_sets = ['S2']
 
 sample_fulls_dir = '/user/rsimons/grizli_extractions/sample_fulls'
 
