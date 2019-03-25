@@ -8,7 +8,7 @@ from numpy import *
 
 
 if False: cat_dir = '/Users/rsimons/Dropbox/rcs_clear/catalogs'
-else: cat_dir = '/Users/rsimons/Dropbox/rcs_clear/catalogs'
+else: cat_dir = '/user/rsimons/grizli_extractions/Catalogs'
 
 
 
