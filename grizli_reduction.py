@@ -606,8 +606,8 @@ if __name__ == '__main__':
 
 
         cat_ = np.load('/user/rsimons/grizli_extractions/Catalogs/model_catalogs/%s_catalog.npy'%field)[()]
-        nums = cat_[0][::-1]
-        mags = cat_[1][::-1]
+        nums = cat_[0]
+        mags = cat_[1]
 
 
          
