@@ -113,7 +113,7 @@ def write_catalog(field):
 
 
 if __name__ == '__main__':
-    Parallel(n_jobs = -1)(delayed(write_catalog) (field = field) for field in fields)
+    Parallel(n_jobs = -1, backend = 'threading')(delayed(write_catalog) (field = field) for field in fields)
 
 
 
