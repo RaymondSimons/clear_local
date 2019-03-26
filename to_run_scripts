@@ -9,6 +9,19 @@ nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jo
 
 
 
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29544 > GS4_25_29544.out &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29499 > GS4_25_29499.out &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29530 > GS4_25_29530.out &
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29497 > GS4_25_29497.out &
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29565 > GS4_25_29565.out &
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29460 > GS4_25_29460.out &
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 17786 > GS4_25_17786.out &
+
+
+
 nohup nice -19 python grizli_reduction.py --do_fit --field ERSPRIME -mag_lim 25 -n_jobs 1 -fit_min_id 40750  --pso 2 > ERSPRIME_25_v2_40750.out &
 
 
@@ -16,7 +29,7 @@ nohup nice -19 python grizli_reduction.py --do_fit --field ERSPRIME -mag_lim 25 
 
 
 
-ls /user/rsimons/grizli_extractions/GS4/j033236m2748/Prep/*full.fits | wc -l; ls /user/rsimons/grizli_extractions/ERSPRIME/j033216m2743/Prep/*full.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS4/j033236m2748/Prep/*full.fits | wc -l
 
 
 

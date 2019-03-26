@@ -23,40 +23,217 @@ from scipy.interpolate import interp1d
 import joblib
 from joblib import Parallel, delayed
 from astropy.stats import sigma_clip
+import emcee
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 mpl.rcParams['ytick.labelsize'] = 14
 mpl.rcParams['xtick.labelsize'] = 14
-
+plt.ioff()
 
 seed(1)
+prt = False
+
+
+def OH_R23(OH, use = 'M08'):
+    #taken from table in Patricio+
+    if use == 'M08': 
+        x = OH - 8.69
+        if (OH > 9.2) | (OH < 7.0):
+            if prt: print 'R23 outside of Maiolino+ 08 calibration range...'
+        c = [0.7462, -0.7149, -0.9401, -0.6154, -0.2524]
+    if use == 'J15': 
+        x = OH
+        if (OH > 9.0) | (OH < 7.6):
+            if prt: print 'R23 outside of Jones+ 15 calibration range...'
+        c = [-54.1003, 13.9083, -0.8782, 0.0, 0.0]
+    if use == 'C17': 
+        x = OH - 8.69
+        if (OH > 8.85) | (OH < 8.4):
+            if prt: print 'R23 outside of Curti+ 17 calibration range...'
+        c = [0.527, -1.569, -1.652, -0.421, 0.0]
+    if use == 'B18': 
+        x = OH
+        if (OH > 8.4) | (OH < 7.8):
+            if prt: print 'R23 outside of Bian+ 18 calibration range...'
+        c = [138.0430, -54.8284, 7.2954, -0.32293, 0.0]
+
+    result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
+    return result
+
+def OH_R2(OH, use = 'C17'):
+    #taken from table in Patricio+
+    if use == 'C17': 
+        x = OH - 8.69
+        if (OH > 8.3) | (OH < 7.6):
+            if prt: print 'R2 outside of Curti+ 17 calibration range...'
+        c = [0.418, -0.961, -3.505, -1.949, 0.0]
+    result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
+    return result
+
+def OH_R3(OH, use = 'C17'):
+    #taken from table in Patricio+
+    if use == 'C17': 
+        x = OH - 8.69
+        if (OH > 8.85) | (OH < 8.3):
+            if prt: print 'R2 outside of Curti+ 17 calibration range...'
+        c = [-0.277 -3.549 -3.593 -0.981, 0.0]
+    result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
+    return result
+
+def OH_O3(OH, use = 'M08'):
+    #taken from table in Patricio+
+    if use == 'M08': 
+        x = OH - 8.69
+        if (OH > 9.2) | (OH < 7.0):
+            if prt: print 'O3 outside of Maiolino+ 08 calibration range...'
+        c = [0.1549, -1.5031, -0.9790, -0.0297, 0.0]
+    if use == 'J15': 
+        x = OH
+        if (OH > 9.0) | (OH < 7.6):
+            if prt: print 'O3 outside of Jones+ 15 calibration range...'
+        c = [-88.4378, 22.7529, -1.4501, 0.0, 0.0]
+    if use == 'C17': 
+        x = OH - 8.69
+        if (OH > 8.85) | (OH < 8.3):
+            if prt: print 'O3 outside of Curti+ 17 calibration range...'
+        c = [-0.277, -3.549, -3.593, -0.981, 0.0]
+    if use == 'B18': 
+        x = OH
+        if (OH > 8.4) | (OH < 7.8):
+            if prt: print 'O3 outside of Bian+ 18 calibration range...'
+        c = [43.9836, -21.6211, 3.4277, -0.1747, 0.0]
+
+    result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
+    return result
+
+def OH_O2(OH, use = 'M08'):
+    #taken from table in Patricio+
+    if use == 'M08': 
+        x = OH - 8.69
+        if (OH > 9.2) | (OH < 7.0):
+            if prt: print 'O2 outside of Maiolino+ 08 calibration range...'
+        c = [0.5603, 0.0450, -1.8017, -1.8434, -0.6549]
+    if use == 'J15': 
+        x = OH
+        if (OH > 9.0) | (OH < 7.6):
+            if prt: print 'O2 outside of Jones+ 15 calibration range...'
+        c = [-154.9571, 36.9128, -2.1921, 0.0, 0.0]
+    if use == 'C17': 
+        x = OH - 8.69
+        if (OH > 8.3) | (OH < 7.6):
+            if prt: print 'O2 outside of Curti+ 17 calibration range...'
+        c = [0.418, -0.961, -3.505, -1.949, 0.0]
+
+    result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
+    return result
+
+def OH_O32(OH, use = 'M08'):
+    #taken from table in Patricio+
+    if use == 'M08': 
+        x = OH - 8.69
+        if (OH > 9.2) | (OH < 7.0):
+            if prt: print 'O32 outside of Maiolino+ 08 calibration range...'
+        c = [-0.2839, -1.3881, -0.3172, 0., 0.]
+    if use == 'J15': 
+        x = OH
+        if (OH > 9.0) | (OH < 7.6):
+            if prt: print 'O32 outside of Jones+ 15 calibration range...'
+        c = [17.9828, -2.1552, 0.0, 0.0, 0.0]
+    if use == 'C17': 
+        x = OH - 8.69
+        if (OH > 8.85) | (OH < 7.6):
+            if prt: print 'O32 outside of Curti+ 17 calibration range...'
+        c = [-0.691, -2.944, -1.308, 0.0, 0.0]
+
+    result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
+    return result
+
+def OH_S2(OH, use = 'C19'):
+    #Curti+ 19 in prep
+    return nan
+
+def OH_O3S2(OH, use = 'C19'):
+    #Curti+ 19 in prep
+    return nan
+
+def determine_R(OH, diagnostic):
+    if diagnostic == 'R23':  return OH_R23(OH)
+    if diagnostic == 'R2':   return OH_R2(OH)
+    if diagnostic == 'R3':   return OH_R3(OH)
+    if diagnostic == 'O3':   return OH_O3(OH)
+    if diagnostic == 'O2':   return OH_O2(OH)
+    if diagnostic == 'O32':  return OH_O32(OH)
+    if diagnostic == 'S2':   return OH_S2(OH)
+    if diagnostic == 'O3S2': return OH_O3S2(OH)
 
 
 
 
-def R23_OH(O2, O3, Hb, eO3 = 0., eO2 = 0., eHb = 0.):
-    return
-
-def R2_OH(O2, Hb, eO2 = 0., eO3 = 0.):
-    return
-
-def R3_OH(O3, Hb, eO3 = 0., eHb = 0.):
-    return
-
-def S2_OH(S2, Ha, eS2 = 0., eHa = 0.):
-    return
-
-def O32_OH(O2, O3, eO2 = 0., eO3 = 0.):
-    return
-
-def O3S2_OH(O3, Hb, S2, Ha, eO3 = 0., eHb = 0., eS2 = 0., eHa = 0.):
-    return
+def lnlike(OH, R, Rerr, diagnostics):
+    model = nan * zeros(len(R))
+    for RR in arange(len(R)):
+        model[RR] = determine_R(OH, diagnostics[RR])
+    inv_sigma2 = 1.0/Rerr**2
+    return -0.5*(np.sum((R-model)**2*inv_sigma2))
 
 
+def lnprior(OH):
+    if 7 < OH < 9.3: return 0.0
+    return -np.inf
+
+def lnprob(OH, R, Rerr, diagnostics):
+    lp = lnprior(OH)
+    if not np.isfinite(lp):
+        return -np.inf
+    return lp + lnlike(OH, R, Rerr, diagnostics)
 
 
+if __name__ == '__main__':
+    seed()
+    OH_true = 8.6
+    Re1 = 0.3
+    Re2 = 0.3
+    R = array([OH_R23(OH_true) + np.random.normal(0, Re1), OH_O32(OH_true)+ np.random.normal(0, Re2)])
+    Rerr = array([Re1, Re2])
+    diagnostics = array(['R23', 'O32'])
 
 
+    '''
+    R = array([OH_R23(OH_true) + np.random.normal(0, Re1)])
+    Rerr = array([Re1])
+    diagnostics = array(['R23'])
+    '''
+
+    import scipy.optimize as op
+    nll = lambda *args: -lnlike(*args)
+    result = op.minimize(nll, [OH_true], args=(R, Rerr, diagnostics))
+    OH_ml = result["x"]
+
+
+    import time
+    a = time.time()
+    ndim, nwalkers = 1, 100
+
+    pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
+
+
+    import emcee
+
+
+    sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
+    sampler.run_mcmc(pos, 300)       
+    samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
+
+    import corner
+    fig = corner.corner(samples, labels=["OH"], truths=[OH_true])
+    fig.savefig('OH.png')
+
+    OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]),
+    zip(*np.percentile(samples, [16, 50, 84],
+    axis=0)))    
+    print OH_mcmc
+    b = time.time()
+    print b-a
 
 '''
 
@@ -195,7 +372,7 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
         try:
             if (tht != -999) & (~isnan(tht)):
                 with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/%s_%i.pdf'%(field, id_fit)) as pdf:
-                    print('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/%s_%i.pdf'%(field, id_fit))
+                    if prt: print('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/%s_%i.pdf'%(field, id_fit))
                     fig, axes = plt.subplots(len(lines)+2,2, figsize = (14, 5 * (len(lines)+2)))
 
                     for ax in axes[:,0]:
@@ -388,13 +565,13 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
 
                     return
             else:
-                print 'bad'
+                if prt: print 'bad'
                 return
         except:
-            print 'exception'
+            if prt: print 'exception'
             return
     else:
-        print '%s does not exist'%fits_file
+        if prt: print '%s does not exist'%fits_file
         return
     plt.ioff()
     plt.close('all')
