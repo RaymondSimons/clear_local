@@ -157,7 +157,7 @@ def load_galfit(field, id_fit,  ra, dec, gfit_cat_gdn, gfit_cat_gds):
 
 
 def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
-    fits_file = glob(PATH_TO_GE + '/j*/Prep/{0}_{1:05d}.full.fits'.format(field, id_fit))[0]
+    fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/{0}_{1:05d}.full.fits'.format(field, field, id_fit))[0]
     #fits_file = PATH_TO_PREP + '/{0}_{1:05d}.full.fits'.format(field, id_fit)
     if os.path.isfile(fits_file):
 
