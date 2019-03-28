@@ -23,7 +23,7 @@ import joblib
 from joblib import Parallel, delayed
 from astropy.stats import sigma_clip
 import emcee
-mpl.rcParams['text.usetex'] = True
+#mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 mpl.rcParams['ytick.labelsize'] = 14
 mpl.rcParams['xtick.labelsize'] = 14
@@ -345,12 +345,12 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
                     return
                 #cat.close()
             else:
-                if prt: print 'tht == -999 or nan'
+                if prt: print ('tht == -999 or nan')
 
 
                 return
         else:
-            if prt: print '%s does not exist or %s has already been created'%(fits_file, pdf_file)
+            if prt: print ('%s does not exist or %s has already been created'%(fits_file, pdf_file))
             return
 
     except:
