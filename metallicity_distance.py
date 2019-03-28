@@ -161,7 +161,7 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
     fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/%s_%.5i.full.fits'%(field, field, id_fit))[0]
     pdf_file = '/user/rsimons/z_radius_plots/%s_%i.pdf'%(field, id_fit)
     try:
-        if (not os.isfile(pdf_file)) & (os.path.isfile(fits_file)):
+        if (~os.path.isfile(pdf_file)) & (os.path.isfile(fits_file)):
             fit_hdu = fits.open(fits_file)
             pix_scale = abs(fit_hdu['DSCI'].header['CD1_1'] * 60. * 60.)
             ra, dec = fit_hdu[0].header['ra'], fit_hdu[0].header['dec']
