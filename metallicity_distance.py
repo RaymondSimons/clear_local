@@ -23,8 +23,8 @@ import joblib
 from joblib import Parallel, delayed
 from astropy.stats import sigma_clip
 import emcee
-mpl.rcParams['text.usetex'] = True
-mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
+#mpl.rcParams['text.usetex'] = True
+#mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 mpl.rcParams['ytick.labelsize'] = 14
 mpl.rcParams['xtick.labelsize'] = 14
 plt.ioff()
@@ -387,8 +387,8 @@ if __name__ == '__main__':
 
     for o, obj in enumerate(objects):    
         field, id_fit  = obj[0], int(obj[1])
-        if (field == 'GS5') & (id_fit == 44275):
-            metallicity_distance(field = field, id_fit = id_fit, gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds,  rmx = rmx)
+        #if (field == 'GS5') & (id_fit == 44275):
+        metallicity_distance(field = field, id_fit = id_fit, gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds,  rmx = rmx)
     #Parallel(n_jobs = 2, backend = 'threading')(delayed(metallicity_distance)(field = obj[0], id_fit = int(obj[1]), gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds, rmx = rmx) for o, obj in enumerate(objects))
 
     cat.close()
