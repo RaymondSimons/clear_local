@@ -171,7 +171,7 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
         tht, ab = load_galfit(field_for_gf, id_fit, ra, dec, gfit_cat_gdn, gfit_cat_gds)
         tht_rad = tht*pi/180.
         if (tht != -999) & (~isnan(tht)):
-            cat = open('/user/rsimons/grizli_extractions/Catalogs/z_r_%s_%.5i.cat'%(field, id_fit), 'w+')
+            #cat = open('/user/rsimons/grizli_extractions/Catalogs/z_r_%s_%.5i.cat'%(field, id_fit), 'w+')
 
             with PdfPages('/user/rsimons/z_radius_plots/%s_%i.pdf'%(field, id_fit)) as pdf:
                 if prt: print('/user/rsimons/z_radius_plots/%s_%i.pdf'%(field, id_fit))
@@ -366,7 +366,7 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
                 pdf.savefig()
 
                 return
-            cat.close()
+            #cat.close()
         else:
             if prt: print 'tht == -999 or nan'
 
@@ -401,19 +401,19 @@ if __name__ == '__main__':
     #objects = [('GN7', 17293)]
 
 
-    #cat = open('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat', 'w+')
+    cat = open('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat', 'w+')
 
 
     rmx = 1.0
 
-    #for o, obj in enumerate(objects):    
-    #    field = obj[0]
-    #    id_fit = int(obj[1])
-    #    fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/%s_%.5i.full.fits'%(field, field, id_fit))[0]
-    #    metallicity_distance(field = field, id_fit = id_fit, gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds,  rmx = rmx)
-    Parallel(n_jobs = 2, backend = 'threading')(delayed(metallicity_distance)(field = obj[0], id_fit = int(obj[1]), gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds, rmx = rmx) for o, obj in enumerate(objects))
+    for o, obj in enumerate(objects):    
+        field = obj[0]
+        id_fit = int(obj[1])
+        fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/%s_%.5i.full.fits'%(field, field, id_fit))[0]
+        metallicity_distance(field = field, id_fit = id_fit, gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds,  rmx = rmx)
+    #Parallel(n_jobs = 2, backend = 'threading')(delayed(metallicity_distance)(field = obj[0], id_fit = int(obj[1]), gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds, rmx = rmx) for o, obj in enumerate(objects))
 
-    #cat.close()
+    cat.close()
 
 
 
