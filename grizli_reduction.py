@@ -387,15 +387,17 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
             # Fit polynomial model for initial continuum subtraction
             if pfit != None:
                 #try:
-                print ('drizzle_grisms_and_PAs...')
+                try:
+                    print ('drizzle_grisms_and_PAs...')
 
-                hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
-                                                    pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
-                                                    zfit=pfit,diff=True)
-                # Save drizzled ("stacked") 2D trace as PNG and FITS
-                fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
-                hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
-
+                    hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
+                                                        pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
+                                                        zfit=pfit,diff=True)
+                    # Save drizzled ("stacked") 2D trace as PNG and FITS
+                    fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
+                    hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
+                except:
+                    pass
                 '''
                 if use_pz_prior:
                     #use redshift prior from z_phot
