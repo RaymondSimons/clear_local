@@ -401,8 +401,9 @@ if __name__ == '__main__':
     #objects = [('GN7', 17293)]
 
 
-    cat = open('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat', 'w+')
+    #cat = open('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat', 'w+')
 
+    cat = open('/user/rsimons/grizli_extractions/Catalogs/z_r_%s.cat'%diagnostic, 'w+')
 
     rmx = 1.0
 
