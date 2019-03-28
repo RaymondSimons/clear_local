@@ -377,23 +377,29 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
 
 if __name__ == '__main__':
     plt.ioff()
-    global PATH_TO_PREP
-    PATH_TO_PREP = '/Users/rsimons/Desktop/clear/grizli_v2.1/all_full'    
-
+    global PATH_TO_PREP, PATH_TO_GE
+    #PATH_TO_PREP = '/Users/rsimons/Desktop/clear/grizli_v2.1/all_full'    
+    PATH_TO_GE   = '/user/rsimons/grizli_extractions'
 
     lines = ['OII', 'OIII']
 
-    gfit_cat_dir = '/Users/rsimons/Desktop/clear/Catalogs/galfit'
+    #gfit_cat_dir = '/Users/rsimons/Desktop/clear/Catalogs/galfit'
+    gfit_cat_dir = '/user/rsimons/grizli_extractions/Catalogs/galfit'
     gfit_cat_gdn = np.loadtxt(gfit_cat_dir + '/gn_all_candels_wfc3_f105w_060mas_v0.8_galfit.cat')
     gfit_cat_gds = np.loadtxt(gfit_cat_dir + '/gs_all_candels_ers_udf_f105w_v0.5_galfit.cat')
 
 
-    objects = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/z_r_sample.cat', dtype = 'str')
+    diagnostic = 'O32'
+
+    #objects = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/z_r_sample.cat', dtype = 'str')
+    objects = np.loadtxt('/user/rsimons/grizli_extractions/Catalogs/sample_cats/%s_sample.cat'%diagnostic, dtype = 'str')
     objects = objects
     #objects = [('GN7', 17293)]
 
 
-    cat = open('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat', 'w+')
+    #cat = open('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat', 'w+')
+    cat = open('/user/rsimons/grizli_extractions/Catalogs/z_r_%s.cat'%diagnostic, 'w+')
+
     rmx = 1.0
 
     for o, obj in enumerate(objects):    
