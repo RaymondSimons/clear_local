@@ -154,6 +154,8 @@ for c, cat_fl in enumerate(cat_fls):
     print ('\t>=6 :'), len(gd_6)
 
 
+    if field == 'GS2': print good_O32
+
 
     for g, gd in enumerate(good_R23  ): f_R23  .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
     for g, gd in enumerate(good_R2   ): f_R2   .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
