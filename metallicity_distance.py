@@ -406,7 +406,7 @@ if __name__ == '__main__':
     #    id_fit = int(obj[1])
     #    fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/%s_%.5i.full.fits'%(field, field, id_fit))[0]
     #    metallicity_distance(field = field, id_fit = id_fit, gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds,  rmx = rmx)
-    Parallel(n_jobs = 1, backend = 'threading')(delayed(metallicity_distance)(field = obj[0], id_fit = int(obj[1]), gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds, rmx = rmx, cat = cat_f) for o, obj in enumerate(objects))
+    Parallel(n_jobs = 2, backend = 'threading')(delayed(metallicity_distance)(field = obj[0], id_fit = int(obj[1]), gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds, rmx = rmx, cat = cat_f) for o, obj in enumerate(objects))
 
     cat.close()
 
