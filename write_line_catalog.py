@@ -10,8 +10,8 @@ from joblib import Parallel, delayed
 
 
 
-#fields = ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7', 'ERSPRIME']
-fields = ['GS4', 'ERSPRIME']
+fields = ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7', 'ERSPRIME']
+#fields = ['GS4', 'ERSPRIME']
 
 
 def write_catalog(field):
