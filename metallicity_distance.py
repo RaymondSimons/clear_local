@@ -30,7 +30,7 @@ mpl.rcParams['ytick.labelsize'] = 14
 mpl.rcParams['xtick.labelsize'] = 14
 plt.ioff()
 
-
+prt = True
 
 
 def O32_OH(O3, O2, eO3, eO2):
