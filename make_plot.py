@@ -38,7 +38,7 @@ x_gdn = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/xray_GDN.txt')
 
 
 if True:
-    with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/z_radius_new.pdf') as pdf:
+    with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/z_radius_new2.pdf') as pdf:
 
         fig, ax = plt.subplots(1,1, figsize = (10, 5))
         ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', color = 'blue', label = 'Wang+ 17', zorder = 1)

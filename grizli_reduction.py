@@ -396,7 +396,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                 fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
                 hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
 
-
+                '''
                 if use_pz_prior:
                     #use redshift prior from z_phot
                     prior = np.zeros((2, len(p.tempfilt['zgrid'])))
@@ -448,6 +448,8 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                 except:
                     print ('Problem in fitting.run_all')
                     plt.close('all')
+                '''
+
             print('Finished', id, mag)
         else: return
 
