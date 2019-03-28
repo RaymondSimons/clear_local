@@ -164,7 +164,9 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
         fit_hdu = fits.open(fits_file)
         pix_scale = abs(fit_hdu['DSCI'].header['CD1_1'] * 60. * 60.)
         ra, dec = fit_hdu[0].header['ra'], fit_hdu[0].header['dec']
-        tht, ab = load_galfit(field, id_fit, ra, dec, gfit_cat_gdn, gfit_cat_gds)
+        if field == 'ERSPRIME': field_for_gf = 'GS'
+        else: field_for_gf = field
+        tht, ab = load_galfit(field_for_gf, id_fit, ra, dec, gfit_cat_gdn, gfit_cat_gds)
         tht_rad = tht*pi/180.
         if (tht != -999) & (~isnan(tht)):
             with PdfPages('/user/rsimons/z_radius_plots/%s_%i.pdf'%(field, id_fit)) as pdf:
