@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import astropy
 from astropy.io import fits
 import matplotlib as mpl
-mpl.rcParams['text.usetex'] = True
 import glob
 import importlib
 import os
@@ -24,8 +23,8 @@ import joblib
 from joblib import Parallel, delayed
 from astropy.stats import sigma_clip
 import emcee
-mpl.rcParams['text.usetex'] = True
-mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
+#mpl.rcParams['text.usetex'] = False
+#mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 mpl.rcParams['ytick.labelsize'] = 14
 mpl.rcParams['xtick.labelsize'] = 14
 plt.ioff()
