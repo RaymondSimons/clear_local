@@ -157,17 +157,17 @@ for c, cat_fl in enumerate(cat_fls):
     if field == 'GS2':
         for g, gd in enumerate(good_O32  ): 
             
-            print cat[1].data['ID'][gd], O2_f[gd], O2_ef[gd]
+            print cat_data['ID'][gd], O2_f[gd], O2_ef[gd]
 
 
-    for g, gd in enumerate(good_R23  ): f_R23  .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
-    for g, gd in enumerate(good_R2   ): f_R2   .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
-    for g, gd in enumerate(good_R3   ): f_R3   .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
-    for g, gd in enumerate(good_S2   ): f_S2   .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
-    for g, gd in enumerate(good_O32  ): f_O32  .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
-    for g, gd in enumerate(good_Ne3O2): f_Ne3O2.write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
-    for g, gd in enumerate(good_O3S2 ): f_O3S2 .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
-    for g, gd in enumerate(good_HaHb ): f_HaHb .write('%s\t%.5i\n'%(field, cat[1].data['ID'][gd]))
+    for g, gd in enumerate(good_R23  ): f_R23  .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
+    for g, gd in enumerate(good_R2   ): f_R2   .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
+    for g, gd in enumerate(good_R3   ): f_R3   .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
+    for g, gd in enumerate(good_S2   ): f_S2   .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
+    for g, gd in enumerate(good_O32  ): f_O32  .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
+    for g, gd in enumerate(good_Ne3O2): f_Ne3O2.write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
+    for g, gd in enumerate(good_O3S2 ): f_O3S2 .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
+    for g, gd in enumerate(good_HaHb ): f_HaHb .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
 
 
 
