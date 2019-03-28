@@ -159,14 +159,20 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
     #fits_file = glob(PATH_TO_GE + '/{0}/j*/Prep/{0}_{1:05d}.full.fits'.format(field, field, id_fit))[0]
     #fits_file = PATH_TO_PREP + '/{0}_{1:05d}.full.fits'.format(field, id_fit)
     fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/%s_%.5i.full.fits'%(field, field, id_fit))[0]
+
+
     if os.path.isfile(fits_file):
 
         fit_hdu = fits.open(fits_file)
         pix_scale = abs(fit_hdu['DSCI'].header['CD1_1'] * 60. * 60.)
         ra, dec = fit_hdu[0].header['ra'], fit_hdu[0].header['dec']
-        tht, ab = load_galfit(field, id_fit, ra, dec, gfit_cat_gdn, gfit_cat_gds)
+        if field == 'ERSPRIME': field_for_gf = 'GS'
+        else: field_for_gf = field
+        tht, ab = load_galfit(field_for_gf, id_fit, ra, dec, gfit_cat_gdn, gfit_cat_gds)
         tht_rad = tht*pi/180.
         if (tht != -999) & (~isnan(tht)):
+            cat = open('/user/rsimons/grizli_extractions/Catalogs/z_r_%s_%.5i.cat'%(field, id_fit), 'w+')
+
             with PdfPages('/user/rsimons/z_radius_plots/%s_%i.pdf'%(field, id_fit)) as pdf:
                 if prt: print('/user/rsimons/z_radius_plots/%s_%i.pdf'%(field, id_fit))
                 fig, axes = plt.subplots(len(lines)+2,2, figsize = (14, 5 * (len(lines)+2)))
@@ -360,14 +366,15 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
                 pdf.savefig()
 
                 return
+            cat.close()
         else:
             if prt: print 'tht == -999 or nan'
+
+
             return
     else:
         if prt: print '%s does not exist'%fits_file
         return
-    plt.ioff()
-    plt.close('all')
 
 
 
@@ -395,18 +402,18 @@ if __name__ == '__main__':
 
 
     #cat = open('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat', 'w+')
-    cat = open('/user/rsimons/grizli_extractions/Catalogs/z_r_%s.cat'%diagnostic, 'w+')
+
 
     rmx = 1.0
 
-    for o, obj in enumerate(objects):    
-        field = obj[0]
-        id_fit = int(obj[1])
-        fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/%s_%.5i.full.fits'%(field, field, id_fit))[0]
-        metallicity_distance(field = field, id_fit = id_fit, gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds,  rmx = rmx)
-    #Parallel(n_jobs = 1, backend = 'threading')(delayed(metallicity_distance)(field = obj[0], id_fit = int(obj[1]), gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds, rmx = rmx, cat = cat_f) for o, obj in enumerate(objects))
+    #for o, obj in enumerate(objects):    
+    #    field = obj[0]
+    #    id_fit = int(obj[1])
+    #    fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/%s_%.5i.full.fits'%(field, field, id_fit))[0]
+    #    metallicity_distance(field = field, id_fit = id_fit, gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds,  rmx = rmx)
+    Parallel(n_jobs = 2, backend = 'threading')(delayed(metallicity_distance)(field = obj[0], id_fit = int(obj[1]), gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds, rmx = rmx, cat = cat_f) for o, obj in enumerate(objects))
 
-    cat.close()
+    #cat.close()
 
 
 
