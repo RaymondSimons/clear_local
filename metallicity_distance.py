@@ -105,10 +105,104 @@ def O32_OH_profile(r, O3, O2, eO3, eO2, r_min, r_max, dr):
             OH[i,0] = np.nanmean(8.54 - 0.59 * O32_bs)
             OH[i,1] = np.nanstd(8.54 - 0.59 * O32_bs)
 
+    return rrs, O3_bin, O2_bin, O32, OH
 
 
+
+def O3_OH(O3, Hb, eO3, eHb):
+    O3_arr = zeros(O3.shape) * nan
+    O3_e_arr = zeros(O3.shape) * nan
+
+    OH_arr = zeros(O3.shape) * nan
+    OH_e_arr = zeros(O3.shape) * nan
+
+    for i in arange(O3.shape[0]):
+        for j in arange(O3.shape[1]):
+            Hb_arr_temp = np.random.normal(O2[i,j], eO2[i,j], 200)
+            O3_arr_temp = np.random.normal(O3[i,j], eO3[i,j], 200)
+            O3_arr[i,j] = O3[i,j]/O2[i,j]
+            O3_e_arr[i,j] = (O3[i,j]/Hb[i,j]) * sqrt((eO3[i,j]/O3[i,j])**2. + (eHb[i,j]/Hb[i,j])**2.)
+            OH_arr[i,j]   = np.nanmean(8.54 - 0.59 * O3_arr_temp/O2_arr_temp)
+            OH_e_arr[i,j] = np.nanstd(8.54 - 0.59 * O3_arr_temp/O2_arr_temp)
+    
+    return O3_arr, O3_e_arr, OH_arr, OH_e_arr
+
+
+def O3_OH_profile(r, O3, O2, eO3, eO2, r_min, r_max, dr):
+    rrs = arange(r_min + dr/2., r_max + dr/2., dr)
+    O32    = zeros((len(rrs), 2)) * nan
+    O3_bin = zeros((len(rrs), 2)) * nan
+    O2_bin = zeros((len(rrs), 2)) * nan
+    OH     = zeros((len(rrs), 2)) * nan  
+    for i, rr in enumerate(rrs):
+        gd = where((r > (rr - dr/2.)) & (r < (rr + dr/2.)))[0]
+        O3_rr = sum(O3[gd]/eO3[gd]**2.)/sum(1./eO3[gd]**2.)
+        O2_rr = sum(O2[gd]/eO2[gd]**2.)/sum(1./eO2[gd]**2.)
+        eO3_rr = sqrt(sum(eO3[gd]**2.))/len(gd)
+        eO2_rr = sqrt(sum(eO2[gd]**2.))/len(gd)
+
+        if O3_rr > 0:
+            O3_bin[i,0] = O3_rr
+            O3_bin[i,1] = eO3_rr
+
+        if O2_rr > 0:            
+            O2_bin[i,0] = O2_rr
+            O2_bin[i,1] = eO2_rr
+
+
+        '''
+        O2s = array([])
+        O3s = array([])
+        for g in gd:
+            O3s = concatenate((O3s, np.random.normal(O3[g], eO3[g], 1000)))
+            O2s = concatenate((O2s, np.random.normal(O2[g], eO2[g], 1000)))
+        '''
+
+
+        if (O3_rr > 0) & (O2_rr > 0):
+        #O32.append(nanmean(O3s/O2s))
+        #eO32.append(nanstd(O3s/O2s))
+            O3s = np.random.normal(O3_rr, eO3_rr, 1000)
+            O2s = np.random.normal(O2_rr, eO2_rr, 1000)
+
+
+
+            O32_rr = sigma_clip(O3s/O2s, sigma = 2)
+            O32_rr = O32_rr.data[O32_rr.mask == False]
+
+
+            O32_rr_mean = nanmean(O32_rr)
+            O32_rr_std = nanstd(O32_rr)
+
+            O32[i,0] = O32_rr_mean
+            O32[i,1] = O32_rr_std
+
+
+            O32_bs = np.random.normal(O32_rr_mean, O32_rr_std, 1000)
+            OH[i,0] = np.nanmean(8.54 - 0.59 * O32_bs)
+            OH[i,1] = np.nanstd(8.54 - 0.59 * O32_bs)
 
     return rrs, O3_bin, O2_bin, O32, OH
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def load_galfit(field, id_fit,  ra, dec, gfit_cat_gdn, gfit_cat_gds):
