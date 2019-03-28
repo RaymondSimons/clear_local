@@ -169,8 +169,8 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
         tht_rad = tht*pi/180.
         try:
             if (tht != -999) & (~isnan(tht)):
-                with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/%s_%i.pdf'%(field, id_fit)) as pdf:
-                    if prt: print('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/%s_%i.pdf'%(field, id_fit))
+                with PdfPages('/user/rsimons/z_radius_plots/%s_%i.pdf'%(field, id_fit)) as pdf:
+                    if prt: print('/user/rsimons/z_radius_plots/%s_%i.pdf'%(field, id_fit))
                     fig, axes = plt.subplots(len(lines)+2,2, figsize = (14, 5 * (len(lines)+2)))
 
                     for ax in axes[:,0]:
