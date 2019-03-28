@@ -51,29 +51,6 @@ def O32_OH(O3, O2, eO3, eO2):
     return O32_arr, O32_e_arr, OH_arr, OH_e_arr#np.std(OH_z_arr)
 
 
-def R23_OH(O3, O2, Hb, eO3, eO2, eHb):
-    O32_arr = zeros(O3.shape) * nan
-    O32_e_arr = zeros(O3.shape) * nan
-
-    OH_arr = zeros(O3.shape) * nan
-    OH_e_arr = zeros(O3.shape) * nan
-
-    for i in arange(O3.shape[0]):
-        for j in arange(O3.shape[1]):
-            O2_arr_temp = np.random.normal(O2[i,j], eO2[i,j], 200)
-            O3_arr_temp = np.random.normal(O3[i,j], eO3[i,j], 200)
-            O32_arr[i,j] = O3[i,j]/O2[i,j]
-            O32_e_arr[i,j] = (O3[i,j]/O2[i,j]) * sqrt((eO3[i,j]/O3[i,j])**2. + (eO2[i,j]/O2[i,j])**2.)
-            OH_arr[i,j]   = np.nanmean(8.54 - 0.59 * O3_arr_temp/O2_arr_temp)
-            OH_e_arr[i,j] = np.nanstd(8.54 - 0.59 * O3_arr_temp/O2_arr_temp)
-    
-    return O32_arr, O32_e_arr, OH_arr, OH_e_arr#np.std(OH_z_arr)
-
-
-
-
-
-
 def O32_OH_profile(r, O3, O2, eO3, eO2, r_min, r_max, dr):
     rrs = arange(r_min + dr/2., r_max + dr/2., dr)
     O32    = zeros((len(rrs), 2)) * nan
@@ -87,48 +64,51 @@ def O32_OH_profile(r, O3, O2, eO3, eO2, r_min, r_max, dr):
         eO3_rr = sqrt(sum(eO3[gd]**2.))/len(gd)
         eO2_rr = sqrt(sum(eO2[gd]**2.))/len(gd)
 
-        O3_bin[i,0] = O3_rr
-        O2_bin[i,0] = O2_rr
+        if O3_rr > 0:
+            O3_bin[i,0] = O3_rr
+            O3_bin[i,1] = eO3_rr
 
-        O3_bin[i,1] = eO3_rr
-        O2_bin[i,1] = eO2_rr
+        if O2_rr > 0:            
+            O2_bin[i,0] = O2_rr
+            O2_bin[i,1] = eO2_rr
 
 
+        '''
         O2s = array([])
         O3s = array([])
         for g in gd:
             O3s = concatenate((O3s, np.random.normal(O3[g], eO3[g], 1000)))
             O2s = concatenate((O2s, np.random.normal(O2[g], eO2[g], 1000)))
+        '''
 
 
-
-
+        if (O3_rr > 0) & (O2_rr > 0):
         #O32.append(nanmean(O3s/O2s))
         #eO32.append(nanstd(O3s/O2s))
-        O3s = np.random.normal(O3_rr, eO3_rr, 1000)
-        O2s = np.random.normal(O2_rr, eO2_rr, 1000)
+            O3s = np.random.normal(O3_rr, eO3_rr, 1000)
+            O2s = np.random.normal(O2_rr, eO2_rr, 1000)
 
 
-        O32_rr = sigma_clip(O3s/O2s, sigma = 2)
-        O32_rr = O32_rr.data[O32_rr.mask == False]
+
+            O32_rr = sigma_clip(O3s/O2s, sigma = 2)
+            O32_rr = O32_rr.data[O32_rr.mask == False]
 
 
-        O32_rr_mean = nanmean(O32_rr)
-        O32_rr_std = nanstd(O32_rr)
+            O32_rr_mean = nanmean(O32_rr)
+            O32_rr_std = nanstd(O32_rr)
 
-        O32[i,0] = O32_rr_mean
-        O32[i,1] = O32_rr_std
+            O32[i,0] = O32_rr_mean
+            O32[i,1] = O32_rr_std
 
 
-        O32_bs = np.random.normal(O32_rr_mean, O32_rr_std, 1000)
-        OH[i,0] = np.nanmean(8.54 - 0.59 * O32_bs)
-        OH[i,1] = np.nanstd(8.54 - 0.59 * O32_bs)
+            O32_bs = np.random.normal(O32_rr_mean, O32_rr_std, 1000)
+            OH[i,0] = np.nanmean(8.54 - 0.59 * O32_bs)
+            OH[i,1] = np.nanstd(8.54 - 0.59 * O32_bs)
 
 
 
 
     return rrs, O3_bin, O2_bin, O32, OH
-
 
 
 def load_galfit(field, id_fit,  ra, dec, gfit_cat_gdn, gfit_cat_gds):
@@ -149,10 +129,6 @@ def load_galfit(field, id_fit,  ra, dec, gfit_cat_gdn, gfit_cat_gds):
         eab   = gfit_cat[np.argmin(diff_arc), 11]
 
     return tht, ab
-
-
-
-
 
 
 def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
@@ -372,7 +348,7 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
 
                 return
         else:
-            if prt: print '%s does not exist or '%fits_file
+            if prt: print '%s does not exist or %s has already been created'%(fits_file, pdf_file)
             return
 
     except:
@@ -408,9 +384,7 @@ if __name__ == '__main__':
     rmx = 1.0
 
     for o, obj in enumerate(objects):    
-        field = obj[0]
-        id_fit = int(obj[1])
-        fits_file = glob(PATH_TO_GE + '/%s/j*/Prep/%s_%.5i.full.fits'%(field, field, id_fit))[0]
+        field, id_fit  = obj[0], int(obj[1])
         metallicity_distance(field = field, id_fit = id_fit, gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds,  rmx = rmx)
     #Parallel(n_jobs = 2, backend = 'threading')(delayed(metallicity_distance)(field = obj[0], id_fit = int(obj[1]), gfit_cat_gdn = gfit_cat_gdn, gfit_cat_gds = gfit_cat_gds, rmx = rmx) for o, obj in enumerate(objects))
 

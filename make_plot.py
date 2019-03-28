@@ -8,7 +8,7 @@ plt.close('all')
 mpl.rcParams['text.usetex'] = True
 
 
-cat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/z_r.cat',dtype = 'str')
+cat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/z_r_O32.cat',dtype = 'str')
 
 
 
@@ -38,7 +38,7 @@ x_gdn = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/xray_GDN.txt')
 
 
 if True:
-    with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/z_radius.pdf') as pdf:
+    with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/z_radius_new.pdf') as pdf:
 
         fig, ax = plt.subplots(1,1, figsize = (10, 5))
         ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', color = 'blue', label = 'Wang+ 17', zorder = 1)
@@ -94,7 +94,7 @@ if True:
             ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = mrker, color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 8)
 
 
-        ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 130)', zorder = 10)
+        ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 112)', zorder = 10)
         ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
         ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
         ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
