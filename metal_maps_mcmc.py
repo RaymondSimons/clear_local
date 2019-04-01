@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import time
 import os
 import numpy as np
@@ -166,16 +167,12 @@ def determine_R(OH, diagnostic):
     if diagnostic == 'S2':   return OH_S2(OH)
     if diagnostic == 'O3S2': return OH_O3S2(OH)
 
-
-
-
 def lnlike(OH, R, Rerr, diagnostics):
     model = nan * zeros(len(R))
     for RR in arange(len(R)):
         model[RR] = determine_R(OH, diagnostics[RR])
     inv_sigma2 = 1.0/Rerr**2
     return -0.5*(np.sum((R-model)**2*inv_sigma2))
-
 
 def lnprior(OH):
     if 7 < OH < 9.3: return 0.0
@@ -234,3 +231,16 @@ if __name__ == '__main__':
     print OH_mcmc
     b = time.time()
     print b-a
+
+
+
+
+
+
+
+
+
+
+
+
+
