@@ -2,6 +2,7 @@
 from sys import argv
 import time
 import math
+import numpy as np
 values = None
 try:
    values = [ int(i) for i in argv[1:] ]
@@ -10,7 +11,7 @@ except:
 
 
 
-for i in arange(1.e5):
+for i in np.arange(1.e5):
     x = math.sqrt(i)
 
 time.sleep(100)
