@@ -10,7 +10,7 @@ except:
 
 
 
-for i in arange(1.e5):
+for i in np.arange(1.e5):
     x = math.sqrt(i)
 
 time.sleep(100)
