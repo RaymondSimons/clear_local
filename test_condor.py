@@ -8,3 +8,4 @@ except:
    exit(1)
 
 print sum(values)
+
