@@ -2,6 +2,7 @@
 from sys import argv
 import time
 import math
+import numpy as np
 values = None
 try:
    values = [ int(i) for i in argv[1:] ]
