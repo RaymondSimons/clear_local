@@ -1,0 +1,201 @@
+
+
+
+
+###################
+Parameters
+
+
+field             GS4
+mag_lim           25
+mag_max           0
+files_bool        True
+retrieve_bool     False
+prep_bool         False
+model_bool        True
+new_model         False
+beams_bool        False
+fit_bool          True
+use_psf           False
+fit_min_id        0
+n_jobs            1
+id_choose            17786
+phot_scale_order  2
+fit_without_phot  False
+PATH_TO_SCRIPTS   /home/rsimons/git/clear_local
+PATH_TO_CATS      /user/rsimons/grizli_extractions/Catalogs
+PATH_TO_HOME      /user/rsimons/grizli_extractions
+HOME_PATH         /user/rsimons/grizli_extractions/GS4
+
+
+
+
+####################
+
+
+
+
+Changing to /user/rsimons/grizli_extractions/GS4
+Changing to /user/rsimons/grizli_extractions/GS4/j033236m2748/Prep
+BUSH1-bfu-b1-077.0-F125W 2
+BUSH3-bfu-bl-089.0-F098M 4
+BUSH3-bfu-by-089.0-F105W 2
+BUSH3-bfu-b3-089.0-F125W 2
+BUSH3-bfu-by-089.0-F140W 2
+FIGS-GS1-coi-1m-028.0-F105W 2
+FIGS-GS1-coi-1n-028.0-F105W 2
+FIGS-GS1-coi-1o-028.0-F105W 2
+FIGS-GS1-coi-1p-028.0-F105W 2
+FIGS-GS1-coi-1i-038.0-F105W 2
+FIGS-GS1-coi-1j-038.0-F105W 2
+FIGS-GS1-coi-1k-038.0-F105W 2
+FIGS-GS1-coi-1l-038.0-F105W 2
+FIGS-GS1-coi-1e-100.0-F105W 2
+FIGS-GS1-coi-1f-100.0-F105W 2
+FIGS-GS1-coi-1g-100.0-F105W 2
+FIGS-GS1-coi-1h-100.0-F105W 2
+FIGS-GS1-coi-1q-106.0-F105W 2
+FIGS-GS1-coi-1r-106.0-F105W 2
+FIGS-GS1-coi-1s-106.0-F105W 2
+FIGS-GS1-coi-1t-106.0-F105W 2
+FIGS-GS1-coi-1a-168.0-F105W 2
+FIGS-GS1-coi-1b-168.0-F105W 2
+FIGS-GS1-coi-1c-168.0-F105W 2
+FIGS-GS1-coi-1d-168.0-F105W 2
+FIGS-GS1-coi-1m-028.0-G102 8
+FIGS-GS1-coi-1n-028.0-G102 8
+FIGS-GS1-coi-1o-028.0-G102 8
+FIGS-GS1-coi-1p-028.0-G102 8
+FIGS-GS1-coi-1i-038.0-G102 8
+FIGS-GS1-coi-1j-038.0-G102 8
+FIGS-GS1-coi-1k-038.0-G102 8
+FIGS-GS1-coi-1l-038.0-G102 8
+FIGS-GS1-coi-1e-100.0-G102 8
+FIGS-GS1-coi-1f-100.0-G102 8
+FIGS-GS1-coi-1g-100.0-G102 8
+FIGS-GS1-coi-1h-100.0-G102 8
+FIGS-GS1-coi-1q-106.0-G102 8
+FIGS-GS1-coi-1r-106.0-G102 8
+FIGS-GS1-coi-1s-106.0-G102 8
+FIGS-GS1-coi-1t-106.0-G102 8
+FIGS-GS1-coi-1a-168.0-G102 8
+FIGS-GS1-coi-1b-168.0-G102 8
+FIGS-GS1-coi-1c-168.0-G102 8
+FIGS-GS1-coi-1d-168.0-G102 8
+goodss-32-bhj-32-131.0-F140W 4
+goodss-32-bhj-32-131.0-G141 4
+goodss-34-bhj-34-084.0-F140W 4
+goodss-34-bhj-34-084.0-G141 4
+goodss-36-bhj-36-084.0-F140W 4
+goodss-36-bhj-36-084.0-G141 4
+goodss-37-bhj-37-084.0-F140W 4
+goodss-37-bhj-37-084.0-G141 4
+goodss-38-bhj-38-084.0-F140W 4
+goodss-38-bhj-38-084.0-G141 4
+goodss-07-bhj-07-131.0-F140W 4
+goodss-07-bhj-07-131.0-G141 4
+goodss-08-bhj-08-131.0-F140W 4
+goodss-08-bhj-08-131.0-G141 4
+GS4-cxt-26-051.0-F105W 2
+GS4-cxt-27-051.0-F105W 2
+GS4-cxt-24-074.0-F105W 2
+GS4-cxt-25-074.0-F105W 2
+GS4-cxt-28-094.0-F105W 2
+GS4-cxt-29-094.0-F105W 2
+GS4-cxt-26-051.0-G102 4
+GS4-cxt-27-051.0-G102 4
+GS4-cxt-24-074.0-G102 4
+GS4-cxt-25-074.0-G102 4
+GS4-cxt-28-094.0-G102 4
+GS4-cxt-29-094.0-G102 4
+PRIMO-bfu-pa-137.0-F125W 1
+PRIMO-bfu-pb-137.0-F125W 1
+PRIMO-bfu-p5-166.0-F125W 2
+PRIMO-bfu-pc-184.0-F125W 4
+PRIMO-bfu-p7-201.0-F125W 4
+PRIMO-bfu-p1-131.0-G141 6
+PRIMO-bfu-pa-137.0-G141 6
+PRIMO-bfu-pb-137.0-G141 6
+par-j033241-274605-bfu-np-205.0-F125W 8
+/home/rsimons/miniconda2/envs/grizli/lib/python3.5/site-packages/eazy/data/templates -> ./templates
+/home/rsimons/miniconda2/envs/grizli/lib/python3.5/site-packages/eazy/data/filters/FILTER.RES.latest -> ./FILTER.RES.latest
+Read default param file: /home/rsimons/miniconda2/envs/grizli/lib/python3.5/site-packages/eazy/data/zphot.param.default
+Read CATALOG_FILE: /user/rsimons/grizli_extractions/Catalogs/goodss_3dhst.v4.4.cats/Catalog/goodss_3dhst.v4.4.cat
+f_F160W e_F160W (205): hst/wfc3/IR/f160w.dat
+f_U e_U (103): ESO/vimos_u.res
+f_F435W e_F435W (  1): hst/ACS_update_sep07/wfc_f435w_t77.dat
+f_F606Wcand e_F606Wcand (236): hst/ACS_update_sep07/wfc_f606w_t81.dat
+f_F606W e_F606W (  4): hst/ACS_update_sep07/wfc_f606w_t77.dat
+f_R e_R (260): ESO/VIMOS/R.dat
+f_F775W e_F775W (  5): hst/ACS_update_sep07/wfc_f775w_t77.dat
+f_F814Wcand e_F814Wcand (239): hst/ACS_update_sep07/wfc_f814w_t81.dat
+f_F850LP e_F850LP (  7): hst/ACS_update_sep07/wfc_f850lp_t77.dat
+f_F850LPcand e_F850LPcand (240): hst/ACS_update_sep07/wfc_f850lp_t81.dat
+f_F125W e_F125W (203): hst/wfc3/IR/f125w.dat
+f_J e_J ( 34): ESO/isaac_j.res
+f_F140W e_F140W (204): hst/wfc3/IR/f140w.dat
+f_H e_H ( 36): ESO/isaac_h.res
+f_Ks e_Ks ( 37): ESO/isaac_ks.res
+f_IRAC1 e_IRAC1 ( 18): IRAC/irac_tr1_2004-08-09.dat
+f_IRAC2 e_IRAC2 ( 19): IRAC/irac_tr2_2004-08-09.dat
+f_IRAC3 e_IRAC3 ( 20): IRAC/irac_tr3_2004-08-09.dat
+f_IRAC4 e_IRAC4 ( 21): IRAC/irac_tr4_2004-08-09.dat
+f_U38 e_U38 (107): ESO/wfi_BB_U38_ESO841.res
+f_B e_B ( 46): musyc/B_cdfs_tot.dat
+f_V e_V ( 50): musyc/V_cdfs_tot.dat
+f_Rc e_Rc ( 54): musyc/R_cdfs_tot.dat
+f_I e_I ( 58): musyc/I_cdfs_tot.dat
+f_IA427 e_IA427 (181): Subaru_MB/IA427.dat
+f_IA445 e_IA445 (182): Subaru_MB/IA445.dat
+f_IA505 e_IA505 (185): Subaru_MB/IA505.dat
+f_IA527 e_IA527 (186): Subaru_MB/IA527.dat
+f_IA550 e_IA550 (187): Subaru_MB/IA550.dat
+f_IA574 e_IA574 (188): Subaru_MB/IA574.dat
+f_IA598 e_IA598 (189): Subaru_MB/IA598.dat
+f_IA624 e_IA624 (190): Subaru_MB/IA624.dat
+f_IA651 e_IA651 (191): Subaru_MB/IA651.dat
+f_IA679 e_IA679 (192): Subaru_MB/IA679.dat
+f_IA738 e_IA738 (194): Subaru_MB/IA738.dat
+f_IA767 e_IA767 (195): Subaru_MB/IA768.dat
+f_IA797 e_IA797 (196): Subaru_MB/IA797.dat
+f_IA856 e_IA856 (198): Subaru_MB/IA856.dat
+f_tenisJ e_tenisJ (220): WIRCam/cfh8101_J.txt
+f_tenisK e_tenisK (222): WIRCam/cfh8302_Ks.txt
+f_F105W e_F105W (202): hst/wfc3/IR/f105w.dat
+Read PRIOR_FILE:  templates/prior_F160W_TAO.dat
+Process template tweak_fsps_QSF_12_v3_001.dat.
+Process template tweak_fsps_QSF_12_v3_002.dat.
+Process template tweak_fsps_QSF_12_v3_003.dat.
+Process template tweak_fsps_QSF_12_v3_004.dat.
+Process template tweak_fsps_QSF_12_v3_005.dat.
+Process template tweak_fsps_QSF_12_v3_006.dat.
+Process template tweak_fsps_QSF_12_v3_007.dat.
+Process template tweak_fsps_QSF_12_v3_008.dat.
+Process template tweak_fsps_QSF_12_v3_009.dat.
+Process template tweak_fsps_QSF_12_v3_010.dat.
+Process template tweak_fsps_QSF_12_v3_011.dat.
+Process template tweak_fsps_QSF_12_v3_012.dat.
+Process templates: 24.964 s
+Process template fsps/fsps_QSF_12_v3_nolines_001.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_002.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_003.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_004.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_005.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_006.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_007.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_008.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_009.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_010.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_011.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_012.dat.
+Process template line Ha+NII+SII+SIII+He+PaB.
+Process template line OIII+Hb+Hg+Hd.
+Process template line OII+Ne.
+Process template line Gal-UV-lines.
+Reading in beams.fits file for 17786
+1 ibhj07ygq_flt.fits G141
+2 ibhj07ynq_flt.fits G141
+3 ibhj07z1q_flt.fits G141
+creating poly_templates...
+exception in poly_templates...
+Changing to /home/rsimons/git/clear_local

@@ -1,0 +1,6318 @@
+
+
+
+
+###################
+Parameters
+
+
+field             GS1
+mag_lim           25
+mag_max           0
+files_bool        True
+retrieve_bool     False
+prep_bool         False
+model_bool        True
+new_model         False
+beams_bool        False
+fit_bool          True
+use_psf           False
+fit_min_id        0
+n_jobs            1
+id_choose            None
+phot_scale_order  2
+fit_without_phot  False
+PATH_TO_SCRIPTS   /home/rsimons/git/clear_local
+PATH_TO_CATS      /user/rsimons/grizli_extractions/Catalogs
+PATH_TO_HOME      /user/rsimons/grizli_extractions
+HOME_PATH         /user/rsimons/grizli_extractions/GS1
+
+
+
+
+####################
+
+
+
+
+Changing to /user/rsimons/grizli_extractions/GS1
+Changing to /user/rsimons/grizli_extractions/GS1/j033300m2742/Prep
+goodss-01-bhj-01-177.0-F140W 4
+goodss-01-bhj-01-177.0-G141 4
+GS1-cxt-09-227.0-F105W 2
+GS1-cxt-10-227.0-F105W 2
+GS1-cxt-07-249.0-F105W 2
+GS1-cxt-08-249.0-F105W 2
+GS1-cxt-11-269.0-F105W 2
+GS1-cxt-12-269.0-F105W 2
+GS1-cxt-09-227.0-G102 4
+GS1-cxt-10-227.0-G102 4
+GS1-cxt-07-249.0-G102 4
+GS1-cxt-08-249.0-G102 4
+GS1-cxt-11-269.0-G102 4
+GS1-cxt-12-269.0-G102 4
+/home/rsimons/miniconda2/envs/grizli/lib/python3.5/site-packages/eazy/data/templates -> ./templates
+/home/rsimons/miniconda2/envs/grizli/lib/python3.5/site-packages/eazy/data/filters/FILTER.RES.latest -> ./FILTER.RES.latest
+Read default param file: /home/rsimons/miniconda2/envs/grizli/lib/python3.5/site-packages/eazy/data/zphot.param.default
+Read CATALOG_FILE: /user/rsimons/grizli_extractions/Catalogs/goodss_3dhst.v4.4.cats/Catalog/goodss_3dhst.v4.4.cat
+f_F160W e_F160W (205): hst/wfc3/IR/f160w.dat
+f_U e_U (103): ESO/vimos_u.res
+f_F435W e_F435W (  1): hst/ACS_update_sep07/wfc_f435w_t77.dat
+f_F606Wcand e_F606Wcand (236): hst/ACS_update_sep07/wfc_f606w_t81.dat
+f_F606W e_F606W (  4): hst/ACS_update_sep07/wfc_f606w_t77.dat
+f_R e_R (260): ESO/VIMOS/R.dat
+f_F775W e_F775W (  5): hst/ACS_update_sep07/wfc_f775w_t77.dat
+f_F814Wcand e_F814Wcand (239): hst/ACS_update_sep07/wfc_f814w_t81.dat
+f_F850LP e_F850LP (  7): hst/ACS_update_sep07/wfc_f850lp_t77.dat
+f_F850LPcand e_F850LPcand (240): hst/ACS_update_sep07/wfc_f850lp_t81.dat
+f_F125W e_F125W (203): hst/wfc3/IR/f125w.dat
+f_J e_J ( 34): ESO/isaac_j.res
+f_F140W e_F140W (204): hst/wfc3/IR/f140w.dat
+f_H e_H ( 36): ESO/isaac_h.res
+f_Ks e_Ks ( 37): ESO/isaac_ks.res
+f_IRAC1 e_IRAC1 ( 18): IRAC/irac_tr1_2004-08-09.dat
+f_IRAC2 e_IRAC2 ( 19): IRAC/irac_tr2_2004-08-09.dat
+f_IRAC3 e_IRAC3 ( 20): IRAC/irac_tr3_2004-08-09.dat
+f_IRAC4 e_IRAC4 ( 21): IRAC/irac_tr4_2004-08-09.dat
+f_U38 e_U38 (107): ESO/wfi_BB_U38_ESO841.res
+f_B e_B ( 46): musyc/B_cdfs_tot.dat
+f_V e_V ( 50): musyc/V_cdfs_tot.dat
+f_Rc e_Rc ( 54): musyc/R_cdfs_tot.dat
+f_I e_I ( 58): musyc/I_cdfs_tot.dat
+f_IA427 e_IA427 (181): Subaru_MB/IA427.dat
+f_IA445 e_IA445 (182): Subaru_MB/IA445.dat
+f_IA505 e_IA505 (185): Subaru_MB/IA505.dat
+f_IA527 e_IA527 (186): Subaru_MB/IA527.dat
+f_IA550 e_IA550 (187): Subaru_MB/IA550.dat
+f_IA574 e_IA574 (188): Subaru_MB/IA574.dat
+f_IA598 e_IA598 (189): Subaru_MB/IA598.dat
+f_IA624 e_IA624 (190): Subaru_MB/IA624.dat
+f_IA651 e_IA651 (191): Subaru_MB/IA651.dat
+f_IA679 e_IA679 (192): Subaru_MB/IA679.dat
+f_IA738 e_IA738 (194): Subaru_MB/IA738.dat
+f_IA767 e_IA767 (195): Subaru_MB/IA768.dat
+f_IA797 e_IA797 (196): Subaru_MB/IA797.dat
+f_IA856 e_IA856 (198): Subaru_MB/IA856.dat
+f_tenisJ e_tenisJ (220): WIRCam/cfh8101_J.txt
+f_tenisK e_tenisK (222): WIRCam/cfh8302_Ks.txt
+f_F105W e_F105W (202): hst/wfc3/IR/f105w.dat
+Read PRIOR_FILE:  templates/prior_F160W_TAO.dat
+Process template tweak_fsps_QSF_12_v3_001.dat.
+Process template tweak_fsps_QSF_12_v3_002.dat.
+Process template tweak_fsps_QSF_12_v3_003.dat.
+Process template tweak_fsps_QSF_12_v3_004.dat.
+Process template tweak_fsps_QSF_12_v3_005.dat.
+Process template tweak_fsps_QSF_12_v3_006.dat.
+Process template tweak_fsps_QSF_12_v3_007.dat.
+Process template tweak_fsps_QSF_12_v3_008.dat.
+Process template tweak_fsps_QSF_12_v3_009.dat.
+Process template tweak_fsps_QSF_12_v3_010.dat.
+Process template tweak_fsps_QSF_12_v3_011.dat.
+Process template tweak_fsps_QSF_12_v3_012.dat.
+Process templates: 7.883 s
+Process template fsps/fsps_QSF_12_v3_nolines_001.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_002.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_003.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_004.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_005.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_006.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_007.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_008.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_009.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_010.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_011.dat.
+Process template fsps/fsps_QSF_12_v3_nolines_012.dat.
+Process template line Ha+NII+SII+SIII+He+PaB.
+Process template line OIII+Hb+Hg+Hd.
+Process template line OII+Ne.
+Process template line Gal-UV-lines.
+Reading in beams.fits file for 44427
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44427 23.867
+Reading in beams.fits file for 44620
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44620 22.4997
+Reading in beams.fits file for 44651
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44651 23.8832
+Reading in beams.fits file for 44707
+1 icxt09f0q_flt.fits G102
+2 icxt09f2q_flt.fits G102
+3 icxt09f5q_flt.fits G102
+4 icxt09f7q_flt.fits G102
+5 icxt10dbq_flt.fits G102
+6 icxt10deq_flt.fits G102
+7 icxt10diq_flt.fits G102
+8 icxt10dkq_flt.fits G102
+9 icxt07dxq_flt.fits G102
+10 icxt07dzq_flt.fits G102
+11 icxt07e2q_flt.fits G102
+12 icxt07e4q_flt.fits G102
+13 icxt08e7q_flt.fits G102
+14 icxt08e9q_flt.fits G102
+15 icxt08ecq_flt.fits G102
+16 icxt08eeq_flt.fits G102
+17 icxt11qiq_flt.fits G102
+18 icxt11qkq_flt.fits G102
+19 icxt11qnq_flt.fits G102
+20 icxt11qpq_flt.fits G102
+21 icxt12qvq_flt.fits G102
+22 icxt12qxq_flt.fits G102
+23 icxt12r0q_flt.fits G102
+24 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44707 23.0084
+Reading in beams.fits file for 44723
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44723 24.3318
+Reading in beams.fits file for 44794
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44794 24.7417
+Reading in beams.fits file for 44857
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44857 22.435
+Reading in beams.fits file for 44889
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44889 24.853
+Reading in beams.fits file for 44957
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44957 22.4844
+Reading in beams.fits file for 44999
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 44999 21.4102
+Reading in beams.fits file for 45069
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45069 22.2062
+Reading in beams.fits file for 45122
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dzq_flt.fits G102
+14 icxt07e2q_flt.fits G102
+15 icxt07e4q_flt.fits G102
+16 icxt08e9q_flt.fits G102
+17 icxt08ecq_flt.fits G102
+18 icxt08eeq_flt.fits G102
+19 icxt11qnq_flt.fits G102
+20 icxt12r0q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45122 24.044
+Reading in beams.fits file for 45148
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45148 23.9243
+Reading in beams.fits file for 45192
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45192 24.813
+Reading in beams.fits file for 45219
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45219 23.8593
+Reading in beams.fits file for 45242
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45242 23.4991
+Reading in beams.fits file for 45264
+1 icxt09f0q_flt.fits G102
+2 icxt09f2q_flt.fits G102
+3 icxt09f5q_flt.fits G102
+4 icxt09f7q_flt.fits G102
+5 icxt10dbq_flt.fits G102
+6 icxt10deq_flt.fits G102
+7 icxt10diq_flt.fits G102
+8 icxt10dkq_flt.fits G102
+9 icxt07dxq_flt.fits G102
+10 icxt07dzq_flt.fits G102
+11 icxt07e2q_flt.fits G102
+12 icxt07e4q_flt.fits G102
+13 icxt08e7q_flt.fits G102
+14 icxt08e9q_flt.fits G102
+15 icxt08ecq_flt.fits G102
+16 icxt08eeq_flt.fits G102
+17 icxt11qiq_flt.fits G102
+18 icxt11qkq_flt.fits G102
+19 icxt11qnq_flt.fits G102
+20 icxt11qpq_flt.fits G102
+21 icxt12qvq_flt.fits G102
+22 icxt12qxq_flt.fits G102
+23 icxt12r0q_flt.fits G102
+24 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45264 24.9979
+Reading in beams.fits file for 45273
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45273 24.1583
+Reading in beams.fits file for 45364
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45364 23.0555
+Reading in beams.fits file for 45424
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45424 20.3727
+Reading in beams.fits file for 45469
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45469 23.0533
+Reading in beams.fits file for 45480
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45480 24.8882
+Reading in beams.fits file for 45485
+1 icxt09f0q_flt.fits G102
+2 icxt09f2q_flt.fits G102
+3 icxt09f5q_flt.fits G102
+4 icxt09f7q_flt.fits G102
+5 icxt10dbq_flt.fits G102
+6 icxt10deq_flt.fits G102
+7 icxt10diq_flt.fits G102
+8 icxt10dkq_flt.fits G102
+9 icxt07dxq_flt.fits G102
+10 icxt07dzq_flt.fits G102
+11 icxt07e2q_flt.fits G102
+12 icxt07e4q_flt.fits G102
+13 icxt08e7q_flt.fits G102
+14 icxt08e9q_flt.fits G102
+15 icxt08ecq_flt.fits G102
+16 icxt08eeq_flt.fits G102
+17 icxt11qiq_flt.fits G102
+18 icxt11qkq_flt.fits G102
+19 icxt11qnq_flt.fits G102
+20 icxt11qpq_flt.fits G102
+21 icxt12qvq_flt.fits G102
+22 icxt12qxq_flt.fits G102
+23 icxt12r0q_flt.fits G102
+24 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45485 23.632
+Reading in beams.fits file for 45524
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45524 22.8505
+Reading in beams.fits file for 45551
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45551 24.9758
+Reading in beams.fits file for 45574
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f5q_flt.fits G102
+6 icxt10diq_flt.fits G102
+7 icxt11qnq_flt.fits G102
+8 icxt12r0q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45574 21.8389
+Reading in beams.fits file for 45590
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45590 23.4054
+Reading in beams.fits file for 45591
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45591 22.7475
+Reading in beams.fits file for 45667
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45667 23.9979
+Reading in beams.fits file for 45672
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45672 23.267
+Reading in beams.fits file for 45752
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45752 23.5555
+Reading in beams.fits file for 45789
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45789 21.6557
+Reading in beams.fits file for 45790
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45790 24.8683
+Reading in beams.fits file for 45816
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45816 19.7783
+Reading in beams.fits file for 45847
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45847 23.0609
+Reading in beams.fits file for 45875
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45875 23.6788
+Reading in beams.fits file for 45889
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45889 23.2367
+Reading in beams.fits file for 45915
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45915 21.1842
+Reading in beams.fits file for 45922
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 45922 22.048
+Reading in beams.fits file for 46106
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46106 23.3077
+Reading in beams.fits file for 46107
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46107 22.3612
+Reading in beams.fits file for 46124
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46124 22.6547
+Reading in beams.fits file for 46183
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46183 24.5732
+Reading in beams.fits file for 46339
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46339 24.5837
+Reading in beams.fits file for 46345
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46345 23.6325
+Reading in beams.fits file for 46356
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46356 17.0808
+Reading in beams.fits file for 46386
+1 icxt09f0q_flt.fits G102
+2 icxt09f2q_flt.fits G102
+3 icxt09f5q_flt.fits G102
+4 icxt09f7q_flt.fits G102
+5 icxt10dbq_flt.fits G102
+6 icxt10deq_flt.fits G102
+7 icxt10diq_flt.fits G102
+8 icxt10dkq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46386 18.5788
+Reading in beams.fits file for 46436
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46436 23.6526
+Reading in beams.fits file for 46457
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46457 22.2976
+Reading in beams.fits file for 46464
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46464 23.8842
+Reading in beams.fits file for 46493
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46493 24.2593
+Reading in beams.fits file for 46526
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46526 22.3861
+Reading in beams.fits file for 46567
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46567 24.678
+Reading in beams.fits file for 46621
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt11qiq_flt.fits G102
+6 icxt11qkq_flt.fits G102
+7 icxt11qnq_flt.fits G102
+8 icxt11qpq_flt.fits G102
+9 icxt12qvq_flt.fits G102
+10 icxt12qxq_flt.fits G102
+11 icxt12r0q_flt.fits G102
+12 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46621 23.7833
+Reading in beams.fits file for 46655
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46655 24.963
+Reading in beams.fits file for 46660
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46660 24.5291
+Reading in beams.fits file for 46661
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46661 24.9343
+Reading in beams.fits file for 46668
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46668 22.504
+Reading in beams.fits file for 46685
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46685 23.4204
+Reading in beams.fits file for 46830
+1 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46830 24.1516
+Reading in beams.fits file for 46863
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46863 24.302
+Reading in beams.fits file for 46881
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46881 19.7006
+Reading in beams.fits file for 46886
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46886 24.1941
+Reading in beams.fits file for 46894
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46894 24.7588
+Reading in beams.fits file for 46922
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46922 17.7267
+Reading in beams.fits file for 46932
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46932 21.009
+Reading in beams.fits file for 46988
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 46988 24.1732
+Reading in beams.fits file for 47025
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47025 24.4703
+Reading in beams.fits file for 47031
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47031 24.3551
+Reading in beams.fits file for 47035
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47035 23.8592
+Reading in beams.fits file for 47085
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47085 24.7005
+Reading in beams.fits file for 47091
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47091 23.9235
+Reading in beams.fits file for 47121
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47121 21.7539
+Reading in beams.fits file for 47125
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47125 24.9528
+Reading in beams.fits file for 47184
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47184 23.406
+Reading in beams.fits file for 47202
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47202 23.1648
+Reading in beams.fits file for 47214
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47214 21.5333
+Reading in beams.fits file for 47219
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47219 21.671
+Reading in beams.fits file for 47348
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47348 23.5434
+Reading in beams.fits file for 47375
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47375 22.0948
+Reading in beams.fits file for 47393
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47393 23.7209
+Reading in beams.fits file for 47399
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47399 22.3741
+Reading in beams.fits file for 47408
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47408 24.0147
+Reading in beams.fits file for 47421
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47421 19.149
+Reading in beams.fits file for 47433
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47433 22.8959
+Reading in beams.fits file for 47464
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47464 23.9761
+Reading in beams.fits file for 47469
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt11qiq_flt.fits G102
+6 icxt11qkq_flt.fits G102
+7 icxt11qnq_flt.fits G102
+8 icxt11qpq_flt.fits G102
+9 icxt12qvq_flt.fits G102
+10 icxt12qxq_flt.fits G102
+11 icxt12r0q_flt.fits G102
+12 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47469 21.5449
+Reading in beams.fits file for 47487
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47487 19.9951
+Reading in beams.fits file for 47488
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47488 24.6363
+Reading in beams.fits file for 47498
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47498 24.3273
+Reading in beams.fits file for 47504
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47504 24.7873
+Reading in beams.fits file for 47520
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47520 24.0022
+Reading in beams.fits file for 47536
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47536 22.7066
+Reading in beams.fits file for 47549
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47549 24.768
+Reading in beams.fits file for 47556
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47556 23.3744
+Reading in beams.fits file for 47615
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+13 icxt11qiq_flt.fits G102
+14 icxt11qkq_flt.fits G102
+15 icxt11qnq_flt.fits G102
+16 icxt11qpq_flt.fits G102
+17 icxt12qvq_flt.fits G102
+18 icxt12qxq_flt.fits G102
+19 icxt12r0q_flt.fits G102
+20 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47615 22.7057
+Reading in beams.fits file for 47634
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47634 22.4786
+Reading in beams.fits file for 47648
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+13 icxt11qiq_flt.fits G102
+14 icxt11qkq_flt.fits G102
+15 icxt11qnq_flt.fits G102
+16 icxt11qpq_flt.fits G102
+17 icxt12qvq_flt.fits G102
+18 icxt12qxq_flt.fits G102
+19 icxt12r0q_flt.fits G102
+20 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47648 24.946
+Reading in beams.fits file for 47672
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47672 24.5042
+Reading in beams.fits file for 47677
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47677 22.9648
+Reading in beams.fits file for 47688
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt11qiq_flt.fits G102
+6 icxt11qkq_flt.fits G102
+7 icxt11qnq_flt.fits G102
+8 icxt11qpq_flt.fits G102
+9 icxt12qvq_flt.fits G102
+10 icxt12qxq_flt.fits G102
+11 icxt12r0q_flt.fits G102
+12 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47688 23.1918
+Reading in beams.fits file for 47691
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47691 21.5103
+Reading in beams.fits file for 47698
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47698 23.7575
+Reading in beams.fits file for 47721
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt11qiq_flt.fits G102
+6 icxt11qkq_flt.fits G102
+7 icxt11qnq_flt.fits G102
+8 icxt11qpq_flt.fits G102
+9 icxt12qvq_flt.fits G102
+10 icxt12qxq_flt.fits G102
+11 icxt12r0q_flt.fits G102
+12 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47721 23.3489
+Reading in beams.fits file for 47736
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47736 23.9114
+Reading in beams.fits file for 47746
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47746 20.9284
+Reading in beams.fits file for 47749
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47749 22.8261
+Reading in beams.fits file for 47759
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47759 24.1381
+Reading in beams.fits file for 47818
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47818 23.1351
+Reading in beams.fits file for 47857
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47857 23.1612
+Reading in beams.fits file for 47860
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47860 24.9148
+Reading in beams.fits file for 47881
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47881 24.8273
+Reading in beams.fits file for 47919
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+13 icxt11qiq_flt.fits G102
+14 icxt11qkq_flt.fits G102
+15 icxt11qnq_flt.fits G102
+16 icxt11qpq_flt.fits G102
+17 icxt12qvq_flt.fits G102
+18 icxt12qxq_flt.fits G102
+19 icxt12r0q_flt.fits G102
+20 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47919 22.5745
+Reading in beams.fits file for 47938
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47938 24.7271
+Reading in beams.fits file for 47952
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47952 23.6607
+Reading in beams.fits file for 47954
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47954 24.0672
+Reading in beams.fits file for 47970
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47970 24.5475
+Reading in beams.fits file for 47994
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 47994 23.6982
+Reading in beams.fits file for 48012
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48012 24.3382
+Reading in beams.fits file for 48025
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48025 24.6439
+Reading in beams.fits file for 48039
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48039 22.7167
+Reading in beams.fits file for 48050
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48050 24.3029
+Reading in beams.fits file for 48067
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48067 24.8074
+Reading in beams.fits file for 48097
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48097 24.2789
+Reading in beams.fits file for 48104
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48104 23.7864
+Reading in beams.fits file for 48105
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48105 23.8822
+Reading in beams.fits file for 48109
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+13 icxt11qiq_flt.fits G102
+14 icxt11qkq_flt.fits G102
+15 icxt11qnq_flt.fits G102
+16 icxt11qpq_flt.fits G102
+17 icxt12qvq_flt.fits G102
+18 icxt12qxq_flt.fits G102
+19 icxt12r0q_flt.fits G102
+20 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48109 24.1583
+Reading in beams.fits file for 48113
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48113 24.56
+Reading in beams.fits file for 48124
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48124 24.9356
+Reading in beams.fits file for 48151
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48151 24.9916
+Reading in beams.fits file for 48153
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48153 22.7248
+Reading in beams.fits file for 48177
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48177 23.1869
+Reading in beams.fits file for 48207
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48207 23.871
+Reading in beams.fits file for 48231
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48231 23.6995
+Reading in beams.fits file for 48238
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48238 24.8911
+Reading in beams.fits file for 48239
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48239 24.788
+Reading in beams.fits file for 48248
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48248 22.1964
+Reading in beams.fits file for 48274
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48274 23.1172
+Reading in beams.fits file for 48307
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48307 24.0144
+Reading in beams.fits file for 48322
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48322 24.0019
+Reading in beams.fits file for 48357
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48357 22.3949
+Reading in beams.fits file for 48373
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48373 24.5849
+Reading in beams.fits file for 48424
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48424 24.5075
+Reading in beams.fits file for 48448
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48448 23.99
+Reading in beams.fits file for 48457
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48457 24.3133
+Reading in beams.fits file for 48487
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48487 24.8855
+Reading in beams.fits file for 48494
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48494 24.0608
+Reading in beams.fits file for 48499
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48499 24.5611
+Reading in beams.fits file for 48543
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48543 24.7391
+Reading in beams.fits file for 48577
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48577 24.8415
+Reading in beams.fits file for 48578
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48578 24.9825
+Reading in beams.fits file for 48645
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48645 24.0275
+Reading in beams.fits file for 48660
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48660 24.7112
+Reading in beams.fits file for 48672
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48672 23.494
+Reading in beams.fits file for 48685
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48685 22.713
+Reading in beams.fits file for 48692
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48692 23.6152
+Reading in beams.fits file for 48714
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48714 24.3776
+Reading in beams.fits file for 48720
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48720 23.6014
+Reading in beams.fits file for 48727
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48727 24.1512
+Reading in beams.fits file for 48742
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt08e7q_flt.fits G102
+15 icxt11qiq_flt.fits G102
+16 icxt11qkq_flt.fits G102
+17 icxt11qnq_flt.fits G102
+18 icxt11qpq_flt.fits G102
+19 icxt12qvq_flt.fits G102
+20 icxt12qxq_flt.fits G102
+21 icxt12r0q_flt.fits G102
+22 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48742 23.7217
+Reading in beams.fits file for 48779
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48779 24.2406
+Reading in beams.fits file for 48793
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48793 21.4525
+Reading in beams.fits file for 48818
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48818 22.8469
+Reading in beams.fits file for 48849
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48849 24.3319
+Reading in beams.fits file for 48850
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48850 19.4459
+Reading in beams.fits file for 48893
+1 ibhj01j4q_flt.fits G141
+2 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48893 24.4176
+Reading in beams.fits file for 48918
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 48918 22.59
+Reading in beams.fits file for 49002
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49002 22.9205
+Reading in beams.fits file for 49036
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49036 23.7402
+Reading in beams.fits file for 49040
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49040 23.3084
+Reading in beams.fits file for 49046
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49046 23.4579
+Reading in beams.fits file for 49053
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49053 23.4064
+Reading in beams.fits file for 49063
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49063 22.8602
+Reading in beams.fits file for 49100
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49100 22.2734
+Reading in beams.fits file for 49105
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49105 24.9753
+Reading in beams.fits file for 49132
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49132 23.6861
+Reading in beams.fits file for 49194
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49194 22.539
+Reading in beams.fits file for 49209
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49209 24.7289
+Reading in beams.fits file for 49247
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49247 23.5289
+Reading in beams.fits file for 49257
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49257 22.8612
+Reading in beams.fits file for 49263
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49263 24.8696
+Reading in beams.fits file for 49330
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49330 24.6319
+Reading in beams.fits file for 49340
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qkq_flt.fits G102
+22 icxt12qxq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49340 24.3155
+Reading in beams.fits file for 49346
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49346 24.4119
+Reading in beams.fits file for 49377
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49377 23.7038
+Reading in beams.fits file for 49402
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49402 22.4546
+Reading in beams.fits file for 49426
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49426 24.7226
+Reading in beams.fits file for 49466
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49466 24.4336
+Reading in beams.fits file for 49493
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49493 22.2274
+Reading in beams.fits file for 49501
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49501 21.8024
+Reading in beams.fits file for 49504
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49504 23.4632
+Reading in beams.fits file for 49554
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49554 24.9371
+Reading in beams.fits file for 49597
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49597 24.9134
+Reading in beams.fits file for 49609
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49609 23.6503
+Reading in beams.fits file for 49612
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49612 21.3812
+Reading in beams.fits file for 49662
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49662 24.7183
+Reading in beams.fits file for 49669
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49669 23.3955
+Reading in beams.fits file for 49691
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49691 24.5229
+Reading in beams.fits file for 49693
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49693 23.8776
+Reading in beams.fits file for 49702
+1 ibhj01j4q_flt.fits G141
+2 icxt09f0q_flt.fits G102
+3 icxt09f2q_flt.fits G102
+4 icxt09f5q_flt.fits G102
+5 icxt10dbq_flt.fits G102
+6 icxt10deq_flt.fits G102
+7 icxt10diq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49702 19.7106
+Reading in beams.fits file for 49718
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49718 24.7171
+Reading in beams.fits file for 49720
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49720 24.0888
+Reading in beams.fits file for 49728
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qpq_flt.fits G102
+24 icxt12qvq_flt.fits G102
+25 icxt12qxq_flt.fits G102
+26 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49728 22.2407
+Reading in beams.fits file for 49742
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49742 22.0591
+Reading in beams.fits file for 49780
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49780 24.5469
+Reading in beams.fits file for 49836
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+13 icxt11qiq_flt.fits G102
+14 icxt11qkq_flt.fits G102
+15 icxt11qnq_flt.fits G102
+16 icxt11qpq_flt.fits G102
+17 icxt12qvq_flt.fits G102
+18 icxt12qxq_flt.fits G102
+19 icxt12r0q_flt.fits G102
+20 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49836 22.1472
+Reading in beams.fits file for 49837
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f2q_flt.fits G102
+6 icxt09f5q_flt.fits G102
+7 icxt10deq_flt.fits G102
+8 icxt10diq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49837 23.2426
+Reading in beams.fits file for 49838
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49838 24.3905
+Reading in beams.fits file for 49872
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f2q_flt.fits G102
+6 icxt09f5q_flt.fits G102
+7 icxt10deq_flt.fits G102
+8 icxt10diq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49872 23.3388
+Reading in beams.fits file for 49874
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qnq_flt.fits G102
+24 icxt11qpq_flt.fits G102
+25 icxt12qvq_flt.fits G102
+26 icxt12qxq_flt.fits G102
+27 icxt12r0q_flt.fits G102
+28 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49874 24.9806
+Reading in beams.fits file for 49888
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f2q_flt.fits G102
+6 icxt09f5q_flt.fits G102
+7 icxt10deq_flt.fits G102
+8 icxt10diq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49888 23.4988
+Reading in beams.fits file for 49891
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt11qiq_flt.fits G102
+14 icxt11qkq_flt.fits G102
+15 icxt11qnq_flt.fits G102
+16 icxt11qpq_flt.fits G102
+17 icxt12qvq_flt.fits G102
+18 icxt12qxq_flt.fits G102
+19 icxt12r0q_flt.fits G102
+20 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49891 24.2078
+Reading in beams.fits file for 49896
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt10dbq_flt.fits G102
+9 icxt10deq_flt.fits G102
+10 icxt10diq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49896 21.7145
+Reading in beams.fits file for 49904
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f0q_flt.fits G102
+6 icxt09f2q_flt.fits G102
+7 icxt09f5q_flt.fits G102
+8 icxt09f7q_flt.fits G102
+9 icxt10dbq_flt.fits G102
+10 icxt10deq_flt.fits G102
+11 icxt10diq_flt.fits G102
+12 icxt10dkq_flt.fits G102
+13 icxt07dxq_flt.fits G102
+14 icxt07dzq_flt.fits G102
+15 icxt07e2q_flt.fits G102
+16 icxt07e4q_flt.fits G102
+17 icxt08e7q_flt.fits G102
+18 icxt08e9q_flt.fits G102
+19 icxt08ecq_flt.fits G102
+20 icxt08eeq_flt.fits G102
+21 icxt11qiq_flt.fits G102
+22 icxt11qkq_flt.fits G102
+23 icxt11qpq_flt.fits G102
+24 icxt12qvq_flt.fits G102
+25 icxt12qxq_flt.fits G102
+26 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49904 23.2977
+Reading in beams.fits file for 49941
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49941 23.4786
+Reading in beams.fits file for 49955
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt09f2q_flt.fits G102
+6 icxt09f5q_flt.fits G102
+7 icxt10deq_flt.fits G102
+8 icxt10diq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 49955 24.6103
+Reading in beams.fits file for 50110
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt11qiq_flt.fits G102
+6 icxt11qkq_flt.fits G102
+7 icxt11qnq_flt.fits G102
+8 icxt11qpq_flt.fits G102
+9 icxt12qvq_flt.fits G102
+10 icxt12qxq_flt.fits G102
+11 icxt12r0q_flt.fits G102
+12 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 50110 24.8008
+Reading in beams.fits file for 50214
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt11qiq_flt.fits G102
+6 icxt11qkq_flt.fits G102
+7 icxt11qnq_flt.fits G102
+8 icxt11qpq_flt.fits G102
+9 icxt12qvq_flt.fits G102
+10 icxt12qxq_flt.fits G102
+11 icxt12r0q_flt.fits G102
+12 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 50214 24.8067
+Reading in beams.fits file for 50249
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt11qiq_flt.fits G102
+6 icxt11qkq_flt.fits G102
+7 icxt11qnq_flt.fits G102
+8 icxt11qpq_flt.fits G102
+9 icxt12qvq_flt.fits G102
+10 icxt12qxq_flt.fits G102
+11 icxt12r0q_flt.fits G102
+12 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 50249 23.2199
+Reading in beams.fits file for 50292
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt11qiq_flt.fits G102
+6 icxt11qkq_flt.fits G102
+7 icxt11qpq_flt.fits G102
+8 icxt12qvq_flt.fits G102
+9 icxt12qxq_flt.fits G102
+10 icxt12r2q_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 50292 23.9963
+Reading in beams.fits file for 50389
+1 ibhj01iqq_flt.fits G141
+2 ibhj01ixq_flt.fits G141
+3 ibhj01j4q_flt.fits G141
+4 ibhj01jbq_flt.fits G141
+5 icxt07dxq_flt.fits G102
+6 icxt07dzq_flt.fits G102
+7 icxt07e2q_flt.fits G102
+8 icxt07e4q_flt.fits G102
+9 icxt08e7q_flt.fits G102
+10 icxt08e9q_flt.fits G102
+11 icxt08ecq_flt.fits G102
+12 icxt08eeq_flt.fits G102
+13 icxt11qiq_flt.fits G102
+14 icxt12qvq_flt.fits G102
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 50389 24.6478
+Reading in beams.fits file for 50450
+1 ibhj01j4q_flt.fits G141
+creating poly_templates...
+drizzle_grisms_and_PAs...
+Finished 50450 23.1659
+Changing to /home/rsimons/git/clear_local
