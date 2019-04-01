@@ -8,7 +8,7 @@ except:
    exit(1)
 
 
-time.sleep(40)
+time.sleep(300)
 
 
 print sum(values)
