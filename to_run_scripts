@@ -9,6 +9,14 @@ nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jo
 
 
 
+
+
+
+nohup nice -19 python grizli_reduction.py --do_fit --field GS1 -mag_lim 25 -n_jobs 1 --pso 2 > GS1_stacks.out &
+
+
+
+
 nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29544 > GS4_25_29544.out &
 nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29499 > GS4_25_29499.out &
 nohup nice -19 python grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 2 --id_choose 29530 > GS4_25_29530.out &
