@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
+import astropy
 
-import os
-
-os.system('echo $PATH')
-os.system('which python')
-
+print (1)
 
 
 
