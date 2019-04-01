@@ -1,2 +1,3 @@
 #!/usr/bin/env python
-which python
+import os
+os.system(which python)
