@@ -3,7 +3,7 @@
 import astropy
 import os
 
-os.system('which python')
+os.system('python -V')
 
 print (1)
 
