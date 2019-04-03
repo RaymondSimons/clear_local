@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/rsimons/miniconda2/envs/grizli/bin/python
 
 import astropy
 import os

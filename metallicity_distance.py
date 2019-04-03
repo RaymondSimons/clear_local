@@ -412,7 +412,7 @@ def metallicity_distance(field, id_fit, gfit_cat_gdn, gfit_cat_gds, rmx = 1.0):
                             ax3.plot(x, x*d[0] + d[1], color = 'blue', alpha = 0.1)
                             ax3.plot(x_rest, x_rest*d[0] + d[1], color = 'blue',alpha = 0.03, linestyle = '--')
 
-                        cat.write('%s   %.5i   %.3f   %.3f   %.3f   %.3f\n'%(field, id_fit, p[0], np.sqrt(V[0,0]), p[0]*cosmo.arcsec_per_kpc_proper(z).value, np.sqrt(V[0,0])*cosmo.arcsec_per_kpc_proper(z).value))
+                        cat.write('%s   %.5i   %.3f   %.3f   %.3f   %.3f\n'%(field, id_fit, p[0], p[1], np.sqrt(V[0,0]),np.sqrt(V[1,1])))
 
                         ax3.annotate(r'$\Delta$(O/H)/$\Delta$r = %.3f $\pm$ %.3f dex kpc$^{-1}$'%(p[0]*cosmo.arcsec_per_kpc_proper(z).value, np.sqrt(V[0,0])*cosmo.arcsec_per_kpc_proper(z).value), xy = (0.03, 0.9), color = 'blue', fontsize = 20, xycoords = 'axes fraction')
 
