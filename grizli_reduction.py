@@ -436,7 +436,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                         fcontam=fcontam,           #suggests fcontam = 0.2
                         pline=pline, 
                         mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
-                        fit_only_beams=True,       #suggests fit_only_beams = True
+                        fit_only_beams=False,       #suggests fit_only_beams = True
                         fit_beams=False,           #suggests fit_beams = False
                         root=field,
                         fit_trace_shift=False,  
