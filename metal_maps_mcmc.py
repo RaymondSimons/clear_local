@@ -35,6 +35,8 @@ seed(1)
 prt = False
 
 
+
+
 def OH_R23(OH, use = 'M08'):
     #taken from table in Patricio+
     if use == 'M08': 
@@ -175,7 +177,7 @@ def lnlike(OH, R, Rerr, diagnostics):
     return -0.5*(np.sum((R-model)**2*inv_sigma2))
 
 def lnprior(OH):
-    if 7 < OH < 9.3: return 0.0
+    if 7.0 < OH < 9.5: return 0.0
     return -np.inf
 
 def lnprob(OH, R, Rerr, diagnostics):
@@ -183,6 +185,17 @@ def lnprob(OH, R, Rerr, diagnostics):
     if not np.isfinite(lp):
         return -np.inf
     return lp + lnlike(OH, R, Rerr, diagnostics)
+
+
+def write_fits():
+
+
+
+
+    
+    return
+
+
 
 
 if __name__ == '__main__':
