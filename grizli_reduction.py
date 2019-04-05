@@ -431,7 +431,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                         dz=[0.004, 0.0005], 
                         fitter='nnls',
                         group_name=field,# + '_%i'%phot_scale_order,
-                        fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
+                        fit_stacks=True,          #suggests fit_stacks = False, fit to FLT files
                         prior=None, 
                         fcontam=fcontam,           #suggests fcontam = 0.2
                         pline=pline, 
