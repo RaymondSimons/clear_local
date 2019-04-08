@@ -246,19 +246,28 @@ if __name__ == '__main__':
     print (b-a)
     '''
     #sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
-    with Pool() as pool:
-        a = time.time()
-        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
-        sampler.run_mcmc(pos, 10000)       
-        b = time.time()
-        print (b-a)
+
+
+    sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
+    a = time.time()
+    sampler.run_mcmc(pos, 10000)       
+    b = time.time()
+    print ('serial took ', b-a)
+
 
     with Pool() as pool:
+        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics), pool = pool)
         a = time.time()
-        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob_data_glob)
         sampler.run_mcmc(pos, 10000)       
         b = time.time()
-        print (b-a)
+        print ('mp took ', b-a)
+
+    with Pool() as pool:
+        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob_data_glob, pool = pool)
+        a = time.time()
+        sampler.run_mcmc(pos, 10000)       
+        b = time.time()
+        print ('global mp took ',b-a)
 
     #samples = sampler.chain[:, 300:, :].reshape((-1, ndim))
 
