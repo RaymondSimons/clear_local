@@ -193,6 +193,15 @@ def lnprob(OH, R, Rerr, diagnostics):
     return lp + lnlike(OH, R, Rerr, diagnostics)
 
 
+def lnprob_data_glob(OH):
+    R, Rerr, diagnostics = data
+    lp = lnprior(OH)
+    if not np.isfinite(lp):
+        return -np.inf
+    return lp + lnlike(OH, R, Rerr, diagnostics)
+
+
+
 def write_fits():
 
     return
@@ -221,18 +230,25 @@ if __name__ == '__main__':
 
     pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
 
+
+    global data
+    data = (R, Rerr, diagnostics)
+
+    '''
     a = time.time()
     with Pool() as pool:
-        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics), pool = pool)
+        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=data, pool = pool)
         sampler.run_mcmc(pos, 3000)       
         samples = sampler.chain[:, 300:, :].reshape((-1, ndim))
         OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
         print (list(OH_mcmc))
     b = time.time()
     print (b-a)
-    
+    '''
     a = time.time()
-    sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
+    #sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
+    sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob_data_glob)
+
     sampler.run_mcmc(pos, 30000)       
     samples = sampler.chain[:, 300:, :].reshape((-1, ndim))
 
