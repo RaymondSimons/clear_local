@@ -29,6 +29,7 @@ import emcee
 import scipy.optimize as op
 import time
 import emcee
+from schwimmbad import MPIPool
 
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
@@ -268,6 +269,14 @@ if __name__ == '__main__':
         sampler.run_mcmc(pos, Nsteps)       
         b = time.time()
         print ('global mp took ',b-a)
+
+    with MPIPool() as pool:
+        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob_data_glob, pool = pool)
+        a = time.time()
+        sampler.run_mcmc(pos, Nsteps)       
+        b = time.time()
+        print ('global mp MPI took ',b-a)
+
 
     #samples = sampler.chain[:, 300:, :].reshape((-1, ndim))
 
