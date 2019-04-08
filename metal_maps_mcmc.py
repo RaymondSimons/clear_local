@@ -247,7 +247,7 @@ if __name__ == '__main__':
     '''
     #sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
 
-    Nsteps = 500
+    Nsteps = 100
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
     a = time.time()
     sampler.run_mcmc(pos, Nsteps)       
