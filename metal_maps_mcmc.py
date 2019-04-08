@@ -230,7 +230,7 @@ if __name__ == '__main__':
         for i in arange(shape(O3)[0]):
             for j in arange(shape(O3)[0]):
                 if (O3[i,j]/eO3[i,j] > 1.) & (O2[i,j]/eO2[i,j] > 1.):
-                    print ('hi')
+                    print (R, eR)
 
 
     #OH_true = 8.6
