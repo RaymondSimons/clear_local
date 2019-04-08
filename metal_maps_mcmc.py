@@ -227,9 +227,6 @@ if __name__ == '__main__':
         R = O3/O2
         eR = R * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
 
-
-        gd = where((O3/eO3 > 1.) & (O2/eO2 > 1.))
-
         for i in arange(shape(O3)[0]):
             for j in arange(shape(O3)[0]):
                 if (O3[i,j]/eO3[i,j] > 1.) & (O2[i,j]/eO2[i,j] > 1.):
