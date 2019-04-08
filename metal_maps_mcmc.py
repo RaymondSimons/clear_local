@@ -31,9 +31,6 @@ mpl.rcParams['ytick.labelsize'] = 14
 mpl.rcParams['xtick.labelsize'] = 14
 from sys import argv
 
-
-field = arg
-
 plt.ioff()
 
 seed(1)
@@ -211,7 +208,7 @@ if __name__ == '__main__':
 
     print (argv[1], argv[2])
 
-    
+
 
     '''
     seed()
