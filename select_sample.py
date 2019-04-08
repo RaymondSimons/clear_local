@@ -109,7 +109,7 @@ for c, cat_fl in enumerate(cat_fls):
     good_O3S2  = where(bw_good_O3S2 )[0]
     good_HaHb  = where(bw_good_HaHb )[0]
 
-    good_any = unique(concatenate(good_R23,  
+    good_any = unique(concatenate((good_R23,  
                                   good_R2,   
                                   good_R3,   
                                   good_S2,   
@@ -118,7 +118,7 @@ for c, cat_fl in enumerate(cat_fls):
                                   good_O2,   
                                   good_Ne3O2,
                                   good_O3S2, 
-                                  good_HaHb))
+                                  good_HaHb)))
 
 
 
