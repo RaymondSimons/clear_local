@@ -1,4 +1,4 @@
-#!/user/rsimons/miniconda2/envs/grizli/bin/python
+#!/home/rsimons/miniconda2/envs/grizli/bin/python
 import time
 from multiprocessing import Pool
 import os
