@@ -225,7 +225,7 @@ if __name__ == '__main__':
         eO2 = 1./np.sqrt(a['LINEWHT', 'OII'].data)
 
         R = O3/O2
-        eR = R * sqrt((eO3/O3)**2. + (eO2/O2)**2.)
+        eR = R * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
 
 
 
