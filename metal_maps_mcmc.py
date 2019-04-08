@@ -217,12 +217,21 @@ if __name__ == '__main__':
     result = op.minimize(nll, [OH_true], args=(R, Rerr, diagnostics))
     OH_ml = result["x"]
 
-    a = time.time()
     ndim, nwalkers = 1, 100
 
     pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
 
-
+    a = time.time()
+    with Pool() as pool:
+        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics), pool = pool)
+        sampler.run_mcmc(pos, 300)       
+        samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
+        OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
+        print (list(OH_mcmc))
+    b = time.time()
+    print (b-a)
+    
+    a = time.time()
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
     sampler.run_mcmc(pos, 300)       
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
@@ -231,7 +240,6 @@ if __name__ == '__main__':
     print (list(OH_mcmc))
     b = time.time()
     print (b-a)
-    
 
 
 
