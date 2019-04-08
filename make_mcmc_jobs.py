@@ -12,7 +12,7 @@ for (field, di) in cat:
 
     print field, di
 
-    f = open(outdir + '%s_%.5i.job'%(field, di), 'w+')
+    f = open(outdir + '/%s_%.5i.job'%(field, di), 'w+')
 
     f.write('Name = %s_%.5i_metalmcmc\n'%(field, di))
     f.write('Universe = Vanilla\n')
