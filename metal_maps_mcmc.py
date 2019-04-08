@@ -224,7 +224,7 @@ if __name__ == '__main__':
     a = time.time()
     with Pool() as pool:
         sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics), pool = pool)
-        sampler.run_mcmc(pos, 300)       
+        sampler.run_mcmc(pos, 1000)       
         samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
         OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
         print (list(OH_mcmc))
@@ -233,7 +233,7 @@ if __name__ == '__main__':
     
     a = time.time()
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
-    sampler.run_mcmc(pos, 300)       
+    sampler.run_mcmc(pos, 1000)       
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
 
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
