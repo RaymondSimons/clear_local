@@ -219,10 +219,10 @@ if __name__ == '__main__':
 
     if os.path.isfile(fl):
         a = fits.open(fl)
-        O3  = a['LINE', 'OIII']
-        eO3 = 1./sqrt(a['LINEWHT', 'OIII'])
-        O2  = a['LINE', 'OII']
-        eO2 = 1./sqrt(a['LINEWHT', 'OII'])
+        O3  = a['LINE', 'OIII'].data
+        eO3 = 1./sqrt(a['LINEWHT', 'OIII'].data)
+        O2  = a['LINE', 'OII'].data
+        eO2 = 1./sqrt(a['LINEWHT', 'OII'].data)
 
         R = O3/O2
         eR = R * sqrt((eO3/O3)**2. + (eO2/O2)**2.)
