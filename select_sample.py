@@ -25,11 +25,12 @@ f_R2    = open(cat_dir + '/sample_cats/R2_sample.cat', 'w+')
 f_R3    = open(cat_dir + '/sample_cats/R3_sample.cat', 'w+')
 f_S2    = open(cat_dir + '/sample_cats/S2_sample.cat', 'w+')
 f_O32   = open(cat_dir + '/sample_cats/O32_sample.cat', 'w+')
-f_O3   = open(cat_dir + '/sample_cats/O3_sample.cat', 'w+')
-f_O2   = open(cat_dir + '/sample_cats/O2_sample.cat', 'w+')
+f_O3    = open(cat_dir + '/sample_cats/O3_sample.cat', 'w+')
+f_O2    = open(cat_dir + '/sample_cats/O2_sample.cat', 'w+')
 f_Ne3O2 = open(cat_dir + '/sample_cats/Ne3O2_sample.cat', 'w+')
 f_O3S2  = open(cat_dir + '/sample_cats/O3S2_sample.cat', 'w+')
 f_HaHb  = open(cat_dir + '/sample_cats/HaHb_sample.cat', 'w+')
+f_any   = open(cat_dir + '/sample_cats/any_sample.cat', 'w+')
 
 
 tot_R23    = 0
@@ -102,11 +103,26 @@ for c, cat_fl in enumerate(cat_fls):
     good_R3    = where(bw_good_R3   )[0]
     good_S2    = where(bw_good_S2   )[0]
     good_O32   = where(bw_good_O32  )[0]
-    good_O3   = where(bw_good_O3  )[0]
-    good_O2   = where(bw_good_O2  )[0]
+    good_O3    = where(bw_good_O3  )[0]
+    good_O2    = where(bw_good_O2  )[0]
     good_Ne3O2 = where(bw_good_Ne3O2)[0]
     good_O3S2  = where(bw_good_O3S2 )[0]
     good_HaHb  = where(bw_good_HaHb )[0]
+
+    good_any = unique(concatenate(good_R23  
+                                  good_R2   
+                                  good_R3   
+                                  good_S2   
+                                  good_O32  
+                                  good_O3   
+                                  good_O2   
+                                  good_Ne3O2
+                                  good_O3S2 
+                                  good_HaHb))
+
+
+
+
 
 
 
@@ -176,6 +192,7 @@ for c, cat_fl in enumerate(cat_fls):
     for g, gd in enumerate(good_Ne3O2): f_Ne3O2.write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
     for g, gd in enumerate(good_O3S2 ): f_O3S2 .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
     for g, gd in enumerate(good_HaHb ): f_HaHb .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
+    for g, gd in enumerate(good_any ): f_any .write('%s\t%.5i\n'%(field, cat_data['ID'][gd]))
 
 
 

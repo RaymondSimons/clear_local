@@ -1,3 +1,11 @@
+
+run grizli_reduction.py --do_fit --field GS4 -mag_lim 25 -n_jobs 1  --pso 1 --id_choose 26087
+
+
+
+
+
+
 run grizli_reduction.py --do_retrieve --field ERSPRIME -mag_lim 25 -n_jobs 1
 run grizli_reduction.py --do_prep --field ERSPRIME -mag_lim 25 -n_jobs 1
 run grizli_reduction.py --do_new_model --field ERSPRIME -mag_lim 25 -n_jobs 1
