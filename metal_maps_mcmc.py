@@ -200,7 +200,7 @@ def write_fits():
 
 
 
-def run_mcmc(pos, R, Rerr, diagnostics, Nsteps = 1000, ndim = 1, nwalkers = 100):
+def run_mcmc(pos, R, Rerr, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
     a = time.time()
     sampler.run_mcmc(pos, Nsteps)
@@ -209,7 +209,7 @@ def run_mcmc(pos, R, Rerr, diagnostics, Nsteps = 1000, ndim = 1, nwalkers = 100)
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
 
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
-    #print (list(OH_mcmc))
+    print (list(OH_mcmc))
 
 
 if __name__ == '__main__':
@@ -226,11 +226,17 @@ if __name__ == '__main__':
 
         R = O3/O2
         eR = R * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
+        for diagnostic in [['O32']]:
+            for i in arange(shape(O3)[0]):
+                for j in arange(shape(O3)[0]):
+                    if (O3[i,j]/eO3[i,j] > 1.) & (O2[i,j]/eO2[i,j] > 1.):
+                        print (R[i,j], eR[i,j])
 
-        for i in arange(shape(O3)[0]):
-            for j in arange(shape(O3)[0]):
-                if (O3[i,j]/eO3[i,j] > 1.) & (O2[i,j]/eO2[i,j] > 1.):
-                    print (R[i,j], eR[i,j])
+                        nll = lambda *args: -lnlike(*args)
+                        result = op.minimize(nll, [8.5], args=(R[i,j], eR[i,j], diagnostic))
+                        OH_ml = result["x"]
+                        run_mcmc(pos = pos, R = R[i,j], Rerr = eR[i,j], diagnostics = diagnostic)
+
 
 
     #OH_true = 8.6
