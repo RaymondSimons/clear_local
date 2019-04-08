@@ -200,7 +200,7 @@ if __name__ == '__main__':
 
     print argv[1], argv[2]
 
-
+    '''
     np.random.seed()
     OH_true = 8.6
     Re1 = 0.3
@@ -235,7 +235,7 @@ if __name__ == '__main__':
     print OH_mcmc
     b = time.time()
     print b-a
-
+    '''
 
 
 
