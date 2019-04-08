@@ -247,10 +247,10 @@ if __name__ == '__main__':
     '''
     #sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
 
-
+    Nsteps = 500
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
     a = time.time()
-    sampler.run_mcmc(pos, 10000)       
+    sampler.run_mcmc(pos, Nsteps)       
     b = time.time()
     print ('serial took ', b-a)
 
@@ -258,14 +258,14 @@ if __name__ == '__main__':
     with Pool() as pool:
         sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics), pool = pool)
         a = time.time()
-        sampler.run_mcmc(pos, 10000)       
+        sampler.run_mcmc(pos, Nsteps)       
         b = time.time()
         print ('mp took ', b-a)
 
     with Pool() as pool:
         sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob_data_glob, pool = pool)
         a = time.time()
-        sampler.run_mcmc(pos, 10000)       
+        sampler.run_mcmc(pos, Nsteps)       
         b = time.time()
         print ('global mp took ',b-a)
 
