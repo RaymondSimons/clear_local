@@ -15,7 +15,7 @@ for (field, di) in cat:
     f = open(outdir + '%s_%.5i.job'%(field, di), 'w+')
 
     f.write('Name = %s_%.5i_metalmcmc\n'%(field, di))
-    f.write('Universe = Vanilla\n'
+    f.write('Universe = Vanilla\n')
     f.write('Priority = 19\n')
     f.write('getenv = true\n')
     f.write('Executable = /home/rsimons/git/clear_local/metal_maps_mcmc.py\n')
