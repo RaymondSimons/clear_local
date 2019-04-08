@@ -28,6 +28,7 @@ import emcee
 import scipy.optimize as op
 import time
 import emcee
+from math import *
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 mpl.rcParams['ytick.labelsize'] = 14
