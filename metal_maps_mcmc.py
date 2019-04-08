@@ -29,6 +29,11 @@ mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 mpl.rcParams['ytick.labelsize'] = 14
 mpl.rcParams['xtick.labelsize'] = 14
+from sys import argv
+
+
+field = arg
+
 plt.ioff()
 
 seed(1)
@@ -203,6 +208,12 @@ def write_fits():
 
 
 if __name__ == '__main__':
+
+    print (argv[1], argv[2])
+
+    
+
+    '''
     seed()
     OH_true = 8.6
     Re1 = 0.3
@@ -210,13 +221,6 @@ if __name__ == '__main__':
     R = array([OH_R23(OH_true) + np.random.normal(0, Re1), OH_O32(OH_true)+ np.random.normal(0, Re2)])
     Rerr = array([Re1, Re2])
     diagnostics = array(['R23', 'O32'])
-
-
-    '''
-    R = array([OH_R23(OH_true) + np.random.normal(0, Re1)])
-    Rerr = array([Re1])
-    diagnostics = array(['R23'])
-    '''
 
     import scipy.optimize as op
     nll = lambda *args: -lnlike(*args)
@@ -248,7 +252,7 @@ if __name__ == '__main__':
     print OH_mcmc
     b = time.time()
     print b-a
-
+    '''
 
 
 
