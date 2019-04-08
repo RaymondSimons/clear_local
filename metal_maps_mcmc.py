@@ -213,11 +213,18 @@ def run_mcmc(pos, R, Rerr, diagnostics, Nsteps = 1000, ndim = 1, nwalkers = 100)
 
 if __name__ == '__main__':
     np.random.seed()
+    field, di = argv[1], argv[2]
+    fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%.5i.full.fits'%(field, di))[0]
+
+    if os.path.isfile(fl):
+        a = fits.open(fl)
+
     #OH_true = 8.6
     #Re1, Re2 = 0.3, 0.3
     #R = array([OH_R23(OH_true) + np.random.normal(0, Re1), OH_O32(OH_true)+ np.random.normal(0, Re2)])    
     #Rerr = array([Re1, Re2])
     #diagnostics = array(['R23', 'O32'])
+    '''
     nll = lambda *args: -lnlike(*args)
     result = op.minimize(nll, [OH_true], args=(R, Rerr, diagnostics))
     OH_ml = result["x"]
@@ -242,7 +249,7 @@ if __name__ == '__main__':
         run_mcmc(pos = pos, R = R, Rerr = Rerr, diagnostics = diagnostics)
     d = time.time()
     print ('Total serial: %.2f s '%(d - c))
-
+    '''
 
 
 
