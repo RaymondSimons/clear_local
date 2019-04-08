@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import astropy
 from astropy.io import fits
 import matplotlib as mpl
-mpl.rcParams['text.usetex'] = True
 import glob
 import importlib
 import os
@@ -29,9 +28,6 @@ import emcee
 import scipy.optimize as op
 import time
 import emcee
-from schwimmbad import MPIPool
-os.environ["OMP_NUM_THREADS"] = "1"
-
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 mpl.rcParams['ytick.labelsize'] = 14
@@ -195,13 +191,6 @@ def lnprob(OH, R, Rerr, diagnostics):
     return lp + lnlike(OH, R, Rerr, diagnostics)
 
 
-def lnprob_data_glob(OH):
-    R, Rerr, diagnostics = data
-    lp = lnprior(OH)
-    if not np.isfinite(lp):
-        return -np.inf
-    return lp + lnlike(OH, R, Rerr, diagnostics)
-
 
 
 def write_fits():
@@ -210,84 +199,49 @@ def write_fits():
 
 
 
-
-if __name__ == '__main__':
-
-    print (argv[1], argv[2])
-
-    
-    np.random.seed()
-    OH_true = 8.6
-    Re1 = 0.3
-    Re2 = 0.3
-    R = array([OH_R23(OH_true) + np.random.normal(0, Re1), OH_O32(OH_true)+ np.random.normal(0, Re2)])
-    Rerr = array([Re1, Re2])
-    diagnostics = array(['R23', 'O32'])
-
-    nll = lambda *args: -lnlike(*args)
-    result = op.minimize(nll, [OH_true], args=(R, Rerr, diagnostics))
-    OH_ml = result["x"]
-
-    ndim, nwalkers = 1, 100
-
-    pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
-
-
-    global data
-    data = (R, Rerr, diagnostics)
-
-    '''
-    a = time.time()
-    with Pool() as pool:
-        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=data, pool = pool)
-        sampler.run_mcmc(pos, 3000)       
-        samples = sampler.chain[:, 300:, :].reshape((-1, ndim))
-        OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
-        print (list(OH_mcmc))
-    b = time.time()
-    print (b-a)
-    '''
-    #sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
-
-    Nsteps = 1000
+def run_mcmc(pos, R, Rerr, diagnostics, Nsteps = 1000, ndim = 1, nwalkers = 100):
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
     a = time.time()
-    sampler.run_mcmc(pos, Nsteps)       
+    sampler.run_mcmc(pos, Nsteps)
     b = time.time()
-    print ('serial took ', b-a)
+    print ('process: %.2f'%(b-a))
+    samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
 
-
-    with Pool() as pool:
-        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics), pool = pool)
-        a = time.time()
-        sampler.run_mcmc(pos, Nsteps)       
-        b = time.time()
-        print ('mp took ', b-a)
-
-    with Pool() as pool:
-        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob_data_glob, pool = pool)
-        a = time.time()
-        sampler.run_mcmc(pos, Nsteps)       
-        b = time.time()
-        print ('global mp took ',b-a)
-
-    #samples = sampler.chain[:, 300:, :].reshape((-1, ndim))
-
-    #OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
+    OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
     #print (list(OH_mcmc))
 
 
+if __name__ == '__main__':
+    np.random.seed()
+    #OH_true = 8.6
+    #Re1, Re2 = 0.3, 0.3
+    #R = array([OH_R23(OH_true) + np.random.normal(0, Re1), OH_O32(OH_true)+ np.random.normal(0, Re2)])    
+    #Rerr = array([Re1, Re2])
+    #diagnostics = array(['R23', 'O32'])
+    nll = lambda *args: -lnlike(*args)
+    result = op.minimize(nll, [OH_true], args=(R, Rerr, diagnostics))
+    OH_ml = result["x"]
+    nwalkers = 100
+    pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
+    Ntotal = 10
+    print ('Running Parallel')
+    print ('_________________')
+    c = time.time()
+    Parallel(n_jobs = -1)(delayed(run_mcmc)(pos = pos, R = R, Rerr = Rerr, diagnostics = diagnostics, nwalkers = nwalkers) for i in arange(Ntotal))
+    d = time.time()
+    print ('Total parallel: %.2f s\n\n'%(d - c))
+
+    c = time.time()
 
 
 
 
-
-
-
-
-
-
-
+    print ('Running Serial')
+    print ('_________________')
+    for i in arange(Ntotal):
+        run_mcmc(pos = pos, R = R, Rerr = Rerr, diagnostics = diagnostics)
+    d = time.time()
+    print ('Total serial: %.2f s '%(d - c))
 
 
 
