@@ -31,9 +31,10 @@ mpl.rcParams['ytick.labelsize'] = 14
 mpl.rcParams['xtick.labelsize'] = 14
 from sys import argv
 
+
 plt.ioff()
 
-seed(1)
+np.random.seed(1)
 prt = False
 
 
