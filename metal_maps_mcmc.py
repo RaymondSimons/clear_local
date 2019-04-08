@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import time
+from multiprocessing import Pool
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -36,10 +37,6 @@ plt.ioff()
 
 np.random.seed(1)
 prt = False
-
-
-
-
 
 
 def OH_R23(OH, use = 'M08'):
@@ -194,10 +191,6 @@ def lnprob(OH, R, Rerr, diagnostics):
 
 def write_fits():
 
-
-
-
-    
     return
 
 
@@ -208,9 +201,7 @@ if __name__ == '__main__':
     print argv[1], argv[2]
 
 
-
-    '''
-    seed()
+    np.random.seed()
     OH_true = 8.6
     Re1 = 0.3
     Re2 = 0.3
@@ -238,17 +229,13 @@ if __name__ == '__main__':
     sampler.run_mcmc(pos, 300)       
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
 
-    import corner
-    fig = corner.corner(samples, labels=["OH"], truths=[OH_true])
-    fig.savefig('OH.png')
-
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]),
     zip(*np.percentile(samples, [16, 50, 84],
     axis=0)))    
     print OH_mcmc
     b = time.time()
     print b-a
-    '''
+
 
 
 
