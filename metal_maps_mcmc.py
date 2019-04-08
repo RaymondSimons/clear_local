@@ -214,7 +214,7 @@ def run_mcmc(pos, R, Rerr, diagnostics, Nsteps = 1000, ndim = 1, nwalkers = 100)
 if __name__ == '__main__':
     np.random.seed()
     field, di = argv[1], argv[2]
-    fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%.5i.full.fits'%(field, di))[0]
+    fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
 
     if os.path.isfile(fl):
         a = fits.open(fl)
