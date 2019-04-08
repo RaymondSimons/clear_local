@@ -201,7 +201,7 @@ def write_fits():
 
 
 def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
-    sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
+    sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, eR, diagnostics))
     a = time.time()
     sampler.run_mcmc(pos, Nsteps)
     b = time.time()
