@@ -9,9 +9,6 @@ cat = ascii.read('/user/rsimons/grizli_extractions/Catalogs/sample_cats/any_samp
 
 
 for (field, di) in cat:
-
-    print field, di
-
     f = open(outdir + '/%s_%.5i.job'%(field, di), 'w+')
 
     f.write('Name = %s_%.5i_metalmcmc\n'%(field, di))
