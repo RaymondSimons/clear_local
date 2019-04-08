@@ -269,15 +269,7 @@ if __name__ == '__main__':
         sampler.run_mcmc(pos, Nsteps)       
         b = time.time()
         print ('global mp took ',b-a)
-
-    with MPIPool() as pool:
-        sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob_data_glob, pool = pool)
-        a = time.time()
-        sampler.run_mcmc(pos, Nsteps)       
-        b = time.time()
-        print ('global mp MPI took ',b-a)
-
-
+        
     #samples = sampler.chain[:, 300:, :].reshape((-1, ndim))
 
     #OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
