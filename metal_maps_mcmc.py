@@ -226,6 +226,7 @@ if __name__ == '__main__':
 
         R = O3/O2
         eR = R * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
+        nwalkers = 100
         for diagnostic in [['O32']]:
             for i in arange(shape(O3)[0]):
                 for j in arange(shape(O3)[0]):
@@ -240,7 +241,7 @@ if __name__ == '__main__':
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
 
-                        run_mcmc(pos = pos, R = R_ij, eR = eR_ij, diagnostics = diagnostic)
+                        run_mcmc(pos = pos, R = R_ij, eR = eR_ij, diagnostics = diagnostic, nwalkers = nwalkers)
 
 
 
