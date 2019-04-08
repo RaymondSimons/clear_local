@@ -30,6 +30,7 @@ import scipy.optimize as op
 import time
 import emcee
 from schwimmbad import MPIPool
+os.environ["OMP_NUM_THREADS"] = "1"
 
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
