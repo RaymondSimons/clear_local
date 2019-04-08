@@ -198,7 +198,7 @@ def write_fits():
 
 if __name__ == '__main__':
 
-    print argv[1], argv[2]
+    print (argv[1], argv[2])
 
     
     np.random.seed()
@@ -232,7 +232,7 @@ if __name__ == '__main__':
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]),
     zip(*np.percentile(samples, [16, 50, 84],
     axis=0)))    
-    print OH_mcmc
+    print (OH_mcmc)
     b = time.time()
     print b-a
     
