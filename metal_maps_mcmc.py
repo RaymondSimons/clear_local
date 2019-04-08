@@ -229,7 +229,7 @@ if __name__ == '__main__':
         nwalkers = 100
         for diagnostic in [['O32']]:
             for i in arange(shape(O3)[0]):
-                for j in arange(shape(O3)[0]):
+                for j in arange(shape(O3)[1]):
                     if (O3[i,j]/eO3[i,j] > 1.) & (O2[i,j]/eO2[i,j] > 1.):
                         print (R[i,j], eR[i,j])
 
@@ -239,7 +239,7 @@ if __name__ == '__main__':
 
                         result = op.minimize(nll, [8.5], args=(R_ij, eR_ij, diagnostic))
                         OH_ml = result["x"]
-                        pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
+                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
 
                         run_mcmc(pos = pos, R = R_ij, eR = eR_ij, diagnostics = diagnostic, nwalkers = nwalkers)
 
