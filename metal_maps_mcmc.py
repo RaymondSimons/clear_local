@@ -234,7 +234,7 @@ if __name__ == '__main__':
     axis=0)))    
     print (OH_mcmc)
     b = time.time()
-    print b-a
+    print (b-a)
     
 
 
