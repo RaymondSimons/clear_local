@@ -26,6 +26,10 @@ import joblib
 from joblib import Parallel, delayed
 from astropy.stats import sigma_clip
 import emcee
+import scipy.optimize as op
+import time
+import emcee
+
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 mpl.rcParams['ytick.labelsize'] = 14
@@ -209,30 +213,22 @@ if __name__ == '__main__':
     Rerr = array([Re1, Re2])
     diagnostics = array(['R23', 'O32'])
 
-    import scipy.optimize as op
     nll = lambda *args: -lnlike(*args)
     result = op.minimize(nll, [OH_true], args=(R, Rerr, diagnostics))
     OH_ml = result["x"]
 
-
-    import time
     a = time.time()
     ndim, nwalkers = 1, 100
 
     pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
 
 
-    import emcee
-
-
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, Rerr, diagnostics))
     sampler.run_mcmc(pos, 300)       
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
 
-    OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]),
-    zip(*np.percentile(samples, [16, 50, 84],
-    axis=0)))    
-    print (OH_mcmc)
+    OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
+    print (list(OH_mcmc))
     b = time.time()
     print (b-a)
     
