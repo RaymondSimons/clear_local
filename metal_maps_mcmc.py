@@ -205,7 +205,7 @@ def write_fits():
 
 if __name__ == '__main__':
 
-    print (argv[1], argv[2])
+    print argv[1], argv[2]
 
 
 
