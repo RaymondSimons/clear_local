@@ -12,19 +12,17 @@ for (field, di) in cat:
 
     print field, di
 
-'''
-f = open(outdir + '%s_%.5i.job'%(field, di))
+    f = open(outdir + '%s_%.5i.job'%(field, di))
 
+    f.write('Name = %s_%.5i_metalmcmc\n'%(field, di))
+    f.write('Universe = Vanilla\n'
+    f.write('Priority = 19\n')
+    f.write('getenv = true\n')
+    f.write('Executable = /home/rsimons/git/clear_local/metal_maps_mcmc.py\n')
+    f.write('Arguments = %s %.5i\n'%(field, di))
+    f.write('Log = /user/rsimons/submit_scripts/logs/$(Name)_$(Cluster).log\n')
+    f.write('Error = /user/rsimons/submit_scripts/logs/$(Name)_$(Cluster)_error.log\n')
+    f.write('Output = /user/rsimons/submit_scripts/logs/$(Name)_$(Process).out\n')
+    f.write('Queue\n')
 
-Name = test_condor
-Universe = Vanilla
-Priority = 19
-getenv = true
-Executable = /home/rsimons/git/clear_local/test_condor.py
-Arguments = 1 2 3 4
-Log = logs/$(Name)_$(Cluster).log
-Error = logs/$(Name)_$(Cluster)_error.log
-Output = logs/$(Name)_$(Process).out
-Queue
-
-'''
+    f.close()
