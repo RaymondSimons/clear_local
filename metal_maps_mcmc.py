@@ -238,6 +238,7 @@ if __name__ == '__main__':
 
                         result = op.minimize(nll, [8.5], args=(R_ij, eR_ij, diagnostic))
                         OH_ml = result["x"]
+                        pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
 
                         run_mcmc(pos = pos, R = R_ij, eR = eR_ij, diagnostics = diagnostic)
 
