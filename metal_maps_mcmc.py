@@ -235,7 +235,7 @@ if __name__ == '__main__':
                         nll = lambda *args: -lnlike(*args)
                         result = op.minimize(nll, [8.5], args=(R[i,j], eR[i,j], diagnostic))
                         OH_ml = result["x"]
-                        run_mcmc(pos = pos, R = R[i,j], Rerr = eR[i,j], diagnostics = diagnostic)
+                        run_mcmc(pos = pos, R = [R[i,j]], Rerr = [eR[i,j]], diagnostics = diagnostic)
 
 
 
