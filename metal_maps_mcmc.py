@@ -254,32 +254,34 @@ if __name__ == '__main__':
         if ('OII' in haslines) & ('OIII' in haslines):
             R_O32 = O3/O2
             eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
-            diagnostics.append('O32')
+            diagnostics.append(['O32'])
             Rs.append(R_O32)
             eRs.append(eR_O32)
 
         if ('OII' in haslines) & ('Hb' in haslines):
             R_R2 = O2/Hb
             eR_R2 = R_R2 * np.sqrt((eO2/O2)**2. + (eHb/Hb)**2.)
-            diagnostics.append('R2')
+            diagnostics.append(['R2'])
             Rs.append(R_R2)
             eRs.append(eR_R2)
 
         if ('OIII' in haslines) & ('Hb' in haslines):
             R_R3 = O3/Hb
             eR_R3 = R_R3 * np.sqrt((eO3/O3)**2. + (eHb/Hb)**2.)
-            diagnostics.append('R3')
+            diagnostics.append(['R3'])
             Rs.append(R_R3)
             eRs.append(eR_R3)
 
         if ('OII' in haslines) & ('OIII' in haslines) & ('Hb' in haslines):
             R_R23 = (O2 + O3)/Hb
             eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
-            diagnostics.append('R23')
+            diagnostics.append(['R23'])
             Rs.append(R_R23)
             eRs.append(eR_R23)
 
-
+        all_diags = []
+        for d in diagnostics: all_diags.append(d)
+        diagnostics.append([all_diags])
 
 
 
