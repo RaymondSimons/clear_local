@@ -217,7 +217,7 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
 if __name__ == '__main__':
     kern = Box2DKernel(3)
     nwalkers = 100
-    outdir = '/user/rsimons/metal_maps'
+    out_dir = '/user/rsimons/metal_maps'
     SN_limit = 3
     np.random.seed()
     field, di = argv[1], argv[2]
