@@ -32,5 +32,5 @@ for field in fields:
 
         f.close()
 
-        sf.write('qsub '+ outdir + '/%s_%.5i.job\n'%(field, di))
+        sf.write('condor_submit '+ outdir + '/%s_%.5i.job\n'%(field, di))
     sf.close()
