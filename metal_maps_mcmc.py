@@ -283,6 +283,7 @@ if __name__ == '__main__':
         for d in diagnostics: all_diags.append(d[0])
         diagnostics.append(all_diags)
 
+        diagnostics = array(diagnostics)
 
 
         '''
