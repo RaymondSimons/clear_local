@@ -356,7 +356,7 @@ if __name__ == '__main__':
                         result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                        OH_result = run_mcmc(Z = Z, pos = pos, R = Rs_ij, eR = eRs_ij, 
+                        OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
                                              diagnostics = diagnostic, nwalkers = nwalkers)
                         Z[i,j,0]  = OH_result[0][0]
                         Z[i,j,1]  = OH_result[0][1]
