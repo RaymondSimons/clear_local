@@ -226,26 +226,44 @@ if __name__ == '__main__':
         eO3 = 1./np.sqrt(a['LINEWHT', 'OIII'].data)
         O2  = a['LINE', 'OII'].data
         eO2 = 1./np.sqrt(a['LINEWHT', 'OII'].data)
+
+        Hb  = a['LINE', 'Hb'].data
+        eHb = 1./np.sqrt(a['LINEWHT', 'Hb'].data)
+
+
         O3 = convolve_fft(O3, kern)
         O2 = convolve_fft(O2, kern)
+        Hb = convolve_fft(Hb, kern)
 
-        R = O3/O2
-        eR = R * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
+        R_O32 = O3/O2
+        eR_O32 = R * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
+
+        R_R23 = (O3 + O2)/Hb
+        eR_R23 = R_R23 * sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
+
+
+        Rs  = [R_O32, R_R23]
+        eRs = [eR_O32, eR_R23]
+
         nwalkers = 100
-        for diagnostic in [['O32']]:
-            for i in arange(shape(O3)[0]):
-                for j in arange(shape(O3)[1]):
-                    if (O3[i,j]/eO3[i,j] > 0.5) & (O2[i,j]/eO2[i,j] > 0.5):
-                        print (R[i,j], eR[i,j])
 
+
+        for i in arange(shape(O3)[0]):
+            for j in arange(shape(O3)[1]):
+                for d, diagnostic in enumerate(array([['O32'], ['O32', 'R23']])):
+                    if d == 0: 
+                        Rs = [R_O32]
+                        eRs = [eR_O32]
+                    if d == 1: 
+                        Rs = [R_O32, R_R23]
+                        eRs = [eR_O32, eR_R23]
+
+                    if (O3[i,j]/eO3[i,j] > 0.5) & (O2[i,j]/eO2[i,j] > 0.5) & (Hb[i,j]/eHb[i,j] > 0.5) :
                         nll = lambda *args: -lnlike(*args)
-                        R_ij = array([R[i,j]])
-                        eR_ij = array([eR[i,j]])
 
-                        result = op.minimize(nll, [8.5], args=(R_ij, eR_ij, diagnostic))
+                        result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-
                         run_mcmc(pos = pos, R = R_ij, eR = eR_ij, 
                                  diagnostics = diagnostic, nwalkers = nwalkers)
 
