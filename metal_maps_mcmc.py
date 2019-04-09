@@ -221,21 +221,22 @@ if __name__ == '__main__':
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
 
     if os.path.isfile(fl):
+        full = fits.open(fl)
         Rs  = []
         eRs = []
         diagnostics = []
-        haslines = a[0].header['haslines']
+        haslines = full[0].header['haslines']
         if 'OII' in haslines:
-            O2  = a['LINE', 'OII'].data
-            eO2 = 1./np.sqrt(a['LINEWHT', 'OII'].data)
+            O2  = full['LINE', 'OII'].data
+            eO2 = 1./np.sqrt(full['LINEWHT', 'OII'].data)
 
             O2 = convolve_fft(O2, kern)
             eO2 /= sqrt(3.)
             shp = shape(O2)
 
         if 'OIII' in haslines:
-            O3  = a['LINE', 'OIII'].data
-            eO3 = 1./np.sqrt(a['LINEWHT', 'OIII'].data)
+            O3  = full['LINE', 'OIII'].data
+            eO3 = 1./np.sqrt(full['LINEWHT', 'OIII'].data)
            
             O3 = convolve_fft(O3, kern)
             eO3 /= sqrt(3.)
@@ -243,7 +244,7 @@ if __name__ == '__main__':
 
         if 'Hb' in haslines:
             Hb  = a['LINE', 'Hb'].data
-            eHb = 1./np.sqrt(a['LINEWHT', 'Hb'].data)
+            eHb = 1./np.sqrt(full['LINEWHT', 'Hb'].data)
 
             Hb = convolve_fft(Hb, kern)
             eHb /= sqrt(3.)
