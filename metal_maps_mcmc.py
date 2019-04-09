@@ -76,7 +76,6 @@ def OH_R2(OH, use = 'C17'):
         if (OH > 8.3) | (OH < 7.6):
             if prt: print ('R2 outside of Curti+ 17 calibration range...')
         c = [0.418, -0.961, -3.505, -1.949, 0.0]
-    print (c)
     result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
     return result
 
@@ -87,6 +86,7 @@ def OH_R3(OH, use = 'C17'):
         if (OH > 8.85) | (OH < 8.3):
             if prt: print ('R2 outside of Curti+ 17 calibration range...')
         c = [-0.277 -3.549 -3.593 -0.981, 0.0]
+    print (c)
     result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
     return result
 
