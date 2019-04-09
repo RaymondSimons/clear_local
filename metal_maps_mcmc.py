@@ -252,11 +252,11 @@ if __name__ == '__main__':
             for j in arange(shape(O3)[1]):
                 for d, diagnostic in enumerate(array([['O32'], ['O32', 'R23']])):
                     if d == 0: 
-                        Rs = [R_O32]
-                        eRs = [eR_O32]
+                        Rs = [R_O32[i,j]]
+                        eRs = [eR_O32[i,j]]
                     if d == 1: 
-                        Rs = [R_O32, R_R23]
-                        eRs = [eR_O32, eR_R23]
+                        Rs = [R_O32[i,j], R_R23[i,j]]
+                        eRs = [eR_O32[i,j], eR_R23[i,j]]
 
                     if (O3[i,j]/eO3[i,j] > 0.5) & (O2[i,j]/eO2[i,j] > 0.5) & (Hb[i,j]/eHb[i,j] > 0.5) :
                         nll = lambda *args: -lnlike(*args)
