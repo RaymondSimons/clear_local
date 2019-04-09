@@ -348,7 +348,7 @@ if __name__ == '__main__':
 
                     if all_Rs[i,j] == None: all_Rs[i,j] = [Rs_ij]
                     else: all_Rs[i,j].append(Rs_ij)
-                    if all_eRs[i,j] == None: all_Rs[i,j] = [eRs_ij]
+                    if all_eRs[i,j] == None: all_eRs[i,j] = [eRs_ij]
                     else: all_eRs[i,j].append(eRs_ij)
 
                     nll = lambda *args: -lnlike(*args)
