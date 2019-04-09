@@ -198,10 +198,10 @@ def lnprob(OH, R, Rerr, diagnostics):
 
 
 
-def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
-    sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, eR, diagnostics))
+def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalkers = 100):
+    sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(R, eR, diagnostics))
     sampler.run_mcmc(pos, Nsteps)
-    samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
+    samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
     return list(OH_mcmc)
 
@@ -215,8 +215,13 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
 
 
 if __name__ == '__main__':
-    kern = Box2DKernel(3)
-    nwalkers = 100
+    boxcar_size = 3
+    kern = Box2DKernel(boxcar_size)
+    Nwalkers = 100
+    Nsteps = 300
+    Nburn = 50
+    Ndim = 1
+
     out_dir = '/user/rsimons/metal_maps'
     SN_limit = 3
     np.random.seed()
@@ -235,6 +240,18 @@ if __name__ == '__main__':
         master_hdulist.append(prihdu)
 
         colhdr = fits.Header()
+        Zcolhdr = fits.Header()
+
+        colhdr['boxcar_size']=boxcar_size
+
+        Zcolhdr['SN_limit']=SN_limit
+        Zcolhdr['Nwalkers']=Nwalkers
+        Zcolhdr['Nburn']=Nburn
+        Zcolhdr['Ndim']=Ndim
+        Zcolhdr['Nsteps']=Nsteps
+
+
+
 
         full = fits.open(fl)
         Rs  = []
@@ -250,7 +267,7 @@ if __name__ == '__main__':
             O2 = convolve_fft(O2, kern)
             eO2 /= sqrt(3.)
 
-            master_hdulist.append(fits.ImageHDU(data = O2, header = colhdr, name = 'OII_BC'))
+            master_hdulist.append(fits.ImageHDU(data = O2, header = colhdr, name = 'OII'))
             master_hdulist.append(fits.ImageHDU(data = eO2, header = colhdr, name = 'eOII'))
 
         #do we have OIII?
@@ -260,7 +277,7 @@ if __name__ == '__main__':
            
             O3 = convolve_fft(O3, kern)
             eO3 /= sqrt(3.)
-            master_hdulist.append(fits.ImageHDU(data = O3, header = colhdr, name = 'OIII_BC'))
+            master_hdulist.append(fits.ImageHDU(data = O3, header = colhdr, name = 'OIII'))
             master_hdulist.append(fits.ImageHDU(data = eO3, header = colhdr, name = 'eOIII'))
 
         #do we have Hb?
@@ -271,7 +288,7 @@ if __name__ == '__main__':
             Hb = convolve_fft(Hb, kern)
             eHb /= sqrt(3.)
 
-            master_hdulist.append(fits.ImageHDU(data = Hb, header = colhdr, name = 'Hb_BC'))
+            master_hdulist.append(fits.ImageHDU(data = Hb, header = colhdr, name = 'Hb'))
             master_hdulist.append(fits.ImageHDU(data = eHb, header = colhdr, name = 'eHb'))
 
         #do we have O32?
@@ -356,13 +373,19 @@ if __name__ == '__main__':
                         result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+
                         OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
-                                             diagnostics = diagnostic, nwalkers = nwalkers)
+                                             diagnostics = diagnostic, Nsteps = Nsteps, Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
+
                         Z[i,j,0]  = OH_result[0][0]
                         Z[i,j,1]  = OH_result[0][1]
                         Z[i,j,2]  = OH_result[0][2]
-
-            master_hdulist.append(fits.ImageHDU(data = Z, header = colhdr, name = 'Z_%s'%diagnostic[0]))
+            if diagnostic[0] == 'R23': use = 'M08'
+            if diagnostic[0] == 'R2':  use = 'C17'
+            if diagnostic[0] == 'R3':  use = 'C17'
+            if diagnostic[0] == 'O32': use = 'M08'
+            Zcolhdr['calibration'] = use
+            master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_%s'%diagnostic[0]))
 
 
         Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
@@ -376,12 +399,12 @@ if __name__ == '__main__':
                     OH_ml = result["x"]
                     pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
                     OH_result = run_mcmc(pos = pos, R = all_Rs[i,j], eR = all_eRs[i,j], 
-                                         diagnostics = diagnostics[-1], nwalkers = nwalkers)
+                                         diagnostics = diagnostics[-1], Nsteps = Nsteps, Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
                     Z[i,j,0]  = OH_result[0][0]
                     Z[i,j,1]  = OH_result[0][1]
                     Z[i,j,2]  = OH_result[0][2]
 
-        master_hdulist.append(fits.ImageHDU(data = Z, header = colhdr, name = 'Z_all'))
+        master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
 
 
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
