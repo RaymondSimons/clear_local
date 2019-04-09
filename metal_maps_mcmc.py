@@ -249,24 +249,24 @@ if __name__ == '__main__':
 
         for i in arange(shape(O3)[0]):
             for j in arange(shape(O3)[1]):
-                for d, diagnostic in enumerate(array([['O32'], ['O32', 'R23']])):
-                    if d == 0: 
-                        Rs = array([R_O32[i,j]])
-                        eRs = array([eR_O32[i,j]])
-                    if d == 1: 
-                        Rs = array([R_O32[i,j], R_R23[i,j]])
-                        eRs = array([eR_O32[i,j], eR_R23[i,j]])
+                if (O3[i,j]/eO3[i,j] > 0.5) & (O2[i,j]/eO2[i,j] > 0.5) & (Hb[i,j]/eHb[i,j] > 0.5) :
+                    for d, diagnostic in enumerate(array([['O32'], ['O32', 'R23']])):
+                        if d == 0: 
+                            Rs = array([R_O32[i,j]])
+                            eRs = array([eR_O32[i,j]])
+                        if d == 1: 
+                            Rs = array([R_O32[i,j], R_R23[i,j]])
+                            eRs = array([eR_O32[i,j], eR_R23[i,j]])
 
-                    if (O3[i,j]/eO3[i,j] > 0.5) & (O2[i,j]/eO2[i,j] > 0.5) & (Hb[i,j]/eHb[i,j] > 0.5) :
-                        nll = lambda *args: -lnlike(*args)
+                            nll = lambda *args: -lnlike(*args)
 
-                        result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
-                        OH_ml = result["x"]
-                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                        OH_result = run_mcmc(pos = pos, R = Rs, eR = eRs, 
-                                    diagnostics = diagnostic, nwalkers = nwalkers)
-                        print (diagnostic, '%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
-                print '\n'
+                            result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
+                            OH_ml = result["x"]
+                            pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+                            OH_result = run_mcmc(pos = pos, R = Rs, eR = eRs, 
+                                        diagnostics = diagnostic, nwalkers = nwalkers)
+                            print (diagnostic, '%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
+                    print '\n'
 
 
     #OH_true = 8.6
