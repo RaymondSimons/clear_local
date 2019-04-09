@@ -202,7 +202,6 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, eR, diagnostics))
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
-
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
     return list(OH_mcmc)
 
@@ -253,12 +252,6 @@ if __name__ == '__main__':
 
             master_hdulist.append(fits.ImageHDU(data = O2, header = colhdr, name = 'OII_BC'))
             master_hdulist.append(fits.ImageHDU(data = eO2, header = colhdr, name = 'eOII'))
-
-
-
-
-
-
 
         #do we have OIII?
         if 'OIII' in haslines:
@@ -344,6 +337,7 @@ if __name__ == '__main__':
         all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
 
         for d, diagnostic in enumerate(diagnostics[0:-1]):
+            print (diagnostic)
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
 
             for i in arange(shape(Rs)[1]):
