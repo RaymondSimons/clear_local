@@ -298,11 +298,11 @@ if __name__ == '__main__':
             for j in arange(shape(Rs)[2]):
                 for d, diagnostic in enumerate(diagnostics):
                     nll = lambda *args: -lnlike(*args)
-                    result = op.minimize(nll, [8.5], args=(Rs[d], eRs[d], diagnostic))
+                    result = op.minimize(nll, [8.5], args=(Rs[d][i,j], eRs[d][i,j], diagnostic))
                     OH_ml = result["x"]
                     pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                    OH_result = run_mcmc(pos = pos, R = Rs[d], eR = eRs[d], 
-                                diagnostics = diagnostic, nwalkers = nwalkers)
+                    OH_result = run_mcmc(pos = pos, R = Rs[d][i,j], eR = eRs[d][i,j], 
+                                         diagnostics = diagnostic, nwalkers = nwalkers)
                     print ('%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
 
                 print '\n'
