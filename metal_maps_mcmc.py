@@ -268,7 +268,7 @@ if __name__ == '__main__':
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
                         OH_result = run_mcmc(pos = pos, R = Rs, eR = eRs, 
                                     diagnostics = diagnostic, nwalkers = nwalkers)
-                        print (diagnostic, '\t', '%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
+                        print ('%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
                     print '\n'
 
 
