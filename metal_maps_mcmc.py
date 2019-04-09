@@ -368,7 +368,9 @@ if __name__ == '__main__':
         Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
         for i in arange(shape(Rs)[1]):
             for j in arange(shape(Rs)[2]):
-                if len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > 0.5)[0]) > len(all_Rs[i,j]) - 1:
+                Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > 0.5)[0])
+                Ntot = len(all_Rs[i,j])
+                if Ndet > Ntot - 1:
                     nll = lambda *args: -lnlike(*args)
                     result = op.minimize(nll, [8.5], args=(all_Rs[i,j], all_eRs[i,j], diagnostics[-1]))
                     OH_ml = result["x"]
