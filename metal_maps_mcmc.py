@@ -390,8 +390,6 @@ if __name__ == '__main__':
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, clobber = True)
 
-        return master_hdulist
-
 
 
 
