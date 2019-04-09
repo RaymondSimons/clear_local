@@ -209,7 +209,7 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
 
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
-    print (diagnostics, list(OH_mcmc))
+    return list(OH_mcmc)
 
 
 if __name__ == '__main__':
@@ -263,9 +263,10 @@ if __name__ == '__main__':
                         result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                        run_mcmc(pos = pos, R = Rs, eR = eRs, 
-                                 diagnostics = diagnostic, nwalkers = nwalkers)
-
+                        OH_result = run_mcmc(pos = pos, R = Rs, eR = eRs, 
+                                    diagnostics = diagnostic, nwalkers = nwalkers)
+                        print (diagnostic, '%.2f  %.2f  %.2f'%(*OH_result))
+                print '\n'
 
 
     #OH_true = 8.6
