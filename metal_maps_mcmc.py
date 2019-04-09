@@ -243,7 +243,7 @@ if __name__ == '__main__':
             shp = shape(O3)
 
         if 'Hb' in haslines:
-            Hb  = a['LINE', 'Hb'].data
+            Hb  = full['LINE', 'Hb'].data
             eHb = 1./np.sqrt(full['LINEWHT', 'Hb'].data)
 
             Hb = convolve_fft(Hb, kern)
