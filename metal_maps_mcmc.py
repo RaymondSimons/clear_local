@@ -213,7 +213,7 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
 
 
 if __name__ == '__main__':
-    kern = Box2DKernel(2)
+    kern = Box2DKernel(3)
 
     np.random.seed()
     field, di = argv[1], argv[2]
@@ -225,7 +225,6 @@ if __name__ == '__main__':
         eO3 = 1./np.sqrt(a['LINEWHT', 'OIII'].data)
         O2  = a['LINE', 'OII'].data
         eO2 = 1./np.sqrt(a['LINEWHT', 'OII'].data)
-
         Hb  = a['LINE', 'Hb'].data
         eHb = 1./np.sqrt(a['LINEWHT', 'Hb'].data)
 
@@ -233,6 +232,14 @@ if __name__ == '__main__':
         O3 = convolve_fft(O3, kern)
         O2 = convolve_fft(O2, kern)
         Hb = convolve_fft(Hb, kern)
+
+
+        eO3 /= sqrt(3.)
+        eO2 /= sqrt(3.)
+        eHb /= sqrt(3.)
+
+
+
 
         R_O32 = O3/O2
         eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
