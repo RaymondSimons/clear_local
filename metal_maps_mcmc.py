@@ -223,7 +223,7 @@ if __name__ == '__main__':
     Ndim = 1
 
     out_dir = '/user/rsimons/metal_maps'
-    SN_limit = 1.5
+    SN_limit = 2.0
     np.random.seed()
     field, di = argv[1], argv[2]
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
