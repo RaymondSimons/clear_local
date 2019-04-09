@@ -387,7 +387,7 @@ if __name__ == '__main__':
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
-        thdulist.writeto(fits_name, clobber = True)
+        thdulist.writeto(fits_name, overwrite = True)
 
 
 
