@@ -272,7 +272,6 @@ if __name__ == '__main__':
 
         #do we have OIII?
         if 'OIII ' in haslines:
-            try:
             O3  = full['LINE', 'OIII'].data
             eO3 = 1./np.sqrt(full['LINEWHT', 'OIII'].data)
            
