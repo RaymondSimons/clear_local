@@ -290,8 +290,8 @@ if __name__ == '__main__':
 
         for dd, d in enumerate(array(diagnostics)): 
             all_diags.append(d[0])
-            all_Rs.append(Rs[dd])
-            all_Rs.append(Rs[dd])
+            #all_Rs.append(Rs[dd])
+            #all_Rs.append(Rs[dd])
 
 
         diagnostics.append(all_diags)
