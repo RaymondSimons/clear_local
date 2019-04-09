@@ -76,8 +76,6 @@ def OH_R2(OH, use = 'C17'):
         if (OH > 8.3) | (OH < 7.6):
             if prt: print ('R2 outside of Curti+ 17 calibration range...')
         c = [0.418, -0.961, -3.505, -1.949, 0.0]
-    print (c)
-    print (x)
     result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
     return result
 
@@ -205,9 +203,7 @@ def write_fits():
 
 def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
     sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(R, eR, diagnostics))
-    a = time.time()
     sampler.run_mcmc(pos, Nsteps)
-    b = time.time()
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
 
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
@@ -323,70 +319,6 @@ if __name__ == '__main__':
                     print ('%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
 
                 print '\n'
-
-
-
-
-        '''
-
-        for i in arange(shape(O3)[0]):
-            for j in arange(shape(O3)[1]):
-                if (O3[i,j]/eO3[i,j] > 0.5) & (O2[i,j]/eO2[i,j] > 0.5) & (Hb[i,j]/eHb[i,j] > 0.5) :
-                    for d, diagnostic in enumerate(array([['O32'], ['R23'], ['O32', 'R23']])):
-                        if d == 0: 
-                            Rs = array([R_O32[i,j]])
-                            eRs = array([eR_O32[i,j]])
-                        if d == 1: 
-                            Rs = array([R_R23[i,j]])
-                            eRs = array([eR_R23[i,j]])
-                        if d == 2: 
-                            Rs = array([R_O32[i,j], R_R23[i,j]])
-                            eRs = array([eR_O32[i,j], eR_R23[i,j]])
-
-                        nll = lambda *args: -lnlike(*args)
-                        result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
-                        OH_ml = result["x"]
-                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                        OH_result = run_mcmc(pos = pos, R = Rs, eR = eRs, 
-                                    diagnostics = diagnostic, nwalkers = nwalkers)
-                        print ('%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
-                    print '\n'
-
-
-        '''
-
-
-    #OH_true = 8.6
-    #Re1, Re2 = 0.3, 0.3
-    #R = array([OH_R23(OH_true) + np.random.normal(0, Re1), OH_O32(OH_true)+ np.random.normal(0, Re2)])    
-    #Rerr = array([Re1, Re2])
-    #diagnostics = array(['R23', 'O32'])
-    '''
-    nll = lambda *args: -lnlike(*args)
-    result = op.minimize(nll, [OH_true], args=(R, Rerr, diagnostics))
-    OH_ml = result["x"]
-    nwalkers = 100
-    pos = [result["x"] + 1e-4*np.random.randn(1) for i in range(nwalkers)]
-    Ntotal = 10
-    print ('Running Parallel')
-    print ('_________________')
-    c = time.time()
-    Parallel(n_jobs = -1)(delayed(run_mcmc)(pos = pos, R = R, Rerr = Rerr, diagnostics = diagnostics, nwalkers = nwalkers) for i in arange(Ntotal))
-    d = time.time()
-    print ('Total parallel: %.2f s\n\n'%(d - c))
-
-    c = time.time()
-
-
-
-
-    print ('Running Serial')
-    print ('_________________')
-    for i in arange(Ntotal):
-        run_mcmc(pos = pos, R = R, Rerr = Rerr, diagnostics = diagnostics)
-    d = time.time()
-    print ('Total serial: %.2f s '%(d - c))
-    '''
 
 
 
