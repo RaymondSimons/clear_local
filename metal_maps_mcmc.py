@@ -381,7 +381,7 @@ if __name__ == '__main__':
                     Z[i,j,1]  = OH_result[0][1]
                     Z[i,j,2]  = OH_result[0][2]
 
-        master_hdulist.append(fits.ImageHDU(data = Z, header = colhdr, name = 'Z_all'%diagnostic[0]))
+        master_hdulist.append(fits.ImageHDU(data = Z, header = colhdr, name = 'Z_all'))
 
 
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
