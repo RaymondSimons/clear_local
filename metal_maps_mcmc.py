@@ -354,12 +354,11 @@ if __name__ == '__main__':
         all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
 
         for d, diagnostic in enumerate(diagnostics[0:-1]):
-            print (diagnostic)
+            print ('calculating metallicity using ', diagnostic)
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
 
             for i in arange(shape(Rs)[1]):
                 for j in arange(shape(Rs)[2]):
-                    print (i,j)
                     Rs_ij = array([Rs[d][i,j]])
                     eRs_ij = array([eRs[d][i,j]])
 
