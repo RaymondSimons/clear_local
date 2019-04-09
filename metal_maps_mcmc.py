@@ -305,11 +305,16 @@ if __name__ == '__main__':
 
         for i in arange(shape(Rs)[1]):
             for j in arange(shape(Rs)[2]):
+                R_all_ij = []
+                eR_all_ij = []
+
                 for d, diagnostic in enumerate(diagnostics[0:-1]):
 
                     Rs_ij = array([Rs[d][i,j]])
                     eRs_ij = array([eRs[d][i,j]])
 
+                    R_all_ij.append(Rs_ij)
+                    eR_all_ij.append(eRs_ij)
 
                     nll = lambda *args: -lnlike(*args)
                     result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
@@ -317,7 +322,25 @@ if __name__ == '__main__':
                     pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
                     OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
                                          diagnostics = diagnostic, nwalkers = nwalkers)
-                    print ('%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
+                    print ('%.2f  %.2f  %.2f -- %s'%(OH_result[0][0],OH_result[0][1],OH_result[0][2], diagnostic))
+
+
+
+                R_all_ij = array(R_all_ij)
+                eR_all_ij = array(eR_all_ij)
+
+
+                nll = lambda *args: -lnlike(*args)
+                result = op.minimize(nll, [8.5], args=(R_all_ij, eR_all_ij, diagnostics[-1]))
+                OH_ml = result["x"]
+                pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+                OH_result = run_mcmc(pos = pos, R = R_all_ij, eR = eR_all_ij, 
+                                     diagnostics = diagnostics[-1], nwalkers = nwalkers)
+                print ('%.2f  %.2f  %.2f -- %s'%(OH_result[0][0],OH_result[0][1],OH_result[0][2], diagnostics[-1]))
+
+
+
+
 
                 print '\n'
 
