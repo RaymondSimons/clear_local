@@ -236,7 +236,7 @@ if __name__ == '__main__':
         Hb = convolve_fft(Hb, kern)
 
         R_O32 = O3/O2
-        eR_O32 = R * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
+        eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
 
         R_R23 = (O3 + O2)/Hb
         eR_R23 = R_R23 * sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
@@ -264,7 +264,7 @@ if __name__ == '__main__':
                         result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                        run_mcmc(pos = pos, R = R_ij, eR = eR_ij, 
+                        run_mcmc(pos = pos, R = Rs, eR = eRs, 
                                  diagnostics = diagnostic, nwalkers = nwalkers)
 
 
