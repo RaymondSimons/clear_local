@@ -258,14 +258,14 @@ if __name__ == '__main__':
                             Rs = array([R_O32[i,j], R_R23[i,j]])
                             eRs = array([eR_O32[i,j], eR_R23[i,j]])
 
-                            nll = lambda *args: -lnlike(*args)
+                        nll = lambda *args: -lnlike(*args)
 
-                            result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
-                            OH_ml = result["x"]
-                            pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                            OH_result = run_mcmc(pos = pos, R = Rs, eR = eRs, 
-                                        diagnostics = diagnostic, nwalkers = nwalkers)
-                            print (diagnostic, '%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
+                        result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
+                        OH_ml = result["x"]
+                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+                        OH_result = run_mcmc(pos = pos, R = Rs, eR = eRs, 
+                                    diagnostics = diagnostic, nwalkers = nwalkers)
+                        print (diagnostic, '%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
                     print '\n'
 
 
