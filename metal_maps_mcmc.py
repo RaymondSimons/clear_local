@@ -25,6 +25,7 @@ import joblib
 from joblib import Parallel, delayed
 from astropy.stats import sigma_clip
 import emcee
+
 import scipy.optimize as op
 import time
 import emcee
@@ -213,6 +214,8 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
 
 
 if __name__ == '__main__':
+    kern = Box2DKernel(2)
+
     np.random.seed()
     field, di = argv[1], argv[2]
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
@@ -223,6 +226,8 @@ if __name__ == '__main__':
         eO3 = 1./np.sqrt(a['LINEWHT', 'OIII'].data)
         O2  = a['LINE', 'OII'].data
         eO2 = 1./np.sqrt(a['LINEWHT', 'OII'].data)
+        O3 = convolve_fft(O3, kern)
+        O2 = convolve_fft(O2, kern)
 
         R = O3/O2
         eR = R * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
@@ -241,7 +246,8 @@ if __name__ == '__main__':
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
 
-                        run_mcmc(pos = pos, R = R_ij, eR = eR_ij, diagnostics = diagnostic, nwalkers = nwalkers)
+                        run_mcmc(pos = pos, R = R_ij, eR = eR_ij, 
+                                 diagnostics = diagnostic, nwalkers = nwalkers)
 
 
 
