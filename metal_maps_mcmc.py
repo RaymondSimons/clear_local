@@ -287,6 +287,11 @@ if __name__ == '__main__':
         eRs = array(eRs)
 
 
+
+        for i in arange(shape(Rs)[1]):
+            for j in arange(shape(Rs)[2]):
+                print (i,j)
+
         '''
 
         for i in arange(shape(O3)[0]):
