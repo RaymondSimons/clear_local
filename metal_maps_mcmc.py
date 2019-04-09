@@ -239,7 +239,7 @@ if __name__ == '__main__':
         eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
 
         R_R23 = (O3 + O2)/Hb
-        eR_R23 = R_R23 * sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
+        eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
 
 
         Rs  = [R_O32, R_R23]
