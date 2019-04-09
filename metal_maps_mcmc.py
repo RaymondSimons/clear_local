@@ -83,6 +83,7 @@ def OH_R2(OH, use = 'C17'):
 def OH_R3(OH, use = 'C17'):
     #taken from table in Patricio+
     if use == 'C17': 
+        print ('hi')
         x = OH - 8.69
         if (OH > 8.85) | (OH < 8.3):
             if prt: print ('R2 outside of Curti+ 17 calibration range...')
