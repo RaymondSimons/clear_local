@@ -280,7 +280,7 @@ if __name__ == '__main__':
             eRs.append(eR_R23)
 
         all_diags = []
-        for d in diagnostics: all_diags.append(d)
+        for d in diagnostics: all_diags.append(d[0])
         diagnostics.append([all_diags])
 
 
