@@ -196,10 +196,6 @@ def lnprob(OH, R, Rerr, diagnostics):
 
 
 
-def write_fits():
-
-    return
-
 
 
 def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
@@ -211,15 +207,36 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
     return list(OH_mcmc)
 
 
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     kern = Box2DKernel(3)
     nwalkers = 100
+    outdir = '/user/rsimons/metal_maps'
 
     np.random.seed()
     field, di = argv[1], argv[2]
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
 
     if os.path.isfile(fl):
+
+
+        master_hdulist = []
+        prihdr = fits.Header()
+        prihdr['COMMENT'] = "Storing the metallicity maps in this FITS file."
+        prihdr['field']   = field
+        prihdr['ID']      = di
+        prihdu = fits.PrimaryHDU(header=prihdr)    
+        master_hdulist.append(prihdu)
+
+        colhdr = fits.Header()
+
         full = fits.open(fl)
         Rs  = []
         eRs = []
@@ -234,6 +251,15 @@ if __name__ == '__main__':
             O2 = convolve_fft(O2, kern)
             eO2 /= sqrt(3.)
 
+            master_hdulist.append(fits.ImageHDU(data = O2, header = colhdr, name = 'OII_BC'))
+            master_hdulist.append(fits.ImageHDU(data = eO2, header = colhdr, name = 'eOII'))
+
+
+
+
+
+
+
         #do we have OIII?
         if 'OIII' in haslines:
             O3  = full['LINE', 'OIII'].data
@@ -241,6 +267,8 @@ if __name__ == '__main__':
            
             O3 = convolve_fft(O3, kern)
             eO3 /= sqrt(3.)
+            master_hdulist.append(fits.ImageHDU(data = O3, header = colhdr, name = 'OIII_BC'))
+            master_hdulist.append(fits.ImageHDU(data = eO3, header = colhdr, name = 'eOIII'))
 
         #do we have Hb?
         if 'Hb' in haslines:
@@ -250,6 +278,8 @@ if __name__ == '__main__':
             Hb = convolve_fft(Hb, kern)
             eHb /= sqrt(3.)
 
+            master_hdulist.append(fits.ImageHDU(data = Hb, header = colhdr, name = 'Hb_BC'))
+            master_hdulist.append(fits.ImageHDU(data = eHb, header = colhdr, name = 'eHb'))
 
         #do we have O32?
         if ('OII' in haslines) & ('OIII' in haslines):
@@ -259,6 +289,11 @@ if __name__ == '__main__':
             Rs.append(R_O32)
             eRs.append(eR_O32)
 
+            master_hdulist.append(fits.ImageHDU(data = R_O32, header = colhdr, name = 'O32'))
+            master_hdulist.append(fits.ImageHDU(data = eR_O32, header = colhdr, name = 'eO32'))
+
+
+
         #do we have R2?
         if ('OII' in haslines) & ('Hb' in haslines):
             R_R2 = O2/Hb
@@ -266,6 +301,9 @@ if __name__ == '__main__':
             diagnostics.append(['R2'])
             Rs.append(R_R2)
             eRs.append(eR_R2)
+            master_hdulist.append(fits.ImageHDU(data = R_R2, header = colhdr, name = 'R2'))
+            master_hdulist.append(fits.ImageHDU(data = eR_R2, header = colhdr, name = 'eR2'))
+
 
         #do we have R3?
         if ('OIII' in haslines) & ('Hb' in haslines):
@@ -274,6 +312,8 @@ if __name__ == '__main__':
             diagnostics.append(['R3'])
             Rs.append(R_R3)
             eRs.append(eR_R3)
+            master_hdulist.append(fits.ImageHDU(data = R_R3, header = colhdr, name = 'R3'))
+            master_hdulist.append(fits.ImageHDU(data = eR_R3, header = colhdr, name = 'eR3'))
 
         #do we have R23?
         if ('OII' in haslines) & ('OIII' in haslines) & ('Hb' in haslines):
@@ -282,17 +322,14 @@ if __name__ == '__main__':
             diagnostics.append(['R23'])
             Rs.append(R_R23)
             eRs.append(eR_R23)
+            master_hdulist.append(fits.ImageHDU(data = R_R23, header = colhdr, name = 'R23'))
+            master_hdulist.append(fits.ImageHDU(data = eR_R23, header = colhdr, name = 'eR23'))
 
         all_diags = []
         all_Rs = []
         all_eRs = []
 
-        for dd, d in enumerate(array(diagnostics)): 
-            all_diags.append(d[0])
-            #all_Rs.append(Rs[dd])
-            #all_Rs.append(Rs[dd])
-
-
+        for dd, d in enumerate(array(diagnostics)): all_diags.append(d[0])
         diagnostics.append(all_diags)
 
 
@@ -303,18 +340,21 @@ if __name__ == '__main__':
 
 
 
-        for i in arange(shape(Rs)[1]):
-            for j in arange(shape(Rs)[2]):
-                R_all_ij = []
-                eR_all_ij = []
+        all_Rs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
+        all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
 
-                for d, diagnostic in enumerate(diagnostics[0:-1]):
+        for d, diagnostic in enumerate(diagnostics[0:-1]):
+            Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
 
+            for i in arange(shape(Rs)[1]):
+                for j in arange(shape(Rs)[2]):
                     Rs_ij = array([Rs[d][i,j]])
                     eRs_ij = array([eRs[d][i,j]])
 
-                    R_all_ij.append(Rs_ij)
-                    eR_all_ij.append(eRs_ij)
+                    if all_Rs[i,j] == None: all_Rs[i,j] = [Rs_ij]
+                    else: all_Rs[i,j].append(Rs_ij)
+                    if all_eRs[i,j] == None: all_Rs[i,j] = [eRs_ij]
+                    else: all_eRs[i,j].append(eRs_ij)
 
                     nll = lambda *args: -lnlike(*args)
                     result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
@@ -322,34 +362,35 @@ if __name__ == '__main__':
                     pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
                     OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
                                          diagnostics = diagnostic, nwalkers = nwalkers)
-                    print ('%.2f  %.2f  %.2f -- %s'%(OH_result[0][0],OH_result[0][1],OH_result[0][2], diagnostic))
+                    Z[i,j,0]  = OH_result[0][0]
+                    Z[i,j,1]  = OH_result[0][1]
+                    Z[i,j,2]  = OH_result[0][2]
+
+            master_hdulist.append(fits.ImageHDU(data = Z, header = colhdr, name = 'Z_%s'%diagnostic[0]))
 
 
-
-                R_all_ij = array(R_all_ij)
-                eR_all_ij = array(eR_all_ij)
-
-
+        Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
+        for i in arange(shape(Rs)[1]):
+            for j in arange(shape(Rs)[2]):
                 nll = lambda *args: -lnlike(*args)
-                result = op.minimize(nll, [8.5], args=(R_all_ij, eR_all_ij, diagnostics[-1]))
+                result = op.minimize(nll, [8.5], args=(all_Rs[i,j], all_eRs[i,j], diagnostics[-1]))
                 OH_ml = result["x"]
                 pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                OH_result = run_mcmc(pos = pos, R = R_all_ij, eR = eR_all_ij, 
+                OH_result = run_mcmc(pos = pos, R = all_Rs[i,j], eR = all_eRs[i,j], 
                                      diagnostics = diagnostics[-1], nwalkers = nwalkers)
-                print ('%.2f  %.2f  %.2f -- %s'%(OH_result[0][0],OH_result[0][1],OH_result[0][2], diagnostics[-1]))
+                Z[i,j,0]  = OH_result[0][0]
+                Z[i,j,1]  = OH_result[0][1]
+                Z[i,j,2]  = OH_result[0][2]
+
+        master_hdulist.append(fits.ImageHDU(data = Z, header = colhdr, name = 'Z_all'%diagnostic[0]))
 
 
+        fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
+        print '\tSaving to ' + fits_name
+        thdulist = fits.HDUList(master_hdulist)
+        thdulist.writeto(fits_name, clobber = True)
 
-
-
-                print ('\n')
-
-
-
-
-
-
-
+        return master_hdulist
 
 
 
