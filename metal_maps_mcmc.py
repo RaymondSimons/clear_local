@@ -214,45 +214,75 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
 
 if __name__ == '__main__':
     kern = Box2DKernel(3)
+    nwalkers = 100
 
     np.random.seed()
     field, di = argv[1], argv[2]
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
 
     if os.path.isfile(fl):
-        a = fits.open(fl)
-        O3  = a['LINE', 'OIII'].data
-        eO3 = 1./np.sqrt(a['LINEWHT', 'OIII'].data)
-        O2  = a['LINE', 'OII'].data
-        eO2 = 1./np.sqrt(a['LINEWHT', 'OII'].data)
-        Hb  = a['LINE', 'Hb'].data
-        eHb = 1./np.sqrt(a['LINEWHT', 'Hb'].data)
+        Rs  = []
+        eRs = []
+        diagnostics = []
+        haslines = a[0].header['haslines']
+        if 'OII' in haslines:
+            O2  = a['LINE', 'OII'].data
+            eO2 = 1./np.sqrt(a['LINEWHT', 'OII'].data)
+
+            O2 = convolve_fft(O2, kern)
+            eO2 /= sqrt(3.)
+            shp = shape(O2)
+
+        if 'OIII' in haslines:
+            O3  = a['LINE', 'OIII'].data
+            eO3 = 1./np.sqrt(a['LINEWHT', 'OIII'].data)
+           
+            O3 = convolve_fft(O3, kern)
+            eO3 /= sqrt(3.)
+            shp = shape(O3)
+
+        if 'Hb' in haslines:
+            Hb  = a['LINE', 'Hb'].data
+            eHb = 1./np.sqrt(a['LINEWHT', 'Hb'].data)
+
+            Hb = convolve_fft(Hb, kern)
+            eHb /= sqrt(3.)
+
+            shp = shape(Hb)
+
+        if ('OII' in haslines) & ('OIII' in haslines):
+            R_O32 = O3/O2
+            eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
+            diagnostics.append('O32')
+            Rs.append(R_O32)
+            eRs.append(eR_O32)
+
+        if ('OII' in haslines) & ('Hb' in haslines):
+            R_R2 = O2/Hb
+            eR_R2 = R_R2 * np.sqrt((eO2/O2)**2. + (eHb/Hb)**2.)
+            diagnostics.append('R2')
+            Rs.append(R_R2)
+            eRs.append(eR_R2)
+
+        if ('OIII' in haslines) & ('Hb' in haslines):
+            R_R3 = O3/Hb
+            eR_R3 = R_R3 * np.sqrt((eO3/O3)**2. + (eHb/Hb)**2.)
+            diagnostics.append('R3')
+            Rs.append(R_R3)
+            eRs.append(eR_R3)
+
+        if ('OII' in haslines) & ('OIII' in haslines) & ('Hb' in haslines):
+            R_R23 = (O2 + O3)/Hb
+            eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
+            diagnostics.append('R23')
+            Rs.append(R_R23)
+            eRs.append(eR_R23)
 
 
-        O3 = convolve_fft(O3, kern)
-        O2 = convolve_fft(O2, kern)
-        Hb = convolve_fft(Hb, kern)
-
-
-        eO3 /= sqrt(3.)
-        eO2 /= sqrt(3.)
-        eHb /= sqrt(3.)
 
 
 
-
-        R_O32 = O3/O2
-        eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
-
-        R_R23 = (O3 + O2)/Hb
-        eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
-
-
-        Rs  = [R_O32, R_R23]
-        eRs = [eR_O32, eR_R23]
-
-        nwalkers = 100
-
+        '''
 
         for i in arange(shape(O3)[0]):
             for j in arange(shape(O3)[1]):
@@ -277,6 +307,9 @@ if __name__ == '__main__':
                                     diagnostics = diagnostic, nwalkers = nwalkers)
                         print ('%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
                     print '\n'
+
+
+        '''
 
 
     #OH_true = 8.6
