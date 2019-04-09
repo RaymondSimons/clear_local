@@ -232,7 +232,6 @@ if __name__ == '__main__':
 
             O2 = convolve_fft(O2, kern)
             eO2 /= sqrt(3.)
-            shp = shape(O2)
 
         if 'OIII' in haslines:
             O3  = full['LINE', 'OIII'].data
@@ -240,7 +239,7 @@ if __name__ == '__main__':
            
             O3 = convolve_fft(O3, kern)
             eO3 /= sqrt(3.)
-            shp = shape(O3)
+
 
         if 'Hb' in haslines:
             Hb  = full['LINE', 'Hb'].data
@@ -249,7 +248,7 @@ if __name__ == '__main__':
             Hb = convolve_fft(Hb, kern)
             eHb /= sqrt(3.)
 
-            shp = shape(Hb)
+
 
         if ('OII' in haslines) & ('OIII' in haslines):
             R_O32 = O3/O2
@@ -284,6 +283,8 @@ if __name__ == '__main__':
         diagnostics.append(all_diags)
 
         diagnostics = array(diagnostics)
+        Rs = array(Rs)
+        eRs = array(eRs)
 
 
         '''
