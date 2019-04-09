@@ -206,11 +206,10 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, ndim = 1, nwalkers = 100):
     a = time.time()
     sampler.run_mcmc(pos, Nsteps)
     b = time.time()
-    print ('process: %.2f'%(b-a))
     samples = sampler.chain[:, 50:, :].reshape((-1, ndim))
 
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
-    print (list(OH_mcmc))
+    print (diagnostics, list(OH_mcmc))
 
 
 if __name__ == '__main__':
