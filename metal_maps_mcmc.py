@@ -87,8 +87,6 @@ def OH_R3(OH, use = 'C17'):
         if (OH > 8.85) | (OH < 8.3):
             if prt: print ('R2 outside of Curti+ 17 calibration range...')
         cf = [-0.277, -3.549, -3.593, -0.981, 0.0]
-        print (cf)
-    print (cf)
     result = cf[0] * x**0. + cf[1] * x**1. + cf[2] * x**2. + cf[3] * x**3. + cf[4] * x**4.
     return result
 
