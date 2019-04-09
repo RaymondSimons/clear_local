@@ -352,14 +352,15 @@ if __name__ == '__main__':
                     else: all_eRs[i,j].append(eRs_ij)
 
                     nll = lambda *args: -lnlike(*args)
-                    result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
-                    OH_ml = result["x"]
-                    pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                    OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
-                                         diagnostics = diagnostic, nwalkers = nwalkers)
-                    Z[i,j,0]  = OH_result[0][0]
-                    Z[i,j,1]  = OH_result[0][1]
-                    Z[i,j,2]  = OH_result[0][2]
+                    if Rs_ij[0]/eRs_ij[0] > 0.5:
+                        result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
+                        OH_ml = result["x"]
+                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+                        OH_result = run_mcmc(Z = Z, pos = pos, R = Rs_ij, eR = eRs_ij, 
+                                             diagnostics = diagnostic, nwalkers = nwalkers)
+                        Z[i,j,0]  = OH_result[0][0]
+                        Z[i,j,1]  = OH_result[0][1]
+                        Z[i,j,2]  = OH_result[0][2]
 
             master_hdulist.append(fits.ImageHDU(data = Z, header = colhdr, name = 'Z_%s'%diagnostic[0]))
 
@@ -367,15 +368,16 @@ if __name__ == '__main__':
         Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
         for i in arange(shape(Rs)[1]):
             for j in arange(shape(Rs)[2]):
-                nll = lambda *args: -lnlike(*args)
-                result = op.minimize(nll, [8.5], args=(all_Rs[i,j], all_eRs[i,j], diagnostics[-1]))
-                OH_ml = result["x"]
-                pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
-                OH_result = run_mcmc(pos = pos, R = all_Rs[i,j], eR = all_eRs[i,j], 
-                                     diagnostics = diagnostics[-1], nwalkers = nwalkers)
-                Z[i,j,0]  = OH_result[0][0]
-                Z[i,j,1]  = OH_result[0][1]
-                Z[i,j,2]  = OH_result[0][2]
+                if len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > 0.5)[0]) > len(all_Rs[i,j]) - 1
+                    nll = lambda *args: -lnlike(*args)
+                    result = op.minimize(nll, [8.5], args=(all_Rs[i,j], all_eRs[i,j], diagnostics[-1]))
+                    OH_ml = result["x"]
+                    pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+                    OH_result = run_mcmc(pos = pos, R = all_Rs[i,j], eR = all_eRs[i,j], 
+                                         diagnostics = diagnostics[-1], nwalkers = nwalkers)
+                    Z[i,j,0]  = OH_result[0][0]
+                    Z[i,j,1]  = OH_result[0][1]
+                    Z[i,j,2]  = OH_result[0][2]
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = colhdr, name = 'Z_all'%diagnostic[0]))
 
