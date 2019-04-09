@@ -267,7 +267,7 @@ if __name__ == '__main__':
             O2 = convolve_fft(O2, kern)
             eO2 /= sqrt(3.)
 
-            master_hdulist.append(fits.ImageHDU(data = O2, header = colhdr, name = 'LINE', extname = 'OII'))
+            master_hdulist.append(fits.ImageHDU(data = O2, header = colhdr, name =  'OII'))
             master_hdulist.append(fits.ImageHDU(data = eO2, header = colhdr, name = 'eOII'))
 
         #do we have OIII?
