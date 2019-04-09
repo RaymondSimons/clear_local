@@ -388,6 +388,8 @@ if __name__ == '__main__':
 
 
         Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
+        print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
+
         for i in arange(shape(Rs)[1]):
             for j in arange(shape(Rs)[2]):
                 Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
