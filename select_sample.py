@@ -112,13 +112,7 @@ for c, cat_fl in enumerate(cat_fls):
     good_any = unique(concatenate((good_R23,  
                                   good_R2,   
                                   good_R3,   
-                                  good_S2,   
-                                  good_O32,  
-                                  good_O3,   
-                                  good_O2,   
-                                  good_Ne3O2,
-                                  good_O3S2, 
-                                  good_HaHb)))
+                                  good_O32)))
 
 
 
