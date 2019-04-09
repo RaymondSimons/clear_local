@@ -260,7 +260,7 @@ if __name__ == '__main__':
         haslines = full[0].header['haslines']
 
         #do we have OII?
-        if 'OII' in haslines:
+        if 'OII ' in haslines:
             O2  = full['LINE', 'OII'].data
             eO2 = 1./np.sqrt(full['LINEWHT', 'OII'].data)
 
@@ -271,7 +271,8 @@ if __name__ == '__main__':
             master_hdulist.append(fits.ImageHDU(data = eO2, header = colhdr, name = 'eOII'))
 
         #do we have OIII?
-        if 'OIII' in haslines:
+        if 'OIII ' in haslines:
+            try:
             O3  = full['LINE', 'OIII'].data
             eO3 = 1./np.sqrt(full['LINEWHT', 'OIII'].data)
            
@@ -292,7 +293,7 @@ if __name__ == '__main__':
             master_hdulist.append(fits.ImageHDU(data = eHb, header = colhdr, name = 'eHb'))
 
         #do we have O32?
-        if ('OII' in haslines) & ('OIII' in haslines):
+        if ('OII ' in haslines) & ('OIII ' in haslines):
             R_O32 = O3/O2
             eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
             diagnostics.append(['O32'])
@@ -305,7 +306,7 @@ if __name__ == '__main__':
 
 
         #do we have R2?
-        if ('OII' in haslines) & ('Hb' in haslines):
+        if ('OII ' in haslines) & ('Hb' in haslines):
             R_R2 = O2/Hb
             eR_R2 = R_R2 * np.sqrt((eO2/O2)**2. + (eHb/Hb)**2.)
             diagnostics.append(['R2'])
@@ -316,7 +317,7 @@ if __name__ == '__main__':
 
 
         #do we have R3?
-        if ('OIII' in haslines) & ('Hb' in haslines):
+        if ('OIII ' in haslines) & ('Hb' in haslines):
             R_R3 = O3/Hb
             eR_R3 = R_R3 * np.sqrt((eO3/O3)**2. + (eHb/Hb)**2.)
             diagnostics.append(['R3'])
@@ -326,7 +327,7 @@ if __name__ == '__main__':
             master_hdulist.append(fits.ImageHDU(data = eR_R3, header = colhdr, name = 'eR3'))
 
         #do we have R23?
-        if ('OII' in haslines) & ('OIII' in haslines) & ('Hb' in haslines):
+        if ('OII ' in haslines) & ('OIII ' in haslines) & ('Hb' in haslines):
             R_R23 = (O2 + O3)/Hb
             eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
             diagnostics.append(['R23'])
