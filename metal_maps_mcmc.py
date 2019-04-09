@@ -223,7 +223,7 @@ if __name__ == '__main__':
     Ndim = 1
 
     out_dir = '/user/rsimons/metal_maps'
-    SN_limit = 0.5
+    SN_limit = 1.5
     np.random.seed()
     field, di = argv[1], argv[2]
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
@@ -396,11 +396,12 @@ if __name__ == '__main__':
                 Ntot = len(all_Rs[i,j])
                 if Ndet > Ntot - 1:
                     nll = lambda *args: -lnlike(*args)
-                    result = op.minimize(nll, [8.5], args=(all_Rs[i,j], all_eRs[i,j], diagnostics[-1]))
+                    result = op.minimize(nll, [8.5], args=(array(all_Rs[i,j]), array(all_eRs[i,j]), diagnostics[-1]))
                     OH_ml = result["x"]
                     pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
-                    OH_result = run_mcmc(pos = pos, R = all_Rs[i,j], eR = all_eRs[i,j], 
-                                         diagnostics = diagnostics[-1], Nsteps = Nsteps, Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
+                    OH_result = run_mcmc(pos = pos, R = array(all_Rs[i,j]), eR = array(all_eRs[i,j]), 
+                                         diagnostics = diagnostics[-1], Nsteps = Nsteps, 
+                                         Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
                     Z[i,j,0]  = OH_result[0][0]
                     Z[i,j,1]  = OH_result[0][1]
                     Z[i,j,2]  = OH_result[0][2]
