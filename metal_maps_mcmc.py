@@ -308,8 +308,8 @@ if __name__ == '__main__':
             for j in arange(shape(Rs)[2]):
                 for d, diagnostic in enumerate(diagnostics[0:-1]):
 
-                    Rs_ij = array([Rs[d][i,j]]])
-                    eRs_ij = array([eRs[d][i,j]]])
+                    Rs_ij = array([Rs[d][i,j]])
+                    eRs_ij = array([eRs[d][i,j]])
 
 
                     nll = lambda *args: -lnlike(*args)
