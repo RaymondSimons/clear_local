@@ -235,7 +235,7 @@ if __name__ == '__main__':
         for diagnostic in [['O32']]:
             for i in arange(shape(O3)[0]):
                 for j in arange(shape(O3)[1]):
-                    if (O3[i,j]/eO3[i,j] > 1.) & (O2[i,j]/eO2[i,j] > 1.):
+                    if (O3[i,j]/eO3[i,j] > 0.5) & (O2[i,j]/eO2[i,j] > 0.5):
                         print (R[i,j], eR[i,j])
 
                         nll = lambda *args: -lnlike(*args)
