@@ -14,7 +14,7 @@ fields = ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', '
 for field in fields:
     sf = open(outdir + '/%s_submit_all.sh'%field, 'w+')
 
-    good = where(cat['col1'] == field)[0]
+    good = np.where(cat['col1'] == field)[0]
     for (field, di) in cat[good]:
         f = open(outdir + '/%s_%.5i.job'%(field, di), 'w+')
 
