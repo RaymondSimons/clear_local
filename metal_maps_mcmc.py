@@ -285,8 +285,18 @@ if __name__ == '__main__':
             eRs.append(eR_R23)
 
         all_diags = []
-        for d in diagnostics: all_diags.append(d[0])
+        all_Rs = []
+        all_eRs = []
+
+        for dd, d in enumerate(array(diagnostics)): 
+            all_diags.append(d[0])
+            all_Rs.append(Rs[dd])
+            all_Rs.append(Rs[dd])
+
+
         diagnostics.append(all_diags)
+
+
 
         diagnostics = array(diagnostics)
         Rs = array(Rs)
@@ -296,7 +306,7 @@ if __name__ == '__main__':
 
         for i in arange(shape(Rs)[1]):
             for j in arange(shape(Rs)[2]):
-                for d, diagnostic in enumerate(diagnostics):
+                for d, diagnostic in enumerate(diagnostics[0:-1]):
                     nll = lambda *args: -lnlike(*args)
                     result = op.minimize(nll, [8.5], args=(Rs[d][i,j], eRs[d][i,j], diagnostic))
                     OH_ml = result["x"]
