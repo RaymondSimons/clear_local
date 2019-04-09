@@ -218,7 +218,7 @@ if __name__ == '__main__':
     kern = Box2DKernel(3)
     nwalkers = 100
     outdir = '/user/rsimons/metal_maps'
-
+    SN_limit = 3
     np.random.seed()
     field, di = argv[1], argv[2]
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
@@ -352,7 +352,7 @@ if __name__ == '__main__':
                     else: all_eRs[i,j].append(eRs_ij)
 
                     nll = lambda *args: -lnlike(*args)
-                    if Rs_ij[0]/eRs_ij[0] > 0.5:
+                    if Rs_ij[0]/eRs_ij[0] > SN_limit:
                         result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
@@ -368,7 +368,7 @@ if __name__ == '__main__':
         Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
         for i in arange(shape(Rs)[1]):
             for j in arange(shape(Rs)[2]):
-                Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > 0.5)[0])
+                Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
                 Ntot = len(all_Rs[i,j])
                 if Ndet > Ntot - 1:
                     nll = lambda *args: -lnlike(*args)
