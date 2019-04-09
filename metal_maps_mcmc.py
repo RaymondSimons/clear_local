@@ -371,7 +371,7 @@ if __name__ == '__main__':
                     if Rs_ij[0]/eRs_ij[0] > SN_limit:
                         result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
                         OH_ml = result["x"]
-                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
 
                         OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
                                              diagnostics = diagnostic, Nsteps = Nsteps, Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
@@ -398,7 +398,7 @@ if __name__ == '__main__':
                     nll = lambda *args: -lnlike(*args)
                     result = op.minimize(nll, [8.5], args=(all_Rs[i,j], all_eRs[i,j], diagnostics[-1]))
                     OH_ml = result["x"]
-                    pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+                    pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
                     OH_result = run_mcmc(pos = pos, R = all_Rs[i,j], eR = all_eRs[i,j], 
                                          diagnostics = diagnostics[-1], Nsteps = Nsteps, Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
                     Z[i,j,0]  = OH_result[0][0]
