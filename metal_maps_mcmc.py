@@ -281,7 +281,7 @@ if __name__ == '__main__':
 
         all_diags = []
         for d in diagnostics: all_diags.append(d[0])
-        diagnostics.append([all_diags])
+        diagnostics.append(all_diags)
 
 
 
