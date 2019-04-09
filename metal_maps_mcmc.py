@@ -226,6 +226,8 @@ if __name__ == '__main__':
         eRs = []
         diagnostics = []
         haslines = full[0].header['haslines']
+
+        #do we have OII?
         if 'OII' in haslines:
             O2  = full['LINE', 'OII'].data
             eO2 = 1./np.sqrt(full['LINEWHT', 'OII'].data)
@@ -233,6 +235,7 @@ if __name__ == '__main__':
             O2 = convolve_fft(O2, kern)
             eO2 /= sqrt(3.)
 
+        #do we have OIII?
         if 'OIII' in haslines:
             O3  = full['LINE', 'OIII'].data
             eO3 = 1./np.sqrt(full['LINEWHT', 'OIII'].data)
@@ -240,7 +243,7 @@ if __name__ == '__main__':
             O3 = convolve_fft(O3, kern)
             eO3 /= sqrt(3.)
 
-
+        #do we have Hb?
         if 'Hb' in haslines:
             Hb  = full['LINE', 'Hb'].data
             eHb = 1./np.sqrt(full['LINEWHT', 'Hb'].data)
@@ -249,7 +252,7 @@ if __name__ == '__main__':
             eHb /= sqrt(3.)
 
 
-
+        #do we have O32?
         if ('OII' in haslines) & ('OIII' in haslines):
             R_O32 = O3/O2
             eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
@@ -257,6 +260,7 @@ if __name__ == '__main__':
             Rs.append(R_O32)
             eRs.append(eR_O32)
 
+        #do we have R2?
         if ('OII' in haslines) & ('Hb' in haslines):
             R_R2 = O2/Hb
             eR_R2 = R_R2 * np.sqrt((eO2/O2)**2. + (eHb/Hb)**2.)
@@ -264,6 +268,7 @@ if __name__ == '__main__':
             Rs.append(R_R2)
             eRs.append(eR_R2)
 
+        #do we have R3?
         if ('OIII' in haslines) & ('Hb' in haslines):
             R_R3 = O3/Hb
             eR_R3 = R_R3 * np.sqrt((eO3/O3)**2. + (eHb/Hb)**2.)
@@ -271,6 +276,7 @@ if __name__ == '__main__':
             Rs.append(R_R3)
             eRs.append(eR_R3)
 
+        #do we have R23?
         if ('OII' in haslines) & ('OIII' in haslines) & ('Hb' in haslines):
             R_R23 = (O2 + O3)/Hb
             eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
@@ -290,7 +296,19 @@ if __name__ == '__main__':
 
         for i in arange(shape(Rs)[1]):
             for j in arange(shape(Rs)[2]):
-                print (i,j)
+                for d, diagnostic in enumerate(diagnostics):
+                    nll = lambda *args: -lnlike(*args)
+                    result = op.minimize(nll, [8.5], args=(Rs[d], eRs[d], diagnostic))
+                    OH_ml = result["x"]
+                    pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
+                    OH_result = run_mcmc(pos = pos, R = Rs, eR = eRs, 
+                                diagnostics = diagnostic, nwalkers = nwalkers)
+                    print ('%.2f  %.2f  %.2f'%(OH_result[0][0],OH_result[0][1],OH_result[0][2]))
+
+                print '\n'
+
+
+
 
         '''
 
@@ -309,7 +327,6 @@ if __name__ == '__main__':
                             eRs = array([eR_O32[i,j], eR_R23[i,j]])
 
                         nll = lambda *args: -lnlike(*args)
-
                         result = op.minimize(nll, [8.5], args=(Rs, eRs, diagnostic))
                         OH_ml = result["x"]
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(nwalkers)]
