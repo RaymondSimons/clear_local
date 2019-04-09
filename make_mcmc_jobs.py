@@ -1,4 +1,5 @@
 from astropy.io import ascii
+import numpy as np
 
 outdir   = '/user/rsimons/submit_scripts/jobs'
 
