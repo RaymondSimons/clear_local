@@ -367,12 +367,17 @@ if __name__ == '__main__':
         all_Rs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
         all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
 
+
+        minx = shape(Rs)[1]/2 - 15
+        maxx = shape(Rs)[1]/2 + 15
+
+
         for d, diagnostic in enumerate(diagnostics[0:-1]):
             print ('calculating metallicity using ', diagnostic)
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
 
-            for i in arange(shape(Rs)[1]/2 - 15, shape(Rs)[1]/2 + 15):
-                for j in arange(shape(Rs)[1]/2 - 15, shape(Rs)[1]/2 + 15):
+            for i in arange(minx, maxx):
+                for j in arange(minx, maxx):
                     Rs_ij = array([Rs[d][i,j]])
                     eRs_ij = array([eRs[d][i,j]])
 
@@ -404,8 +409,8 @@ if __name__ == '__main__':
         Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
         print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
 
-        for i in arange(shape(Rs)[1]):
-            for j in arange(shape(Rs)[2]):
+        for i in arange(minx, maxx):
+            for j in arange(minx, maxx):
                 Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
                 Ntot = len(all_Rs[i,j])
                 if Ndet > Ntot - 1:
