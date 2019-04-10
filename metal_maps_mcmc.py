@@ -371,8 +371,8 @@ if __name__ == '__main__':
             print ('calculating metallicity using ', diagnostic)
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
 
-            for i in arange(shape(Rs)[1]):
-                for j in arange(shape(Rs)[2]):
+            for i in arange(shape(Rs)[1]/2. - 15, shape(Rs)[1]/2. + 15):
+                for j in arange(shape(Rs)[1]/2. - 15, shape(Rs)[1]/2. + 15):
                     print (i,j)
                     Rs_ij = array([Rs[d][i,j]])
                     eRs_ij = array([eRs[d][i,j]])

@@ -25,10 +25,6 @@ sn_limit_l = 1.e-5
 for f, fl in enumerate(fls):
     if 'ERSPRIME_40192' in fl:
         a = fits.open(fl)
-
-
-
-
         fig = figure(figsize = (5, 5))
 
         axes_m1   = plt.subplot2grid((4, 4), (0,0), rowspan = 1, colspan = 1, fig = fig)
