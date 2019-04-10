@@ -183,12 +183,26 @@ def lnlike(OH, R, Rerr, diagnostics):
     inv_sigma2 = 1.0/Rerr**2
     return -0.5*(np.sum((R-model)**2*inv_sigma2))
 
-def lnprior(OH):
-    if 7.0 < OH < 9.5: return 0.0
+def lnprior(OH, OHmin = 7.0, OHmax = 9.5):
+    if OHmin < OH < OHmax: return 0.0
     return -np.inf
 
-def lnprob(OH, R, Rerr, diagnostics):
-    lp = lnprior(OH)
+def lnGaussianprior(OH, OHmin = 4., OHmax = 12.):
+    # Gaussian prior on m
+    # uniform prior on c
+    # OHmin lower range of prior
+    # OHmax upper range of prior
+    # set prior to 1 (log prior to 0) if in the range and zero (-inf) outside the range 
+    lp = 0. if OHmin < OH < OHmax else -np.inf
+    OHmu = 8.0     # mean of the Gaussian prior
+    OHsigma = 1.0 # standard deviation of the Gaussian prior
+    lp -= 0.5*((OH - OHmu)/OHsigma)**2   
+    return lp
+
+def lnprob(OH, R, Rerr, diagnostics, use_prior = 'top'):
+    if use_prior == 'top': lp = lnprior(OH)
+    if use_prior == 'gaussian': lp = lnGaussianprior(OH)
+
     if not np.isfinite(lp):
         return -np.inf
     return lp + lnlike(OH, R, Rerr, diagnostics)
@@ -199,7 +213,7 @@ def lnprob(OH, R, Rerr, diagnostics):
 
 
 def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalkers = 100):
-    sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(R, eR, diagnostics))
+    sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob(use_prior='gaussian'), args=(R, eR, diagnostics))
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
     OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
