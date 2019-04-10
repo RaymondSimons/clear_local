@@ -236,8 +236,8 @@ if __name__ == '__main__':
     Nburn = 50
     Ndim = 1
 
-    out_dir = '/user/rsimons/metal_maps'
-    SN_limit = 0.5
+    out_dir = '/user/rsimons/metal_maps_test'
+    SN_limit = 1.0
     np.random.seed()
     field, di = argv[1], argv[2]
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
