@@ -373,7 +373,6 @@ if __name__ == '__main__':
 
             for i in arange(shape(Rs)[1]/2 - 15, shape(Rs)[1]/2 + 15):
                 for j in arange(shape(Rs)[1]/2 - 15, shape(Rs)[1]/2 + 15):
-                    print (i,j)
                     Rs_ij = array([Rs[d][i,j]])
                     eRs_ij = array([eRs[d][i,j]])
 
