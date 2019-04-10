@@ -368,8 +368,8 @@ if __name__ == '__main__':
         all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
 
 
-        minx = shape(Rs)[1]/2 - 20
-        maxx = shape(Rs)[1]/2 + 20
+        minx = int(shape(Rs)[1]/2 - 20)
+        maxx = int(shape(Rs)[1]/2 + 20)
 
 
         for d, diagnostic in enumerate(diagnostics[0:-1]):
