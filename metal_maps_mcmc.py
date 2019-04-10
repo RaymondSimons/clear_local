@@ -236,8 +236,8 @@ if __name__ == '__main__':
     Nburn = 50
     Ndim = 1
 
-    out_dir = '/user/rsimons/metal_maps_test'
-    SN_limit = 0.75
+    out_dir = '/user/rsimons/metal_maps_new'
+    SN_limit = 0.5
     np.random.seed()
     field, di = argv[1], argv[2]
     fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
@@ -368,8 +368,8 @@ if __name__ == '__main__':
         all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
 
 
-        minx = shape(Rs)[1]/2 - 15
-        maxx = shape(Rs)[1]/2 + 15
+        minx = shape(Rs)[1]/2 - 20
+        maxx = shape(Rs)[1]/2 + 20
 
 
         for d, diagnostic in enumerate(diagnostics[0:-1]):
@@ -412,8 +412,7 @@ if __name__ == '__main__':
         for i in arange(minx, maxx):
             for j in arange(minx, maxx):
                 Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
-                Ntot = len(all_Rs[i,j])
-                if Ndet > Ntot - 1:
+                if Ndet > 0:
                     nll = lambda *args: -lnlike(*args)
                     result = op.minimize(nll, [8.5], args=(array(all_Rs[i,j]), array(all_eRs[i,j]), diagnostics[-1]))
                     OH_ml = result["x"]
