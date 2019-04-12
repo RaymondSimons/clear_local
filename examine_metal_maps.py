@@ -15,16 +15,44 @@ fls = glob(metal_dir + '/*.fits')
 
 
 
-xmn = 25
-xmx = 55
+xmn = 28
+xmx = 52
 
 
-sn_limit_u = 1.0
-sn_limit_l = 1.e-5
+sn_limit_l = np.inf
+sn_limit_u = np.inf
+
+
+
+fls = array(['ERSPRIME_40078_metals.fits',
+'ERSPRIME_40192_metals.fits',
+'ERSPRIME_40776_metals.fits',
+'ERSPRIME_42109_metals.fits',
+'GS1_45069_metals.fits',
+'GS4_24615_metals.fits',
+'GS4_24851_metals.fits',
+'GS4_25745_metals.fits',
+'GS4_26021_metals.fits',
+'GS4_26087_metals.fits',
+'GS4_26550_metals.fits',
+'GS4_28794_metals.fits',
+'GS4_29349_metals.fits',
+'GS4_29460_metals.fits',
+'GS4_30427_metals.fits',
+'GS4_31311_metals.fits',
+'GS5_37637_metals.fits',
+'GS5_38616_metals.fits',
+'GS5_38513_metals.fits',
+'GS5_41761_metals.fits'])
+
+#fls = array(['ERSPRIME_40776_metals.fits'])
+#fls = array(['GS4_26087_metals.fits'])
+#fls = array(['GS4_25745_metals.fits'])
+
 
 for f, fl in enumerate(fls):
-    if 'ERSPRIME_40192' in fl:
-        a = fits.open(fl)
+    if True:#'ERSPRIME_40192' in fl:
+        a = fits.open(metal_dir + '/' + fl)
         fig = figure(figsize = (5, 5))
 
         axes_m1   = plt.subplot2grid((4, 4), (0,0), rowspan = 1, colspan = 1, fig = fig)
@@ -47,12 +75,15 @@ for f, fl in enumerate(fls):
             ax = all_axes[l]
             try:
                 ln_im = a[ln.replace('[', '').replace(']','')].data
+                eln_im = a['E' + ln.replace('[', '').replace(']','')].data
+
                 for_vm = sort(ln_im[xmn:xmx, xmn:xmx].ravel())
                 vmn = for_vm[int(0.15*len(for_vm))]
                 vmx = for_vm[int(0.995*len(for_vm))]
                 ax.imshow(ln_im, vmin = vmn, vmax = vmx, cmap = 'viridis')
                 ax.annotate(ln, (0.97, 0.03), va = 'bottom', ha = 'right', fontsize = 20, xycoords = 'axes fraction', fontweight = 'bold', color = 'white')            
             except:
+                print 'broke'
                 pass
 
 
@@ -63,8 +94,8 @@ for f, fl in enumerate(fls):
         ezmap_l = a['Z_ALL'].data[:,:,1]
         ezmap_u = a['Z_ALL'].data[:,:,2]
 
-        zmap_masked =np.ma.masked_where((ezmap_l > sn_limit_u) | (ezmap_l < sn_limit_l)  | 
-                                        (ezmap_u > sn_limit_u) | (ezmap_u < sn_limit_l)  |
+        zmap_masked =np.ma.masked_where((ezmap_l > sn_limit_l) |
+                                        (ezmap_u > sn_limit_u) |
                                         (isnan(zmap)), zmap)
         cm = mpl.cm.cool
         cm.set_bad('black', 1.)
@@ -72,8 +103,10 @@ for f, fl in enumerate(fls):
 
         for_zm = sort(zmap_masked.data[35:45,35:45][zmap_masked.mask[35:45,35:45] == False])
 
-        zmn = round(math.floor(for_zm[int(0.02*len(for_zm))]*100)/100., 1)
-        zmx = round(math.ceil(for_zm[int(0.90*len(for_zm))]*100)/100., 1)
+        zmn = round(math.floor(for_zm[int(0.03*len(for_zm))]*100)/100., 1)
+        zmx = round(math.ceil(for_zm[int(0.95*len(for_zm))]*100)/100., 1)
+        #zmn = 6.8
+
 
 
         mp = axes_Z.imshow(zmap_masked, vmin = zmn, vmax = zmx, cmap = cm)
@@ -96,8 +129,10 @@ for f, fl in enumerate(fls):
 
 
 
+        #cbr.set_ticks(arange(zmn, zmx)]+0.2, 0.2))
+        cbr.set_ticks([zmn, zmx])
 
-        cbr.set_ticks(arange(6., 10, tcks))
+        #cbr.set_ticks(arange(6., 10, tcks))
         axes_Z.annotate(r'12 + $\log$(O/H)', (cbar_coords[0], cbar_coords[1] + cbar_coords[3]), xycoords = 'figure fraction', ha = 'left', va = 'bottom', fontsize = 18, fontweight = 'bold', color = 'white')
         bbox_props = dict(boxstyle="square", fc="k", ec=None, alpha=0.4)
         axes_Z.annotate('All', (0.93, 0.04), va = 'bottom', ha = 'right', fontsize = 25, xycoords = 'axes fraction', fontweight = 'bold', color = 'white', bbox = bbox_props)            
@@ -112,13 +147,23 @@ for f, fl in enumerate(fls):
                 zmap = a['Z_%s'%dg].data[:,:,0]
                 ezmap_l = a['Z_%s'%dg].data[:,:,1]
                 ezmap_u = a['Z_%s'%dg].data[:,:,2]
-                zmap_masked =np.ma.masked_where((ezmap_l > sn_limit_u) | (ezmap_l < sn_limit_l)  | 
-                                                (ezmap_u > sn_limit_u) | (ezmap_u < sn_limit_l)  |
+                zmap_masked =np.ma.masked_where((ezmap_l > sn_limit_l) |
+                                                (ezmap_u > sn_limit_u) |
                                                 (isnan(zmap)), zmap)
+
                 for_zm = sort(zmap_masked.data[35:45,35:45][zmap_masked.mask[35:45,35:45] == False])    
 
-                zmn = round(math.floor(for_zm[int(0.02*len(for_zm))]*100)/100., 1)
-                zmx = round(math.ceil(for_zm[int(0.90*len(for_zm))]*100)/100., 1)
+                zmn = round(math.floor(for_zm[int(0.05*len(for_zm))]*100)/100., 1)
+                zmx = round(math.ceil(for_zm[int(0.98*len(for_zm))]*100)/100., 1)
+                '''
+                if dg == 'O32':  
+                    zmx = 8.0
+
+                if dg == 'R2':  
+                    #zmn = 7.4
+                    zmx = 8.5
+                    #print zmx
+                '''
                 mp = ax.imshow(zmap_masked, vmin = zmn, vmax = zmx, cmap = cm)
                 cbar_coords = [0.78, 0.95 - 0.25*d, 0.15, 0.02]
                 cbaxes = fig.add_axes(cbar_coords)
@@ -142,7 +187,7 @@ for f, fl in enumerate(fls):
 
 
         fig.subplots_adjust(left = 0.0, right = 1.0, top = 1.0, bottom = 0.00, wspace = 0.0, hspace = 0.01)
-        fig.savefig('/Users/rsimons/Desktop/clear/figures/metal_maps/' + fl.split('/')[-1].replace('.fits', '.png'), dpi = 300)
+        fig.savefig('/Users/rsimons/Desktop/clear/figures/metal_maps_alma/' + fl.split('/')[-1].replace('.fits', '.png'), dpi = 300)
         plt.close('all')
 
 
