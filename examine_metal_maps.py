@@ -1,6 +1,8 @@
 import astropy
 from astropy.io import fits
 from glob import glob
+from astropy.convolution import Gaussian2DKernel, convolve_fft, Box2DKernel
+
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
