@@ -259,7 +259,8 @@ if __name__ == '__main__':
                         pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
 
                         OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
-                                             diagnostics = diagnostic, Nsteps = Nsteps, Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
+                                             diagnostics = diagnostic, Nsteps = Nsteps,
+                                             Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
 
                         Z[i,j,0]  = OH_result[0][0]
                         Z[i,j,1]  = OH_result[0][1]
