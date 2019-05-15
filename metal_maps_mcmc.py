@@ -277,7 +277,7 @@ if __name__ == '__main__':
             master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_%s'%diagnostic[0]))
 
 
-        Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
+        Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
         print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
 
         for i in arange(minx, maxx):
