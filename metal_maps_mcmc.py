@@ -287,13 +287,14 @@ if __name__ == '__main__':
             master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_%s'%diagnostic[0]))
             full_hdulist.append(fits.ImageHDU(data = Z_full, header = Zcolhdr, name = 'Z_%s_full'%diagnostic[0]))
 
-        if True:
-            Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
-            Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2], Nchain_saved))
-            print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
 
-            for i in arange(minx, maxx):
-                for j in arange(minx, maxx):
+        Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
+        Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2], Nchain_saved))
+        print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
+
+        for i in arange(minx, maxx):
+            for j in arange(minx, maxx):
+                if all_Rs[i,j] != None:
                     Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
                     if Ndet > 0:
                         nll = lambda *args: -lnlike(*args)
@@ -310,8 +311,8 @@ if __name__ == '__main__':
                         Z[i,j,4]  = OH_result[0][4]
                         Z_full[i,j]  = samples[np.random.randint(0, len(samples[:,0]), Nchain_saved),0]
 
-            master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
-            full_hdulist.append(fits.ImageHDU(data = Z_full, header = Zcolhdr, name = 'Z_all_full'))
+        master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
+        full_hdulist.append(fits.ImageHDU(data = Z_full, header = Zcolhdr, name = 'Z_all_full'))
 
         master_hdulist.extend(full_hdulist)
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
