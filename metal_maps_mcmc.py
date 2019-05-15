@@ -273,7 +273,7 @@ if __name__ == '__main__':
                             Z[i,j,3]  = OH_result[0][3]
                             Z[i,j,4]  = OH_result[0][4]
 
-                            Z_full[i,j]  = samples
+                            Z_full[i,j]  = samples[:,0]
 
 
             if diagnostic[0] == 'R23': use = 'M08'
@@ -305,6 +305,7 @@ if __name__ == '__main__':
                         Z[i,j,2]  = OH_result[0][2]
                         Z[i,j,3]  = OH_result[0][3]
                         Z[i,j,4]  = OH_result[0][4]
+                        Z_full[i,j]  = samples[:,0]
 
             master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
             full_hdulist.append(fits.ImageHDU(data = Z_full, header = Zcolhdr, name = 'Z_all_full'))
