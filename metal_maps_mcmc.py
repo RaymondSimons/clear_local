@@ -88,7 +88,6 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalke
     sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(R, eR, diagnostics, use_prior))
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
-    print (len(samples))
     OH_mcmc = map(lambda v: (v[2], v[3]-v[2], v[2]-v[1], v[4]-v[2], v[2]-v[0]), zip(*np.percentile(samples, [2.5, 16, 50, 84, 97.5], axis=0)))    
     return list(OH_mcmc), samples
 
@@ -310,7 +309,7 @@ if __name__ == '__main__':
             master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
             full_hdulist.append(fits.ImageHDU(data = Z_full, header = Zcolhdr, name = 'Z_all_full'))
 
-
+        master_hdulist.extend(full_hdulist)
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
