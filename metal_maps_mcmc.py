@@ -240,7 +240,9 @@ if __name__ == '__main__':
         maxx = int(shape(Rs)[1]/2 + 20)
 
         full_hdulist = []
-        for d, diagnostic in enumerate(diagnostics[0:-1]):
+        #for d, diagnostic in enumerate(diagnostics[0:-1]):
+        for d, diagnostic in enumerate(diagnostics[0:1]):
+
             print ('calculating metallicity using ', diagnostic)
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
             Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2], (Nsteps - Nburn) * Nwalkers))
@@ -281,7 +283,7 @@ if __name__ == '__main__':
             if diagnostic[0] == 'O32': use = 'M08'
             Zcolhdr['calibration'] = use
             master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_%s'%diagnostic[0]))
-            full_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_%s_full'%diagnostic[0]))
+            full_hdulist.append(fits.ImageHDU(data = Z_full, header = Zcolhdr, name = 'Z_%s_full'%diagnostic[0]))
 
         if False:
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
