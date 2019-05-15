@@ -231,9 +231,6 @@ if __name__ == '__main__':
         Rs = array(Rs)
         eRs = array(eRs)
 
-        # Need these in log
-        eRs = 0.434 * eRs/Rs
-        Rs = array([log10(Rs_) for Rs_ in Rs])
 
         all_Rs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
         all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
@@ -249,8 +246,8 @@ if __name__ == '__main__':
 
             for i in arange(minx, maxx):
                 for j in arange(minx, maxx):
-                    Rs_ij = array([Rs[d][i,j]])
-                    eRs_ij = array([eRs[d][i,j]])
+                    Rs_ij = array([log10(Rs[d][i,j])])
+                    eRs_ij = array([0.434 * eRs[d][i,j]/Rs[d][i,j]])
 
                     if all_Rs[i,j] == None: all_Rs[i,j] = [Rs_ij]
                     else: all_Rs[i,j].append(Rs_ij)
