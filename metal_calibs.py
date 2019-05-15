@@ -26,7 +26,11 @@ def OH_R23(OH, use = 'M08', prt = False):
     result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
     return result
 
-def OH_R2(OH, use = 'C17', prt = False):
+def OH_R2(OH, use = 'M08', prt = False):
+
+    if use == 'M08':
+        x = OH - 8.69
+        c = [ 0.5603, 0.0450, -1.8017, -1.8434, -0.6549] 
     #taken from table in Patricio+
     if use == 'C17': 
         x = OH - 8.69
@@ -36,14 +40,18 @@ def OH_R2(OH, use = 'C17', prt = False):
     result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
     return result
 
-def OH_R3(OH, use = 'C17', prt = False):
+def OH_R3(OH, use = 'M08', prt = False):
     #taken from table in Patricio+
+
+    if use == 'M08':
+        x = OH - 8.69
+        c = [ 0.1549, -1.5031, -0.9790, -0.0297, 0.0]
     if use == 'C17': 
         x = OH - 8.69
         if (OH > 8.85) | (OH < 8.3):
             if prt: print ('R2 outside of Curti+ 17 calibration range...')
-        cf = [-0.277, -3.549, -3.593, -0.981, 0.0]
-    result = cf[0] * x**0. + cf[1] * x**1. + cf[2] * x**2. + cf[3] * x**3. + cf[4] * x**4.
+        c = [-0.277, -3.549, -3.593, -0.981, 0.0]
+    result = c[0] * x**0. + c[1] * x**1. + c[2] * x**2. + c[3] * x**3. + c[4] * x**4.
     return result
 
 def OH_O3(OH, use = 'M08', prt = False):

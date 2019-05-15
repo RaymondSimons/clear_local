@@ -265,6 +265,8 @@ if __name__ == '__main__':
                         Z[i,j,0]  = OH_result[0][0]
                         Z[i,j,1]  = OH_result[0][1]
                         Z[i,j,2]  = OH_result[0][2]
+
+
             if diagnostic[0] == 'R23': use = 'M08'
             if diagnostic[0] == 'R2':  use = 'C17'
             if diagnostic[0] == 'R3':  use = 'C17'
