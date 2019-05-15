@@ -14,6 +14,7 @@ metal_dir = '/Users/rsimons/Desktop/clear/metal_maps'
 
 if False:
     fls = glob(metal_dir + '/*metals.fits')
+    fls = glob(metal_dir + '/ERSPRIME_40192_metals.fits')
     z_r2  = {}
     z_r3  = {}
     z_r23 = {}

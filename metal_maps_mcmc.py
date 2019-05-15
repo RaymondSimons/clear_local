@@ -85,7 +85,7 @@ def lnprob(OH, R, Rerr, diagnostics, use_prior = 'top'):
 
 
 def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalkers = 100, use_prior = 'gaussian'):
-    sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(R, eR, diagnostics, use_prior))
+    sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(log10(R), 0.434*eR/R, diagnostics, use_prior))
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
     OH_mcmc = map(lambda v: (v[2], v[3]-v[2], v[2]-v[1], v[4]-v[2], v[2]-v[0]), zip(*np.percentile(samples, [2.5, 16, 50, 84, 97.5], axis=0)))    
@@ -209,6 +209,9 @@ if __name__ == '__main__':
         if ('OII ' in haslines) & ('OIII ' in haslines) & ('Hb' in haslines):
             R_R23 = (O2 + O3)/Hb
             eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
+
+
+
             diagnostics.append(['R23'])
             Rs.append(R_R23)
             eRs.append(eR_R23)
