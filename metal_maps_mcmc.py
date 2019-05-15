@@ -88,9 +88,9 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalke
     sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(R, eR, diagnostics, use_prior))
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
-    print len(samples)
+    print (len(samples))
     OH_mcmc = map(lambda v: (v[2], v[3]-v[2], v[2]-v[1], v[4]-v[2], v[2]-v[0]), zip(*np.percentile(samples, [2.5, 16, 50, 84, 97.5], axis=0)))    
-    return list(OH_mcmc)
+    return list(OH_mcmc), samples
 
 
 
