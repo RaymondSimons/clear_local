@@ -88,6 +88,7 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalke
     sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(R, eR, diagnostics, use_prior))
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
+    print len(samples)
     OH_mcmc = map(lambda v: (v[2], v[3]-v[2], v[2]-v[1], v[4]-v[2], v[2]-v[0]), zip(*np.percentile(samples, [2.5, 16, 50, 84, 97.5], axis=0)))    
     return list(OH_mcmc)
 
@@ -239,7 +240,7 @@ if __name__ == '__main__':
         minx = int(shape(Rs)[1]/2 - 20)
         maxx = int(shape(Rs)[1]/2 + 20)
 
-
+        full_fitshdulist = []
         for d, diagnostic in enumerate(diagnostics[0:-1]):
             print ('calculating metallicity using ', diagnostic)
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
@@ -261,9 +262,9 @@ if __name__ == '__main__':
                             OH_ml = result["x"]
                             pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
 
-                            OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
-                                                 diagnostics = diagnostic, Nsteps = Nsteps,
-                                                 Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
+                            OH_result, samples = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
+                                                          diagnostics = diagnostic, Nsteps = Nsteps,
+                                                          Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
 
                             Z[i,j,0]  = OH_result[0][0]
                             Z[i,j,1]  = OH_result[0][1]
