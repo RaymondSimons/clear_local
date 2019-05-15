@@ -88,7 +88,7 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalke
     sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(R, eR, diagnostics, use_prior))
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
-    OH_mcmc = map(lambda v: (v[1], v[2]-v[1], v[1]-v[0]), zip(*np.percentile(samples, [16, 50, 84], axis=0)))    
+    OH_mcmc = map(lambda v: (v[2], v[3]-v[2], v[2]-v[1], v[4]-v[2], v[2]-v[0]), zip(*np.percentile(samples, [2.5, 16, 50, 84, 97.5], axis=0)))    
     return list(OH_mcmc)
 
 
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     Nburn = 50
     Ndim = 1
 
-    out_dir = '/user/rsimons/metal_maps_new'
+    out_dir = '/user/rsimons/metal_maps'
     SN_limit = 0.7
     np.random.seed()
     field, di = argv[1], argv[2]
@@ -240,7 +240,7 @@ if __name__ == '__main__':
 
         for d, diagnostic in enumerate(diagnostics[0:-1]):
             print ('calculating metallicity using ', diagnostic)
-            Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 3))
+            Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
 
             for i in arange(minx, maxx):
                 for j in arange(minx, maxx):
@@ -265,11 +265,13 @@ if __name__ == '__main__':
                         Z[i,j,0]  = OH_result[0][0]
                         Z[i,j,1]  = OH_result[0][1]
                         Z[i,j,2]  = OH_result[0][2]
+                        Z[i,j,3]  = OH_result[0][3]
+                        Z[i,j,4]  = OH_result[0][4]
 
 
             if diagnostic[0] == 'R23': use = 'M08'
-            if diagnostic[0] == 'R2':  use = 'C17'
-            if diagnostic[0] == 'R3':  use = 'C17'
+            if diagnostic[0] == 'R2':  use = 'M08'
+            if diagnostic[0] == 'R3':  use = 'M08'
             if diagnostic[0] == 'O32': use = 'M08'
             Zcolhdr['calibration'] = use
             master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_%s'%diagnostic[0]))
@@ -292,6 +294,8 @@ if __name__ == '__main__':
                     Z[i,j,0]  = OH_result[0][0]
                     Z[i,j,1]  = OH_result[0][1]
                     Z[i,j,2]  = OH_result[0][2]
+                    Z[i,j,3]  = OH_result[0][3]
+                    Z[i,j,4]  = OH_result[0][4]
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
 
