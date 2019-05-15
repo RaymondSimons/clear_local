@@ -246,29 +246,30 @@ if __name__ == '__main__':
 
             for i in arange(minx, maxx):
                 for j in arange(minx, maxx):
-                    Rs_ij = array([log10(Rs[d][i,j])])
-                    eRs_ij = array([0.434 * eRs[d][i,j]/Rs[d][i,j]])
+                    if Rs[d][i,j] > 0:
+                        Rs_ij = array([log10(Rs[d][i,j])])
+                        eRs_ij = array([0.434 * eRs[d][i,j]/Rs[d][i,j]])
 
-                    if all_Rs[i,j] == None: all_Rs[i,j] = [Rs_ij]
-                    else: all_Rs[i,j].append(Rs_ij)
-                    if all_eRs[i,j] == None: all_eRs[i,j] = [eRs_ij]
-                    else: all_eRs[i,j].append(eRs_ij)
+                        if all_Rs[i,j] == None: all_Rs[i,j] = [Rs_ij]
+                        else: all_Rs[i,j].append(Rs_ij)
+                        if all_eRs[i,j] == None: all_eRs[i,j] = [eRs_ij]
+                        else: all_eRs[i,j].append(eRs_ij)
 
-                    nll = lambda *args: -lnlike(*args)
-                    if Rs_ij[0]/eRs_ij[0] > SN_limit:
-                        result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
-                        OH_ml = result["x"]
-                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
+                        nll = lambda *args: -lnlike(*args)
+                        if Rs_ij[0]/eRs_ij[0] > SN_limit:
+                            result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
+                            OH_ml = result["x"]
+                            pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
 
-                        OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
-                                             diagnostics = diagnostic, Nsteps = Nsteps,
-                                             Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
+                            OH_result = run_mcmc(pos = pos, R = Rs_ij, eR = eRs_ij, 
+                                                 diagnostics = diagnostic, Nsteps = Nsteps,
+                                                 Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
 
-                        Z[i,j,0]  = OH_result[0][0]
-                        Z[i,j,1]  = OH_result[0][1]
-                        Z[i,j,2]  = OH_result[0][2]
-                        Z[i,j,3]  = OH_result[0][3]
-                        Z[i,j,4]  = OH_result[0][4]
+                            Z[i,j,0]  = OH_result[0][0]
+                            Z[i,j,1]  = OH_result[0][1]
+                            Z[i,j,2]  = OH_result[0][2]
+                            Z[i,j,3]  = OH_result[0][3]
+                            Z[i,j,4]  = OH_result[0][4]
 
 
             if diagnostic[0] == 'R23': use = 'M08'
