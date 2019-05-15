@@ -244,7 +244,7 @@ if __name__ == '__main__':
         for d, diagnostic in enumerate(diagnostics[0:-1]):
             print ('calculating metallicity using ', diagnostic)
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
-            Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2], (Nsteps - Nburn) * NWalkers))
+            Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2], (Nsteps - Nburn) * Nwalkers))
 
             for i in arange(minx, maxx):
                 for j in arange(minx, maxx):
@@ -286,7 +286,7 @@ if __name__ == '__main__':
 
         if False:
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
-            Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2], (Nsteps - Nburn) * NWalkers))
+            Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2], (Nsteps - Nburn) * Nwalkers))
             print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
 
             for i in arange(minx, maxx):
