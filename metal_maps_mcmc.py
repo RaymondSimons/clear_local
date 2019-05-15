@@ -233,7 +233,7 @@ if __name__ == '__main__':
 
         # Need these in log
         eRs = 0.434 * eRs/Rs
-        Rs = log10(Rs)
+        Rs = array([log10(Rs_) for Rs_ in Rs])
 
         all_Rs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
         all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
