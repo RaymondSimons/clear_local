@@ -250,6 +250,7 @@ if __name__ == '__main__':
 
             for i in arange(minx, maxx):
                 for j in arange(minx, maxx):
+                    print (Rs[d][i,j])
                     if Rs[d][i,j] > 0:
                         Rs_ij = array([log10(Rs[d][i,j])])
                         eRs_ij = array([0.434 * eRs[d][i,j]/Rs[d][i,j]])
