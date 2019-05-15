@@ -280,27 +280,28 @@ if __name__ == '__main__':
             master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_%s'%diagnostic[0]))
 
 
-        Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
-        print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
+        if False:
+            Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
+            print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
 
-        for i in arange(minx, maxx):
-            for j in arange(minx, maxx):
-                Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
-                if Ndet > 0:
-                    nll = lambda *args: -lnlike(*args)
-                    result = op.minimize(nll, [8.5], args=(array(all_Rs[i,j]), array(all_eRs[i,j]), diagnostics[-1]))
-                    OH_ml = result["x"]
-                    pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
-                    OH_result = run_mcmc(pos = pos, R = array(all_Rs[i,j]), eR = array(all_eRs[i,j]), 
-                                         diagnostics = diagnostics[-1], Nsteps = Nsteps, 
-                                         Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
-                    Z[i,j,0]  = OH_result[0][0]
-                    Z[i,j,1]  = OH_result[0][1]
-                    Z[i,j,2]  = OH_result[0][2]
-                    Z[i,j,3]  = OH_result[0][3]
-                    Z[i,j,4]  = OH_result[0][4]
+            for i in arange(minx, maxx):
+                for j in arange(minx, maxx):
+                    Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
+                    if Ndet > 0:
+                        nll = lambda *args: -lnlike(*args)
+                        result = op.minimize(nll, [8.5], args=(array(all_Rs[i,j]), array(all_eRs[i,j]), diagnostics[-1]))
+                        OH_ml = result["x"]
+                        pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
+                        OH_result = run_mcmc(pos = pos, R = array(all_Rs[i,j]), eR = array(all_eRs[i,j]), 
+                                             diagnostics = diagnostics[-1], Nsteps = Nsteps, 
+                                             Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
+                        Z[i,j,0]  = OH_result[0][0]
+                        Z[i,j,1]  = OH_result[0][1]
+                        Z[i,j,2]  = OH_result[0][2]
+                        Z[i,j,3]  = OH_result[0][3]
+                        Z[i,j,4]  = OH_result[0][4]
 
-        master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
+            master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
 
 
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)

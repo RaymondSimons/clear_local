@@ -12,7 +12,7 @@ metal_dir = '/Users/rsimons/Desktop/clear/metal_maps'
 
 
 
-if False:
+if True:
     fls = glob(metal_dir + '/*metals.fits')
     fls = glob(metal_dir + '/ERSPRIME_40192_metals.fits')
     z_r2  = {}
@@ -35,7 +35,7 @@ if False:
         b = a.info(False)
         headernames = array([bb[1] for bb in b])
         for (cdict, calib) in array([(z_r3, 'r3'), (z_r2, 'r2'), (z_r23, 'r23'), (z_o32, 'o32'), (z_all, 'all')]):
-            if len(where(headernames == calib.upper())[0] > 0):
+            if len(where(headernames == 'Z_' + calib.upper())[0] > 0):
                 cdict['z'].extend(a['Z_' + calib.upper()].data[:,:,0].ravel())
                 cdict['uez'].extend(a['Z_' + calib.upper()].data[:,:,1].ravel())
                 cdict['lez'].extend(a['Z_' + calib.upper()].data[:,:,2].ravel())
@@ -49,7 +49,7 @@ if False:
 
 
 
-if False:
+if True:
     master_hdulist = []
     prihdr = fits.Header()
     prihdu = fits.PrimaryHDU(header=prihdr)    
@@ -57,6 +57,7 @@ if False:
     for (cdict, calib) in array([(z_r3, 'r3'), (z_r2, 'r2'), (z_r23, 'r23'), (z_o32, 'o32'), (z_all, 'all')]):
         cols = []
         gd = where(~isnan(cdict['z']))[0]
+        gd = arange(len(cdict['z']))
         cols.append(fits.Column(name = 'z', array = np.array(cdict['z'])[gd], format = 'D'))
         cols.append(fits.Column(name = 'uez', array = np.array(cdict['uez'])[gd], format = 'D'))
         cols.append(fits.Column(name = 'lez', array = np.array(cdict['lez'])[gd], format = 'D'))    
@@ -74,18 +75,26 @@ data = fits.open('/Users/rsimons/Desktop/clear/metal_pixels_all.fits')
 
 
 cal_array = array(['r3', 'r2', 'r23', 'o32', 'all'])
-cal_array = array(['r3', 'r2', 'r23', 'o32'])
+cal_array = array(['r3', 'r2', 'r23', 'o32', 'all'])
 fig, axes = plt.subplots(1,len(cal_array), figsize = (3*len(cal_array), 3))
 
+
 for n, calib in enumerate(cal_array):
-    r = data[calib.upper()].data['r']
-    er = data[calib.upper()].data['er']
+    if calib == 'all':
+        r = data['r23'].data['r']
+        er = data['r23'].data['er']
+    else:
+        r = data[calib.upper()].data['r']
+        er = data[calib.upper()].data['er']
+    
+
+
     z = data[calib.upper()].data['z']
     uez = data[calib.upper()].data['uez']
     lez = data[calib.upper()].data['lez']
 
     #axes[n].errorbar(r, z, xerr = er, yerr = [uez, lez], fmt = 'o')
-    axes[n].plot(z, r, '.', markersize = 1)
+    axes[n].errorbar(z, r, xerr = [uez, lez], yerr = er, fmt = 'o', markersize = 0.3, linewidth = 0.2)
     import metal_calibs
     reload(metal_calibs)
     OH_m = linspace(6, 10, 100)
@@ -94,16 +103,19 @@ for n, calib in enumerate(cal_array):
     if calib == 'r3': clb = metal_calibs.OH_R3
     if calib == 'r23': clb = metal_calibs.OH_R23
     if calib == 'o32': clb = metal_calibs.OH_O32
+    if calib == 'all': clb = metal_calibs.OH_R23
 
 
     R_m = array([clb(OH) for OH in OH_m])
 
-    axes[n].plot(OH_m, R_m,'r-')
+    axes[n].plot(OH_m, 10**R_m,'r-')
     axes[n].set_xlabel(r'$\log$ (O/H) + 12')
-    axes[n].set_ylabel(r'$\log$ ' + calib.upper())
+    axes[n].set_ylabel(calib.upper())
 
     axes[n].set_xlim(7, 9.5)
-    axes[n].set_ylim(-1, 1)
+    axes[n].set_yscale('log')
+    axes[n].set_ylim(0.1, 40)
+
 
 
 fig.tight_layout()
