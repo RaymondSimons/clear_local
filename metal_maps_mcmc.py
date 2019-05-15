@@ -85,7 +85,7 @@ def lnprob(OH, R, Rerr, diagnostics, use_prior = 'top'):
 
 
 def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalkers = 100, use_prior = 'gaussian'):
-    sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(log10(R), 0.434*eR/R, diagnostics, use_prior))
+    sampler = emcee.EnsembleSampler(Nwalkers, Ndim, lnprob, args=(R, eR, diagnostics, use_prior))
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
     OH_mcmc = map(lambda v: (v[2], v[3]-v[2], v[2]-v[1], v[4]-v[2], v[2]-v[0]), zip(*np.percentile(samples, [2.5, 16, 50, 84, 97.5], axis=0)))    
@@ -231,7 +231,9 @@ if __name__ == '__main__':
         Rs = array(Rs)
         eRs = array(eRs)
 
-
+        # Need these in log
+        eRs = 0.434 * eRs/Rs
+        Rs = log10(Rs)
 
         all_Rs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
         all_eRs = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
