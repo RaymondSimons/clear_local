@@ -92,7 +92,7 @@ if __name__ == '__main__':
     np.random.seed()
     field, di = argv[1], argv[2]
 
-    on_science = False
+    on_science = True
     if on_science:
         out_dir = '/user/rsimons/metal_maps'
         full_dir = '/user/rsimons/grizli_extractions'
