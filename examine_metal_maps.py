@@ -2,6 +2,8 @@ import astropy
 from astropy.io import fits
 from glob import glob
 from astropy.convolution import Gaussian2DKernel, convolve_fft, Box2DKernel
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 plt.ioff()
 plt.close('all')
@@ -9,8 +11,10 @@ mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 
 
-metal_dir = '/Users/rsimons/Desktop/clear/metal_maps'
+#metal_dir = '/Users/rsimons/Desktop/clear/metal_maps'
+metal_dir = '/Volumes/pegasus/clear/metal_maps'
 
+metal_dir = '/Volumes/pegasus/clear/metal_maps/local_testing'
 
 
 fls = glob(metal_dir + '/*.fits')
@@ -24,7 +28,7 @@ xmx = 52
 sn_limit_l = np.inf
 sn_limit_u = np.inf
 
-
+'''
 
 fls = array(['ERSPRIME_40078_metals.fits',
 'ERSPRIME_40192_metals.fits',
@@ -47,6 +51,13 @@ fls = array(['ERSPRIME_40078_metals.fits',
 'GS5_38513_metals.fits',
 'GS5_41761_metals.fits'])
 
+
+
+fls = array(['GS4_25745_metals.fits'])
+
+fls = glob()
+'''
+
 #fls = array(['ERSPRIME_40776_metals.fits'])
 #fls = array(['GS4_26087_metals.fits'])
 #fls = array(['GS4_25745_metals.fits'])
@@ -54,8 +65,10 @@ fls = array(['ERSPRIME_40078_metals.fits',
 
 for f, fl in enumerate(fls):
     if True:#'ERSPRIME_40192' in fl:
-        a = fits.open(metal_dir + '/' + fl)
-        fig = figure(figsize = (5, 5))
+        #a = fits.open(metal_dir + '/' + fl)
+        a = fits.open(fl)
+
+        fig = plt.figure(figsize = (5, 5))
 
         axes_m1   = plt.subplot2grid((4, 4), (0,0), rowspan = 1, colspan = 1, fig = fig)
         axes_m2   = plt.subplot2grid((4, 4), (0,1), rowspan = 1, colspan = 1, fig = fig)
@@ -93,26 +106,36 @@ for f, fl in enumerate(fls):
 
 
         zmap = a['Z_ALL'].data[:,:,0]
+        cm = mpl.cm.cool
+        cm.set_bad('black', 1.)
+        zmn = 7.9
+        zmn = 8.7
+
+
         ezmap_l = a['Z_ALL'].data[:,:,1]
         ezmap_u = a['Z_ALL'].data[:,:,2]
 
-        zmap_masked =np.ma.masked_where((ezmap_l > sn_limit_l) |
+        zmap_masked = np.ma.masked_where((ezmap_l > sn_limit_l) |
                                         (ezmap_u > sn_limit_u) |
                                         (isnan(zmap)), zmap)
+
         cm = mpl.cm.cool
         cm.set_bad('black', 1.)
 
 
         for_zm = sort(zmap_masked.data[35:45,35:45][zmap_masked.mask[35:45,35:45] == False])
+        for_zm = sort(zmap_masked.data[0:80,0:80][zmap_masked.mask[0:80,0:80] == False])
 
-        zmn = round(math.floor(for_zm[int(0.03*len(for_zm))]*100)/100., 1)
-        zmx = round(math.ceil(for_zm[int(0.95*len(for_zm))]*100)/100., 1)
-        #zmn = 6.8
+        if len(for_zm) > 1:
+            zmn = round(math.floor(for_zm[int(0.03*len(for_zm))]*100)/100., 1)
+            zmx = round(math.ceil(for_zm[int(0.95*len(for_zm))]*100)/100., 1)
+            #zmn = 6.8
 
 
 
-        mp = axes_Z.imshow(zmap_masked, vmin = zmn, vmax = zmx, cmap = cm)
+            mp = axes_Z.imshow(zmap_masked, vmin = zmn, vmax = zmx, cmap = cm)
 
+        
 
         cbar_coords = [0.05, 0.06, 0.3, 0.05]
 
@@ -187,9 +210,14 @@ for f, fl in enumerate(fls):
 
 
 
+        figdir = '/Users/rsimons/Desktop/clear/figures/metal_maps'
+
+        figdir = '/Users/rsimons/Desktop'
 
         fig.subplots_adjust(left = 0.0, right = 1.0, top = 1.0, bottom = 0.00, wspace = 0.0, hspace = 0.01)
-        fig.savefig('/Users/rsimons/Desktop/clear/figures/metal_maps_alma/' + fl.split('/')[-1].replace('.fits', '.png'), dpi = 300)
+
+        fig.savefig('%s/'%figdir + fl.split('/')[-1].replace('.fits', '.png'), dpi = 300)
+
         plt.close('all')
 
 

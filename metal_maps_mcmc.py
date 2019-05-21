@@ -3,41 +3,26 @@ import time
 from multiprocessing import Pool
 import os
 import numpy as np
-import matplotlib.pyplot as plt
+from numpy import *
 import astropy
 from astropy.io import fits
-import matplotlib as mpl
-import glob
-import importlib
-import os
 from astropy.table import Table
-from matplotlib.colors import LogNorm
-from IPython.display import Image
-from numpy import *
-import photutils
 from astropy.cosmology import Planck15 as cosmo
-from matplotlib.backends.backend_pdf import PdfPages
+from astropy.convolution import Gaussian2DKernel, convolve_fft, Box2DKernel
+from astropy.stats import sigma_clip
+import importlib
+import photutils
 import glob
 from glob import glob
-from astropy.convolution import Gaussian2DKernel, convolve_fft, Box2DKernel
 from scipy.interpolate import interp1d
 import joblib
 from joblib import Parallel, delayed
-from astropy.stats import sigma_clip
 import emcee
 import metal_calibs as calib
 import scipy.optimize as op
 import time
-import emcee
 from math import *
-mpl.rcParams['text.usetex'] = True
-mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
-mpl.rcParams['ytick.labelsize'] = 14
-mpl.rcParams['xtick.labelsize'] = 14
 from sys import argv
-
-
-plt.ioff()
 
 
 np.random.seed(1)
@@ -89,7 +74,7 @@ def run_mcmc(pos, R, eR, diagnostics, Nsteps = 300, Nburn = 50, Ndim = 1, Nwalke
     sampler.run_mcmc(pos, Nsteps)
     samples = sampler.chain[:, Nburn:, :].reshape((-1, Ndim))
     OH_mcmc = map(lambda v: (v[2], v[3]-v[2], v[2]-v[1], v[4]-v[2], v[2]-v[0]), zip(*np.percentile(samples, [2.5, 16, 50, 84, 97.5], axis=0)))    
-    return list(OH_mcmc), samples
+    return list(OH_mcmc)[0], samples
 
 
 
@@ -103,11 +88,23 @@ if __name__ == '__main__':
     Ndim = 1
     Nchain_saved = 2000
 
-    out_dir = '/user/rsimons/metal_maps'
-    SN_limit = 0.7
+    SN_limit = 1./log(10) #we are going to look at pixels with ratios of S/N > 1 or better, in the absolute sense
     np.random.seed()
     field, di = argv[1], argv[2]
-    fl = glob('/user/rsimons/grizli_extractions/%s/j*/Prep/*%s.full.fits'%(field, di))[0]
+
+    on_science = False
+    if on_science:
+        out_dir = '/user/rsimons/metal_maps'
+        full_dir = '/user/rsimons/grizli_extractions'
+    else:
+        out_dir  = '/Volumes/pegasus/clear/metal_maps/local_testing'
+        full_dir = '/Volumes/pegasus/clear/grizli_extractions'
+    
+
+    print ('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))
+    fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
+
+
 
     if os.path.isfile(fl):
 
@@ -139,85 +136,82 @@ if __name__ == '__main__':
         eRs = []
         diagnostics = []
         haslines = full[0].header['haslines']
+        if True:
+            #do we have OII?
+            if 'OII ' in haslines:
+                O2  = full['LINE', 'OII'].data
+                eO2 = 1./np.sqrt(full['LINEWHT', 'OII'].data)
 
-        #do we have OII?
-        if 'OII ' in haslines:
-            O2  = full['LINE', 'OII'].data
-            eO2 = 1./np.sqrt(full['LINEWHT', 'OII'].data)
+                O2 = convolve_fft(O2, kern)
+                eO2 /= sqrt(boxcar_size**2.)
 
-            O2 = convolve_fft(O2, kern)
-            eO2 /= sqrt(3.)
+                master_hdulist.append(fits.ImageHDU(data = O2, header = colhdr, name =  'OII'))
+                master_hdulist.append(fits.ImageHDU(data = eO2, header = colhdr, name = 'eOII'))
 
-            master_hdulist.append(fits.ImageHDU(data = O2, header = colhdr, name =  'OII'))
-            master_hdulist.append(fits.ImageHDU(data = eO2, header = colhdr, name = 'eOII'))
+            #do we have OIII?
+            if 'OIII ' in haslines:
+                O3  = full['LINE', 'OIII'].data
+                eO3 = 1./np.sqrt(full['LINEWHT', 'OIII'].data)
+               
+                O3 = convolve_fft(O3, kern)
+                eO3 /= sqrt(boxcar_size**2.)
+                master_hdulist.append(fits.ImageHDU(data = O3, header = colhdr, name = 'OIII'))
+                master_hdulist.append(fits.ImageHDU(data = eO3, header = colhdr, name = 'eOIII'))
 
-        #do we have OIII?
-        if 'OIII ' in haslines:
-            O3  = full['LINE', 'OIII'].data
-            eO3 = 1./np.sqrt(full['LINEWHT', 'OIII'].data)
-           
-            O3 = convolve_fft(O3, kern)
-            eO3 /= sqrt(3.)
-            master_hdulist.append(fits.ImageHDU(data = O3, header = colhdr, name = 'OIII'))
-            master_hdulist.append(fits.ImageHDU(data = eO3, header = colhdr, name = 'eOIII'))
+            #do we have Hb?
+            if 'Hb' in haslines:
+                Hb  = full['LINE', 'Hb'].data
+                eHb = 1./np.sqrt(full['LINEWHT', 'Hb'].data)
 
-        #do we have Hb?
-        if 'Hb' in haslines:
-            Hb  = full['LINE', 'Hb'].data
-            eHb = 1./np.sqrt(full['LINEWHT', 'Hb'].data)
+                Hb = convolve_fft(Hb, kern)
+                eHb /= sqrt(boxcar_size**2.)
 
-            Hb = convolve_fft(Hb, kern)
-            eHb /= sqrt(3.)
+                master_hdulist.append(fits.ImageHDU(data = Hb, header = colhdr, name = 'Hb'))
+                master_hdulist.append(fits.ImageHDU(data = eHb, header = colhdr, name = 'eHb'))
 
-            master_hdulist.append(fits.ImageHDU(data = Hb, header = colhdr, name = 'Hb'))
-            master_hdulist.append(fits.ImageHDU(data = eHb, header = colhdr, name = 'eHb'))
+            #do we have O32?
+            if ('OII ' in haslines) & ('OIII ' in haslines):
+                R_O32 = O3/O2
+                eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
+                diagnostics.append(['O32'])
+                Rs.append(R_O32)
+                eRs.append(eR_O32)
 
-        #do we have O32?
-        if ('OII ' in haslines) & ('OIII ' in haslines):
-            R_O32 = O3/O2
-            eR_O32 = R_O32 * np.sqrt((eO3/O3)**2. + (eO2/O2)**2.)
-            diagnostics.append(['O32'])
-            Rs.append(R_O32)
-            eRs.append(eR_O32)
-
-            master_hdulist.append(fits.ImageHDU(data = R_O32, header = colhdr, name = 'O32'))
-            master_hdulist.append(fits.ImageHDU(data = eR_O32, header = colhdr, name = 'eO32'))
-
-
-
-        #do we have R2?
-        if ('OII ' in haslines) & ('Hb' in haslines):
-            R_R2 = O2/Hb
-            eR_R2 = R_R2 * np.sqrt((eO2/O2)**2. + (eHb/Hb)**2.)
-            diagnostics.append(['R2'])
-            Rs.append(R_R2)
-            eRs.append(eR_R2)
-            master_hdulist.append(fits.ImageHDU(data = R_R2, header = colhdr, name = 'R2'))
-            master_hdulist.append(fits.ImageHDU(data = eR_R2, header = colhdr, name = 'eR2'))
-
-
-        #do we have R3?
-        if ('OIII ' in haslines) & ('Hb' in haslines):
-            R_R3 = O3/Hb
-            eR_R3 = R_R3 * np.sqrt((eO3/O3)**2. + (eHb/Hb)**2.)
-            diagnostics.append(['R3'])
-            Rs.append(R_R3)
-            eRs.append(eR_R3)
-            master_hdulist.append(fits.ImageHDU(data = R_R3, header = colhdr, name = 'R3'))
-            master_hdulist.append(fits.ImageHDU(data = eR_R3, header = colhdr, name = 'eR3'))
-
-        #do we have R23?
-        if ('OII ' in haslines) & ('OIII ' in haslines) & ('Hb' in haslines):
-            R_R23 = (O2 + O3)/Hb
-            eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
+                master_hdulist.append(fits.ImageHDU(data = R_O32, header = colhdr, name = 'O32'))
+                master_hdulist.append(fits.ImageHDU(data = eR_O32, header = colhdr, name = 'eO32'))
 
 
 
-            diagnostics.append(['R23'])
-            Rs.append(R_R23)
-            eRs.append(eR_R23)
-            master_hdulist.append(fits.ImageHDU(data = R_R23, header = colhdr, name = 'R23'))
-            master_hdulist.append(fits.ImageHDU(data = eR_R23, header = colhdr, name = 'eR23'))
+            #do we have R2?
+            if ('OII ' in haslines) & ('Hb' in haslines):
+                R_R2 = O2/Hb
+                eR_R2 = R_R2 * np.sqrt((eO2/O2)**2. + (eHb/Hb)**2.)
+                diagnostics.append(['R2'])
+                Rs.append(R_R2)
+                eRs.append(eR_R2)
+                master_hdulist.append(fits.ImageHDU(data = R_R2, header = colhdr, name = 'R2'))
+                master_hdulist.append(fits.ImageHDU(data = eR_R2, header = colhdr, name = 'eR2'))
+
+
+            #do we have R3?
+            if ('OIII ' in haslines) & ('Hb' in haslines):
+                R_R3 = O3/Hb
+                eR_R3 = R_R3 * np.sqrt((eO3/O3)**2. + (eHb/Hb)**2.)
+                diagnostics.append(['R3'])
+                Rs.append(R_R3)
+                eRs.append(eR_R3)
+                master_hdulist.append(fits.ImageHDU(data = R_R3, header = colhdr, name = 'R3'))
+                master_hdulist.append(fits.ImageHDU(data = eR_R3, header = colhdr, name = 'eR3'))
+
+            #do we have R23?
+            if ('OII ' in haslines) & ('OIII ' in haslines) & ('Hb' in haslines):
+                R_R23 = (O2 + O3)/Hb
+                eR_R23 = R_R23 * np.sqrt((eO3**2. + eO2**2.)/(O3 + O2)**2. + (eHb/Hb)**2.)
+                diagnostics.append(['R23'])
+                Rs.append(R_R23)
+                eRs.append(eR_R23)
+                master_hdulist.append(fits.ImageHDU(data = R_R23, header = colhdr, name = 'R23'))
+                master_hdulist.append(fits.ImageHDU(data = eR_R23, header = colhdr, name = 'eR23'))
 
         all_diags = []
         all_Rs = []
@@ -242,18 +236,14 @@ if __name__ == '__main__':
 
         full_hdulist = []
         for d, diagnostic in enumerate(diagnostics[0:-1]):
-        #for d, diagnostic in enumerate(diagnostics[0:1]):
-
             print ('calculating metallicity using ', diagnostic)
             Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
             Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2],  Nchain_saved))
-
             for i in arange(minx, maxx):
                 for j in arange(minx, maxx):
-                    print (Rs[d][i,j])
                     if Rs[d][i,j] > 0:
                         Rs_ij = array([log10(Rs[d][i,j])])
-                        eRs_ij = array([0.434 * eRs[d][i,j]/Rs[d][i,j]])
+                        eRs_ij = array([eRs[d][i,j]/Rs[d][i,j]/log(10)])
 
                         if all_Rs[i,j] == None: all_Rs[i,j] = [Rs_ij]
                         else: all_Rs[i,j].append(Rs_ij)
@@ -261,7 +251,8 @@ if __name__ == '__main__':
                         else: all_eRs[i,j].append(eRs_ij)
 
                         nll = lambda *args: -lnlike(*args)
-                        if Rs_ij[0]/eRs_ij[0] > SN_limit:
+                        #if Rs_ij[0]/eRs_ij[0] > SN_limit:
+                        if eRs_ij[0] < SN_limit:
                             result = op.minimize(nll, [8.5], args=(Rs_ij, eRs_ij, diagnostic))
                             OH_ml = result["x"]
                             pos = [result["x"] + 1e-4*np.random.randn(1) for nn in range(Nwalkers)]
@@ -270,12 +261,7 @@ if __name__ == '__main__':
                                                           diagnostics = diagnostic, Nsteps = Nsteps,
                                                           Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
 
-                            Z[i,j,0]  = OH_result[0][0]
-                            Z[i,j,1]  = OH_result[0][1]
-                            Z[i,j,2]  = OH_result[0][2]
-                            Z[i,j,3]  = OH_result[0][3]
-                            Z[i,j,4]  = OH_result[0][4]
-
+                            Z[i,j]  = OH_result
                             Z_full[i,j]  = samples[np.random.randint(0, len(samples[:,0]), Nchain_saved),0]
 
 
@@ -290,12 +276,14 @@ if __name__ == '__main__':
 
         Z = nan * zeros((shape(Rs)[1], shape(Rs)[2], 5))
         Z_full = nan * zeros((shape(Rs)[1], shape(Rs)[2], Nchain_saved))
+        #Z_full = np.empty((shape(Rs)[1], shape(Rs)[2]), dtype = 'object')
         print ('calculating metallicity using all available diagnostics: ', diagnostics[-1])
 
         for i in arange(minx, maxx):
             for j in arange(minx, maxx):
                 if all_Rs[i,j] != None:
-                    Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
+                    #Ndet = len(where(array(all_Rs[i,j])/array(all_eRs[i,j]) > SN_limit)[0])
+                    Ndet = len(where(array(all_eRs[i,j]) < SN_limit)[0])
                     if Ndet > 0:
                         nll = lambda *args: -lnlike(*args)
                         result = op.minimize(nll, [8.5], args=(array(all_Rs[i,j]), array(all_eRs[i,j]), diagnostics[-1]))
@@ -304,11 +292,7 @@ if __name__ == '__main__':
                         OH_result, samples = run_mcmc(pos = pos, R = array(all_Rs[i,j]), eR = array(all_eRs[i,j]), 
                                              diagnostics = diagnostics[-1], Nsteps = Nsteps, 
                                              Nburn = Nburn, Ndim = Ndim, Nwalkers = Nwalkers)
-                        Z[i,j,0]  = OH_result[0][0]
-                        Z[i,j,1]  = OH_result[0][1]
-                        Z[i,j,2]  = OH_result[0][2]
-                        Z[i,j,3]  = OH_result[0][3]
-                        Z[i,j,4]  = OH_result[0][4]
+                        Z[i,j] = OH_result
                         Z_full[i,j]  = samples[np.random.randint(0, len(samples[:,0]), Nchain_saved),0]
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z_all'))
