@@ -15,15 +15,22 @@ fields = ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', '
 
 
 def write_catalog(field):
-    print field
-    fls = glob('/user/rsimons/grizli_extractions/%s/*/Prep/*%s*full.fits'%(field, field))
-    fits_name = '/user/rsimons/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
+    print (field)
+    fls = glob('/Volumes/pegasus/clear/grizli_extractions/%s/*/Prep/*%s*full.fits'%(field, field))
+    fits_name = '/Volumes/pegasus/clear/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
 
-    lines = ['Lya', 'CIV', 'MgII', 'OII',
-             'Hd', 'Hg', 'OIIIx', 'HeII',
-             'Hb', 'OIII', 'Ha', 'SII',
-             'SIII', 'HeI', 'HeIb', 'NeIII',
-             'NeV', 'NeVI', 'OI']
+    #lines = ['Lya', 'CIV', 'MgII', 'OII',
+    #         'Hd', 'Hg', 'OIIIx', 'HeII',
+    #         'Hb', 'OIII', 'Ha', 'SII',
+    #         'SIII', 'HeI', 'HeIb', 'NeIII',
+    #         'NeV', 'NeVI', 'OI']
+
+    lines =['ArIII-7138', 'CIII-1908', 'CIV-1549', 'H8', 'H9', 'Ha', 'Hb',
+           'Hd', 'HeI-1083', 'HeI-5877', 'HeII-1640', 'Hg', 'Lya', 'MgII',
+           'NIII-1750', 'NIV-1487', 'NV-1240', 'NeIII-3867', 'NeV-3346',
+           'NeVI-3426', 'OI-6302', 'OII', 'OII-7325', 'OIII', 'OIII-1663',
+           'OIII-4363', 'PaB', 'SII', 'SIII']
+
 
     fluxs = zeros((len(lines),2, len(fls))) - 99.
     exptime = zeros((2, len(fls)))

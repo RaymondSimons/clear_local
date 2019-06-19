@@ -529,7 +529,7 @@ if __name__ == '__main__':
     print('use_psf          ', use_psf          )
     print('fit_min_id       ', fit_min_id       )
     print('n_jobs           ', n_jobs           )
-    print('id_choose           ', id_choose           )
+    print('id_choose        ', id_choose        )
     print('phot_scale_order ', phot_scale_order )
     print('fit_without_phot ', fit_without_phot )
     print('PATH_TO_SCRIPTS  ', PATH_TO_SCRIPTS  )

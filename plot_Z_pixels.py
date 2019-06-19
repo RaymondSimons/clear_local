@@ -17,12 +17,12 @@ mpl.rcParams['xtick.labelsize'] = 12
 
 
 
-metal_dir = '/Volumes/pegasus/clear/metal_maps/local_testing'
+metal_dir = '/Volumes/pegasus/clear/metal_maps'
 
 
-if True:
-    #fls = glob(metal_dir + '/*metals.fits')
-    fls = glob(metal_dir + '/ERSPRIME_40192_metals.fits')
+if False:
+    fls = glob(metal_dir + '/*metals.fits')#[0:200]
+    #fls = glob(metal_dir + '/ERSPRIME_40192_metals.fits')
     #fls = glob(metal_dir + '/ERSPRIME_40776_metals.fits')
 
     dicts =array([({}, 'r3'), ({}, 'r2'), ({}, 'r23'), ({}, 'o32'), ({}, 'all')])
@@ -71,6 +71,7 @@ if True:
 if True:
     data = fits.open('/Users/rsimons/Desktop/clear/metal_pixels.fits')
     cal_array = array(['r3', 'r2', 'r23', 'o32', 'all'])
+    cal_array = array(['r3', 'o32', 'all'])
 
     fig, axes = plt.subplots(1,len(cal_array), figsize = (3*len(cal_array), 3))
 
@@ -78,14 +79,13 @@ if True:
     for n, calib in enumerate(cal_array):
     
         if calib == 'all':
-            r = data['r23'].data['r']
-            er = data['r23'].data['er']/r/log(10)
+            r = data['r3'].data['r']
+            er = data['r3'].data['er']/r/log(10)
             r = log10(r)
         else:
             r = data[calib.upper()].data['r']
             er = data[calib.upper()].data['er']/r/log(10)
             r = log10(r)
-
         z = data[calib.upper()].data['z']
         uez = data[calib.upper()].data['uez']
         lez = data[calib.upper()].data['lez']
@@ -94,8 +94,9 @@ if True:
 
 
         #axes[n].errorbar(r, z, xerr = er, yerr = [uez, lez], fmt = 'o')
-        gd = where(r > 0)
-        axes[n].errorbar(z[gd], r[gd], xerr = [uez[gd], lez[gd]], yerr = er[gd], fmt = 'o', markersize = 0.3, linewidth = 0.1)
+        gd = where(er > 0.)#1./2./log(10))
+        print nanmin(z[gd])
+        axes[n].errorbar(z[gd], r[gd], xerr = [uez[gd], lez[gd]], yerr = er[gd], fmt = 'o', markersize = 0.10, linewidth = 0.0)
         import metal_calibs
         reload(metal_calibs)
         OH_m = linspace(6, 10, 100)
@@ -112,7 +113,7 @@ if True:
         axes[n].plot(OH_m, R_m,'r-')
         axes[n].set_xlabel(r'$\log$ (O/H)$_{\text{%s}}$ + 12'%calib.upper(), fontsize = 15)
         axes[n].set_ylabel(r'$\log$ ' + calib.upper(), fontsize = 15)
-        if calib == 'all':  axes[n].set_ylabel(r'$\log$ R23', fontsize = 15)
+        if calib == 'all':  axes[n].set_ylabel(r'$\log$ R3', fontsize = 15)
 
         axes[n].set_xlim(6.8, 9.5)
         #axes[n].set_yscale('log')

@@ -55,8 +55,8 @@ def lnGaussianprior(OH, OHmin = 4., OHmax = 12.):
     # OHmax upper range of prior
     # set prior to 1 (log prior to 0) if in the range and zero (-inf) outside the range 
     lp = 0. if OHmin < OH < OHmax else -np.inf
-    OHmu = 8.0     # mean of the Gaussian prior
-    OHsigma = 1.0 # standard deviation of the Gaussian prior
+    OHmu = 8.7     # mean of the Gaussian prior
+    OHsigma = 0.5 # standard deviation of the Gaussian prior
     lp -= 0.5*((OH - OHmu)/OHsigma)**2   
     return lp
 
