@@ -13,6 +13,7 @@ def make_metal_profile(fl):
 
     x1 = 40.
     y1 = 40.
+    pix_scale = 0.1
     x = (np.arange(0, shape(zmap)[0]) - x1 + 0.5) * pix_scale
     y = (np.arange(0, shape(zmap)[1]) - y1 + 0.5) * pix_scale
 
