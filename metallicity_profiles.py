@@ -33,7 +33,23 @@ def make_metal_profile(fl):
     xv, yv = np.meshgrid(x, y)
     r = sqrt(xv**2. + yv**2.)
 
-    print ('hi')
+    segm = detect_sources(imR, -99, npixels=5)
+
+    lbl_interest = array(segm.data)[40, 40]
+    if lbl_interest == 0:
+        small_box = array(segm.data)[36:46, 36:46].ravel() 
+        if len(small_box[small_box > 0]) > 0:                    
+            lbl_interest = min(small_box[small_box > 0])
+        else:
+            zmap[:,:] = nan
+
+
+
+
+    zmap[segm.data != lbl_interest] = nan
+
+
+    print (len(where(~np.isnan(zmap.ravel))[0]))
 
 
 
