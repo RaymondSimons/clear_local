@@ -57,7 +57,7 @@ def make_metal_profile(fl):
     ax.imshow(zmap, vmin = 8, vmax = 9,  interpolation = 'nearest', cmap = 'viridis')
 
     fig_name = fl.split('/')[-1].replace('.fits', '.png')
-    fig.savefig('/user/rsimons/figures/metal_maps_%s'%fig_name, dpi = 300)
+    fig.savefig('/home/rsimons/figures/metal_maps_%s'%fig_name, dpi = 300)
 
 
 
