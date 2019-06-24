@@ -51,7 +51,11 @@ def make_metal_profile(fl):
 
     print (len(where(~np.isnan(zmap.ravel))[0]))
 
+    fig = plt.figure(figsize = (8, 8))
+    ax.imshow(zmap, viridis, vmin = 7, vmax = 10)
 
+    fig_name = fl.split('/')[-1].replace('.fits', '.png')
+    fig.savefig('/user/rsimons/figures/%s.png'%fig_name, dpi = 300)
 
 
 
