@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     field = args['field']
 
-    fls = glob('/user/rsimons/metal_maps/%s_*_metals.fits')
+    fls = glob('/user/rsimons/metal_maps/%s_*_metals.fits'%field)
     print (fls)
     
     for fl in fls:
