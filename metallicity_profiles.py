@@ -6,7 +6,8 @@ from glob import glob
 
 
 
-
+def make_metal_profile(fl):
+    print (fl)
 
 if __name__ == '__main__':
 
