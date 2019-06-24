@@ -13,8 +13,8 @@ def make_metal_profile(fl):
 
     x1 = 40.
     y1 = 40.
-    x = (np.arange(0, shape(direct_im)[0]) - x1 + 0.5) * pix_scale
-    y = (np.arange(0, shape(direct_im)[1]) - y1 + 0.5) * pix_scale
+    x = (np.arange(0, shape(zmap)[0]) - x1 + 0.5) * pix_scale
+    y = (np.arange(0, shape(zmap)[1]) - y1 + 0.5) * pix_scale
 
     xv, yv = np.meshgrid(x, y)
     r = sqrt(xv**2. + yv**2.)
