@@ -51,7 +51,7 @@ def make_metal_profile(fl):
 
     fig = plt.figure(figsize = (8, 8))
     ax = fig.add_subplot(1,1,1)
-    ax.imshow(zmap, viridis, vmin = 7, vmax = 10)
+    ax.imshow(zmap, vmin = 8, vmax = 9,  interpolation = 'nearest', cmap = 'viridis')
 
     fig_name = fl.split('/')[-1].replace('.fits', '.png')
     fig.savefig('/user/rsimons/figures/metal_maps_%s.png'%fig_name, dpi = 300)
