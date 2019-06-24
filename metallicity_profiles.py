@@ -7,6 +7,7 @@ import numpy as np
 from numpy import *
 import photutils
 from photutils import detect_sources
+import matplotlib
 import matplotlib.pyplot as plt
 
 def make_metal_profile(fl):
