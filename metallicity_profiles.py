@@ -48,9 +48,6 @@ def make_metal_profile(fl):
 
     zmap[segm.data != lbl_interest] = nan
 
-
-    print (len(where(~np.isnan(zmap.ravel))[0]))
-
     fig = plt.figure(figsize = (8, 8))
     ax.imshow(zmap, viridis, vmin = 7, vmax = 10)
 
