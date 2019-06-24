@@ -14,6 +14,8 @@ def make_metal_profile(fl):
     zfits = fits.open(fl)
     try: zmap = zfits['Z_R3'].data
     except: return
+    zmap = zfits['Z_R3'].data[:,:,0]
+    ezmap = zfits['Z_R3'].data[:,:,1] - zmap
     imR = zfits['R3'].data
     eimR = zfits['eR3'].data
     xmn_pix = 26
