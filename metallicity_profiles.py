@@ -8,7 +8,8 @@ from glob import glob
 
 def make_metal_profile(fl):
     zfits = fits.open(fl)
-
+    zmap = zfits['Z_ALL'].data
+    print (zmap.shape)
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
