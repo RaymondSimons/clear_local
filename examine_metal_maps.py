@@ -12,7 +12,7 @@ plt.close('all')
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}'] 
 
-metal_dir = '/Volumes/pegasus/clear/metal_maps'
+metal_dir = '/Volumes/gdrive/clear/metal_maps_highOHprior'
 
 xmn = 28
 xmx = 52
@@ -43,8 +43,10 @@ def determine_zm(zmap_masked, xmn, xmx):
 
 
 for f, fl in enumerate(fls):
-    if True:#'ERSPRIME_40192' in fl:
+    if 'GS5_38616' in fl:
         #a = fits.open(metal_dir + '/' + fl)
+
+        print (f, len(fls))
         a = fits.open(fl)
         fld = fl.split('/')[-1].split('_')[0]
         di = fl.split('/')[-1].split('_')[1]
@@ -118,7 +120,7 @@ for f, fl in enumerate(fls):
                 cbr.set_ticks([zmn, zmx])
 
                 bbox_props = dict(boxstyle="square", fc="k", ec=None, alpha=0.4)
-                ax.annotate(dg, (0.93, 0.05), va = 'bottom', ha = 'right', fontsize = 15, xycoords = 'axes fraction', fontweight = 'bold', color = 'white', bbox = bbox_props)            
+                ax.annotate('Z(' + dg + ')', (0.93, 0.05), va = 'bottom', ha = 'right', fontsize = 15, xycoords = 'axes fraction', fontweight = 'bold', color = 'white', bbox = bbox_props)            
 
 
         eR_map_all = array(eR_map_all)
@@ -155,7 +157,7 @@ for f, fl in enumerate(fls):
             cbr.set_ticks([zmn, zmx])
             axes_Z.annotate(r'12 + $\log$(O/H)', (cbar_coords[0], cbar_coords[1] + cbar_coords[3]), xycoords = 'figure fraction', ha = 'left', va = 'bottom', fontsize = 18, fontweight = 'bold', color = 'white')
             bbox_props = dict(boxstyle="square", fc="k", ec=None, alpha=0.4)
-            axes_Z.annotate('All', (0.93, 0.04), va = 'bottom', ha = 'right', fontsize = 25, xycoords = 'axes fraction', fontweight = 'bold', color = 'white', bbox = bbox_props)            
+            axes_Z.annotate('Z(all)', (0.93, 0.04), va = 'bottom', ha = 'right', fontsize = 25, xycoords = 'axes fraction', fontweight = 'bold', color = 'white', bbox = bbox_props)            
 
 
 
@@ -180,7 +182,7 @@ for f, fl in enumerate(fls):
             ax.axis('off')
 
 
-        figdir = '/Users/rsimons/Desktop/clear/figures/metal_maps'
+        figdir = '/Users/rsimons/Desktop/clear/figures/metal_maps_highOHprior'
 
         #figdir = '/Users/rsimons/Desktop'
 
@@ -188,7 +190,7 @@ for f, fl in enumerate(fls):
 
         if not os.path.isdir('%s/SN_cut_%.1f'%(figdir, SN)):
             os.system('mkdir %s/SN_cut_%.1f/'%(figdir, SN))
-        fig.savefig('%s/SN_cut_%.1f/'%(figdir, SN) + fl.split('/')[-1].replace('.fits', '.png'), dpi = 300)
+        fig.savefig('%s/SN_cut_%.1f/'%(figdir, SN) + fl.split('/')[-1].replace('.fits', '_metal_maps_highOHprior.png'), dpi = 300)
 
         plt.close('all')
 

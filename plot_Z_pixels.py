@@ -6,6 +6,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 from numpy import *
+import numpy as np
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
@@ -17,11 +18,11 @@ mpl.rcParams['xtick.labelsize'] = 12
 
 
 
-metal_dir = '/Volumes/pegasus/clear/metal_maps'
+metal_dir = '/Volumes/gdrive/clear/metal_maps_highOHprior'
 
 
-if False:
-    fls = glob(metal_dir + '/*metals.fits')#[0:200]
+if True:
+    fls = glob(metal_dir + '/*metals.fits')
     #fls = glob(metal_dir + '/ERSPRIME_40192_metals.fits')
     #fls = glob(metal_dir + '/ERSPRIME_40776_metals.fits')
 
@@ -30,6 +31,7 @@ if False:
         for key in ['z', 'uez', 'lez', 'r', 'er']: cdict[key] = []
 
     for f, fl in enumerate(fls):
+        print (f, len(fls))
         a = fits.open(fl)
         b = a.info(False)
         headernames = array([bb[1] for bb in b])
@@ -63,13 +65,13 @@ if False:
         
         master_hdulist.append(fits.BinTableHDU.from_columns(cols, name = calib))
     thdulist = fits.HDUList(master_hdulist)
-    thdulist.writeto('/Users/rsimons/Desktop/clear/metal_pixels.fits', overwrite = True)
+    thdulist.writeto('/Users/rsimons/Desktop/clear/metal_highOHprior_pixels.fits', overwrite = True)
 
 
 
 
-if True:
-    data = fits.open('/Users/rsimons/Desktop/clear/metal_pixels.fits')
+if False:
+    data = fits.open('/Users/rsimons/Desktop/clear/metal_highOHprior_pixels.fits')
     cal_array = array(['r3', 'r2', 'r23', 'o32', 'all'])
     cal_array = array(['r3', 'o32', 'all'])
 
@@ -95,10 +97,10 @@ if True:
 
         #axes[n].errorbar(r, z, xerr = er, yerr = [uez, lez], fmt = 'o')
         gd = where(er > 0.)#1./2./log(10))
-        print nanmin(z[gd])
+        print (nanmin(z[gd]))
         axes[n].errorbar(z[gd], r[gd], xerr = [uez[gd], lez[gd]], yerr = er[gd], fmt = 'o', markersize = 0.10, linewidth = 0.0)
         import metal_calibs
-        reload(metal_calibs)
+        
         OH_m = linspace(6, 10, 100)
 
         if calib == 'r2': clb = metal_calibs.OH_R2
@@ -123,7 +125,7 @@ if True:
 
 
     fig.tight_layout()
-    fig.savefig('/Users/rsimons/Desktop/clear/figures/metal_pixels_all.png', dpi = 300)
+    fig.savefig('/Users/rsimons/Desktop/clear/figures/metal_pixels_all_highOHprior.png', dpi = 300)
 
 
 

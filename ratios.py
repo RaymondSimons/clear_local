@@ -245,9 +245,7 @@ if __name__ == '__main__':
     if rat == 'R2': line1, line2, line3 = 'OII', 'HB', None
     if rat == 'R3': line1, line2, line3 = 'OIII', 'HB', None
     if rat == 'O32': line1, line2, line3 = 'OII', 'OIII', None
-
-
-
+    
     make_fits(rat = rat, line1 = line1, line2 = line2, line3 = line3)
 
 

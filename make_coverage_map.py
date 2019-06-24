@@ -8,8 +8,9 @@ from shapely.geometry.point import Point
 from descartes import PolygonPatch
 from astropy.coordinates import SkyCoord
 from shapely.ops import cascaded_union, unary_union
-
-
+import matplotlib
+import matplotlib.pyplot as plt
+from numpy import *
 matplotlib.rcParams['text.usetex'] = True
 matplotlib.rcParams['axes.linewidth'] = 3
 
@@ -20,13 +21,13 @@ plt.ioff()
 
 
 
-fp_dir = '/Volumes/gdrive/clear/footprints'
+fp_dir = '/Users/rsimons/Dropbox/rcs_clear/footprints/footprints'
 
 
 fits_fls = glob(fp_dir + '/*fits')
 
-figN = figure()
-figS = figure()
+figN = plt.figure()
+figS = plt.figure()
 axN = figN.add_subplot(111)
 axS = figS.add_subplot(111)
 
@@ -89,7 +90,8 @@ for ax, c0, c1, tit in [(axS, SkyCoord("3h33m10s -27d58m00s"), SkyCoord("3h31m50
 
 
     ax.set_xlim(xS0, xS1)
-    ax.set_ylim(yS1, yS0)
+    #ax.set_ylim(yS1, yS0)
+    ax.set_ylim(yS0, yS1)
     ax.set_title(tit, fontsize = 30, pad = 15)
 
 

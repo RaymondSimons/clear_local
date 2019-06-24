@@ -3,6 +3,9 @@ from matplotlib.backends.backend_pdf import PdfPages
 from astropy.io import fits, ascii
 from astropy.coordinates import SkyCoord 
 import astropy.units as u
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from numpy import *
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
@@ -40,7 +43,7 @@ x_gdn = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/xray_GDN.txt')
 if True:
     with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/z_radius_new2.pdf') as pdf:
 
-        fig, ax = plt.subplots(1,1, figsize = (10, 5))
+        fig, ax = plt.subplots(1,1, figsize = (7, 4))
         ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', color = 'blue', label = 'Wang+ 17', zorder = 1)
         ax.errorbar(wang18_cat[:,3], wang18_cat[:,1], yerr =wang18_cat[:,2], fmt = 'o', color = 'darkblue', label = 'Wang+ 18', zorder = 1)
         ax.errorbar(jones_cat[:,0], jones_cat[:,1], yerr =jones_cat[:,2], fmt = 'o', color = 'skyblue', label = 'Jones+ 13', zorder = 1)
@@ -80,7 +83,7 @@ if True:
 
             gd_xcat = argmin(dist)
             
-            print fld, dist[gd_xcat]
+        
             if dist[gd_xcat] > 2.: xobj = 'none'
             else: xobj = xcat[tp][gd_xcat]
 
@@ -91,14 +94,14 @@ if True:
 
             mstar = fout[1].data['lmass'][fout[1].data['id'] == int(di)]
 
-            ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = mrker, color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 8)
+            #ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = mrker, color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 8)
 
 
-        ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 112)', zorder = 10)
-        ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
-        ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
-        ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
-        ax.errorbar(10.75, 0.0055, xerr = 0.25, yerr = 0.008,  fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
+        #ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 112)', zorder = 10)
+        #ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
+        #ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
+        #ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
+        #ax.errorbar(10.75, 0.0055, xerr = 0.25, yerr = 0.008,  fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
 
 
 
@@ -110,9 +113,9 @@ if True:
         ax.annotate(r'$0.7 < z < 1.5$', (0.63, 0.08), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
         ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 20)
         ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 20)
-        ax.legend(bbox_to_anchor=(1.0, 1.05), frameon = False, fontsize = 18)
+        ax.legend(bbox_to_anchor=(1.2, 1.05), frameon = False, fontsize = 18)
 
-        ax.set_ylim(-0.33, 0.50)
+        ax.set_ylim(-0.33, 0.20)
         ax.set_xlim(8.0, 11.5)
 
         fig.subplots_adjust(bottom = 0.20, left = 0.15, right = 0.70, top = 0.95)
@@ -133,12 +136,12 @@ if False:
 
                 #mstar = physcat[where(physcat[:,0] == int(c[1]))[0][0],1]
                 mstar = float(c[-5])
-                print mstar
+                print (mstar)
                 sfr = float(c[4])
                 ax.plot(mstar, sfr, color = 'red', marker = 'o', zorder = 10, markeredgecolor = 'black', markersize = 10)
 
 
-            ax.plot(-99, -99, color = 'red', marker = 'o', zorder = 10, markeredgecolor = 'black', label = 'CLEAR G102\n+ archival G141\n(2 of 10 pointings)')
+            #ax.plot(-99, -99, color = 'red', marker = 'o', zorder = 10, markeredgecolor = 'black', label = 'CLEAR G102\n+ archival G141\n(2 of 10 pointings)')
             whitaker_all = np.loadtxt('/Users/rsimons/Downloads/goodsn_3dhst_v4.1.5_catalogs/goodsn_3dhst.v4.1.5.zbest.sfr')
             fast_all = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.1.cats/Fast/goodsn_3dhst.v4.1.fout.FITS')
 
