@@ -3,7 +3,8 @@ from astropy.io import fits
 import argparse
 import glob
 from glob import glob
-
+import numpy as np
+from numpy import *
 
 
 def make_metal_profile(fl):
@@ -18,7 +19,6 @@ def make_metal_profile(fl):
     xv, yv = np.meshgrid(x, y)
     r = sqrt(xv**2. + yv**2.)
 
-    print (zmap.shape)
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
