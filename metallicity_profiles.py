@@ -50,10 +50,11 @@ def make_metal_profile(fl):
     zmap[segm.data != lbl_interest] = nan
 
     fig = plt.figure(figsize = (8, 8))
+    ax = fig.add_subplot(1,1,1)
     ax.imshow(zmap, viridis, vmin = 7, vmax = 10)
 
     fig_name = fl.split('/')[-1].replace('.fits', '.png')
-    fig.savefig('/user/rsimons/figures/%s.png'%fig_name, dpi = 300)
+    fig.savefig('/user/rsimons/figures/metal_maps_%s.png'%fig_name, dpi = 300)
 
 
 
