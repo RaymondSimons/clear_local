@@ -7,7 +7,7 @@ from glob import glob
 
 
 def make_metal_profile(fl):
-    print (fl)
+    zfits = fits.open(fl)
 
 if __name__ == '__main__':
 
@@ -18,7 +18,6 @@ if __name__ == '__main__':
     field = args['field']
 
     fls = glob('/user/rsimons/metal_maps/%s_*_metals.fits'%field)
-    print (fls)
     
     for fl in fls:
         make_metal_profile(fl = fl)
