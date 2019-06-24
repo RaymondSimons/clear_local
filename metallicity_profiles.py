@@ -33,7 +33,7 @@ def make_metal_profile(fl):
     xv, yv = np.meshgrid(x, y)
     r = sqrt(xv**2. + yv**2.)
 
-
+    print ('hi')
 
 
 
