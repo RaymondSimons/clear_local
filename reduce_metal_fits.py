@@ -3,7 +3,7 @@ from astropy.io import fits
 import os
 import glob
 from glob import glob
-
+from numpy import *
 os.system('mkdir /user/rsimons/metal_maps_reduced')
 
 
