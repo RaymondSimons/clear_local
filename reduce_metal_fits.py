@@ -9,7 +9,7 @@ os.system('mkdir /user/rsimons/metal_maps_reduced')
 
 fls = glob('/user/rsimons/metal_maps/*')
 
-for f, fl in enumerte(fls):
+for f, fl in enumerate(fls):
     out_file = fl.replace('/metal_maps/', 'metal_maps_reduced')
     a = fits.open(fl)
     new_hdulist = []
