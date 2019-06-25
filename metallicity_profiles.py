@@ -30,8 +30,8 @@ def make_metal_profile(fl):
     x1 = 40.
     y1 = 40.
     pix_scale = 0.1
-    x = (np.arange(0, shape(zmap)[0]) - x1 + 0.5) * pix_scale
-    y = (np.arange(0, shape(zmap)[1]) - y1 + 0.5) * pix_scale
+    x = (np.arange(0, shape(zmap)[0]) - x1) * pix_scale
+    y = (np.arange(0, shape(zmap)[1]) - y1) * pix_scale
 
     xv, yv = np.meshgrid(x, y)
     r = sqrt(xv**2. + yv**2.)
@@ -41,13 +41,8 @@ def make_metal_profile(fl):
     lbl_interest = array(segm.data)[40, 40]
     if lbl_interest == 0:
         small_box = array(segm.data)[36:46, 36:46].ravel() 
-        if len(small_box[small_box > 0]) > 0:                    
-            lbl_interest = min(small_box[small_box > 0])
-        else:
-            zmap[:,:] = nan
-
-
-
+        if len(small_box[small_box > 0]) > 0:  lbl_interest = min(small_box[small_box > 0])
+        else: zmap[:,:] = nan
 
     zmap[segm.data != lbl_interest] = nan
 
