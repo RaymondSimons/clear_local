@@ -6,13 +6,15 @@ import astropy.units as u
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from numpy import *
+import glob
+from glob import glob
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
 
 
 cat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/z_r_O32.cat',dtype = 'str')
-
+fls = glob('/Users/rsimons/Desktop/clear/z_radius_new/*npy')
 
 
 
@@ -41,14 +43,14 @@ x_gdn = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/xray_GDN.txt')
 
 
 if True:
-    with PdfPages('/Users/rsimons/Dropbox/rcs_clear/z_radius_plots/z_radius_new2.pdf') as pdf:
-
-        fig, ax = plt.subplots(1,1, figsize = (7, 4))
-        ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', color = 'blue', label = 'Wang+ 17', zorder = 1)
-        ax.errorbar(wang18_cat[:,3], wang18_cat[:,1], yerr =wang18_cat[:,2], fmt = 'o', color = 'darkblue', label = 'Wang+ 18', zorder = 1)
-        ax.errorbar(jones_cat[:,0], jones_cat[:,1], yerr =jones_cat[:,2], fmt = 'o', color = 'skyblue', label = 'Jones+ 13', zorder = 1)
-        ax.errorbar(swinbank_cat[:,0], swinbank_cat[:,1], yerr =swinbank_cat[:,2], fmt = 'o', color = 'darkgreen', label = 'Swinbank+ 12', zorder = 1)
-        ax.errorbar(log10(ma_cat[:,1]), ma_cat[:,7], yerr =ma_cat[:,8], fmt = 's', markeredgecolor = 'black', markerfacecolor = "None", color = 'black', label = 'Ma+ 17; simulations', zorder = 1)
+    with PdfPages('/Users/rsimons/Desktop/clear/figures/z_radius_R3.pdf') as pdf:
+        ms = 5
+        fig, ax = plt.subplots(1,1, figsize = (9, 4))
+        ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', ms = ms,color = 'blue', label = 'Wang+ 17', zorder = 1)
+        ax.errorbar(wang18_cat[:,3], wang18_cat[:,1], yerr =wang18_cat[:,2], fmt = 'o',  ms = ms,color = 'darkblue', label = 'Wang+ 18', zorder = 1)
+        ax.errorbar(jones_cat[:,0], jones_cat[:,1], yerr =jones_cat[:,2], fmt = 'o',  ms = ms,color = 'skyblue', label = 'Jones+ 13', zorder = 1)
+        ax.errorbar(swinbank_cat[:,0], swinbank_cat[:,1], yerr =swinbank_cat[:,2],  ms = ms,fmt = 'o', color = 'darkgreen', label = 'Swinbank+ 12', zorder = 1)
+        ax.errorbar(log10(ma_cat[:,1]), ma_cat[:,7], yerr =ma_cat[:,8], fmt = 's',  ms = ms,markeredgecolor = 'black', markerfacecolor = "None", color = 'black', label = 'Ma+ 17; simulations', zorder = 1)
 
         ax.axhline(y = 0, linestyle = '-', color = 'grey', alpha = 0.4, linewidth = 2, zorder = 0)
 
@@ -57,9 +59,10 @@ if True:
 
         ax.plot(wuyts_x, wuyts_y, '--', linewidth = 3, color = 'midnightblue', label = 'Wuyts+ 16', zorder = 1)
         to_pl = []
-        for c in cat:
-            fld = c[0]
-            di = c[1]
+        for fl in fls:
+
+            fld = fl.split('/')[-1].split('_')[0]
+            di = fl.split('/')[-1].split('_')[1]
             if 'N'   in fld: ct = gn_cat
             elif 'S' in fld: ct = gs_cat
 
@@ -92,10 +95,15 @@ if True:
             elif xobj == 'Galaxy': mrker = 'o'
             elif xobj == 'Star': mrker = 'D'
 
+            mrker = 'o'
             mstar = fout[1].data['lmass'][fout[1].data['id'] == int(di)]
 
-            #ax.errorbar(mstar, float(c[4]), yerr = float(c[5]), fmt = mrker, color = 'red', fillstyle = 'none', markeredgecolor = 'red', ms = 8)
+            ft = np.load(fl, allow_pickle = True)[()]
+            fl_check = glob('/Users/rsimons/Desktop/clear/bad/*{}*{}*'.format(fld, di))
+            if (len(ft['z']) > 8.) & ((xobj == 'Galaxy') | (xobj == 'none')) & (len(fl_check) == 0):
+                ax.errorbar(mstar, float(ft['p'][0]), yerr = float(sqrt(ft['V'][0,0])), fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 5, alpha = 1.0)
 
+        ax.errorbar(-99, -1, yerr = 1., fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 6, alpha = 1.0, label = 'CLEAR, (N = 89)')
 
         #ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 112)', zorder = 10)
         #ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
@@ -110,15 +118,15 @@ if True:
 
 
 
-        ax.annotate(r'$0.7 < z < 1.5$', (0.63, 0.08), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
+        ax.annotate(r'$0.7 < z < 2.0$', (0.55, 0.85), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
         ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 20)
         ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 20)
-        ax.legend(bbox_to_anchor=(1.2, 1.05), frameon = False, fontsize = 18)
+        ax.legend(bbox_to_anchor=(1.0, 1.05), frameon = False, fontsize = 18)
 
-        ax.set_ylim(-0.33, 0.20)
+        ax.set_ylim(-0.33, 0.5)
         ax.set_xlim(8.0, 11.5)
 
-        fig.subplots_adjust(bottom = 0.20, left = 0.15, right = 0.70, top = 0.95)
+        fig.subplots_adjust(bottom = 0.20, left = 0.15, right = 0.65, top = 0.95)
         pdf.savefig()
 
 
