@@ -489,7 +489,7 @@ if __name__ == '__main__':
     #to_fits = np.array([17829])
     #id_choose = 23116
 
-    field               = 'GS1'#args['field']
+    field               = args['field']
     mag_lim             = args['mag_lim']
     mag_max             = args['mag_max']
     files_bool          = args['do_files']
@@ -502,7 +502,7 @@ if __name__ == '__main__':
     use_psf             = args['use_psf']
     fit_min_id          = args['fit_min_id']
     n_jobs              = args['n_jobs']
-    id_choose           = 20530#args['id_choose']
+    id_choose           = args['id_choose']
     phot_scale_order    = args['pso']
     fit_without_phot    = args['fwop']
     PATH_TO_SCRIPTS     = args['PATH_TO_SCRIPTS'] 
@@ -512,8 +512,8 @@ if __name__ == '__main__':
     HOME_PATH           = PATH_TO_HOME + '/' + field
     make_catalog        = args['make_catalog']
 
-    PATH_TO_SCRIPTS  = '/Users/rsimons/Desktop/git/clear_local'
-    PATH_TO_CATS = '/Users/rsimons/Desktop/clear/Catalogs'
+    #PATH_TO_SCRIPTS  = '/Users/rsimons/Desktop/git/clear_local'
+    #PATH_TO_CATS = '/Users/rsimons/Desktop/clear/Catalogs'
 
 
     if fit_without_phot == True: phot_scale_order = -1
