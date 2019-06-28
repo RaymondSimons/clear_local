@@ -624,8 +624,8 @@ if __name__ == '__main__':
         mags = cat_[1]
 
 
-        nums = [39811]
-        mags = [28]
+        nums = np.array([39811])
+        mags = np.array([28])
 
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
