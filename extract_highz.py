@@ -427,7 +427,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                         t0=templ0, 
                         t1=templ1, 
                         fwhm=1200, 
-                        zr=[0., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
+                        zr=[5., 9.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
                         dz=[0.004, 0.0005], 
                         fitter='nnls',
                         group_name=field,# + '_%i'%phot_scale_order,
@@ -624,7 +624,9 @@ if __name__ == '__main__':
         mags = cat_[1]
 
 
-         
+        nums = [39811]
+        mags = [28]
+
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                              id_choose = id_choose, use_pz_prior = False, use_phot = True, 
