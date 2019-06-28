@@ -545,7 +545,7 @@ if __name__ == '__main__':
 
 
 
-    HOME_PATH = '/Users/rsimons/Desktop/GS1'
+    #HOME_PATH = '/Users/rsimons/Desktop/GS1'
 
     print ('Changing to %s'%HOME_PATH)
     os.chdir(HOME_PATH)
