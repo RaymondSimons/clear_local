@@ -38,13 +38,12 @@ def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav',
 
             idl('res=izi(fluxes, errors, lines, NZ=100, gridfile="{0}")'.format(grid))
             if dosave :
-                print ('saving')
                 idl('save, file="{0}", res'.format(savfile))
             res = idl.ev('res', use_cache=True)
             return(res)
 
 
-def run_izi(Z, idl, thdulist_temp, lines_use, smooth = True):
+def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, smooth = True):
     for i in arange(shape(Z)[0]):
         for j in arange(shape(Z)[0]):
             fluxes_for_izi = []
@@ -75,12 +74,14 @@ def run_izi(Z, idl, thdulist_temp, lines_use, smooth = True):
                               grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
                 (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
 
+                Z_pdf[i,j,:,0] = res['zarr'][0]
+                Z_pdf[i,j,:,1] = res['zpdfmar'][0]
                 Z[i,j,0] = tZmod
                 Z[i,j,1] = tZlo
                 Z[i,j,2] = tZhi
                 Z[i,j,3] = tnpeaks
 
-    return Z
+    return Z, Z_pdf
 
 if __name__ == '__main__':
     np.random.seed(1)
@@ -151,16 +152,20 @@ if __name__ == '__main__':
         Z = nan * zeros((wdth*2, wdth*2, 4))
         Z_s = nan * zeros((wdth*2, wdth*2, 4))
 
+        Z_pdf = nan * zeros((wdth*2, wdth*2, 100, 2))
+        Z_pdf_s = nan * zeros((wdth*2, wdth*2, 100, 2))
 
         idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
         idl = pidly.IDL(idl_path)
 
-        Z_s = run_izi(Z_s, idl, thdulist_temp, lines_use, smooth = True)
-        Z   = run_izi(Z, idl, thdulist_temp,  lines_use, smooth = False)
+        Z, Z_pdf   = run_izi(Z, Z_pdf, idl, thdulist_temp,  lines_use, smooth = False)
+        Z_s, Z_pdf_s = run_izi(Z_s, Z_pdf_s, idl, thdulist_temp, lines_use, smooth = True)
 
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
         master_hdulist.append(fits.ImageHDU(data = Z_s, header = Zcolhdr, name = 'Z_s'))
+        master_hdulist.append(fits.ImageHDU(data = Z_pdf, header = Zcolhdr, name = 'Z_pdf'))
+        master_hdulist.append(fits.ImageHDU(data = Z_pdf_s, header = Zcolhdr, name = 'Z_pdf_s'))
 
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
