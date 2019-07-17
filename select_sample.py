@@ -20,6 +20,18 @@ cat_fls = glob(cat_dir + '/grizli_v2.1_cats/*_lines_grizli.fits')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 f_R23   = open(cat_dir + '/sample_cats/R23_sample.cat', 'w+')
 f_R2    = open(cat_dir + '/sample_cats/R2_sample.cat', 'w+')
 f_R3    = open(cat_dir + '/sample_cats/R3_sample.cat', 'w+')
@@ -32,6 +44,7 @@ f_O3S2  = open(cat_dir + '/sample_cats/O3S2_sample.cat', 'w+')
 f_HaHb  = open(cat_dir + '/sample_cats/HaHb_sample.cat', 'w+')
 f_any   = open(cat_dir + '/sample_cats/any_sample.cat', 'w+')
 
+f_any.write('#these objects have two of the three: [OII], [OIII], Hb\n')
 
 tot_R23    = 0
 tot_R2     = 0
@@ -221,9 +234,7 @@ f_O2.close()
 f_Ne3O2.close()
 f_O3S2.close()  
 f_HaHb.close()  
-
-
-
+f_any.close()
 
 
 
