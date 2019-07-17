@@ -107,6 +107,7 @@ if __name__ == '__main__':
 
     wdth = 3
     xmd = 40
+    print (Av)
 
     xmn = xmd - wdth
     xmx = xmd + wdth
