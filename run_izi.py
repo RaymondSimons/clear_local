@@ -44,7 +44,43 @@ def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav',
             return(res)
 
 
+def run_izi(Z, idl, thdulist_temp, lines_use, smooth = True):
+    for i in arange(shape(Z)[0]):
+        for j in arange(shape(Z)[0]):
+            fluxes_for_izi = []
+            errors_for_izi = []
+            lines_for_izi = []
+            for l, (line, izi_line) in enumerate(lines_use):
+                if smooth: 
+                    fluxes_for_izi.append(thdulist_temp['%s_s'%line].data[i,j])
+                    errors_for_izi.append(thdulist_temp['e%s_s'%line].data[i,j])
+                else:
+                    fluxes_for_izi.append(thdulist_temp['%s'%line].data[i,j])
+                    errors_for_izi.append(thdulist_temp['e%s'%line].data[i,j])
 
+                lines_for_izi.append(izi_line)
+            fluxes_for_izi = np.array(fluxes_for_izi)
+            errors_for_izi = np.array(errors_for_izi)
+            lines_for_izi  = np.array(lines_for_izi)
+
+            gd = where((np.isfinite(fluxes_for_izi)) & (np.isfinite(errors_for_izi)))[0]
+            fluxes_for_izi = fluxes_for_izi[gd]
+            errors_for_izi = errors_for_izi[gd]
+            lines_for_izi = lines_for_izi[gd]
+
+
+            n_detected = len(np.where(fluxes_for_izi/errors_for_izi > 1.)[0])
+            if n_detected > 1:
+                res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, idl=idl, dosave=False, savfile=None,
+                              grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
+                (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
+
+                Z[i,j,0] = tZmod
+                Z[i,j,1] = tZlo
+                Z[i,j,2] = tZhi
+                Z[i,j,3] = tnpeaks
+
+    return Z
 
 if __name__ == '__main__':
     np.random.seed(1)
@@ -59,7 +95,7 @@ if __name__ == '__main__':
     fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
 
 
-    wdth = 10
+    wdth = 5
     xmd = 40
 
     xmn = xmd - wdth
@@ -113,47 +149,19 @@ if __name__ == '__main__':
 
         thdulist_temp = fits.HDUList(master_hdulist)
         Z = nan * zeros((wdth*2, wdth*2, 4))
+        Z_s = nan * zeros((wdth*2, wdth*2, 4))
 
 
         idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
         idl = pidly.IDL(idl_path)
 
-
-
-        for i in arange(shape(Z)[0]):
-            print (i)
-            for j in arange(shape(Z)[0]):
-                savfile = out_dir + '/%s_%s_%i_%i.sav'%(field, di, i, j)
-                fluxes_for_izi = []
-                errors_for_izi = []
-                lines_for_izi = []
-                for l, (line, izi_line) in enumerate(lines_use):
-                    fluxes_for_izi.append(thdulist_temp['%s_s'%line].data[i,j])
-                    errors_for_izi.append(thdulist_temp['e%s_s'%line].data[i,j])
-                    lines_for_izi.append(izi_line)
-                fluxes_for_izi = np.array(fluxes_for_izi)
-                errors_for_izi = np.array(errors_for_izi)
-                lines_for_izi  = np.array(lines_for_izi)
-
-                gd = where((np.isfinite(fluxes_for_izi)) & (np.isfinite(errors_for_izi)))[0]
-                fluxes_for_izi = fluxes_for_izi[gd]
-                errors_for_izi = errors_for_izi[gd]
-                lines_for_izi = lines_for_izi[gd]
-
-
-                n_detected = len(np.where(fluxes_for_izi/errors_for_izi > 1.)[0])
-                if n_detected > 1:
-                    res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, idl=idl, dosave=False, savfile=savfile,
-                                  grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
-                    (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
-
-                    Z[i,j,0] = tZmod
-                    Z[i,j,1] = tZlo
-                    Z[i,j,2] = tZhi
-                    Z[i,j,3] = tnpeaks
+        Z_s = run_izi(Z_s, idl, thdulist_temp, lines_use, smooth = True)
+        Z   = run_izi(Z, idl, thdulist_temp,  lines_use, smooth = False)
 
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
+        master_hdulist.append(fits.ImageHDU(data = Z_s, header = Zcolhdr, name = 'Z_s'))
+
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
