@@ -156,7 +156,7 @@ for c, cat_fl in enumerate(cat_fls):
 
 
     field = cat_fl.split('/')[-1].strip('lines_grizli.fits')
-    print field
+    print (field)
 
     print ('\tR23  :'), len(good_R23  )
     print ('\tR2   :'), len(good_R2   )
