@@ -71,6 +71,7 @@ def hri(x, opx, pcut=0.6827, checkPeaks=True, doplot=False) :
     print ('npeaks', npeaks)
     print ('intp', intP)
     print ('ans', ans)
+    if npeaks == 0: return(np.nan, np.nan, np.nan, 0)
     mni = np.argmin(intP[ans])
     i = ans[mni]
     Zmode=x[i]
