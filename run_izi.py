@@ -131,11 +131,17 @@ if __name__ == '__main__':
         prihdu = fits.PrimaryHDU(header=prihdr)    
         master_hdulist.append(prihdu)
 
+
         colhdr = fits.Header()
         Zcolhdr = fits.Header()
 
         colhdr['bc_kern']=boxcar_size
         full = fits.open(fl)
+        master_hdulist.append(full['DSCI'])
+        master_hdulist.append(full['DWHT'])
+        master_hdulist.append(full['SEG'])
+
+
         haslines = full[0].header['haslines']
 
 
@@ -209,8 +215,8 @@ if __name__ == '__main__':
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
         master_hdulist.append(fits.ImageHDU(data = Z_s, header = Zcolhdr, name = 'Z_s'))
-        master_hdulist.append(fits.ImageHDU(data = Z_ec, header = Zcolhdr, name = 'Z_we'))
-        master_hdulist.append(fits.ImageHDU(data = Z_s_ec, header = Zcolhdr, name = 'Z_s_we'))
+        master_hdulist.append(fits.ImageHDU(data = Z_ec, header = Zcolhdr, name = 'Z_ec'))
+        master_hdulist.append(fits.ImageHDU(data = Z_s_ec, header = Zcolhdr, name = 'Z_s_ec'))
 
 
         master_hdulist.append(fits.ImageHDU(data = Z_pdf, header = Zcolhdr, name = 'Z_pdf'))
