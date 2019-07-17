@@ -1,7 +1,102 @@
+#!/home/rsimons/miniconda2/envs/grizli/bin/python
 import pidly
 from calzetti import k as calk
 import numpy as np
 import os
+import time
+from multiprocessing import Pool
+import numpy as np
+from numpy import *
+import astropy
+from astropy.io import fits
+from astropy.table import Table
+from astropy.cosmology import Planck15 as cosmo
+from astropy.convolution import Gaussian2DKernel, convolve_fft, Box2DKernel
+from astropy.stats import sigma_clip
+import importlib
+import photutils
+import glob
+from glob import glob
+from scipy.interpolate import interp1d
+import joblib
+from joblib import Parallel, delayed
+import emcee
+import metal_calibs as calib
+import scipy.optimize as op
+import time
+from math import *
+from sys import argv
+
+if __name__ == '__main__':
+    np.random.seed(1)
+    boxcar_size = 3
+    kern = Box2DKernel(boxcar_size)
+    field, di = argv[1], argv[2]
+
+    out_dir = '/user/rsimons/metal_maps'
+    full_dir = '/user/rsimons/grizli_extractions'
+
+    print ('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))
+    fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
+
+
+
+    if os.path.isfile(fl):
+        master_hdulist = []
+        prihdr = fits.Header()
+        prihdr['COMMENT'] = "Storing the metallicity maps in this FITS file."
+        prihdr['field']   = field
+        prihdr['ID']      = di
+        prihdu = fits.PrimaryHDU(header=prihdr)    
+        master_hdulist.append(prihdu)
+
+        colhdr = fits.Header()
+        Zcolhdr = fits.Header()
+
+        colhdr['boxcar_size']=boxcar_size
+        full = fits.open(fl)
+        haslines = full[0].header['haslines']
+
+
+        lines = [('OII', 'oii3726;oii3729'),
+                 ('OIII', 'oiii4959;oiii5007'),
+                 ('Hb', 'hbeta'),
+                 ('Ha', 'nii6548;halpha;nii6584'),
+                 ('SII', 'sii6717;sii6731')
+                ]
+
+        for l, (line, izi_line) in enumerate(lines):
+            if line in haslines:
+                lmap  = full['LINE', line].data
+                elmap = 1./np.sqrt(full['LINEWHT', line].data)
+
+                lmap_smoothed = convolve_fft(lmap, kern)
+                elmap_smoothed = elmap/np.sqrt(boxcar_size**2.)
+
+                master_hdulist.append(fits.ImageHDU(data = lmap, header = colhdr, name =  '%s'%line))
+                master_hdulist.append(fits.ImageHDU(data = elmap, header = colhdr, name = 'e%s'%line))
+
+                master_hdulist.append(fits.ImageHDU(data = lmap_smoothed, header = colhdr, name =  '%s_smth'%line))
+                master_hdulist.append(fits.ImageHDU(data = elmap_smoothed, header = colhdr, name = 'e%s_smth'%line))
+
+
+
+        Z = nan * zeros((shape(lmap)[0], shape(lmap)[1], 5))
+
+        master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
+        fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
+        print ('\tSaving to ' + fits_name)
+        thdulist = fits.HDUList(master_hdulist)
+        thdulist.writeto(fits_name, overwrite = True)
+
+
+
+
+
+
+
+
+'''
 
 
 def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav', 
@@ -36,6 +131,7 @@ savfile = 'test.sav'
 res = izi(fluxes, errors, lines, idl=idl, dosave=True, savfile=savfile,
               grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
 
+'''
 # take AV from nZ:
 '''
 Av = nZ['Av'].iloc[i]
