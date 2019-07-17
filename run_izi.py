@@ -158,7 +158,9 @@ if __name__ == '__main__':
 
         lines_use = []
         for l, (line, izi_line, line_wav) in enumerate(lines):
-            if (line + ' ' in haslines) | (' ' + line in haslines):
+            haslines = np.array(haslines.split(' '))
+            gd = where(line == haslines)
+            if len(gd) > 0:
                 lines_use.append((line, izi_line))
 
                 lmap  = full['LINE', line].data
