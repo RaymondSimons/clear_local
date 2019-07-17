@@ -119,9 +119,9 @@ if __name__ == '__main__':
 
 
 
-        for i in arange(shape(lmap)[0]):
+        for i in arange(shape(Z)[0]):
             print (i)
-            for j in arange(shape(lmap)[0]):
+            for j in arange(shape(Z)[0]):
                 savfile = out_dir + '/%s_%s_%i_%i.sav'%(field, di, i, j)
                 fluxes_for_izi = []
                 errors_for_izi = []
@@ -140,10 +140,10 @@ if __name__ == '__main__':
                                   grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
                     (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
 
-                Z[i,j,0] = tZmod
-                Z[i,j,1] = tZlo
-                Z[i,j,2] = tZhi
-                Z[i,j,3] = tnpeaks
+                    Z[i,j,0] = tZmod
+                    Z[i,j,1] = tZlo
+                    Z[i,j,2] = tZhi
+                    Z[i,j,3] = tnpeaks
 
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
