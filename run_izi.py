@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
 
         thdulist_temp = fits.HDUList(master_hdulist)
-        Z = nan * zeros((shape(lmap)[0], shape(lmap)[1], 4))
+        Z = nan * zeros((wdth*2, wdth*2, 4))
 
 
         idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
