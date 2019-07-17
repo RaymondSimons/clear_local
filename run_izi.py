@@ -31,6 +31,7 @@ def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav',
             grid=os.path.join(os.environ['IZI_DIR'],'grids','l09_high_csf_n1e2_6.0Myr.fits')) :
 
             #idl = pidly.IDL()
+
             idl('fluxes = {0}'.format(np.array2string(fluxes, separator=',',max_line_width=1000)))
             idl('errors = {0}'.format(np.array2string(errors, separator=',',max_line_width=1000)))
             idl('lines = {0}'.format(np.array2string(lines, separator=',',max_line_width=1000)))
@@ -133,6 +134,12 @@ if __name__ == '__main__':
                 fluxes_for_izi = np.array(fluxes_for_izi)
                 errors_for_izi = np.array(errors_for_izi)
                 lines_for_izi  = np.array(lines_for_izi)
+
+                gd = where((np.isfinite(fluxes_for_izi)) & (np.isfinite(errors_for_izi)))[0]
+                fluxes_for_izi = fluxes_for_izi[gd]
+                errors_for_izi = errors_for_izi[gd]
+                lines_for_izi = lines_for_izi[gd]
+
 
                 n_detected = len(np.where(fluxes_for_izi/errors_for_izi > 1.)[0])
                 if n_detected > 1:
