@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
 
     eazy_fits = fits.open('/user/rsimons/grizli_extractions/Catalogs/%s_3dhst.v4.4.cats/Eazy/%s_3dhst.v4.4.zout.fits'%(fld, fld))
-    gd = where(str(eazy_fits[1].data['id']) == str(di))[0]
+    gd = where(int(eazy_fits[1].data['id']) == int(di))[0]
     Av = eazy_fits[1].data['Av'][gd]
 
 
@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     wdth = 3
     xmd = 40
-    print (Av, gd, eazy_fits[1].data['id'][100], di)
+    print (field, fld, Av, gd, eazy_fits[1].data['id'][100], di)
 
     xmn = xmd - wdth
     xmx = xmd + wdth
