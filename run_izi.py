@@ -25,6 +25,8 @@ import scipy.optimize as op
 import time
 from math import *
 from sys import argv
+from hri import hri
+
 
 if __name__ == '__main__':
     np.random.seed(1)
@@ -84,7 +86,7 @@ if __name__ == '__main__':
 
 
         thdulist_temp = fits.HDUList(master_hdulist)
-        Z = nan * zeros((shape(lmap)[0], shape(lmap)[1], 5))
+        Z = nan * zeros((shape(lmap)[0], shape(lmap)[1], 4))
 
 
 
@@ -110,8 +112,11 @@ if __name__ == '__main__':
                               grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
 
 
-
-
+                (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
+                Z[i,j,0] = tZmod
+                Z[i,j,1] = tZlo
+                Z[i,j,2] = tZhi
+                Z[i,j,3] = tnpeaks
 
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
@@ -119,6 +124,10 @@ if __name__ == '__main__':
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, overwrite = True)
+
+
+
+
 
 
 
