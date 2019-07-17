@@ -92,8 +92,10 @@ def hri(x, opx, pcut=0.6827, checkPeaks=True, doplot=False) :
         Zhi = x[i]
         i = i+1
         #print(i,z[i], Zhi, intP[i], len(intP), pcut)
-        if ((i >= len(intP)) | (intP[i] > pcut)) : 
-            done=True
+        if i >= len(intP): done =True
+        if intP[i] > pcut: done = True
+        #if ((i >= len(intP)) | (intP[i] > pcut)) : 
+        #done=True
         
     # check if the Zlo Zhi contains multiple peaks
     if checkPeaks : 
