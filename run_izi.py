@@ -20,7 +20,6 @@ from glob import glob
 from scipy.interpolate import interp1d
 import joblib
 from joblib import Parallel, delayed
-import emcee
 import metal_calibs as calib
 import scipy.optimize as op
 import time
