@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
 
     eazy_fits = fits.open('/user/rsimons/grizli_extractions/Catalogs/%s_3dhst.v4.4.cats/Eazy/%s_3dhst.v4.4.zout.fits'%(fld, fld))
-    gd = where(int(eazy_fits[1].data['id']) == int(di))[0]
+    gd = where(eazy_fits[1].data['id'].astype('int') == int(di))[0]
     Av = eazy_fits[1].data['Av'][gd]
 
 
