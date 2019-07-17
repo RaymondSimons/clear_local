@@ -58,6 +58,14 @@ if __name__ == '__main__':
     fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
 
 
+    wdth = 15
+    xmd = 40
+
+    xmn = xmd - wdth
+    xmx = xmd + wdth
+
+    ymn = xmd - wdth
+    ymx = xmd + wdth
 
     if os.path.isfile(fl):
         master_hdulist = []
@@ -89,8 +97,8 @@ if __name__ == '__main__':
             if line in haslines:
                 lines_use.append((line, izi_line))
 
-                lmap  = full['LINE', line].data
-                elmap = 1./np.sqrt(full['LINEWHT', line].data)
+                lmap  = full['LINE', line].data[xmn:xmx, ymn:ymx]
+                elmap = 1./np.sqrt(full['LINEWHT', line].data[xmn:xmx, ymn:ymx])
 
                 lmap_smoothed = convolve_fft(lmap, kern)
                 elmap_smoothed = elmap/np.sqrt(boxcar_size**2.)
@@ -106,8 +114,6 @@ if __name__ == '__main__':
         Z = nan * zeros((shape(lmap)[0], shape(lmap)[1], 4))
 
 
-
-
         idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
         idl = pidly.IDL(idl_path)
 
@@ -121,8 +127,8 @@ if __name__ == '__main__':
                 errors_for_izi = []
                 lines_for_izi = []
                 for l, (line, izi_line) in enumerate(lines_use):
-                    fluxes_for_izi.append(thdulist_temp[line].data[i,j])
-                    errors_for_izi.append(thdulist_temp['e'+line].data[i,j])
+                    fluxes_for_izi.append(thdulist_temp['%s_s'%line].data[i,j])
+                    errors_for_izi.append(thdulist_temp['e%s_s'%line].data[i,j])
                     lines_for_izi.append(izi_line)
                 fluxes_for_izi = np.array(fluxes_for_izi)
                 errors_for_izi = np.array(errors_for_izi)
@@ -133,7 +139,6 @@ if __name__ == '__main__':
                     res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, idl=idl, dosave=False, savfile=savfile,
                                   grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
                     (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
-
 
                 Z[i,j,0] = tZmod
                 Z[i,j,1] = tZlo
