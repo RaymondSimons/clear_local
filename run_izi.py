@@ -9,6 +9,7 @@ calkV = calk(Vlam)
 tlam = np.array([3727., 5007.,  4863.])
 
 # take AV from nZ:
+'''
 Av = nZ['Av'].iloc[i]
 
 for l in range(len(tlam)) :
@@ -20,7 +21,7 @@ for l in range(len(tlam)) :
 
 errors = errors / fluxes[2]
 fluxes = fluxes / fluxes[2]
-
+'''
 
 
 
