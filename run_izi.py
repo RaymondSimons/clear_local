@@ -4,7 +4,7 @@ import numpy as np
 
 
 
-def izi(fluxes, errors, lines, idl=pidly.IDL(), dosave=False, savfile='res.sav', 
+def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav', 
             grid=os.path.join(os.environ['IZI_DIR'],'grids','l09_high_csf_n1e2_6.0Myr.fits')) :
 
             #idl = pidly.IDL()
