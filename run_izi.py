@@ -34,11 +34,10 @@ def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav',
             idl('fluxes = {0}'.format(np.array2string(fluxes, separator=',',max_line_width=1000)))
             idl('errors = {0}'.format(np.array2string(errors, separator=',',max_line_width=1000)))
             idl('lines = {0}'.format(np.array2string(lines, separator=',',max_line_width=1000)))
-            #idl('forprint, fluxes, errors, lines')
-            #print(grid, os.path.isfile(grid))
-            #print('gridfile={0})'.format(grid))
+
             idl('res=izi(fluxes, errors, lines, NZ=100, gridfile="{0}")'.format(grid))
             if dosave :
+                print ('saving')
                 idl('save, file="{0}", res'.format(savfile))
             res = idl.ev('res', use_cache=True)
             return(res)
@@ -117,7 +116,7 @@ if __name__ == '__main__':
         for i in arange(shape(lmap)[0]):
             print (i)
             for j in arange(shape(lmap)[0]):
-                savfile = out_dir + '%s_%s_%i_%i.sav'%(field, di, i, j)
+                savfile = out_dir + '/%s_%s_%i_%i.sav'%(field, di, i, j)
                 fluxes_for_izi = []
                 errors_for_izi = []
                 lines_for_izi = []
