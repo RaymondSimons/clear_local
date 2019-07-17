@@ -23,7 +23,7 @@ def hri_arrays(x, opx, pcut=0.68) :
     norm = trapz(opx, x)
     px = opx / norm
     
-    s = np.flip(np.argsort( px))
+    s = np.argsort( px)[::-1]
     sx = x[s]
     spx = px[s]
     
