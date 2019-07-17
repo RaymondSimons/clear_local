@@ -125,9 +125,9 @@ if __name__ == '__main__':
                     fluxes_for_izi.append(thdulist_temp[line].data[i,j])
                     errors_for_izi.append(thdulist_temp['e'+line].data[i,j])
                     lines_for_izi.append(izi_line)
-                fluxes = np.array(fluxes)
-                errors = np.array(errors)
-                lines_for_izi = np.array(lines_for_izi)
+                fluxes_for_izi = np.array(fluxes_for_izi)
+                errors_for_izi = np.array(errors_for_izi)
+                lines_for_izi  = np.array(lines_for_izi)
                 res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, idl=idl, dosave=True, savfile=savfile,
                               grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
 
