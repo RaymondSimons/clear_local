@@ -1,6 +1,6 @@
 import pidly
 from calzetti import k as calk
-
+import numpy as np
 
 idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
 idl = pidly.IDL(idl_path)
