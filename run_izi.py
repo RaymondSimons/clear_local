@@ -1,4 +1,3 @@
-import blanc15
 import pidly
 from calzetti import k as calk
 
