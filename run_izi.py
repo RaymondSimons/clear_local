@@ -4,7 +4,6 @@ import numpy as np
 import os
 
 
-
 def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav', 
             grid=os.path.join(os.environ['IZI_DIR'],'grids','l09_high_csf_n1e2_6.0Myr.fits')) :
 
@@ -12,7 +11,7 @@ def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav',
             idl('fluxes = {0}'.format(np.array2string(fluxes, separator=',',max_line_width=1000)))
             idl('errors = {0}'.format(np.array2string(errors, separator=',',max_line_width=1000)))
             idl('lines = {0}'.format(np.array2string(lines, separator=',',max_line_width=1000)))
-            idl('forprint, fluxes, errors, lines')
+            #idl('forprint, fluxes, errors, lines')
             #print(grid, os.path.isfile(grid))
             #print('gridfile={0})'.format(grid))
             idl('res=izi(fluxes, errors, lines, NZ=100, gridfile="{0}")'.format(grid))
