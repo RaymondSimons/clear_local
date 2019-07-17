@@ -130,7 +130,7 @@ if __name__ == '__main__':
 
                 n_detected = len(np.where(fluxes_for_izi/errors_for_izi > 1.)[0])
                 if n_detected > 1:
-                    res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, idl=idl, dosave=True, savfile=savfile,
+                    res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, idl=idl, dosave=False, savfile=savfile,
                                   grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
                     (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
 
