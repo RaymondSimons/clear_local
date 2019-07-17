@@ -64,8 +64,12 @@ if __name__ == '__main__':
                  ('SII', 'sii6717;sii6731')
                 ]
 
+
+        lines_use = []
         for l, (line, izi_line) in enumerate(lines):
             if line in haslines:
+                lines_use.append((line, izi_line))
+                
                 lmap  = full['LINE', line].data
                 elmap = 1./np.sqrt(full['LINEWHT', line].data)
 
