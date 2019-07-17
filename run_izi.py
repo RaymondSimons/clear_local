@@ -124,7 +124,9 @@ if __name__ == '__main__':
                 for l, (line, izi_line) in enumerate(lines_use):
                     fluxes.append(thdulist_temp[line].data[i,j])
                     errors.append(thdulist_temp['e'+line].data[i,j])
-
+                fluxes = np.array(fluxes)
+                errors = np.array(errors)
+                lines_use = np.array(lines_use)
                 res = izi(fluxes, errors, lines_use, idl=idl, dosave=True, savfile=savfile,
                               grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
 
