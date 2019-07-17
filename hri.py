@@ -68,6 +68,7 @@ def hri(x, opx, pcut=0.6827, checkPeaks=True, doplot=False) :
         # now, take the highest peak and move down until you get to pcut: 
         
         # do lower bound: 
+        print ('npeaks', npeaks)
         mni = np.argmin(intP[ans])
         i = ans[mni]
         Zmode=x[i]
