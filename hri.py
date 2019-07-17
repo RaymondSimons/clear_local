@@ -88,12 +88,13 @@ def hri(x, opx, pcut=0.6827, checkPeaks=True, doplot=False) :
     # do upper bound
     i = ans[mni]
     done=False
-    while not done : 
+    while not done: 
         Zhi = x[i]
         i = i+1
         #print(i,z[i], Zhi, intP[i], len(intP), pcut)
         if i >= len(intP): done =True
-        if intP[i] > pcut: done = True
+        if not done:
+            if intP[i] > pcut: done = True
         #if ((i >= len(intP)) | (intP[i] > pcut)) : 
         #done=True
         
