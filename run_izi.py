@@ -58,7 +58,7 @@ if __name__ == '__main__':
     fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
 
 
-    wdth = 15
+    wdth = 10
     xmd = 40
 
     xmn = xmd - wdth
@@ -97,17 +97,17 @@ if __name__ == '__main__':
             if line in haslines:
                 lines_use.append((line, izi_line))
 
-                lmap  = full['LINE', line].data[xmn:xmx, ymn:ymx]
-                elmap = 1./np.sqrt(full['LINEWHT', line].data[xmn:xmx, ymn:ymx])
+                lmap  = full['LINE', line].data
+                elmap = 1./np.sqrt(full['LINEWHT', line].data)
 
                 lmap_smoothed = convolve_fft(lmap, kern)
                 elmap_smoothed = elmap/np.sqrt(boxcar_size**2.)
 
-                master_hdulist.append(fits.ImageHDU(data = lmap, header = colhdr, name =  '%s'%line))
-                master_hdulist.append(fits.ImageHDU(data = elmap, header = colhdr, name = 'e%s'%line))
+                master_hdulist.append(fits.ImageHDU(data = lmap[xmn:xmx, ymn:ymx], header = colhdr, name =  '%s'%line))
+                master_hdulist.append(fits.ImageHDU(data = elmap[xmn:xmx, ymn:ymx], header = colhdr, name = 'e%s'%line))
 
-                master_hdulist.append(fits.ImageHDU(data = lmap_smoothed, header = colhdr, name =  '%s_s'%line))
-                master_hdulist.append(fits.ImageHDU(data = elmap_smoothed, header = colhdr, name = 'e%s_s'%line))
+                master_hdulist.append(fits.ImageHDU(data = lmap_smoothed[xmn:xmx, ymn:ymx], header = colhdr, name =  '%s_s'%line))
+                master_hdulist.append(fits.ImageHDU(data = elmap_smoothed[xmn:xmx, ymn:ymx], header = colhdr, name = 'e%s_s'%line))
 
 
         thdulist_temp = fits.HDUList(master_hdulist)
