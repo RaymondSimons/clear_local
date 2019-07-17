@@ -2,8 +2,8 @@ import pidly
 from calzetti import k as calk
 
 
-
-idl = pidly.IDL()
+idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
+idl = pidly.IDL(idl_path)
 Vlam = 5470. # from Johnson Cousins_V 
 calkV = calk(Vlam)
 tlam = np.array([3727., 5007.,  4863.])
