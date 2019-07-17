@@ -61,18 +61,12 @@ def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = 
 
                 fluxes_for_izi.append(thdulist_temp[fl_str].data[i,j])
                 errors_for_izi.append(thdulist_temp[er_str].data[i,j])
-
-
-
-
                 lines_for_izi.append(izi_line)
+
+
             fluxes_for_izi = np.array(fluxes_for_izi)
             errors_for_izi = np.array(errors_for_izi)
             lines_for_izi  = np.array(lines_for_izi)
-
-
-            if do_extinction: 
-
 
             gd = where((np.isfinite(fluxes_for_izi)) & (np.isfinite(errors_for_izi)))[0]
             fluxes_for_izi = fluxes_for_izi[gd]
