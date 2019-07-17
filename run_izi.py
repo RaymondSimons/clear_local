@@ -69,7 +69,7 @@ if __name__ == '__main__':
         for l, (line, izi_line) in enumerate(lines):
             if line in haslines:
                 lines_use.append((line, izi_line))
-                
+
                 lmap  = full['LINE', line].data
                 elmap = 1./np.sqrt(full['LINEWHT', line].data)
 
@@ -79,18 +79,51 @@ if __name__ == '__main__':
                 master_hdulist.append(fits.ImageHDU(data = lmap, header = colhdr, name =  '%s'%line))
                 master_hdulist.append(fits.ImageHDU(data = elmap, header = colhdr, name = 'e%s'%line))
 
-                master_hdulist.append(fits.ImageHDU(data = lmap_smoothed, header = colhdr, name =  '%s_smth'%line))
-                master_hdulist.append(fits.ImageHDU(data = elmap_smoothed, header = colhdr, name = 'e%s_smth'%line))
+                master_hdulist.append(fits.ImageHDU(data = lmap_smoothed, header = colhdr, name =  '%s_s'%line))
+                master_hdulist.append(fits.ImageHDU(data = elmap_smoothed, header = colhdr, name = 'e%s_s'%line))
 
 
-
+        thdulist_temp = fits.HDUList(master_hdulist)
         Z = nan * zeros((shape(lmap)[0], shape(lmap)[1], 5))
+
+
+
+
+        idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
+        idl = pidly.IDL(idl_path)
+
+
+
+        for i in arange(shape(lmap[0])):
+            for j in arange(shape(lmap[0])):
+
+                savfile = out_dir + '%s_%s_%i_%i.sav'%(field, di, i, j)
+                fluxes = []
+                errors = []
+
+                for l, (line, izi_line) in enumerate(lines_use):
+                    fluxes.append(thdulist_temp[line].data[i,j])
+                    errors.append(thdulist_temp['e'+line].data[i,j])
+
+
+                res = izi(fluxes, errors, lines_use, idl=idl, dosave=True, savfile=savfile,
+                              grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
+
+
+
+
+
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, overwrite = True)
+
+
+
+
+
 
 
 
