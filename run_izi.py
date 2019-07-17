@@ -114,9 +114,9 @@ if __name__ == '__main__':
 
 
 
-        for i in arange(shape(lmap[0])):
-            for j in arange(shape(lmap[0])):
-
+        for i in arange(shape(lmap)[0]):
+            print (i)
+            for j in arange(shape(lmap)[0]):
                 savfile = out_dir + '%s_%s_%i_%i.sav'%(field, di, i, j)
                 fluxes = []
                 errors = []
