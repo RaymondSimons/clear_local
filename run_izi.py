@@ -89,6 +89,15 @@ if __name__ == '__main__':
     kern = Box2DKernel(boxcar_size)
     field, di = argv[1], argv[2]
 
+    if 'S' in field: fld = 'goodss'
+    if 'N' in field: fld = 'goodsn'
+
+
+    eazy_fits = fits.open('/user/rsimons/grizli_extractions/Catalogs/%s_3dhst.v4.4.cats/Eazy/%s_3dhst.v4.4.zout.fits'%(fld, fld))
+    gd = where(eazy_fits[1].data['id'] == di)[0]
+    Av = eazy_fits[1].data['Av'][gd]
+
+
     out_dir = '/user/rsimons/metal_maps'
     full_dir = '/user/rsimons/grizli_extractions'
 
@@ -96,7 +105,7 @@ if __name__ == '__main__':
     fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
 
 
-    wdth = 20
+    wdth = 3
     xmd = 40
 
     xmn = xmd - wdth
@@ -104,7 +113,7 @@ if __name__ == '__main__':
 
     ymn = xmd - wdth
     ymx = xmd + wdth
-
+    '''
     if os.path.isfile(fl):
         master_hdulist = []
         prihdr = fits.Header()
@@ -172,7 +181,7 @@ if __name__ == '__main__':
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, overwrite = True)
 
-
+    '''
 
 
 
