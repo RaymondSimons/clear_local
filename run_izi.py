@@ -134,7 +134,7 @@ if __name__ == '__main__':
         colhdr = fits.Header()
         Zcolhdr = fits.Header()
 
-        colhdr['boxcar_size']=boxcar_size
+        colhdr['bc_kern']=boxcar_size
         full = fits.open(fl)
         haslines = full[0].header['haslines']
 
