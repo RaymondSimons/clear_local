@@ -112,5 +112,6 @@ def hri(x, opx, pcut=0.6827, checkPeaks=True, doplot=False) :
 
         return(Zmode, Zlo, Zhi, npeaks)
     except:
-        return (nan, nan, nan, nan)
+        print ('bad')
+        return (np.nan, np.nan, np.nan, np.nan)
 
