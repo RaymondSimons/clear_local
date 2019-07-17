@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     wdth = 3
     xmd = 40
-    print (Av, gd, di)
+    print (Av, gd, eazy_fits[1].data['id'][100], di)
 
     xmn = xmd - wdth
     xmx = xmd + wdth
