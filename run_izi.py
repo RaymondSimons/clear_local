@@ -96,7 +96,7 @@ if __name__ == '__main__':
     fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
 
 
-    wdth = 5
+    wdth = 20
     xmd = 40
 
     xmn = xmd - wdth
