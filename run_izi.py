@@ -43,24 +43,36 @@ def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav',
             return(res)
 
 
-def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, smooth = True):
+def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = True, smooth = True):
     for i in arange(shape(Z)[0]):
         for j in arange(shape(Z)[0]):
             fluxes_for_izi = []
             errors_for_izi = []
             lines_for_izi = []
             for l, (line, izi_line) in enumerate(lines_use):
+                fl_str = line
+                er_str = 'e'+line
                 if smooth: 
-                    fluxes_for_izi.append(thdulist_temp['%s_s'%line].data[i,j])
-                    errors_for_izi.append(thdulist_temp['e%s_s'%line].data[i,j])
-                else:
-                    fluxes_for_izi.append(thdulist_temp['%s'%line].data[i,j])
-                    errors_for_izi.append(thdulist_temp['e%s'%line].data[i,j])
+                    fl_str+='_s'
+                    er_str+='_s'
+                if do_extinction: 
+                    fl_str+='_ec'
+                    er_str+='_ec'
+
+                fluxes_for_izi.append(thdulist_temp[fl_str].data[i,j])
+                errors_for_izi.append(thdulist_temp[er_str].data[i,j])
+
+
+
 
                 lines_for_izi.append(izi_line)
             fluxes_for_izi = np.array(fluxes_for_izi)
             errors_for_izi = np.array(errors_for_izi)
             lines_for_izi  = np.array(lines_for_izi)
+
+
+            if do_extinction: 
+
 
             gd = where((np.isfinite(fluxes_for_izi)) & (np.isfinite(errors_for_izi)))[0]
             fluxes_for_izi = fluxes_for_izi[gd]
@@ -107,20 +119,21 @@ if __name__ == '__main__':
 
     wdth = 3
     xmd = 40
-    print (field, fld, Av, gd, eazy_fits[1].data['id'][gd], di)
+
 
     xmn = xmd - wdth
     xmx = xmd + wdth
 
     ymn = xmd - wdth
     ymx = xmd + wdth
-    '''
+
     if os.path.isfile(fl):
         master_hdulist = []
         prihdr = fits.Header()
         prihdr['COMMENT'] = "Storing the metallicity maps in this FITS file."
         prihdr['field']   = field
         prihdr['ID']      = di
+        prihdr['Av']      = Av
         prihdu = fits.PrimaryHDU(header=prihdr)    
         master_hdulist.append(prihdu)
 
@@ -132,16 +145,19 @@ if __name__ == '__main__':
         haslines = full[0].header['haslines']
 
 
-        lines = [('OII', 'oii3726;oii3729'),
-                 ('OIII', 'oiii4959;oiii5007'),
-                 ('Hb', 'hbeta'),
-                 ('Ha', 'nii6548;halpha;nii6584'),
-                 ('SII', 'sii6717;sii6731')
+        lines = [('OII', 'oii3726;oii3729', 3727.),
+                 ('OIII', 'oiii4959;oiii5007', 5007.),
+                 ('Hb', 'hbeta', 4863.),
+                 ('Ha', 'nii6548;halpha;nii6584', 6563.),
+                 ('SII', 'sii6717;sii6731', 6725.)
                 ]
+
+        Vlam = 5470. # from Johnson Cousins_V 
+        calkV = calk(Vlam)
 
 
         lines_use = []
-        for l, (line, izi_line) in enumerate(lines):
+        for l, (line, izi_line, line_wav) in enumerate(lines):
             if line in haslines:
                 lines_use.append((line, izi_line))
 
@@ -157,97 +173,67 @@ if __name__ == '__main__':
                 master_hdulist.append(fits.ImageHDU(data = lmap_smoothed[xmn:xmx, ymn:ymx], header = colhdr, name =  '%s_s'%line))
                 master_hdulist.append(fits.ImageHDU(data = elmap_smoothed[xmn:xmx, ymn:ymx], header = colhdr, name = 'e%s_s'%line))
 
+                Alam = 1*Av * calk(line_wav) / calkV
+
+                ec = np.power(10, 0.4*Alam)
+                master_hdulist.append(fits.ImageHDU(data = lmap[xmn:xmx, ymn:ymx] * ec, header = colhdr, name =  '%s_ec'%line))
+                master_hdulist.append(fits.ImageHDU(data = elmap[xmn:xmx, ymn:ymx] * ec, header = colhdr, name = 'e%s_ec'%line))
+
+                master_hdulist.append(fits.ImageHDU(data = lmap_smoothed[xmn:xmx, ymn:ymx] * ec, header = colhdr, name =  '%s_s_ec'%line))
+                master_hdulist.append(fits.ImageHDU(data = elmap_smoothed[xmn:xmx, ymn:ymx] * ec, header = colhdr, name = 'e%s_s_ec'%line))
+
+
 
         thdulist_temp = fits.HDUList(master_hdulist)
         Z = nan * zeros((wdth*2, wdth*2, 4))
         Z_s = nan * zeros((wdth*2, wdth*2, 4))
 
+        Z_ec = nan * zeros((wdth*2, wdth*2, 4))
+        Z_s_ec = nan * zeros((wdth*2, wdth*2, 4))
+
+
+
         Z_pdf = nan * zeros((wdth*2, wdth*2, 100, 2))
         Z_pdf_s = nan * zeros((wdth*2, wdth*2, 100, 2))
+
+        Z_pdf_ec = nan * zeros((wdth*2, wdth*2, 100, 2))
+        Z_pdf_s_ec = nan * zeros((wdth*2, wdth*2, 100, 2))
+
+
 
         idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
         idl = pidly.IDL(idl_path)
 
-        Z, Z_pdf   = run_izi(Z, Z_pdf, idl, thdulist_temp,  lines_use, smooth = False)
-        Z_s, Z_pdf_s = run_izi(Z_s, Z_pdf_s, idl, thdulist_temp, lines_use, smooth = True)
+
+        Z, Z_pdf     = run_izi(Z = Z, Z_pdf = Z_pdf, idl = idl, thdulist_temp = thdulist_temp,  lines_use = lines_use, do_extinction = False, smooth = False)
+        Z_s, Z_pdf_s = run_izi(Z = Z_s, Z_pdf = Z_pdf_s, idl = idl, thdulist_temp = thdulist_temp, lines_use = lines_use,  do_extinction = False,smooth = True)
+
+        Z_ec, Z_pdf_ec     = run_izi(Z = Z_ec, Z_pdf = Z_pdf_ec, idl = idl, thdulist_temp = thdulist_temp,  lines_use = lines_use, do_extinction = True, smooth = False)
+        Z_s_ec, Z_pdf_s_ec = run_izi(Z = Z_s_ec, Z_pdf = Z_pdf_s_ec, idl = idl, thdulist_temp = thdulist_temp, lines_use = lines_use,  do_extinction = True,smooth = True)
+
 
 
         master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
         master_hdulist.append(fits.ImageHDU(data = Z_s, header = Zcolhdr, name = 'Z_s'))
+        master_hdulist.append(fits.ImageHDU(data = Z_ec, header = Zcolhdr, name = 'Z_we'))
+        master_hdulist.append(fits.ImageHDU(data = Z_s_ec, header = Zcolhdr, name = 'Z_s_we'))
+
+
         master_hdulist.append(fits.ImageHDU(data = Z_pdf, header = Zcolhdr, name = 'Z_pdf'))
         master_hdulist.append(fits.ImageHDU(data = Z_pdf_s, header = Zcolhdr, name = 'Z_pdf_s'))
+        master_hdulist.append(fits.ImageHDU(data = Z_pdf_ec, header = Zcolhdr, name = 'Z_pdf_ec'))
+        master_hdulist.append(fits.ImageHDU(data = Z_pdf_s_ec, header = Zcolhdr, name = 'Z_pdf_s_ec'))
+
+
 
         fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, overwrite = True)
 
-    '''
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-
-
-def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav', 
-            grid=os.path.join(os.environ['IZI_DIR'],'grids','l09_high_csf_n1e2_6.0Myr.fits')) :
-
-            #idl = pidly.IDL()
-            idl('fluxes = {0}'.format(np.array2string(fluxes, separator=',',max_line_width=1000)))
-            idl('errors = {0}'.format(np.array2string(errors, separator=',',max_line_width=1000)))
-            idl('lines = {0}'.format(np.array2string(lines, separator=',',max_line_width=1000)))
-            #idl('forprint, fluxes, errors, lines')
-            #print(grid, os.path.isfile(grid))
-            #print('gridfile={0})'.format(grid))
-            idl('res=izi(fluxes, errors, lines, NZ=100, gridfile="{0}")'.format(grid))
-            if dosave :
-                idl('save, file="{0}", res'.format(savfile))
-            res = idl.ev('res', use_cache=True)
-            return(res)
-
-
-idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
-idl = pidly.IDL(idl_path)
-Vlam = 5470. # from Johnson Cousins_V 
-calkV = calk(Vlam)
-tlam = np.array([3727., 5007.,  4863.])
-
-lines = np.array(['oii3726;oii3729','oiii4959;oiii5007',  'hbeta'])
-fluxes = np.array([0.4e-17, 0.8e-17, 1.e-17])
-errors = np.array([0.1e-17, 0.2e-17, 1.e-18])
-
-savfile = 'test.sav'
-
-res = izi(fluxes, errors, lines, idl=idl, dosave=True, savfile=savfile,
-              grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
-
-'''
-# take AV from nZ:
-'''
-Av = nZ['Av'].iloc[i]
-
-for l in range(len(tlam)) :
-    Alam = 1*Av * calk(tlam[l]) / calkV
-    fluxes[l] = fluxes[l] * np.power(10, 0.4*Alam)
-    errors[l] = errors[l] * np.power(10, 0.4*Alam)
-    #print(Av, Alam, np.power(10,0.4*Alam))
-
-
-errors = errors / fluxes[2]
-fluxes = fluxes / fluxes[2]
-'''
 
 
 
