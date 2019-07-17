@@ -158,7 +158,7 @@ if __name__ == '__main__':
 
         lines_use = []
         for l, (line, izi_line, line_wav) in enumerate(lines):
-            haslines = np.array(haslines.split(' '))
+            haslines = np.array(haslines).split(' ')
             gd = where(line == haslines)[0]
             if len(gd) > 0:
                 lines_use.append((line, izi_line))
