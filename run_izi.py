@@ -1,4 +1,4 @@
-#!/home/rsimons/miniconda2/envs/grizli/bin/python
+#!/home/rsimons/miniconda2/python
 import pidly
 from calzetti import k as calk
 import numpy as np
