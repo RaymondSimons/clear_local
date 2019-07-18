@@ -20,6 +20,18 @@ cat_fls = glob(cat_dir + '/grizli_v2.1_cats/*_lines_grizli.fits')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 f_R23   = open(cat_dir + '/sample_cats/R23_sample.cat', 'w+')
 f_R2    = open(cat_dir + '/sample_cats/R2_sample.cat', 'w+')
 f_R3    = open(cat_dir + '/sample_cats/R3_sample.cat', 'w+')
@@ -32,6 +44,7 @@ f_O3S2  = open(cat_dir + '/sample_cats/O3S2_sample.cat', 'w+')
 f_HaHb  = open(cat_dir + '/sample_cats/HaHb_sample.cat', 'w+')
 f_any   = open(cat_dir + '/sample_cats/any_sample.cat', 'w+')
 
+f_any.write('#these objects have two of the three at 5sigma: [OII], [OIII], Hb\n')
 
 tot_R23    = 0
 tot_R2     = 0
@@ -109,8 +122,7 @@ for c, cat_fl in enumerate(cat_fls):
     good_O3S2  = where(bw_good_O3S2 )[0]
     good_HaHb  = where(bw_good_HaHb )[0]
 
-    good_any = unique(concatenate((good_R23,  
-                                  good_R2,   
+    good_any = unique(concatenate((good_R2,   
                                   good_R3,   
                                   good_O32)))
 
@@ -156,7 +168,7 @@ for c, cat_fl in enumerate(cat_fls):
 
 
     field = cat_fl.split('/')[-1].strip('lines_grizli.fits')
-    print field
+    print (field)
 
     print ('\tR23  :'), len(good_R23  )
     print ('\tR2   :'), len(good_R2   )
@@ -221,9 +233,7 @@ f_O2.close()
 f_Ne3O2.close()
 f_O3S2.close()  
 f_HaHb.close()  
-
-
-
+f_any.close()
 
 
 
