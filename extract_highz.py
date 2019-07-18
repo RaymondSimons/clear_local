@@ -197,9 +197,10 @@ class Pointing():
             #self.radec_catalog = PATH_TO_CATS + '/goodsN_radec.cat'
             self.radec_catalog = PATH_TO_CATS + '/gdn_radec_f140_14_24.cat'
             
-            self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
-            self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
-
+            #self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
+            #self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
+            self.seg_map = PATH_TO_CATS + '/Goods_N_plus_unmatched_seg.fits'
+            self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus_wunmatched.cat'
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
 
             #self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodsn_3dhst.v4.4', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
@@ -231,8 +232,11 @@ class Pointing():
             #self.radec_catalog = '../Catalogs/goodsS_radec.cat'
             #self.radec_catalog = PATH_TO_CATS + '/goodsS_radec.cat'
             self.radec_catalog = PATH_TO_CATS + '/gds_radec_f140_14_24.cat'
-            self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_seg.fits'
-            self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
+            #self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_seg.fits'
+            #self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
+            self.seg_map = PATH_TO_CATS + '/Goods_S_plus_unmatched_seg.fits'
+            self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus_wunmatched.cat'
+
             self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits' 
 
             #self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodss_3dhst.v4.3', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
@@ -598,8 +602,8 @@ if __name__ == '__main__':
         mags = cat_[1]
 
 
-        nums = np.array([39811])
-        mags = np.array([28])
+        #nums = np.array([39811])
+        #mags = np.array([28])
 
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
