@@ -554,10 +554,14 @@ if __name__ == '__main__':
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
                            run = model_bool, new_model = False, mag_lim = mag_lim)
 
-        grizli_beams(grp, id = id_choose, min_id = 0., 
-                    mag = 30, 
-                    field = field, 
-                    mag_lim = np.inf, mag_lim_lower = -99)
+        if 'S' in field: cat = ascii.read('/user/rsimons/grizli_extractions/Catalogs/z67_in_CLEAR_GS_unmatched_Finkelstein.txt')
+        if 'N' in field: cat = ascii.read('/user/rsimons/grizli_extractions/Catalogs/z67_in_CLEAR_GN_unmatched_Finkelstein.txt')
+
+        for id_choose in cat['col1']:
+            grizli_beams(grp, id = id_choose, min_id = 0., 
+                        mag = 30, 
+                        field = field, 
+                        mag_lim = np.inf, mag_lim_lower = -99)
         #Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_beams)(grp, id = id, min_id = fit_min_id, mag = mag, field = field, 
         #                                                                       mag_lim = mag_lim, mag_lim_lower = mag_max)
         #                                                                       for id, mag in zip(np.array(grp.catalog['NUMBER']), np.array(grp.catalog['MAG_AUTO'])))
