@@ -4,17 +4,20 @@ from astropy.io import fits, ascii
 from astropy.coordinates import SkyCoord 
 import astropy.units as u
 import matplotlib as mpl
+from astropy.cosmology import Planck15 as cosmo
 import matplotlib.pyplot as plt
 from numpy import *
 import glob
 from glob import glob
+plt.rcParams['xtick.labelsize']=14
+plt.rcParams['ytick.labelsize']=14
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
-
+mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
 cat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/z_r_O32.cat',dtype = 'str')
-fls = glob('/Users/rsimons/Desktop/clear/z_radius_new/*npy')
+fls = glob('/Users/rsimons/Desktop/clear/izi_metal_profiles/fits/*npy')
 
 
 
@@ -30,104 +33,204 @@ swinbank_cat = np.loadtxt('/Users/rsimons/Dropbox/rcs_clear/catalogs/swinbank12.
 #GN3_physcat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/GN3_physcat.cat')
 
 
-gs_fout = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodss_3dhst.v4.1.fout.FITS')
-gn_fout = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.1.fout.FITS')
+#gs_fout = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodss_3dhst.v4.4.fout.FITS')
+#gn_fout = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.4.fout.FITS')
 
 
-gn_cat = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.1.cats/Catalog/goodsn_3dhst.v4.1.cat.FITS')
-gs_cat = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodss_3dhst.v4.1.cats/Catalog/goodss_3dhst.v4.1.cat.FITS')
+#gn_cat = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.4.cats/Catalog/goodsn_3dhst.v4.4.cat.FITS')
+#gs_cat = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodss_3dhst.v4.4.cats/Catalog/goodss_3dhst.v4.4.cat.FITS')
+count_all = 0
+count_flat = 0
+count_falling = 0
+count_rising = 0
+
+if False:
+    gn_cat = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodsn_3dhst.v4.4.zout.fits')
+    gs_cat = fits.open('/Users/rsimons/Desktop/clear/Catalogs/goodss_3dhst.v4.4.zout.fits')
+
+    x_gds = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/clear_gdsxray.dat')
+    x_gdn = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/clear_gdnxray.dat')
+
+    gf_gds = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/allfields/goodss/goodss_3dhst.v4.1_f160w.galfit')
+    gf_gdn = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/allfields/goodsn/goodsn_3dhst.v4.1_f160w.galfit')
 
 
-x_gds = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/xray_GDS.txt')
-x_gdn = ascii.read('/Users/rsimons/Desktop/clear/Catalogs/xray_GDN.txt')
+re_arr = []
+ms_arr = []
+
+fit_types = array(['', '_S', '_EC', '_S_EC'])
 
 
 if True:
-    with PdfPages('/Users/rsimons/Desktop/clear/figures/z_radius_R3.pdf') as pdf:
+    for ft, fit_type in enumerate(fit_types):
+        with PdfPages('/Users/rsimons/Desktop/clear/figures/izi_z_radius%s.pdf'%fit_type) as pdf:
+            ms = 5
+            fig, ax = plt.subplots(1,1, figsize = (9, 4))
+            if False:
+                ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', ms = ms,color = 'blue', label = 'Wang+ 17', zorder = 1)
+                ax.errorbar(wang18_cat[:,3], wang18_cat[:,1], yerr =wang18_cat[:,2], fmt = 'o',  ms = ms,color = 'darkblue', label = 'Wang+ 18', zorder = 1)
+                ax.errorbar(jones_cat[:,0], jones_cat[:,1], yerr =jones_cat[:,2], fmt = 'o',  ms = ms,color = 'skyblue', label = 'Jones+ 13', zorder = 1)
+                ax.errorbar(swinbank_cat[:,0], swinbank_cat[:,1], yerr =swinbank_cat[:,2],  ms = ms,fmt = 'o', color = 'darkgreen', label = 'Swinbank+ 12', zorder = 1)
+                ax.errorbar(log10(ma_cat[:,1]), ma_cat[:,7], yerr =ma_cat[:,8], fmt = 's',  ms = ms,markeredgecolor = 'black', markerfacecolor = "None", color = 'black', label = 'Ma+ 17; simulations', zorder = 1)
+                wuyts_x = linspace(10.0, 11.5, 100)
+                wuyts_y = -0.017*(wuyts_x - 10) + 0.0
+                ax.errorbar(-99, -1, yerr = 1., fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 6, alpha = 1.0, label = 'Simons+ in prep')
+
+                ax.plot(wuyts_x, wuyts_y, '--', linewidth = 3, color = 'midnightblue', label = 'Wuyts+ 16', zorder = 1)
+
+            ax.axhline(y = 0, linestyle = '-', color = 'grey', alpha = 0.4, linewidth = 2, zorder = 0)
+
+            to_pl = []
+            for fl in fls:
+
+                fld = fl.split('/')[-1].split('_')[0]
+                di = fl.split('/')[-1].split('_')[1]
+                if 'N'   in fld: 
+                    ct = gn_cat
+                    xcat = x_gdn
+                    gcat = gf_gdn
+                elif 'S' in fld: 
+                    ct = gs_cat
+                    xcat = x_gds
+                    gcat = gf_gds
+                match_cat = where(int(di) == ct[1].data['id'])[0][0]
+                match_xcat = where(int(di) == xcat['ID'])[0]
+                match_gcat = where(int(di) == gcat['NUMBER'])[0]
+
+                if len(match_xcat) > 0: match_xcat = match_xcat[0]
+                xclass = xcat['Xclass'][match_xcat]
+                ra_c = ct[1].data['ra'][match_cat]
+                dec_c = ct[1].data['dec'][match_cat]
+
+
+                z = ct[1].data['z500'][match_cat]
+                re = gcat['re'][match_cat]
+
+                re_kpc = re/cosmo.arcsec_per_kpc_proper(z).value 
+                mrker = 'o'
+                mstar = np.log10(ct[1].data['mass'][match_cat])
+
+
+                ft = np.load(fl, allow_pickle = True)[()]
+                if xclass != 'AGN':
+                    kpc_per_pix = 0.1 / cosmo.arcsec_per_kpc_proper(z).value 
+                    try: 
+                        crit1 = ft['p%s'%fit_type][0]/kpc_per_pix + 2*max(float(sqrt(ft['V%s'%fit_type][0,0])/kpc_per_pix), 0.03) < 0.0
+                        crit2 = ft['p%s'%fit_type][0]/kpc_per_pix - 2*max(float(sqrt(ft['V%s'%fit_type][0,0])/kpc_per_pix), 0.03) > 0.0
+                        if crit1 | crit2:
+                            pass
+                        else:
+                            count_flat+=1 
+
+                        alp = 1.0
+                        if False:
+                            if crit1:
+                                count_falling+=1
+                                alp = 1.0   
+                        if False:             
+                            if crit2:
+                                count_rising+=1
+                                alp = 1.0                    
+
+                        ax.errorbar(mstar, float(ft['p%s'%fit_type][0]/kpc_per_pix), yerr = float(sqrt(ft['V%s'%fit_type][0,0])/kpc_per_pix), fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 5, alpha = alp)
+                        #ax.errorbar(mstar, float(ft['p_S_EC'][0]/kpc_per_pix*re_kpc), yerr = 0., fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 5, alpha = alp)
+                        re_arr.append(ft['p%s'%fit_type][0]/kpc_per_pix*re_kpc)
+                        ms_arr.append(mstar)
+                        count_all+=1
+
+
+                    except: pass
+
+            #ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 112)', zorder = 10)
+            #ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
+            #ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
+            #ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
+            #ax.errorbar(10.75, 0.0055, xerr = 0.25, yerr = 0.008,  fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
+
+
+
+
+
+
+
+
+            ax.annotate(r'$0.7 < z < 2.0$', (0.55, 0.85), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
+            ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 20)
+            ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 20)
+            ax.legend(bbox_to_anchor=(1.0, 1.05), frameon = False, fontsize = 18)
+
+            ax.set_ylim(-0.33, 0.5)
+
+            ax.set_xlim(8.2, 11.5)
+
+            fig.subplots_adjust(bottom = 0.20, left = 0.15, right = 0.65, top = 0.95)
+            pdf.savefig()
+
+
+
+
+res = np.load('test.npy', allow_pickle = True)[()]
+re_arr = res['re_arr']
+ms_arr = res['mstar']
+
+
+
+
+
+if False:
+    with PdfPages('/Users/rsimons/Desktop/clear/figures/izi_z_effradius.pdf') as pdf:
         ms = 5
+
         fig, ax = plt.subplots(1,1, figsize = (9, 4))
-        ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', ms = ms,color = 'blue', label = 'Wang+ 17', zorder = 1)
-        ax.errorbar(wang18_cat[:,3], wang18_cat[:,1], yerr =wang18_cat[:,2], fmt = 'o',  ms = ms,color = 'darkblue', label = 'Wang+ 18', zorder = 1)
-        ax.errorbar(jones_cat[:,0], jones_cat[:,1], yerr =jones_cat[:,2], fmt = 'o',  ms = ms,color = 'skyblue', label = 'Jones+ 13', zorder = 1)
-        ax.errorbar(swinbank_cat[:,0], swinbank_cat[:,1], yerr =swinbank_cat[:,2],  ms = ms,fmt = 'o', color = 'darkgreen', label = 'Swinbank+ 12', zorder = 1)
-        ax.errorbar(log10(ma_cat[:,1]), ma_cat[:,7], yerr =ma_cat[:,8], fmt = 's',  ms = ms,markeredgecolor = 'black', markerfacecolor = "None", color = 'black', label = 'Ma+ 17; simulations', zorder = 1)
 
         ax.axhline(y = 0, linestyle = '-', color = 'grey', alpha = 0.4, linewidth = 2, zorder = 0)
 
-        wuyts_x = linspace(10.0, 11.5, 100)
-        wuyts_y = -0.017*(wuyts_x - 10) + 0.0
 
-        ax.plot(wuyts_x, wuyts_y, '--', linewidth = 3, color = 'midnightblue', label = 'Wuyts+ 16', zorder = 1)
-        to_pl = []
-        for fl in fls:
+        bins = np.arange(9, 10.50, 0.25)
 
-            fld = fl.split('/')[-1].split('_')[0]
-            di = fl.split('/')[-1].split('_')[1]
-            if 'N'   in fld: ct = gn_cat
-            elif 'S' in fld: ct = gs_cat
+        for b, bn in enumerate(bins):
+            gd = where((ms_arr > bn) & (ms_arr < bn+0.25) & (abs(re_arr) < 0.5))[0]
+            re_bin = re_arr[gd]
 
-            match_cat = where(int(di) == ct[1].data['id'])[0]
-            ra_c = ct[1].data['ra'][match_cat]
-            dec_c = ct[1].data['dec'][match_cat]
+            med = np.median(re_bin)
+            d = np.abs(re_bin - med)
+            mdev = np.median(d)
 
-            if 'N'   in fld: 
-                fout = gn_fout
-                xcat = x_gdn
-                deg_hms = SkyCoord(ra = ra_c * u.degree, dec = dec_c * u.degree)
-                dist = sqrt(((xcat['RAm'] * 60. + xcat['RAs']) - (deg_hms.ra.hms.m * 60. + deg_hms.ra.hms.s))**2. + ((xcat['DEm'] * 60. + xcat['DEs']) - (deg_hms.dec.dms.m * 60. + deg_hms.dec.dms.s))**2.)
-                tp = 'Type'
+            mean_mstar = bn + 0.25/2.
 
-            elif 'S' in fld: 
-                fout = gs_fout
-                xcat = x_gds
-                dist = sqrt((xcat['RAdeg'] - ra_c)**2. + (xcat['DEdeg'] - dec_c)**2.) * 3600.
-                tp = 'OType'
+            mrker = 'D'
+            alp = 1.0
 
+            med = np.mean(re_bin)
+            #mdev = np.std(re_bin)/np.sqrt(len(re_bin))
 
-            gd_xcat = argmin(dist)
-            
-        
-            if dist[gd_xcat] > 2.: xobj = 'none'
-            else: xobj = xcat[tp][gd_xcat]
+            print (med)
 
-            if xobj == 'AGN': mrker = '*'
-            elif xobj == 'none': mrker = 's'
-            elif xobj == 'Galaxy': mrker = 'o'
-            elif xobj == 'Star': mrker = 'D'
+            ax.errorbar(mean_mstar, med, yerr = mdev, fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 10., alpha = alp)
 
-            mrker = 'o'
-            mstar = fout[1].data['lmass'][fout[1].data['id'] == int(di)]
+        #eyeballed from figure 11
+        belfiore_re  = np.array([0.020, -0.04, -0.045, -0.08, -0.13, -0.14])
+        belfiore_ere = np.array([0.022, 0.01, 0.05, 0.05, 0.02, 0.02])
+        belfiore_mass = np.arange(9, 10.5, 0.25)
 
-            ft = np.load(fl, allow_pickle = True)[()]
-            fl_check = glob('/Users/rsimons/Desktop/clear/bad/*{}*{}*'.format(fld, di))
-            if (len(ft['z']) > 8.) & ((xobj == 'Galaxy') | (xobj == 'none')) & (len(fl_check) == 0):
-                ax.errorbar(mstar, float(ft['p'][0]), yerr = float(sqrt(ft['V'][0,0])), fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 5, alpha = 1.0)
+        ax.errorbar(belfiore_mass, belfiore_re, yerr = belfiore_ere, fmt = mrker, color = 'black',  markeredgecolor = 'black', ms = 10., alpha = alp)
 
-        ax.errorbar(-99, -1, yerr = 1., fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 6, alpha = 1.0, label = 'CLEAR, (N = 89)')
-
-        #ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 112)', zorder = 10)
-        #ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
-        #ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
-        #ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
-        #ax.errorbar(10.75, 0.0055, xerr = 0.25, yerr = 0.008,  fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
-
-
-
-
-
-
-
-
-        ax.annotate(r'$0.7 < z < 2.0$', (0.55, 0.85), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
+        #ax.annotate(r'$0.7 < z < 2.0$', (0.55, 0.85), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
         ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 20)
-        ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 20)
+        ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex R$_{\text{eff}}$$^{-1}$)', rotation = 90, fontsize = 20)
         ax.legend(bbox_to_anchor=(1.0, 1.05), frameon = False, fontsize = 18)
 
-        ax.set_ylim(-0.33, 0.5)
-        ax.set_xlim(8.0, 11.5)
+        ax.set_ylim(-0.2, 0.15)
+        ax.set_xlim(8.7, 10.8)
+
+        ax.set_xticks(arange(9, 11, 0.5))
+        ax.set_yticks(arange(-0.2, 0.2, 0.1))
 
         fig.subplots_adjust(bottom = 0.20, left = 0.15, right = 0.65, top = 0.95)
         pdf.savefig()
+
+
+
 
 
 if False:
