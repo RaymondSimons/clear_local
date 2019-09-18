@@ -10,7 +10,7 @@ fig, ax = plt.subplots(1,1,figsize = (7,7))
 
 
 
-trimmed = False
+trimmed = True
 do_min = True
 if trimmed: figname = 'G102_G141_lines_trimmed.png'
 else: figname = 'G102_G141_lines.png'
@@ -53,7 +53,8 @@ if trimmed:
 	lines = [('[OII]-3727,3729' 	, 3727.092),
 			(r'H$\beta$-4862' 			, 4862.71),
 			('[OIII]-4960,5008' 	, 5008.24),
-			(r'H$\alpha$ + [NII]-6563' 			, 6564.61)]
+			(r'H$\alpha$ + [NII]-6563' 			, 6564.61),
+			('[SII]-6718,6732' 	, 6718.29)]
 
 
 
@@ -109,9 +110,9 @@ if do_min:
 	ytick_labels = []
 	yticks = []
 	for l, line in enumerate(lines):
-		if ('OII-3727,3729' in line[0]) | (r'H$\alpha$' in line[0]) | ('OIII-4960,5008' in line[0]) | (r'H$\beta$-4862' in line[0]) | (r'SII-6718' in line[0]):
-			ytick_labels.append('{:>12}'.format(line[0].split('-')[0]))
-			yticks.append(l)
+		#if ('OII-3727,3729' in line[0]) | (r'H$\alpha$' in line[0]) | ('OIII-4960,5008' in line[0]) | (r'H$\beta$-4862' in line[0]) | (r'SII-6718' in line[0]):
+		ytick_labels.append('{:>12}'.format(line[0].split('-')[0]))
+		yticks.append(l)
 	ytick_labels = np.array(ytick_labels)
 	yticks = np.array(yticks)
 
@@ -133,21 +134,21 @@ for f, filt in enumerate(filters_plot[::-1]):
 	ax.annotate(filt_name, (0.75, 0.1 + 0.1*f), xycoords = 'axes fraction', fontsize = 40, fontweight = 'bold', color = txt_color)
 
 	for l, line in enumerate(lines):
-		if ('OII-3727,3729' in line[0]) | (r'H$\alpha$' in line[0]) | ('OIII-4960,5008' in line[0]) | (r'H$\beta$-4862' in line[0]) | (r'SII-6718' in line[0]):
-			line_lam_rest = line[1]
-			z_min_filt = filt_lam0/line_lam_rest - 1.
-			z_max_filt = filt_lam1/line_lam_rest - 1.
-			xmn = log10((1+z_min_filt))
-			xmx = log10((1+z_max_filt))
-			ymn = (l + 0.5)/(len(lines)+1)
-			ymx = (l + 1.5)/(len(lines)+1)
+		#if ('OII-3727,3729' in line[0]) | (r'H$\alpha$' in line[0]) | ('OIII-4960,5008' in line[0]) | (r'H$\beta$-4862' in line[0]) | (r'SII-6718' in line[0]):
+		line_lam_rest = line[1]
+		z_min_filt = filt_lam0/line_lam_rest - 1.
+		z_max_filt = filt_lam1/line_lam_rest - 1.
+		xmn = log10((1+z_min_filt))
+		xmx = log10((1+z_max_filt))
+		ymn = (l + 0.5)/(len(lines)+1)
+		ymx = (l + 1.5)/(len(lines)+1)
 
 
-			if trimmed: fs = 12
-			else: fs = 8
-			if trimmed:ax.annotate('{:>12} \AA'.format(line[0].split('-')[1]), (-0.01, ymn+0.03), ha = 'right', va = 'center', xycoords = 'axes fraction', fontsize = fs, color = 'grey')
-			else: ax.annotate('{:>12}'.format(line[0].split('-')[1]), (-0.12, np.mean([ymn, ymx])), ha = 'right', va = 'center', xycoords = 'axes fraction', fontsize = fs, color = 'grey')
-			ax.axvspan(xmin = xmn, xmax = xmx, ymin = ymn, ymax = ymx, facecolor = txt_color, edgecolor = 'black', linewidth = 3)
+		if trimmed: fs = 12
+		else: fs = 8
+		if trimmed:ax.annotate('{:>12} \AA'.format(line[0].split('-')[1]), (-0.01, ymn+0.03), ha = 'right', va = 'center', xycoords = 'axes fraction', fontsize = fs, color = 'grey')
+		else: ax.annotate('{:>12}'.format(line[0].split('-')[1]), (-0.12, np.mean([ymn, ymx])), ha = 'right', va = 'center', xycoords = 'axes fraction', fontsize = fs, color = 'grey')
+		ax.axvspan(xmin = xmn, xmax = xmx, ymin = ymn, ymax = ymx, facecolor = txt_color, edgecolor = 'black', linewidth = 3)
 
 
 for fo, filt_o in enumerate(filters_overlap):
@@ -156,17 +157,18 @@ for fo, filt_o in enumerate(filters_overlap):
 	txt_color = filt_o[2]
 
 	for l, line in enumerate(lines):
-		if ('OII-3727,3729' in line[0]) | (r'H$\alpha$' in line[0]) | ('OIII-4960,5008' in line[0]) | (r'H$\beta$-4862' in line[0]) | (r'SII-6718' in line[0]):
-			line_lam_rest = line[1]
-			z_min_filt = filt_lam0/line_lam_rest - 1.
-			z_max_filt = filt_lam1/line_lam_rest - 1.
-			xmn = log10(z_min_filt + 1)
-			xmx = log10(z_max_filt + 1)
-			ymn = (l + 0.50)/(len(lines)+1)
-			ymx = (l + 1.0)/(len(lines)+1)
-			ax.axvspan(xmin = xmn, xmax = xmx, ymin = ymn, ymax = ymx, facecolor = txt_color, edgecolor = 'black', linewidth = 3)
-			#This line is for cosmetics and is the most likely to break if the numb er of lines used changes
-			ax.axvspan(xmin = xmx-0.01, xmax = xmx + 0.1, ymin = ymn+0.003, ymax = ymx-0.004, facecolor = txt_color, edgecolor = None, linewidth = 0)
+		#if ('OII-3727,3729' in line[0]) | (r'H$\alpha$' in line[0]) | ('OIII-4960,5008' in line[0]) | (r'H$\beta$-4862' in line[0]) | (r'SII-6718,6732' in line[0]):
+		line_lam_rest = line[1]
+		print (line)
+		z_min_filt = filt_lam0/line_lam_rest - 1.
+		z_max_filt = filt_lam1/line_lam_rest - 1.
+		xmn = log10(z_min_filt + 1)
+		xmx = log10(z_max_filt + 1)
+		ymn = (l + 0.50)/(len(lines)+1)
+		ymx = (l + 1.0)/(len(lines)+1)
+		ax.axvspan(xmin = xmn, xmax = xmx, ymin = ymn, ymax = ymx, facecolor = txt_color, edgecolor = 'black', linewidth = 3)
+		#This line is for cosmetics and is the most likely to break if the numb er of lines used changes
+		ax.axvspan(xmin = xmx-0.01, xmax = xmx + 0.1, ymin = ymn+0.003, ymax = ymx-0.004, facecolor = txt_color, edgecolor = None, linewidth = 0)
 
 
 
