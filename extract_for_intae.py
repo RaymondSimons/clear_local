@@ -8,8 +8,14 @@ import os
 import glob
 from glob import glob
 from joblib import Parallel, delayed
+from astropy.io import ascii, fits
+import numpy as np
+from numpy import *
+import matplotlib.pyplot as plt
+plt.ioff()
 
 
+PATH_TO_CATS = '/Volumes/pegasus/clear/grizli_extractions/Catalogs'
 
 class Pointing():
     def __init__(self, field, ref_filter):
@@ -69,7 +75,6 @@ class Pointing():
 
 
 def run_all(field):
-    field = 'GS5'
     HOME_PATH = '/Volumes/pegasus/clear/grizli_extractions/%s'%field
     PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
     PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep_z67')[0]
@@ -123,11 +128,28 @@ def run_all(field):
         seg_file = p.seg_map,
         catalog  = p.catalog,
         pad=p.pad,
-        cpu_count=16)
+        cpu_count=1)
 
-    for g in arange(len(grp.FLTs)):
-        grp.FLTs[g].process_seg_file(p.seg_map)
-        
+
+    if False:
+        #Rewrite GrismFLT files to blot new targets (we only need to do this once)
+        def rewrite_flt(FLT, p):
+            FLT.process_seg_file(p.seg_map)
+            FLT.save_full_pickle()
+
+        Parallel(n_jobs = -1, backend = 'threading')(delayed(rewrite_flt) (FLT = grp.FLTs[g], p = p) for g in arange(len(grp.FLTs)))
+
+
+        grp = GroupFLT(
+            grism_files=all_grism_files, 
+            direct_files=[], 
+            ref_file = p.ref_image,
+            seg_file = p.seg_map,
+            catalog  = p.catalog,
+            pad=p.pad,
+            cpu_count=1)
+
+
 
 
 
@@ -140,6 +162,7 @@ def run_all(field):
         if beams != []:
             mb = grizli.multifit.MultiBeam(beams, fcontam=fcontam, group_name=field)
             mb.write_master_fits()            
+
 
 
     for id in dis_matched['ID_Finkelstein']:
@@ -171,8 +194,8 @@ def run_all(field):
 
 
 
+    def do_fit(id, field, templ0, templ1, fcontam = 0.2):
 
-    for id in dis_unmatched['ID_Finkelstein']:
         if os.path.isfile(field + '_' + '%.5i.beams.fits'%id):
 
             mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
@@ -189,8 +212,10 @@ def run_all(field):
             # Save drizzled ("stacked") 2D trace as PNG and FITS
             fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
             hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
-            phot = None
-            '''
+
+            pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+
+
             out = grizli.fitting.run_all(
                 id, 
                 t0=templ0, 
@@ -210,13 +235,18 @@ def run_all(field):
                 root=field,
                 fit_trace_shift=False,  
                 bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
-                phot=phot, 
+                phot=None, 
                 verbose=True, 
                 scale_photometry=0, 
                 show_beams=True,
                 use_psf = True)          #default: False
-            '''
 
+    Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_unmatched['ID_Finkelstein'])
+    Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in matched['ID_Finkelstein'])
+
+
+
+    os.chdir('/Users/rsimons/Desktop/git/clear_local')
 
 
 
@@ -235,11 +265,12 @@ if __name__ == '__main__':
             'ERSPRIME']
 
 
-    fields = ['GN1']
+    #fields = ['GN1']
 
-    Parallel(n_jobs = -1, backend = 'threading')(delayed(run_all) (field = field) for field in fields)
+    #Parallel(n_jobs = -1, backend = 'threading')(delayed(run_all) (field = field) for field in fields)
 
-
+    
+    for field in fields: run_all(field)
 
 
 
