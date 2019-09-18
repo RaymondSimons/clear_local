@@ -199,6 +199,7 @@ class Pointing():
             
             self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_seg.fits'
             self.catalog =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sub_plus.cat'
+            #self.catalog = PATH_TO_CATS + '/goodsn-v4.4-withunmatched.cat'
 
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
 
@@ -233,6 +234,8 @@ class Pointing():
             self.radec_catalog = PATH_TO_CATS + '/gds_radec_f140_14_24.cat'
             self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_seg.fits'
             self.catalog =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sub_plus.cat'
+            #self.catalog = PATH_TO_CATS + '/goodss-v4.4-withunmatched.cat'
+
             self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits' 
 
             #self.tempfilt, self.coeffs, self.temp_sed, self.pz = readEazyBinary(MAIN_OUTPUT_FILE='goodss_3dhst.v4.3', OUTPUT_DIRECTORY=PATH_TO_CATS, CACHE_FILE='Same')
