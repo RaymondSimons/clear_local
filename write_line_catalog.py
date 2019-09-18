@@ -35,7 +35,7 @@ def write_catalog(field):
     fluxs = zeros((len(lines),2, len(fls))) - 99.
     exptime = zeros((2, len(fls)))
 
-    zs = zeros((5, len(fls))) - 99.
+    zs = zeros((7, len(fls))) - 99.
     IDs = []
     ras = []
     decs = []
@@ -73,6 +73,9 @@ def write_catalog(field):
             zs[2, f] = a[1].header['Z16']
             zs[3, f] = a[1].header['Z84']
             zs[4, f] = a[1].header['Z97']
+            zs[5, f] = a[1].header['Z_MAP']
+            zs[6, f] = a[1].header['Z_RISK']
+
 
             for l, ln in enumerate(lines_f):
                 flux_ln =  a[0].header['FLUX%.3i'%(l+1)]
@@ -100,7 +103,13 @@ def write_catalog(field):
     fits.Column(name='z_02',format = 'D', array=zs[1,:]),
     fits.Column(name='z_16',format = 'D', array=zs[2,:]),
     fits.Column(name='z_84',format = 'D', array=zs[3,:]),
-    fits.Column(name='z_97',format = 'D', array=zs[4,:])]
+    fits.Column(name='z_97',format = 'D', array=zs[4,:]),
+    fits.Column(name='z_MAP',format = 'D', array=zs[5,:]),
+    fits.Column(name='z_RISK',format = 'D', array=zs[6,:])]
+
+
+
+
     for ll, line in enumerate(lines):
         col_list.append(fits.Column(name='%s_FLUX'%line,format = 'D', array=fluxs[ll,0,:]))
         col_list.append(fits.Column(name='%s_FLUX_ERR'%line,format = 'D', array=fluxs[ll,1,:]))
