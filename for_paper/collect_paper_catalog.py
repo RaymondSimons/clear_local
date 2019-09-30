@@ -40,7 +40,7 @@ whitaker_gdn = np.loadtxt('/Users/rsimons/Desktop/clear/catalogs/sfr_3dhst.v4.1/
 f = open('/Users/rsimons/Desktop/clear/catalogs/simons_sample.cat', 'w+')
 
 
-f.write('# field id ra dec z_02 z_16 z_50 z_84 z_97 z_map z_risk sfr_w sfr_w_ir sfr_w_uv sfr lmass z025_eazy z160_eazy z500_eazy z840_eazy z975_eazy mass_eazy sfr_eazy Av_eazy pa_125 dpa_125 q_125 dq_125 n_125 dn_125 re_125 dre_125 pa_160 dpa_160 q_160 dq_160 n_160 dn_160 re_160 dre_160 xclass\n')
+f.write('# field id ra dec z_02 z_16 z_50 z_84 z_97 z_map z_risk sfr_w sfr_w_ir sfr_w_uv sfr_eazy mass_eazy Av_eazy  z025_eazy z160_eazy z500_eazy z840_eazy z975_eazy pa_125 dpa_125 q_125 dq_125 n_125 dn_125 re_125 dre_125 pa_160 dpa_160 q_160 dq_160 n_160 dn_160 re_160 dre_160 xclass\n')
 
 
 for o, obj in enumerate(sample_cat):
@@ -88,8 +88,8 @@ for o, obj in enumerate(sample_cat):
         z500   = float(eazy_zout['z500'])
         z840   = float(eazy_zout['z840'])
         z975   = float(eazy_zout['z975'])
-        mass_eazy  = float(eazy_zout['mass'])
-        sfr_eazy   = float(log10(eazy_zout['sfr']))
+        mass_eazy  = np.log10(float(eazy_zout['mass']))
+        sfr_eazy   = float((eazy_zout['sfr']))
         Av_eazy    = float(eazy_zout['Av'])
 
 
@@ -159,14 +159,14 @@ for o, obj in enumerate(sample_cat):
     f.write('%8s  %i  %.7f  %.7f  \
              %.5f  %.5f  %.5f  %.5f  %.5f  %.5f  %.5f  \
              %.5f  %.5f  %.5f  \
-             %.5f  %.5f  \
+             %.5f  %.5f  %.5f  \
              %.5f  %.5f  %.5f  %.5f  %.5f  \
              %.3f  %.3f  %.3f  %.3f  %.3f  %.3f  %.3f  %.3f  %.3f  %.3f  %.3f  %.3f \
              %.3f  %.3f  %.3f  %.3f  %s\n'\
              %(fld, di, ra, dec, \
                z_02, z_16, z_50, z_84, z_97, z_map, z_risk, \
                wsfr, wsfr_ir, wsfr_uv, \
-               sfr_eazy, mass_eazy,Av_eazy \
+               sfr_eazy, mass_eazy,Av_eazy, \
                z025,z160,z500,z840,z975,\
                pa_125, dpa_125, q_125, dq_125, n_125, dn_125, re_125, dre_125 , pa_160, dpa_160, q_160, \
                dq_160, n_160, dn_160, re_160, dre_160, xclass))
