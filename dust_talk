@@ -1,3 +1,0 @@
-if we have the Ha and Hb, you can get balmer decrement, then you can use Calzetti curve to get A_v. With A_v you can use Calzetti + Salmon+ 16 UV-blue power law extension to get dust corrected OII (or anything below 0.5 um)
-
-if we don't have Ha and Hb, we can use Av maps from Alex or A(Ha) maps from Erica Nelson+ 16, Wang+ 16, or A_V(r) from Tachella+ 18 with careful attention to mass (Tacchella only for > 10^10.)

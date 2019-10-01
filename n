@@ -1,3 +1,0 @@
-z_spec versus z_grism
-
-colorcode by G102, G141, G102 + G141 coverage
