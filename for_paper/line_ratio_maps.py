@@ -9,6 +9,8 @@ import joblib
 from numpy import *
 from joblib import Parallel, delayed
 from scipy.stats import median_absolute_deviation
+from clear_local.utils import tools
+
 
 plt.close('all')
 plt.ioff()
@@ -59,35 +61,37 @@ def make_big_plot(lr):
 
 
 def save_stack(lr, mass_min = 7, mass_max = 13, do_all = False, typ = ''):
-    fls = glob('/Users/rsimons/Desktop/clear/maps/line_ratio_maps/*line_ratios.fits')
+    if do_all:
+        fls = glob('/Users/rsimons/Desktop/clear/maps/line_ratio_maps/*line_ratios.fits')
 
-    sample_cat = ascii.read('/Users/rsimons/Desktop/clear/catalogs/simons_sample.cat')
-    lmass = sample_cat['lmass'].data
-    flds  = sample_cat['field'].data
-    dis   = sample_cat['id'].data
-    xclass = sample_cat['xclass'].data
+        sample_cat = tools.load_paper_catalog()
+        lmass = sample_cat['lmass'].data
+        flds  = sample_cat['field'].data
+        dis   = sample_cat['id'].data
+        xclass = sample_cat['xclass'].data
 
-    stack_header = fits.Header()
-    cnt = 0
-    big_arr = np.nan*np.zeros((2, 40, 40, len(fls)))
-    for f, fl in enumerate(fls):
-        fld = fl.split('/')[-1].split('_')[0]
-        di = int(fl.split('/')[-1].split('_')[1])
-        where_cat = (flds == fld) & (dis == di)
-        lms = lmass[where_cat]
-        xcls = xclass[where_cat]
-        if (lms > mass_min) & (lms < mass_max):
-            lr_fits = fits.open(fl)
-            hdu_names = [hdu.name for hdu in lr_fits]
-            if '%s%s'%(lr, typ) in hdu_names:
-                non_nan = where(~np.isnan(lr_fits['%s%s'%(lr, typ)].data[:,:,:].ravel()))[0]
-                if (len(non_nan) > 0) & ('AGN' not in xcls):
-                    big_arr[:,:,:,f] = lr_fits['%s%s'%(lr, typ)].data[:,:,:]
-                    cnt+=1
-    stack_header['count'] = cnt
+        stack_header = fits.Header()
+        cnt = 0
+        big_arr = np.nan*np.zeros((2, 40, 40, len(fls)))
+        for f, fl in enumerate(fls):
+            fld = fl.split('/')[-1].split('_')[0]
+            di = int(fl.split('/')[-1].split('_')[1])
+            where_cat = (flds == fld) & (dis == di)
+            lms = lmass[where_cat]
+            xcls = xclass[where_cat]
+            if (lms > mass_min) & (lms < mass_max):
+                lr_fits = fits.open(fl)
+                hdu_names = [hdu.name for hdu in lr_fits]
+                if '%s%s'%(lr, typ) in hdu_names:
+                    non_nan = where(~np.isnan(lr_fits['%s%s'%(lr, typ)].data[:,:,:].ravel()))[0]
+                    if (len(non_nan) > 0) & ('AGN' not in xcls):
+                        big_arr[:,:,:,f] = lr_fits['%s%s'%(lr, typ)].data[:,:,:]
+                        cnt+=1
+        stack_header['count'] = cnt
 
-    fits.writeto('/Users/rsimons/Desktop/clear/maps/line_ratio_maps/all/%s_%.2f_%.2f%s.fits'%(lr, mass_min, mass_max, typ), big_arr, header = stack_header, overwrite = True)
+        fits.writeto('/Users/rsimons/Desktop/clear/maps/line_ratio_maps/all/%s_%.2f_%.2f%s.fits'%(lr, mass_min, mass_max, typ), big_arr, header = stack_header, overwrite = True)
 
+    big_arr = fits.open('/Users/rsimons/Desktop/clear/maps/line_ratio_maps/all/%s_%.2f_%.2f%s.fits'%(lr, mass_min, mass_max, typ))
 
     nx = big_arr.shape[1]
     ny = big_arr.shape[2]
@@ -131,6 +135,12 @@ def make_stacked_figure(lrs,mass_min = 7, mass_max = 13, typ = '', mm = 0, mm_ma
 
 
         axes.ravel()[l].imshow(stacked_map[0], interpolation = 'nearest', cmap = cmap, vmin = vmn, vmax = vmx)
+
+
+
+
+
+
 
         if mm == 0:
             axes.ravel()[l].annotate(lr, (0.05,0.98), va = 'top', ha = 'left',  xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = 50)
@@ -197,19 +207,22 @@ def stack_profile_plot(lr):
 
 
 
+dx = 0.50
+mass_arrs = [(xmn, xmn+dx) for xmn in arange(9, 11.5, dx)]
 
 
 lrs = ['O32', 'R2', 'R3', 'R23']
 typs =  ['', '_S', '_EC', '_S_EC']
 typs =  ['_EC', '_S_EC']
-#typs =  ['_S_EC']
+typs =  ['_S_EC']
 
 
 #Parallel(n_jobs = -1)(delayed(do_all_types)(typ) for typ in typs)
 #Parallel(n_jobs = -1)(delayed(stack_profile_plot)(lr) for lr in lrs)
+
+
+
 for typ in typs:
-    dx = 0.50
-    mass_arrs = [(xmn, xmn+dx) for xmn in arange(9, 11.5, dx)]
     Parallel(n_jobs = -1)(delayed(make_stacked_figure)(lrs, mass_min, mass_max, typ, mm, mm_max = len(mass_arrs)) for mm, (mass_min, mass_max) in enumerate(mass_arrs))
 
 

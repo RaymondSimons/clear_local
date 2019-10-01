@@ -16,7 +16,7 @@ plt.close('all')
 figdir = '/Users/rsimons/Desktop/clear/figures/izi_metal_maps/good_new'
 indir = '/Users/rsimons/Dropbox/rcs_clear/data/izi_metal_maps'
 
-izi_cat = np.loadtxt('/Users/rsimons/Desktop/clear/Catalogs/good_izi.cat', dtype = 'str')
+izi_cat = np.loadtxt('/Users/rsimons/Dropbox/clear/Catalogs/good_izi.cat', dtype = 'str')
 
 flds = izi_cat[:,0]
 dis = izi_cat[:,1]
