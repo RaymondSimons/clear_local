@@ -1,6 +1,0 @@
-run all with v4.3 3D-HST catalogs for including F105w + F098m photometry (F098m in GOODS-S only)
-
-- run with phot_scale = +0
-- run with phot_scale = +1
-- run with phot_scale = +2
-- run without photometry

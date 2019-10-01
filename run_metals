@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-PATH="${PATH}:/home/rsimons/miniconda2/envs/grizli/bin:/home/rsimons/miniconda2/bin"
-echo $PATH
-
-
