@@ -25,7 +25,7 @@ for field in fields:
         f.write('Universe = Vanilla\n')
         f.write('Priority = 19\n')
         f.write('getenv = true\n')
-        f.write('Executable = /home/rsimons/git/clear_local/run_izi.py\n')
+        f.write('Executable = /home/rsimons/git/clear_local/metallicity/run_izi.py\n')
         f.write('Arguments = %s %.5i\n'%(field, di))
         f.write('Log = /user/rsimons/submit_scripts/logs/$(Name)_$(Cluster).log\n')
         f.write('Error = /user/rsimons/submit_scripts/logs/$(Name)_$(Cluster)_error.log\n')

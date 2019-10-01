@@ -1,5 +1,5 @@
 import astropy
-from astropy.io import fits
+from astropy.io import fits, ascii
 from astropy.cosmology import Planck15 as cosmo
 import argparse
 import glob
@@ -10,42 +10,269 @@ import photutils
 from photutils import detect_sources
 import matplotlib
 import matplotlib.pyplot as plt
-
-
+import os
+from astropy.table import Table
+from joblib import Parallel, delayed
 
 
 plt.ioff()
 plt.close('all')
-def make_metal_profile(fl):
-    a = np.load(fl, allow_pickle = True)[()]
 
-    fit_types = array(['', '_S', '_EC', '_S_EC'])
 
-    fig = plt.figure(figsize = (8, 8))
-    nrows = 4
-    ncols = 3
+
+
+
+import astropy
+from astropy.io import fits, ascii
+import glob
+from glob import glob
+import numpy as np
+from numpy import *
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+import numpy.ma as ma
+import photutils
+from photutils import detect_sources
+plt.ioff()
+plt.close('all')
+
+
+def clean_metal_maps(fl):
+    mm_fits = fits.open(fl)
+
+    np.random.seed(1)
+
+    zmax = 0.5
+    figdir = '/Users/rsimons/Dropbox/clear/figures/metals/metal_maps'
+
+    lines = [('OII', 'oii3726;oii3729', 3727.),
+             ('OIII', 'oiii4959;oiii5007', 5007.),
+             ('Hb', 'hbeta', 4863.),
+             ('Ha', 'nii6548;halpha;nii6584', 6563.),
+             ('SII', 'sii6717;sii6731', 6725.)
+            ]
+
+    line_cnt = 0
+    for l, (line, izi_line, wave) in enumerate(lines):
+        try: im = mm_fits['%s'%line].data
+        except: continue
+        line_cnt+=1
+
+    nzcols = 8
+    nrows = line_cnt + nzcols
+    ncols = 4
+
+    fig = plt.figure(figsize = (8., 2.*nrows))
     res = {}
-    for ft, fit_type in enumerate(fit_types):
-        res['p{}'.format(fit_type)]  = np.nan 
-        res['V{}'.format(fit_type)]  = np.nan
-        res['r{}'.format(fit_type)]  = np.nan
-        res['Z{}'.format(fit_type)]  = np.nan
-        res['eZ{}'.format(fit_type)] = np.nan
 
-        ax_Z =  plt.subplot2grid((nrows, ncols), (ft, 0))
-        ax_p =  plt.subplot2grid((nrows, ncols), (ft, 1), colspan = 1)
-        ax_pf =  plt.subplot2grid((nrows, ncols), (ft, 2), colspan = 1)
+    for ft, fit_type in enumerate(fit_types):
+        ct = 0
+        dir_im = mm_fits['DSCI'].data[20:60, 20:60]
+        dir_seg = mm_fits['SEG'].data[20:60, 20:60]
+
+
+        Zax1 = plt.subplot2grid((nrows, ncols), (0, ft))
+        Zax2 = plt.subplot2grid((nrows, ncols), (1, ft))
+        Zax3 = plt.subplot2grid((nrows, ncols), (2, ft))
+        Zax4 = plt.subplot2grid((nrows, ncols), (3, ft))
+        Zax5 = plt.subplot2grid((nrows, ncols), (4, ft))
+        Zax6 = plt.subplot2grid((nrows, ncols), (5, ft))
+        Dax1 = plt.subplot2grid((nrows, ncols), (6, ft))
+        Sax1 = plt.subplot2grid((nrows, ncols), (7, ft))
+
+        Zim = mm_fits['Z%s'%(fit_type)].data
+
+        Z_mode = Zim[:,:,0].copy()
+        Z_l68 = Zim[:,:,1]
+        Z_u68 = Zim[:,:,2]
+        Z_np = Zim[:,:,3]
+        Z_lerr = abs(Z_l68 - Z_mode)
+        Z_uerr = abs(Z_u68 - Z_mode)
+
+        try: 
+            flux_im =   mm_fits['%s%s'%('HB', fit_type)].data
+            flux_eim =  mm_fits['E%s%s'%('HB', fit_type)].data
+        except: 
+            flux_im =   mm_fits['%s%s'%('OII', fit_type)].data
+            flux_eim =  mm_fits['E%s%s'%('EOII', fit_type)].data
+
+
+        flux_clip = 3.
+
+
+        Z_modeforseg = Z_mode.copy()
+        Z_modeforseg[(Z_lerr > zmax) | (Z_uerr > zmax) | (flux_im/flux_eim < flux_clip) ] = np.nan
+
+        #Make segmentation map off of the Zmap
+        segm = detect_sources(Z_modeforseg, -99, npixels=5)
+        midx = 20
+        midy = 20
+
+        lbl_interest = array(segm.data)[int(midx), int(midy)]
+        if lbl_interest == 0:
+            small_box = array(segm.data)[int(midx - 1):int(midx +1), int(midy - 1):int(midy +1)].ravel() 
+            if len(small_box[small_box > 0]) > 0:  lbl_interest = min(small_box[small_box > 0])
+            else: lbl_interest = 99
+
+        di_seg = dir_seg[20,20]
+
+
+        Z_show = ma.masked_where((segm.data != lbl_interest) | (Z_lerr > zmax) | (Z_uerr > zmax) | (np.isnan(Z_mode)), Z_mode)
+        Z_seg = ma.masked_where((dir_seg != di_seg ) | (Z_lerr > zmax) | (Z_uerr > zmax) | (np.isnan(Z_mode)), Z_mode)
+        Z_both = ma.masked_where((dir_seg != di_seg ) | (segm.data != lbl_interest) | (Z_lerr > zmax) | (Z_uerr > zmax) | (flux_im/flux_eim < flux_clip) |  (np.isnan(Z_mode)), Z_mode)
+        eZl_both = ma.masked_where((dir_seg != di_seg ) | (segm.data != lbl_interest) | (Z_lerr > zmax) | (Z_uerr > zmax) | (flux_im/flux_eim < flux_clip)| (np.isnan(Z_mode)), Z_lerr)
+        eZu_both = ma.masked_where((dir_seg != di_seg ) | (segm.data != lbl_interest) | (Z_lerr > zmax) | (Z_uerr > zmax) | (flux_im/flux_eim < flux_clip)| (np.isnan(Z_mode)), Z_uerr)
+        Z_np_both = ma.masked_where((dir_seg != di_seg ) | (segm.data != lbl_interest) | (Z_lerr > zmax) | (Z_uerr > zmax) | (flux_im/flux_eim < flux_clip)| (np.isnan(Z_mode)), Z_np)
 
         cmap = plt.cm.viridis
         cmap.set_bad('k')
+        cmap_peaks = plt.cm.terrain
+        cmap_peaks.set_bad('k')
+
+        vmin = 7.8
+        vmax = 9.2
+
+        Zax1.imshow(Z_mode, cmap = cmap, vmin = vmin,  vmax = vmax)
+        Zax2.imshow(Z_lerr, cmap = cmap, vmin = 0.,    vmax = 0.5)
+        Zax3.imshow(Z_show, cmap = cmap, vmin = vmin,  vmax = vmax)
+        Zax4.imshow(Z_seg,  cmap = cmap, vmin = vmin,  vmax = vmax)
+
+        Zax5.imshow(Z_both,  cmap = cmap, vmin = vmin, vmax = vmax)
+        Zax6.imshow(Z_np_both,  cmap = cmap_peaks, vmin = 1, vmax = 2)
+
+
+
+
+        Dax1.imshow(dir_im,  cmap = 'Greys_r')
+        dir_seg_clip = dir_seg.copy()
+        dir_seg_clip[dir_seg_clip != di_seg ] = 0
+        Sax1.imshow(dir_seg_clip, cmap = 'Greys_r')
+
+        dir_im_seg = dir_im.copy()
+        dir_im_seg[dir_seg != di_seg] = 0.
+        midx, midy = photutils.centroid_2dg(dir_im_seg)
+
+        fs = 15
+        if ft == 0:
+            Zax1.annotate('Z',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+            Zax2.annotate('Z$_{err}$',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+            Zax3.annotate('Z$_{Z, seg}$',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+            Zax4.annotate('Z$_{dir, seg}$',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+            Zax5.annotate('Z$_{both, seg}$',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+            Zax6.annotate('Z$_{both, peaks}$',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+            Dax1.annotate('direct$_{F105W}$',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+            Sax1.annotate('seg$_{F105W}$',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+
+        fs = 8
+
+        if ft == 1: Zax1.annotate('smoothed',(0.1, 0.95),va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+        if ft == 2: Zax1.annotate('exctinction-corrected',(0.1, 0.95),va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+        if ft == 3: Zax1.annotate('smoothed\nexctinction-corrected',(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+
+
+
+
+        for ax in [Zax1, Zax2, Zax3, Zax4, Zax5,Zax6, Dax1, Sax1]:
+            ax.axis('off')
+            ax.set_xticklabels([''])
+            ax.set_yticklabels([''])
+            ax.plot(midx, midy, 'x', color = 'black')
+
+
+        x = (np.arange(0, shape(Z_both)[0]) - midx)
+        y = (np.arange(0, shape(Z_both)[1]) - midy)
+
+        xv, yv = np.meshgrid(x, y)
+        r = sqrt(xv**2. + yv**2.)
+
+
+        res['r{}'.format(fit_type)] = r
+        res['Z{}'.format(fit_type)] = Z_both
+        res['Npeaks{}'.format(fit_type)] = Z_np_both
+
+        res['elZ{}'.format(fit_type)] = eZl_both
+        res['euZ{}'.format(fit_type)] = eZu_both
+
+        res['midx{}'.format(fit_type)] = midx
+        res['midy{}'.format(fit_type)] = midy
+
+        for l, (line, izi_line, wave) in enumerate(lines):
+            try: im = mm_fits['%s%s'%(line, fit_type)].data
+            except: continue
+            ax = plt.subplot2grid((nrows, ncols), (ct+nzcols, ft))
+            ct+=1
+            ax.set_xticklabels([''])
+            ax.set_yticklabels([''])
+            ax.axis('off')
+            #if ft == 0: 
+            pl = ax.imshow(im, cmap = 'viridis')
+            #else: ax.imshow(im, cmap = 'viridis', vmin = pl.get_clim()[0], vmax = pl.get_clim()[1])
+
+            fs = 15
+            if ft == 0:
+                ax.annotate(  '%s'%(line),(0.1, 0.95), va = 'top', xycoords = 'axes fraction', color = 'white', fontweight = 'bold', fontsize = fs)
+
+
+
+    figname = figdir + '/' + fl.split('/')[-1].replace('fits', 'png')
+    print ('saving %s'%figname)
+    fig.tight_layout()
+    fig.savefig(figname)
+
+    plt.close('all')
+    return res
+
+def write_metal_profile(fld, di, fit_types):
+    indir = '/Users/rsimons/Dropbox/clear/products/metals/metal_maps'
+    fl = indir + '/{}_{}_metals.fits'.format(fld, di)
+    try:
+        res = clean_metal_maps(fl)
+        np.save('/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/{}_{}.npy'.format(fld, di), res)
+    except:
+        pass
+def fit_metal_profile(fld, di, fit_types):
+    fl = '/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/{}_{}.npy'.format(fld, di)
+    if not os.path.isfile(fl): return
+    a = np.load(fl, allow_pickle = True)[()]
+
+
+    fig = plt.figure(figsize = (10, 8))
+    nrows = 4
+    ncols = 4
+    res = {}
+    for ft, fit_type in enumerate(fit_types):
+        res['p{}'.format(fit_type)]  = np.array([np.nan, np.nan] )
+        res['V{}'.format(fit_type)]  = np.array([[np.nan, np.nan],[np.nan, np.nan]])
+        res['r{}'.format(fit_type)]  = np.array([np.nan, np.nan])
+        res['Z{}'.format(fit_type)]  = np.array([np.nan, np.nan])
+        res['eZ{}'.format(fit_type)] = np.array([np.nan, np.nan])
+
+        ax_Z =  plt.subplot2grid((nrows, ncols), (ft, 0))
+        ax_nP =  plt.subplot2grid((nrows, ncols), (ft, 1))
+        ax_p =  plt.subplot2grid((nrows, ncols), (ft, 2), colspan = 1)
+        ax_pf =  plt.subplot2grid((nrows, ncols), (ft, 3), colspan = 1)
+
+        if ft == 3:
+            ax_p.set_xlabel('distance from center (pix)')
+            ax_pf.set_xlabel('distance from center (pix)')
+        ax_p.set_ylabel(r'$\log$ (O/H) + 12')
+
+
+        cmap = plt.cm.viridis
+        cmap.set_bad('k')
+        cmap_peaks = plt.cm.terrain
+        cmap_peaks.set_bad('k')
 
         vmin = 7.8
         vmax = 9.2
 
         Zmap = a['Z{}'.format(fit_type)]
-        Npeaks = a['Npeaks{}'.format(fit_type)].ravel()
+        Npeaks_im = a['Npeaks{}'.format(fit_type)]
+        Npeaks = Npeaks_im.ravel()
 
         ax_Z.imshow(Zmap, cmap = cmap, vmin = vmin,  vmax = vmax)
+
+        ax_nP.imshow(Npeaks_im,  cmap = cmap_peaks, vmin = 1, vmax = 2)
 
         Zmap_mask = Zmap.mask
 
@@ -53,37 +280,24 @@ def make_metal_profile(fl):
         euZmap = a['euZ{}'.format(fit_type)]
 
         crit1 = (~Zmap_mask.ravel()) & (~isnan(Zmap.data.ravel()))
-        crit2 = Npeaks == 1
 
         r = a['r{}'.format(fit_type)].ravel()[crit1]
         Z = Zmap.data.ravel()[crit1]
         elZ = elZmap.data.ravel()[crit1]
         euZ = euZmap.data.ravel()[crit1]
 
-
+        elZ = array([max(eZ, 0.3) for eZ in elZ])
+        seuZ = array([max(eZ, 0.3) for eZ in euZ])
         ax_p.errorbar(r, Z, yerr = [elZ, euZ], linestyle = 'None', fmt = 'x', color = 'grey', alpha = 0.2)
 
-
-
-
-        r = a['r{}'.format(fit_type)].ravel()[(crit1) & (crit2)]
-        Z = Zmap.data.ravel()[(crit1) & (crit2)]
-        elZ = elZmap.data.ravel()[(crit1) & (crit2)]
-        euZ = euZmap.data.ravel()[(crit1) & (crit2)]
-
-
-
-
-        elZ = array([max(eZ, 0.2) for eZ in elZ])
-        seuZ = array([max(eZ, 0.2) for eZ in euZ])
-        ax_p.errorbar(r, Z, yerr = [elZ, euZ], linestyle = 'None', fmt = 'x', color = 'blue', alpha = 0.3)
 
         ax_p.set_ylim(6.9, 9.6)
 
 
+        for ax in [ax_Z, ax_nP]:
+            ax.plot(a['midx'], a['midy'], 'x', color = 'red')
+            ax.axis('off')
 
-
-        ax_Z.plot(a['midx'], a['midy'], 'x', color = 'white')
         if len(r) == 0: 
             ax_p.axis('off')
             ax_pf.axis('off')
@@ -91,49 +305,55 @@ def make_metal_profile(fl):
         if len(Z) > 5:
             outl = nanstd(Z)
 
-
             def reject_outliers(data_for_mdev, data, m = 2.):
                 d = np.abs(data_for_mdev - np.median(data_for_mdev))
                 mdev = np.median(d)
                 d2 = np.abs(data - np.median(data_for_mdev))
-
                 s = d2/mdev if mdev else 0.
-
                 return s<m
 
-            Z_outlier = Z[r < 4]
-            gd_tofit = reject_outliers(Z_outlier, Z)
+            def reject_by_number(Z_use, Z):
+                above_8 = len(where(Z_use > 8)[0])
+                below_8 = len(where(Z_use < 8)[0])
+
+ 
+                if above_8/(len(Z)) > 0.7: 
+                    gd = where(Z > 8)
+                elif below_8/(len(Z)) > 0.7:
+                    gd = where(Z < 8)
+                else:
+                    gd = []
+                return gd
+
+            #gd_tofit = reject_outliers(Z[r < 4], Z)
+            gd_tofit = reject_by_number(Z[r < 10], Z)
+
             r   = r  [gd_tofit]
             Z   = Z  [gd_tofit]
             elZ = elZ[gd_tofit]
             euZ = euZ[gd_tofit]
-            if len(Z) > 5.:
+
+            if len(Z) > 10.:
                 ax_p.errorbar(r, Z, yerr = [elZ, euZ], linestyle = 'None', fmt = 'o', color = 'blue', alpha = 1.0)
                 ax_pf.errorbar(r, Z, yerr = [elZ, euZ], linestyle = 'None', fmt = 'o', color = 'blue', alpha = 1.0)
 
                 ax_pf.set_xlim(ax_p.get_xlim())
                 if (max(r) - min(r) > 2) & (len(where(r < 4.)[0]) > 3.):
-
-
                     eZ = np.mean((elZ, euZ), axis= 0 )
-                    try:
-                        p, V = np.polyfit(r, Z, deg = 1., w = 1./(eZ**2.), cov = True)
-                        draws = np.random.multivariate_normal(p, V, size = 100)
-                        x = linspace(0, max(r) + 1., 100)
-                        res['p{}'.format(fit_type)]  = p
-                        res['V{}'.format(fit_type)]  = V
-                        res['r{}'.format(fit_type)]  = r
-                        res['Z{}'.format(fit_type)]  = Z
-                        res['eZ{}'.format(fit_type)] = eZ
+
+                    p, V = np.polyfit(r, Z, deg = 1., w = 1./(eZ**2.), cov = True)
+                    draws = np.random.multivariate_normal(p, V, size = 100)
+                    x = linspace(0, max(r) + 1., 100)
+                    res['p{}'.format(fit_type)]  = p
+                    res['V{}'.format(fit_type)]  = V
+                    res['r{}'.format(fit_type)]  = r
+                    res['Z{}'.format(fit_type)]  = Z
+                    res['eZ{}'.format(fit_type)] = eZ
+                    for d in draws:
+                        ax_pf.plot(x, x*d[0] + d[1], color = 'blue', alpha = 0.1)
 
 
-                        for d in draws:
-                            ax_pf.plot(x, x*d[0] + d[1], color = 'blue', alpha = 0.1)
-                    except:
-                        pass
 
-
-                    ax_Z.axis('off')
                     ylm_min = max(min(Z-elZ) - 0.2, 7.0)
                     ylm_max = min(max(Z+euZ) + 0.2, 9.5)
 
@@ -141,16 +361,12 @@ def make_metal_profile(fl):
                     ax_p.axhline(y = ylm_min, xmin = 0.8, xmax = 1.0, linestyle = '--', color = 'grey')
                     ax_p.axhline(y = ylm_max, xmin = 0.8, xmax = 1.0, linestyle = '--', color = 'grey')
 
-
-
-
-
-    figdir = '/Users/rsimons/Desktop/clear/figures/izi_metal_maps/metal_profiles'
+    figdir = '/Users/rsimons/Dropbox/clear/figures/metals/metal_profiles'
 
 
 
     npsavename = fl.split('/')[-1].replace('.npy', '_profile_fit.npy')
-    np.save('/Users/rsimons/Desktop/clear/izi_metal_profiles/fits/{}'.format(npsavename), res)
+    np.save('/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/fits/{}'.format(npsavename), res)
     figname = figdir + '/' + fl.split('/')[-1].replace('npy', 'png')
 
 
@@ -164,12 +380,62 @@ def make_metal_profile(fl):
 
 
 
-if __name__ == '__main__':
-    fls = glob('/Users/rsimons/Desktop/clear/izi_metal_profiles/*npy')
 
-    for f, fl in enumerate(fls):
-        #if '26739' in fl:
-        make_metal_profile(fl)
+
+if __name__ == '__main__':
+
+    izi_cat = ascii.read('/Users/rsimons/Dropbox/clear/catalogs/good_izi.cat', header_start = 0)
+    fit_types = array(['', '_S', '_EC', '_S_EC'])
+
+    izi_cat = izi_cat[:]
+    if True:        
+        for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])):
+            if (fld == 'GS4') & (di == 26087):
+                write_metal_profile(fld, di, fit_types)
+                fit_metal_profile(fld, di, fit_types)
+    if False:
+        Parallel(n_jobs = -1)(delayed(write_metal_profile)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
+        Parallel(n_jobs = -1)(delayed(fit_metal_profile)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))
+
+    #Write metal profile catalog
+    catalog_dic = {}
+    catalog_dic['field'] = []
+    catalog_dic['id'] = []
+
+    for fit_type in fit_types:
+        catalog_dic['m{}'.format(fit_type)] = []
+        catalog_dic['m{}_err'.format(fit_type)] = []
+        catalog_dic['b{}'.format(fit_type)] = []
+        catalog_dic['b{}_err'.format(fit_type)] = []
+
+    for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])):
+        fl = '/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/fits/{}_{}_profile_fit.npy'.format(fld, di)
+        if not os.path.isfile(fl): continue
+        res = np.load(fl, allow_pickle = True)[()]
+        catalog_dic['field'].append(fld)
+        catalog_dic['id'].append(di)
+        for fit_type in fit_types:
+            catalog_dic['m{}'.format(fit_type)].append(res['p{}'.format(fit_type)][0])
+            catalog_dic['m{}_err'.format(fit_type)].append(sqrt(res['V{}'.format(fit_type)][0,0]))
+            catalog_dic['b{}'.format(fit_type)].append(res['p{}'.format(fit_type)][1])
+            catalog_dic['b{}_err'.format(fit_type)].append(sqrt(res['V{}'.format(fit_type)][1,1]))
+
+    data= Table(catalog_dic)
+    ascii.write(catalog_dic, '/Users/rsimons/Dropbox/clear/catalogs/metal_profile_fits.cat', format = 'commented_header')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

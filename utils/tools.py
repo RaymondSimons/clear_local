@@ -1,8 +1,14 @@
-def load_paper_catalog(cat_name = 'simons_sample.cat', cat_dir = '/Users/rsimons/Desktop/clear/catalogs'):
+def load_paper_catalog(add_Z = True, cat_name = 'simons_sample.cat', cat_dir = '/Users/rsimons/Dropbox/clear/catalogs'):
     print ('Loading catalog from paper sample...')
     import astropy.io
     from astropy.io import ascii
-    cat = ascii.read(cat_dir + '/' + cat_name)
+    from astropy.table import join
+    cat_sample = ascii.read(cat_dir + '/' + cat_name)
+    if add_Z:
+        cat_Z = ascii.read(cat_dir + '/' + 'metal_profile_fits.cat')
+        cat = join(cat_sample, cat_Z)
+    else: cat = cat_sample
+
     return cat
 
 
