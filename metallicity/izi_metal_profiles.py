@@ -129,8 +129,8 @@ def clean_metal_maps(fl):
         cmap_peaks = plt.cm.terrain
         cmap_peaks.set_bad('k')
 
-        vmin = 7.8
-        vmax = 9.2
+        vmin = 7.5
+        vmax = 9.5
 
         Zax1.imshow(Z_mode, cmap = cmap, vmin = vmin,  vmax = vmax)
         Zax2.imshow(Z_lerr, cmap = cmap, vmin = 0.,    vmax = 0.5)
@@ -388,12 +388,12 @@ if __name__ == '__main__':
     fit_types = array(['', '_S', '_EC', '_S_EC'])
 
     izi_cat = izi_cat[:]
-    if True:        
+    if False:        
         for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])):
-            if (fld == 'GS4') & (di == 26087):
-                write_metal_profile(fld, di, fit_types)
+            if (fld == 'GS4') & (di == 26698):
+                #write_metal_profile(fld, di, fit_types)
                 fit_metal_profile(fld, di, fit_types)
-    if False:
+    if True:
         Parallel(n_jobs = -1)(delayed(write_metal_profile)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
         Parallel(n_jobs = -1)(delayed(fit_metal_profile)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))
 
