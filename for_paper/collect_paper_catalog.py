@@ -16,12 +16,13 @@ gfit_gdn_cat_125 = ascii.read('/Users/rsimons/Desktop/clear/catalogs/galfit_allf
 gfit_gdn_cat_160 = ascii.read('/Users/rsimons/Desktop/clear/catalogs/galfit_allfields/goodsn/goodsn_3dhst.v4.1_f160w.galfit')
 
 
-eazy_gdn_zout = fits.open('/Users/rsimons/Desktop/clear/catalogs/goodsn_3dhst.v4.4.cats/Eazy/goodsn_3dhst.v4.4.zout.fits')
-eazy_gdn_data = fits.open('/Users/rsimons/Desktop/clear/catalogs/goodsn_3dhst.v4.4.cats/Eazy/goodsn_3dhst.v4.4.data.fits')
+cat_v = 'v4.4'
+eazy_gdn_zout = fits.open('/Users/rsimons/Desktop/clear/catalogs/goodsn_3dhst.%s.cats/Eazy/goodsn_3dhst.%s.zout.fits'%(cat_v, cat_v))
+eazy_gdn_data = fits.open('/Users/rsimons/Desktop/clear/catalogs/goodsn_3dhst.%s.cats/Eazy/goodsn_3dhst.%s.data.fits'%(cat_v, cat_v))
 
 
-eazy_gds_zout = fits.open('/Users/rsimons/Desktop/clear/catalogs/goodss_3dhst.v4.4.cats/Eazy/goodss_3dhst.v4.4.zout.fits')
-eazy_gds_data = fits.open('/Users/rsimons/Desktop/clear/catalogs/goodss_3dhst.v4.4.cats/Eazy/goodss_3dhst.v4.4.data.fits')
+eazy_gds_zout = fits.open('/Users/rsimons/Desktop/clear/catalogs/goodss_3dhst.%s.cats/Eazy/goodss_3dhst.%s.zout.fits'%(cat_v, cat_v))
+eazy_gds_data = fits.open('/Users/rsimons/Desktop/clear/catalogs/goodss_3dhst.%s.cats/Eazy/goodss_3dhst.%s.data.fits'%(cat_v, cat_v))
 
 
 
@@ -37,7 +38,7 @@ whitaker_gdn = np.loadtxt('/Users/rsimons/Desktop/clear/catalogs/sfr_3dhst.v4.1/
 
 
 
-f = open('/Users/rsimons/Desktop/clear/catalogs/simons_sample.cat', 'w+')
+f = open('/Users/rsimons/Desktop/clear/catalogs/simons_sample_%s.cat'%cat_v, 'w+')
 
 
 f.write('# field id ra dec z_02 z_16 z_50 z_84 z_97 z_map z_risk sfr_w sfr_w_ir sfr_w_uv sfr_eazy mass_eazy Av_eazy  z025_eazy z160_eazy z500_eazy z840_eazy z975_eazy pa_125 dpa_125 q_125 dq_125 n_125 dn_125 re_125 dre_125 pa_160 dpa_160 q_160 dq_160 n_160 dn_160 re_160 dre_160 xclass\n')
