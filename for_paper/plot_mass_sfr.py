@@ -9,12 +9,13 @@ plt.close('all')
 
 
 if __name__ == '__main__':
-    cat      = tools.load_paper_catalog()
-    eazy_cat = tools.load_eazy_catalog()
+    cat_v = 'v4.5'
+    cat      = tools.load_paper_catalog(cat_version = cat_v)
+    eazy_cat = tools.load_eazy_catalog(cat_version = cat_v)
 
 
-    gd = np.where(abs(cat['z_50'] - cat['z500_eazy'])/cat['z_50'] < 0.3)
-
+    #gd = np.where(abs(cat['z_50'] - cat['z500_eazy'])/cat['z_50'] < np.inf)
+    gd = np.arange(len(cat['z_50']))
     lmass = cat['mass_eazy'][gd]
     
     #use whitaker's UV+IR SFR
@@ -110,7 +111,7 @@ if __name__ == '__main__':
     #axes[0].annotate('main\nsequence', (11.95, 12), ha = 'right', fontsize = 10)
 
     fig.tight_layout()
-    fig.savefig('/Users/rsimons/Desktop/clear/figures/for_paper/m_sfr.png', dpi = 300)
+    fig.savefig('/Users/rsimons/Desktop/clear/figures/for_paper/m_sfr_%s.png'%cat_v, dpi = 300)
 
 
 
