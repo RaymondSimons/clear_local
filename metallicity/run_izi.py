@@ -1,6 +1,6 @@
 #!/home/rsimons/miniconda2/bin/python
 import pidly
-from calzetti import k as calk
+from clear_local.caseys_izi_tools.calzetti import k as calk
 import numpy as np
 import os
 import time
@@ -11,7 +11,7 @@ import astropy
 from astropy.io import fits
 from astropy.table import Table
 from astropy.cosmology import Planck15 as cosmo
-from astropy.convolution import Gaussian2DKernel, convolve_fft, Box2DKernel
+from astropy.convolution import Gaussian1DKernel, Gaussian2DKernel, convolve_fft, Box2DKernel
 from astropy.stats import sigma_clip
 import importlib
 import photutils
@@ -27,7 +27,8 @@ from math import *
 from sys import argv
 from hri import hri
 
-def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav', 
+
+def izi(fluxes, errors, lines, logzprior = None, idl=None, dosave=False, savfile='res.sav', 
             grid=os.path.join(os.environ['IZI_DIR'],'grids','l09_high_csf_n1e2_6.0Myr.fits')) :
 
             #idl = pidly.IDL()
@@ -35,8 +36,8 @@ def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav',
             idl('fluxes = {0}'.format(np.array2string(fluxes, separator=',',max_line_width=1000)))
             idl('errors = {0}'.format(np.array2string(errors, separator=',',max_line_width=1000)))
             idl('lines = {0}'.format(np.array2string(lines, separator=',',max_line_width=1000)))
-
-            idl('res=izi(fluxes, errors, lines, NZ=100, gridfile="{0}")'.format(grid))
+            idl('logzprior = {0}'.format(np.array2string(logzprior, separator=',',max_line_width=1000)).replace('\n', ''))
+            idl('res=izi(fluxes, errors, lines, LOGZPRIOR = logzprior, NZ=100, gridfile="{0}")'.format(grid))
             if dosave :
                 idl('save, file="{0}", res'.format(savfile))
             res = idl.ev('res', use_cache=True)
@@ -44,6 +45,19 @@ def izi(fluxes, errors, lines, idl=None, dosave=False, savfile='res.sav',
 
 
 def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = True, smooth = True):
+    start_prior = 7
+    end_prior = 9.5
+    dZ = 0.05
+    z_arr = np.arange(start_prior, end_prior, dZ)
+    prior = zeros(len(z_arr))
+    prior[int((8.5 - 7)/dZ)] = 1.
+    gauss_kernel = Gaussian1DKernel(0.5/dZ)
+    prior = convolve_fft(prior, gauss_kernel)
+
+
+    logzprior = vstack((z_arr, prior))
+
+
     for i in arange(shape(Z)[0]):
         for j in arange(shape(Z)[0]):
             fluxes_for_izi = []
@@ -74,9 +88,11 @@ def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = 
             lines_for_izi = lines_for_izi[gd]
 
 
+
+
             n_detected = len(np.where(fluxes_for_izi/errors_for_izi > 1.)[0])
             if n_detected > 1:
-                res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, idl=idl, dosave=False, savfile=None,
+                res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, logzprior = logzprior, idl=idl, dosave=False, savfile=None,
                               grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
                 (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
 
@@ -152,6 +168,13 @@ if __name__ == '__main__':
                  ('SII', 'sii6717;sii6731', 6725.)
                 ]
 
+        '''
+        lines = [('OII', 'oii3726;oii3729', 3727.),
+                 ('OIII', 'oiii4959;oiii5007', 5007.),
+                 ('Hb', 'hbeta', 4863.)
+                ]
+        '''
+
         Vlam = 5470. # from Johnson Cousins_V 
         calkV = calk(Vlam)
 
@@ -168,6 +191,7 @@ if __name__ == '__main__':
 
                 lmap_smoothed = convolve_fft(lmap, kern)
                 elmap_smoothed = elmap/np.sqrt(boxcar_size**2.)
+
                 Alam = 1*Av * calk(line_wav) / calkV
                 ec = np.power(10, 0.4*Alam)
                 '''
@@ -217,10 +241,3 @@ if __name__ == '__main__':
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, overwrite = True)
-
-
-
-
-
-
-
