@@ -168,67 +168,52 @@ if __name__ == '__main__':
 
                 lmap_smoothed = convolve_fft(lmap, kern)
                 elmap_smoothed = elmap/np.sqrt(boxcar_size**2.)
-
+                Alam = 1*Av * calk(line_wav) / calkV
+                ec = np.power(10, 0.4*Alam)
+                '''
                 master_hdulist.append(fits.ImageHDU(data = lmap[xmn:xmx, ymn:ymx], header = colhdr, name =  '%s'%line))
                 master_hdulist.append(fits.ImageHDU(data = elmap[xmn:xmx, ymn:ymx], header = colhdr, name = 'e%s'%line))
 
                 master_hdulist.append(fits.ImageHDU(data = lmap_smoothed[xmn:xmx, ymn:ymx], header = colhdr, name =  '%s_s'%line))
                 master_hdulist.append(fits.ImageHDU(data = elmap_smoothed[xmn:xmx, ymn:ymx], header = colhdr, name = 'e%s_s'%line))
 
-                Alam = 1*Av * calk(line_wav) / calkV
 
-                ec = np.power(10, 0.4*Alam)
                 master_hdulist.append(fits.ImageHDU(data = lmap[xmn:xmx, ymn:ymx] * ec, header = colhdr, name =  '%s_ec'%line))
                 master_hdulist.append(fits.ImageHDU(data = elmap[xmn:xmx, ymn:ymx] * ec, header = colhdr, name = 'e%s_ec'%line))
-
+                '''
                 master_hdulist.append(fits.ImageHDU(data = lmap_smoothed[xmn:xmx, ymn:ymx] * ec, header = colhdr, name =  '%s_s_ec'%line))
                 master_hdulist.append(fits.ImageHDU(data = elmap_smoothed[xmn:xmx, ymn:ymx] * ec, header = colhdr, name = 'e%s_s_ec'%line))
 
 
 
         thdulist_temp = fits.HDUList(master_hdulist)
-        Z = nan * zeros((wdth*2, wdth*2, 4))
-        Z_s = nan * zeros((wdth*2, wdth*2, 4))
-
-        Z_ec = nan * zeros((wdth*2, wdth*2, 4))
-        Z_s_ec = nan * zeros((wdth*2, wdth*2, 4))
-
-
-
-        Z_pdf = nan * zeros((wdth*2, wdth*2, 100, 2))
-        Z_pdf_s = nan * zeros((wdth*2, wdth*2, 100, 2))
-
-        Z_pdf_ec = nan * zeros((wdth*2, wdth*2, 100, 2))
-        Z_pdf_s_ec = nan * zeros((wdth*2, wdth*2, 100, 2))
-
-
+        Z_empty     = nan * zeros((wdth*2, wdth*2, 4))
+        Z_pdf_empty = nan * zeros((wdth*2, wdth*2, 100, 2))
 
         idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
         idl = pidly.IDL(idl_path)
 
 
-        Z, Z_pdf     = run_izi(Z = Z, Z_pdf = Z_pdf, idl = idl, thdulist_temp = thdulist_temp,  lines_use = lines_use, do_extinction = False, smooth = False)
-        Z_s, Z_pdf_s = run_izi(Z = Z_s, Z_pdf = Z_pdf_s, idl = idl, thdulist_temp = thdulist_temp, lines_use = lines_use,  do_extinction = False,smooth = True)
-
-        Z_ec, Z_pdf_ec     = run_izi(Z = Z_ec, Z_pdf = Z_pdf_ec, idl = idl, thdulist_temp = thdulist_temp,  lines_use = lines_use, do_extinction = True, smooth = False)
-        Z_s_ec, Z_pdf_s_ec = run_izi(Z = Z_s_ec, Z_pdf = Z_pdf_s_ec, idl = idl, thdulist_temp = thdulist_temp, lines_use = lines_use,  do_extinction = True,smooth = True)
-
+        #Z, Z_pdf     = run_izi(Z = Z_empty, Z_pdf = Z_pdf_empty, idl = idl, thdulist_temp = thdulist_temp,  lines_use = lines_use, do_extinction = False, smooth = False)
+        #Z_s, Z_pdf_s = run_izi(Z = Z_empty, Z_pdf = Z_pdf_empty, idl = idl, thdulist_temp = thdulist_temp, lines_use = lines_use,  do_extinction = False,smooth = True)
+        #Z_ec, Z_pdf_ec     = run_izi(Z = Z_empty, Z_pdf = Z_pdf_empty, idl = idl, thdulist_temp = thdulist_temp,  lines_use = lines_use, do_extinction = True, smooth = False)
+        Z_s_ec, Z_pdf_s_ec = run_izi(Z = Z_empty, Z_pdf = Z_pdf_empty, idl = idl, thdulist_temp = thdulist_temp, lines_use = lines_use,  do_extinction = True,smooth = True)
 
 
-        master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
-        master_hdulist.append(fits.ImageHDU(data = Z_s, header = Zcolhdr, name = 'Z_s'))
-        master_hdulist.append(fits.ImageHDU(data = Z_ec, header = Zcolhdr, name = 'Z_ec'))
+        #master_hdulist.append(fits.ImageHDU(data = Z, header = Zcolhdr, name = 'Z'))
+        #master_hdulist.append(fits.ImageHDU(data = Z_s, header = Zcolhdr, name = 'Z_s'))
+        #master_hdulist.append(fits.ImageHDU(data = Z_ec, header = Zcolhdr, name = 'Z_ec'))
         master_hdulist.append(fits.ImageHDU(data = Z_s_ec, header = Zcolhdr, name = 'Z_s_ec'))
 
 
-        master_hdulist.append(fits.ImageHDU(data = Z_pdf, header = Zcolhdr, name = 'Z_pdf'))
-        master_hdulist.append(fits.ImageHDU(data = Z_pdf_s, header = Zcolhdr, name = 'Z_pdf_s'))
-        master_hdulist.append(fits.ImageHDU(data = Z_pdf_ec, header = Zcolhdr, name = 'Z_pdf_ec'))
+        #master_hdulist.append(fits.ImageHDU(data = Z_pdf, header = Zcolhdr, name = 'Z_pdf'))
+        #master_hdulist.append(fits.ImageHDU(data = Z_pdf_s, header = Zcolhdr, name = 'Z_pdf_s'))
+        #master_hdulist.append(fits.ImageHDU(data = Z_pdf_ec, header = Zcolhdr, name = 'Z_pdf_ec'))
         master_hdulist.append(fits.ImageHDU(data = Z_pdf_s_ec, header = Zcolhdr, name = 'Z_pdf_s_ec'))
 
 
 
-        fits_name = out_dir + '/%s_%s_metals.fits'%(field, di)
+        fits_name = out_dir + '/%s_%s_metals_new.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, overwrite = True)
