@@ -80,7 +80,7 @@ def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = 
             errors_for_izi = np.array(errors_for_izi)
             lines_for_izi  = np.array(lines_for_izi)
 
-            gd = where((np.isfinite(fluxes_for_izi)) & (np.isfinite(errors_for_izi)))[0]
+            gd = where((np.isfinite(fluxes_for_izi)) & (np.isfinite(errors_for_izi)) & (fluxes_for_izi > 0.))[0]
             fluxes_for_izi = fluxes_for_izi[gd]
             errors_for_izi = errors_for_izi[gd]
             lines_for_izi = lines_for_izi[gd]
@@ -241,7 +241,7 @@ if __name__ == '__main__':
 
 
 
-        fits_name = out_dir + '/%s_%s_metals_new.fits'%(field, di)
+        fits_name = out_dir + '/%s_%s_metals_highZbranch.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, overwrite = True)
