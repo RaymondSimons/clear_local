@@ -8,7 +8,7 @@ from multiprocessing import Pool
 import numpy as np
 from numpy import *
 import astropy
-from astropy.io import fits
+from astropy.io import fits, ascii
 from astropy.table import Table
 from astropy.cosmology import Planck15 as cosmo
 from astropy.convolution import Gaussian1DKernel, Gaussian2DKernel, convolve_fft, Box2DKernel
