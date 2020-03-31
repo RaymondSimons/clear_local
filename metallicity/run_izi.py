@@ -45,7 +45,7 @@ def izi(fluxes, errors, lines, logzprior = None, idl=None, dosave=False, savfile
 
 
 def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = True, smooth = True):
-    start_prior = 8.0
+    start_prior = 8.5
     end_prior = 9.5
     dZ = 0.05
     z_arr = np.arange(start_prior, end_prior, dZ)
