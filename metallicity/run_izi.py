@@ -158,17 +158,17 @@ if __name__ == '__main__':
 
         haslines = full[0].header['haslines']
 
-        '''
+
         lines = [('OII', 'oii3726;oii3729', 3727.),
                  ('OIII', 'oiii4959;oiii5007', 5007.),
                  ('Hb', 'hbeta', 4863.),
                  ('Ha', 'nii6548;halpha;nii6584', 6563.),
                  ('SII', 'sii6717;sii6731', 6725.)
                 ]
-        '''
-        lines = [('OIII', 'oiii4959;oiii5007', 5007.),
-                 ('Hb', 'hbeta', 4863.)
-                ]
+        
+        #lines = [('OIII', 'oiii4959;oiii5007', 5007.),
+        #         ('Hb', 'hbeta', 4863.)
+        #        ]
 
 
 
