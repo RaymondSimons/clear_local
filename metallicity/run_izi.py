@@ -166,8 +166,7 @@ if __name__ == '__main__':
                  ('SII', 'sii6717;sii6731', 6725.)
                 ]
         '''
-        lines = [('OII', 'oii3726;oii3729', 3727.),
-                 ('OIII', 'oiii4959;oiii5007', 5007.),
+        lines = [('OIII', 'oiii4959;oiii5007', 5007.),
                  ('Hb', 'hbeta', 4863.)
                 ]
 
