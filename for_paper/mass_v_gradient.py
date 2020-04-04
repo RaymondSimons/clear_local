@@ -10,8 +10,8 @@ from numpy import *
 import glob
 from glob import glob
 from clear_local.utils.tools import *
-plt.rcParams['xtick.labelsize']=14
-plt.rcParams['ytick.labelsize']=14
+plt.rcParams['xtick.labelsize']=12
+plt.rcParams['ytick.labelsize']=12
 plt.ioff()
 plt.close('all')
 mpl.rcParams['text.usetex'] = True
@@ -20,11 +20,13 @@ mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath}']
 
 cat = load_paper_catalog()
 
-ma_cat = np.loadtxt('/Users/rsimons/Dropbox/clear/catalogs/literature_gradients/ma17.cat')
-wang_cat = np.loadtxt('/Users/rsimons/Dropbox/clear/catalogs/literature_gradients/wang17.cat')
-wang18_cat = np.loadtxt('/Users/rsimons/Dropbox/clear/catalogs/literature_gradients/wang18.cat')
-jones_cat = np.loadtxt('/Users/rsimons/Dropbox/clear/catalogs/literature_gradients/jones13.cat')
-swinbank_cat = np.loadtxt('/Users/rsimons/Dropbox/clear/catalogs/literature_gradients/swinbank12.cat')
+
+add_lit_points = True
+add_wuyts_line = False
+lit_cats = ['jones13', 'wang17', 'wang18', 'wang19', 'swinbank12', 'curti20']
+lit_cat_dir = '/Users/rsimons/Dropbox/clear/catalogs/literature_gradients'
+
+stack_dic = np.load('/Users/rsimons/Dropbox/clear/catalogs/stack_profiles.npy', allow_pickle = True)[()]
 
 count_all = 0
 count_flat = 0
@@ -37,63 +39,119 @@ fit_types = array([''])
 mrker = 'o'
 
 if True:
-    for ft, fit_type in enumerate(fit_types):
-        with PdfPages('/Users/rsimons/Dropbox/clear/figures/for_paper/izi_z_radius%s.pdf'%fit_type) as pdf:
+    for ff, fit_type in enumerate(fit_types):
+        with PdfPages('/Users/rsimons/Dropbox/clear/figures/for_paper/izi_z_radius%s_highZbranch.pdf'%fit_type) as pdf:
             ms = 5
-            fig, ax = plt.subplots(1,1, figsize = (9, 4))
-            if True:
-                ax.errorbar(wang_cat[:,5], wang_cat[:,3], yerr =wang_cat[:,4], fmt = 'o', ms = ms,color = 'blue', label = 'Wang+ 17', zorder = 1)
-                ax.errorbar(wang18_cat[:,3], wang18_cat[:,1], yerr =wang18_cat[:,2], fmt = 'o',  ms = ms,color = 'darkblue', label = 'Wang+ 18', zorder = 1)
-                ax.errorbar(jones_cat[:,0], jones_cat[:,1], yerr =jones_cat[:,2], fmt = 'o',  ms = ms,color = 'skyblue', label = 'Jones+ 13', zorder = 1)
-                ax.errorbar(swinbank_cat[:,0], swinbank_cat[:,1], yerr =swinbank_cat[:,2],  ms = ms,fmt = 'o', color = 'darkgreen', label = 'Swinbank+ 12', zorder = 1)
-                ax.errorbar(log10(ma_cat[:,1]), ma_cat[:,7], yerr =ma_cat[:,8], fmt = 's',  ms = ms,markeredgecolor = 'black', markerfacecolor = "None", color = 'black', label = 'Ma+ 17; simulations', zorder = 1)
-                wuyts_x = linspace(10.0, 11.5, 100)
-                wuyts_y = -0.017*(wuyts_x - 10) + 0.0
-                #ax.errorbar(-99, -1, yerr = 1., fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 6, alpha = 1.0, label = 'Simons+ in prep')
+            fig, (ax1, ax2) = plt.subplots(1,2, figsize = (10, 4), sharey = True)
+            axes = [ax1, ax2]
+            if add_lit_points:
+                for lit_cat in lit_cats:
+                    lcat = ascii.read(lit_cat_dir + '/' + lit_cat + '.cat')
 
-                ax.plot(wuyts_x, wuyts_y, '--', linewidth = 3, color = 'midnightblue', label = 'Wuyts+ 16', zorder = 1)
+                    mass  = lcat['lmass']
+                    zgrad = lcat['zgrad']
+                    uezgrad = lcat['uezgrad']
+                    lezgrad = lcat['lezgrad']
 
-            ax.axhline(y = 0, linestyle = '-', color = 'grey', alpha = 0.4, linewidth = 2, zorder = 0)
+
+                    ax1.errorbar(mass, zgrad,  \
+                                yerr = [lezgrad, uezgrad], ms = 3, \
+                                fmt = 'o', color = 'grey', zorder = 1)
+                if add_wuyts_line:
+                    wuyts_x = linspace(10.0, 11.5, 100)
+                    wuyts_y = -0.017*(wuyts_x - 10) + 0.0
+                    ax1.plot(wuyts_x, wuyts_y, '--', linewidth = 3, color = 'midnightblue', label = 'Wuyts+ 16', zorder = 1)
 
             to_pl = []
+
+
+            mstars = []
+            ms = []
+            ems = []
             for f, ft in enumerate(cat):
                 xclass = ft['xclass']
 
 
-                z = ft['z_map']
-                re = ft['re_125']
-                mstar = ft['mass_eazy']
-                re_kpc = re/cosmo.arcsec_per_kpc_proper(z).value 
+                z       = ft['z_map']
+                re      = ft['re_125']
+                mstar   = ft['mass_eazy']
+                re_kpc  = re/cosmo.arcsec_per_kpc_proper(z).value 
 
                 if xclass != 'AGN':
                     kpc_per_pix = 0.1 / cosmo.arcsec_per_kpc_proper(z).value 
                     m = ft['m%s_S_EC'%fit_type]/kpc_per_pix
                     m_err = ft['m%s_S_EC_err'%fit_type]/kpc_per_pix
-                    ax.errorbar(mstar, m, yerr = m_err, fmt = mrker, color = 'red',  markeredgecolor = 'black', ms = 5, zorder = 0)
+                    ax1.errorbar(mstar, m, yerr = m_err, fmt = mrker, \
+                                color = 'red',  markeredgecolor = 'black', \
+                                ms = 5, zorder = 10)
+                    mstars.append(mstar)
+                    ms.append(m)
+                    ems.append(m_err)
+            if True:
+                for i in stack_dic:
+                    mass_mid = stack_dic[i]['mass_mid']
+                    p = stack_dic[i]['r_kpc']['p']
+                    V = stack_dic[i]['r_kpc']['V']
+                    ax2.errorbar(mass_mid, p[0], yerr = np.sqrt(V[0,0]), fmt = 's', \
+                                color = 'red',  markeredgecolor = 'black', \
+                                ms = 10, zorder = 1)
 
-            #ax.errorbar(-99, -1, yerr = 0.01, fmt = 's', color = 'red', fillstyle = 'none', markeredgecolor = 'red', label = 'CLEAR, (N = 112)', zorder = 10)
-            #ax.errorbar(9.25, 0.0246, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, label = 'CLEAR, STACK', zorder = 10)
-            #ax.errorbar(9.75, 0.0163, xerr = 0.25, yerr = 0.003, fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
-            #ax.errorbar(10.25, 0.0121, xerr = 0.25, yerr = 0.004,   fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10,  zorder = 10)
-            #ax.errorbar(10.75, 0.0055, xerr = 0.25, yerr = 0.008,  fmt = 'o', color = 'red', markeredgecolor = 'black', ms = 10, zorder = 10)
+            else:
+                mstars  = np.array(mstars)
+                ms      = np.array(ms    )
+                ems     = np.array(ems   )
+
+                dm = 0.25
+                mass_bin_arr = np.arange(8.5, 11.0 + dm, dm)
+                mass_bins = [(mass_bin_arr[i], mass_bin_arr[i+1]) for i in arange(len(mass_bin_arr) - 1)]
+
+                for i in arange(len(mass_bins)):
+
+                    gd_i = where((mstars > mass_bins[i][0]) & (mstars < mass_bins[i][1]))[0]
+                    mass_mid = np.mean(mass_bins[i])
+                    print (len(gd_i))
+                    ms_i  = ms[gd_i]
+                    ems_i = ems[gd_i]
+                    bn = 250
+                    from astropy.stats import bootstrap
+
+                    dz_bs = bootstrap(ms_i, bootnum = bn)
+                    median_Z_array = zeros(bn)      
+                    for b in arange(bn):
+                        median_Z_array[b] = np.nanmean(dz_bs[b] + np.random.normal(0., ems_i, len(dz_bs[b])))
+                    emean_dZ_dr = np.std(median_Z_array)
+                    mean_dZ_dr =  np.mean(median_Z_array)
+                    print (emean_dZ_dr, mean_dZ_dr)
+
+                    ax2.errorbar(mass_mid, mean_dZ_dr, yerr = emean_dZ_dr, fmt = 's', \
+                    color = 'red',  markeredgecolor = 'black', \
+                    ms = 10, zorder = 1)
 
 
 
 
+            for a, ax in enumerate(axes):
+                ax.annotate(r'$0.6 < z < 2.6$', (0.98, 0.96), ha = 'right', va = 'top',  xycoords = 'axes fraction', fontsize = 20, fontweight = 'bold')
+                ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 20)
+                ax.set_ylim(-0.33, 0.5)
+                ax.set_xlim(8.4, 11.1)
+                if a == 0:
+                    ax.axhline(y = 0, xmin = 0.0, xmax = 1.0, linestyle = '-', color = 'black', alpha = 1.0, linewidth = 2, zorder = 0)
+                if a == 1:
+                    ax.annotate("no\ngradient", (8.45, 0.05), xycoords = 'data', va = 'top', ha = 'left', color = 'black', fontsize = 20)
+                    ax.axhline(y = 0, xmin = 0.15, xmax = 1.0, linestyle = '-', color = 'black', alpha = 1.0, linewidth = 2, zorder = 0)
+            ax1.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 20)
+            #ax1.annotate('individual galaxies', (0.05, 0.96), xycoords = 'axes fraction',
+            #             ha = 'left', va = 'top', fontsize = 20, color = 'black')
+            ax2.annotate('population stack'   , (0.05, 0.96), xycoords = 'axes fraction',
+                         ha = 'left', va = 'top', fontsize = 20,  color = 'black')
+
+            ax1.annotate("CLEAR", (0.98, 0.15), ha = 'right', va = 'center', xycoords = 'axes fraction', color = 'red', fontsize = 20, fontweight = 'bold')
+            ax2.annotate("CLEAR", (0.98, 0.15), ha = 'right', va = 'center', xycoords = 'axes fraction', color = 'red', fontsize = 20, fontweight = 'bold')
+            ax1.annotate("literature", (0.98, 0.05), ha = 'right', va = 'center', xycoords = 'axes fraction', color = 'grey', fontsize = 20, fontweight = 'bold')
 
 
-
-
-            ax.annotate(r'$0.6 < z < 2.6$', (0.55, 0.85), xycoords = 'axes fraction', fontsize = 25, fontweight = 'bold')
-            ax.set_xlabel(r'$\log$ M$_{*}$ (M$_{\odot}$)', fontsize = 20)
-            ax.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ (dex kpc$^{-1}$)', rotation = 90, fontsize = 20)
-            ax.legend(bbox_to_anchor=(1.0, 1.05), frameon = False, fontsize = 18)
-
-            ax.set_ylim(-0.33, 0.4)
-
-            ax.set_xlim(8.2, 11.5)
-
-            fig.subplots_adjust(bottom = 0.20, left = 0.15, right = 0.65, top = 0.95)
+            fig.subplots_adjust(wspace = 0.05, bottom = 0.20, left = 0.1, right = 0.98, top = 0.95)
             pdf.savefig()
 
 

@@ -7,13 +7,14 @@ import matplotlib.pyplot as plt
 
 
 izi_cat = ascii.read('/Users/rsimons/Dropbox/clear/catalogs/good_izi.cat', header_start = 0)
-izi_cat = izi_cat[:50]
+izi_cat = izi_cat[izi_cat['id'] == 26087]
+
 fit_types = array(['', '_S', '_EC', '_S_EC'])
 
-fit_types = array(['_S'])
+fit_types = array(['_S_EC'])
 
 for fit_type in fit_types:
-    if False:
+    if True:
         to_save = {}
         to_save['HB'] = []
         to_save['eHB'] = []
@@ -21,6 +22,8 @@ for fit_type in fit_types:
         to_save['eO2'] = []
         to_save['O3'] = []
         to_save['eO3'] = []
+        to_save['HA'] = []
+        to_save['eHA'] = []
         to_save['Z'] = []
         to_save['euZ'] = []
         to_save['elZ'] = []
@@ -48,7 +51,7 @@ for fit_type in fit_types:
 
         for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])):
             indir = '/Users/rsimons/Dropbox/clear/products/metals/metal_maps'
-            fl = indir + '/{}_{}_metals.fits'.format(fld, di)
+            fl = indir + '/{}_{}_metals_new.fits'.format(fld, di)
             mm_fits = fits.open(fl)
 
             names = []
@@ -56,13 +59,16 @@ for fit_type in fit_types:
             for hdu in mm_fits:
                 names.append(hdu.name)
 
-            if ('HB%s'%fit_type in names) & ('OII%s'%fit_type in names) & ('OIII%s'%fit_type in names):
+            if ('HB%s'%fit_type in names) &  ('OIII%s'%fit_type in names):# & ('OII%s'%fit_type in names):
                 flux_Hb =   mm_fits['%s%s'%('HB', fit_type)].data.ravel()
                 flux_eHb =  mm_fits['%s%s'%('EHB', fit_type)].data.ravel()
-                flux_Oii =   mm_fits['%s%s'%('OII', fit_type)].data.ravel()
-                flux_eOii =  mm_fits['%s%s'%('EOII', fit_type)].data.ravel()
+                #flux_Oii =   mm_fits['%s%s'%('OII', fit_type)].data.ravel()
+                #flux_eOii =  mm_fits['%s%s'%('EOII', fit_type)].data.ravel()
                 flux_Oiii =   mm_fits['%s%s'%('OIII', fit_type)].data.ravel()
                 flux_eOiii =  mm_fits['%s%s'%('EOIII', fit_type)].data.ravel()
+                #flux_Ha =   mm_fits['%s%s'%('HA', fit_type)].data.ravel()
+                #flux_eHa =  mm_fits['%s%s'%('EHA', fit_type)].data.ravel()
+
                 Z = mm_fits['Z%s'%fit_type].data
                 n_peaks = Z[:,:,3].ravel()
                 elZ = abs(Z[:,:,1] - Z[:,:,0]).ravel()
@@ -74,10 +80,13 @@ for fit_type in fit_types:
 
                 to_save['HB']     = concatenate(( to_save['HB']    , flux_Hb[gd]))
                 to_save['eHB']    = concatenate(( to_save['eHB']   , flux_eHb[gd]))
-                to_save['O2']     = concatenate(( to_save['O2']    , flux_Oii[gd]))
-                to_save['eO2']    = concatenate(( to_save['eO2']   , flux_eOii[gd]))
+                #to_save['O2']     = concatenate(( to_save['O2']    , flux_Oii[gd]))
+                #to_save['eO2']    = concatenate(( to_save['eO2']   , flux_eOii[gd]))
                 to_save['O3']     = concatenate(( to_save['O3']    , flux_Oiii[gd]))
                 to_save['eO3']    = concatenate(( to_save['eO3']   , flux_eOiii[gd]))
+                #to_save['HA']     = concatenate(( to_save['HA']    , flux_Ha[gd]))
+                #to_save['eHA']    = concatenate(( to_save['eHA']   , flux_eHa[gd]))
+
                 to_save['Z']      = concatenate(( to_save['Z']     , Z[gd]))
                 to_save['euZ']    = concatenate(( to_save['euZ']   , euZ[gd]))
                 to_save['elZ']    = concatenate(( to_save['elZ']   , elZ[gd]))
@@ -85,13 +94,13 @@ for fit_type in fit_types:
 
 
 
-        np.save('/Users/rsimons/Dropbox/clear/catalogs/temp_izicheck.npy', to_save)
+        np.save('/Users/rsimons/Dropbox/clear/catalogs/temp_izicheck_GS4.npy', to_save)
 
     if True:
-        to_save = np.load('/Users/rsimons/Dropbox/clear/catalogs/temp_izicheck.npy', allow_pickle = True)[()]
+        to_save = np.load('/Users/rsimons/Dropbox/clear/catalogs/temp_izicheck_GS4.npy', allow_pickle = True)[()]
 
 
-        for sn_cut in [0, 1, 3, 5]:
+        for sn_cut in [0]:#, 1, 3, 5]:
             plt.close('all')
 
             fig1, ax1 = plt.subplots(1,1,figsize = (6,5.))
@@ -99,32 +108,42 @@ for fit_type in fit_types:
             O3 = to_save['O3']
             O2 = to_save['O2']
             HB = to_save['HB']
+            HA = to_save['HA']
 
 
             eO3 = to_save['eO3']
             eO2 = to_save['eO2']
             eHB = to_save['eHB']
+            eHA = to_save['eHA']
 
 
             npeaks = to_save['npeaks']
-            O32 = O3/O2
-            R23 = (O3 + O2)/HB
+            #O32 = O3/O2
+            #R23 = (O3 + O2)/HB
+            #O3N2 = O3/(HA)
+            O32 = O3/HB
+            R23 = O3/HB
+
+
             Z = to_save['Z']
-            gd = where((O3/eO3 > sn_cut) & (O2/eO2 > sn_cut) & (HB/eHB > sn_cut))[0]
+            #gd = where((O3/eO3 > sn_cut) & (O2/eO2 > sn_cut) & (HB/eHB > sn_cut))[0]
+            gd = where((O3/eO3 > sn_cut) & (HB/eHB > sn_cut))[0]
 
-
-            cmin = 6.5
-            cmax = 9.5
+            print (len(gd))
+            cmin = -2
+            cmax = 4
             Z_for_col = array([min(max(ZZ - cmin, 0.), cmax - cmin) for ZZ in Z])/(cmax - cmin)
             Z_col = plt.cm.viridis(Z_for_col)
 
-            sc1 = ax1.scatter(R23[gd], O32[gd], color = Z_col[gd], marker = 'o', cmap = plt.cm.viridis, s = 0.3, zorder = 10)
-            cbar = fig1.colorbar(sc1, ax = ax1)
-            cbar.set_label(r'12 + $\log$ (O/H)')
-            cbar_ticks = np.arange(cmin, cmax+0.5, 0.5)
-            cbar_ticks_str = ['%.1f'%c for c in cbar_ticks]
-            cbar.set_ticks((cbar_ticks - cmin)/(cmax - cmin))
-            cbar.set_ticklabels(cbar_ticks_str)
+            #sc1 = ax1.scatter(Z[gd], R23[gd], color = log10(O3N2[gd]), marker = 'o', cmap = plt.cm.viridis, s = 0.3, zorder = 10)
+            sc1 = ax1.scatter(Z[gd], R23[gd], marker = 'o', cmap = plt.cm.viridis, s = 0.3, zorder = 10)
+            #cbar = fig1.colorbar(sc1, ax = ax1)
+            #cbar.set_label(r'12 + $\log$ (O/H)')
+            ax1.set_xlabel(r'12 + $\log$ (O/H)')
+            #cbar_ticks = np.arange(cmin, cmax+0.5, 0.5)
+            #cbar_ticks_str = ['%.1f'%c for c in cbar_ticks]
+            #cbar.set_ticks((cbar_ticks - cmin)/(cmax - cmin))
+            #cbar.set_ticklabels(cbar_ticks_str)
 
 
             cmin = 1
@@ -142,13 +161,14 @@ for fit_type in fit_types:
 
 
             for ax in [ax1, ax2]:
-                ax.set_xlabel(r'R23 = (OIII + OII)/H$\beta$')
-                ax.set_ylabel(r'O32 = OIII/OII')        
-                ax.set_xscale('log')
+                ax.set_ylabel(r'R3 = OIII/H$\beta$')
+                #ax.set_ylabel(r'O32 = OIII/OII')        
                 ax.set_yscale('log')
-                ax.set_xlim(1.e-2, 1.e4)
-                ax.set_ylim(5.e-4, 3.e3)
-            
+                #ax.set_yscale('log')
+                ax.set_ylim(1.e-2, 1.e1)
+                #ax.set_ylim(5.e-4, 3.e3)
+                ax.set_xlim(8, 10)
+                
 
 
             for fig in [fig1, fig2]:
