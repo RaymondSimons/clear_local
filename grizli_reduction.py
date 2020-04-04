@@ -52,7 +52,7 @@ def parse():
     parser.add_argument('-use_phot',      '--use_phot',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
 
     parser.add_argument('-fit_min_id',  '--fit_min_id',     type = int, default = 0, help = 'ID to start on for the fit')
-    parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = 2, help = 'number of threads')
+    parser.add_argument('-n_jobs',      '--n_jobs',         type = int, default = -1, help = 'number of threads')
     parser.add_argument('-id_choose',   '--id_choose',         type = int, default = None, help = 'ID to fit')
     parser.add_argument('-pso',         '--pso',         type = int, default = 1, help = 'phot_scale_order')
     parser.add_argument('-PATH_TO_RAW'    , '--PATH_TO_RAW'    , default = '/user/rsimons/grizli_extractions/RAW', help = 'path to RAW directory')
