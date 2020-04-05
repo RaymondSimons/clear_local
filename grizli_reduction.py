@@ -517,10 +517,18 @@ if __name__ == '__main__':
     HOME_PATH           = PATH_TO_HOME + '/' + field
     make_catalog        = args['make_catalog']
 
-    if on_jase: 
+    if fit_without_phot: phot_scale_order = -1
+
+    if on_jase:
         PATH_TO_HOME = '/Users/rsimons/Desktop/clear/grizli_extractions'
         PATH_TO_SCRIPTS = '/Users/rsimons/Dropbox/git/clear_local'
-    if fit_without_phot: phot_scale_order = -1
+        PATH_TO_PREP        = glob(HOME_PATH + '/Prep')[0]
+
+
+    else:
+        PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
+        PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
+
 
 
     print('\n\n\n\n###################\nParameters\n\n')
@@ -557,13 +565,6 @@ if __name__ == '__main__':
 
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
 
-    if False:
-        PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
-        PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
-
-    else:
-        #on jase
-        PATH_TO_PREP        = glob(HOME_PATH + '/Prep')[0]
 
 
     print ('Changing to %s'%PATH_TO_PREP)
