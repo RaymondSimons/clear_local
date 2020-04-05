@@ -29,7 +29,7 @@ for field in fields:
 
     f2.write('#!/bin/bash\n')
     f2.write('source activate grizli_040420\n')
-    f2.write('python /user/rsimons/git/clear_local --field %s --do_fit --n_jobs -1\n'%(field))
+    f2.write('python /user/rsimons/git/clear_local/grizli_reduction.py --field %s --do_fit --n_jobs -1\n'%(field))
     f2.close()
 
 
