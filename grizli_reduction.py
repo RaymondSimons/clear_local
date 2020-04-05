@@ -514,16 +514,18 @@ if __name__ == '__main__':
     PATH_TO_CATS        = args['PATH_TO_CATS']    
     #PATH_TO_CATS = '/Users/rsimons/Desktop/clear/Catalogs'
     PATH_TO_HOME        = args['PATH_TO_HOME']
+
+    if on_jase:
+        PATH_TO_HOME   = '/Users/rsimons/Desktop/clear/grizli_extractions'
+        PATH_TO_SCRIPTS = '/Users/rsimons/Dropbox/git/clear_local'
+
     HOME_PATH           = PATH_TO_HOME + '/' + field
     make_catalog        = args['make_catalog']
 
     if fit_without_phot: phot_scale_order = -1
 
     if on_jase:
-        PATH_TO_HOME = '/Users/rsimons/Desktop/clear/grizli_extractions'
-        PATH_TO_SCRIPTS = '/Users/rsimons/Dropbox/git/clear_local'
         PATH_TO_PREP        = glob(HOME_PATH + '/Prep')[0]
-
 
     else:
         PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
