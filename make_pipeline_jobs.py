@@ -19,9 +19,9 @@ for field in fields:
     f.write('getenv = true\n')
     f.write('Executable = /bin/bash \n')
     f.write('Arguments = run_grizli_pipeline_%s'%(field))
-    f.write('Log = /user/rsimons/submit_scripts/logs/$(Name)_$(Cluster).log\n')
-    f.write('Error = /user/rsimons/submit_scripts/logs/$(Name)_$(Cluster)_error.log\n')
-    f.write('Output = /user/rsimons/submit_scripts/logs/$(Name)_$(Process).out\n')
+    f.write('Log = /user/rsimons/submit_scripts/logs/grizli_pipeline/$(Name)_$(Cluster).log\n')
+    f.write('Error = /user/rsimons/submit_scripts/logs/grizli_pipeline/$(Name)_$(Cluster)_error.log\n')
+    f.write('Output = /user/rsimons/submit_scripts/logs/grizli_pipeline/$(Name)_$(Process).out\n')
     f.write('Queue\n')
     f.close()
 
