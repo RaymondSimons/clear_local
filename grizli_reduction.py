@@ -560,7 +560,6 @@ if __name__ == '__main__':
 
     else:
         #on jase
-        PATH_TO_RAW         = glob(HOME_PATH + '/RAW')[0]
         PATH_TO_PREP        = glob(HOME_PATH + '/Prep')[0]
 
 
