@@ -517,6 +517,9 @@ if __name__ == '__main__':
     HOME_PATH           = PATH_TO_HOME + '/' + field
     make_catalog        = args['make_catalog']
 
+    if on_jase: 
+        PATH_TO_HOME = '/Users/rsimons/Desktop/clear/grizli_extractions'
+        PATH_TO_SCRIPTS = '/Users/rsimons/Dropbox/git/clear_local'
     if fit_without_phot: phot_scale_order = -1
 
 
