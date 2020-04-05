@@ -1,5 +1,5 @@
+#!/home/rsimons/miniconda2/bin/python
 import matplotlib
-matplotlib.use('agg')
 import time
 import os
 import numpy as np
