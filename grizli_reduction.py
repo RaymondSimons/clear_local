@@ -567,10 +567,11 @@ if __name__ == '__main__':
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
 
-    visits, filters = grizli_getfiles(run = files_bool)
+    if False:
+        visits, filters = grizli_getfiles(run = files_bool)
 
 
-    grizli_prep(visits = visits, field = field, run = prep_bool)
+        grizli_prep(visits = visits, field = field, run = prep_bool)
 
     if new_model:
         grp = grizli_model(visits, field = field, ref_filter_1 = 'F105W', ref_grism_1 = 'G102', ref_filter_2 = 'F140W', ref_grism_2 = 'G141',
