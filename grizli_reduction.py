@@ -43,6 +43,7 @@ def parse():
 
     parser.add_argument('-fwop', '--fwop',    action = "store_true", default = False, help = 'fit with photometry')
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
+    parser.add_argument('-on_jase', '--on_jase',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-do_prep',     '--do_prep',        action = "store_true", default = False, help = 'bool to PREP files with Grizli')
     parser.add_argument('-do_new_model',   '--do_new_model',      action = "store_true", default = False, help = 'bool to create new Grizli models')
     parser.add_argument('-do_beams',    '--do_beams',         action = "store_true", default = False, help = 'bool to write beams files')
@@ -499,6 +500,7 @@ if __name__ == '__main__':
     retrieve_bool       = args['do_retrieve']
     prep_bool           = args['do_prep']
     model_bool          = args['do_model']
+    on_jase             = args['on_jase']
     new_model           = args['do_new_model']
     fit_bool            = args['do_fit']
     beams_bool          = args['do_beams']
@@ -608,7 +610,7 @@ if __name__ == '__main__':
         p = Pointing(field = field, ref_filter = 'F105W')
 
 
-        pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+        pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 16, 'wcs': None}
 
         if not fit_without_phot:
             eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data')#, path_is_env=False)
