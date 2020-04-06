@@ -1,0 +1,151 @@
+cp /user/rsimons/grizli_extractions/GS1/*/Prep/*beams*fits GS1/Prep/ &
+cp /user/rsimons/grizli_extractions/GS2/*/Prep/*beams*fits GS2/Prep/ &
+cp /user/rsimons/grizli_extractions/GS4/*/Prep/*beams*fits GS4/Prep/ &
+cp /user/rsimons/grizli_extractions/GS3/*/Prep/*beams*fits GS3/Prep/ &
+cp /user/rsimons/grizli_extractions/GS5/*/Prep/*beams*fits GS5/Prep/ &
+cp /user/rsimons/grizli_extractions/GN1/*/Prep/*beams*fits GN1/Prep/ &
+cp /user/rsimons/grizli_extractions/GN3/*/Prep/*beams*fits GN3/Prep/ &
+cp /user/rsimons/grizli_extractions/GN4/*/Prep/*beams*fits GN4/Prep/ &
+cp /user/rsimons/grizli_extractions/GN5/*/Prep/*beams*fits GN5/Prep/ &
+cp /user/rsimons/grizli_extractions/GN7/*/Prep/*beams*fits GN7/Prep/ &
+cp /user/rsimons/grizli_extractions/GN2/*/Prep/*beams*fits GN2/Prep/ &
+cp /user/rsimons/grizli_extractions/ERSPRIME/*/Prep/*beams*fits ERSPRIME/Prep/
+
+python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ screen -S GS1
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS1
+ screen -S GN5
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN5
+ screen -S ERSPRIME
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  ERSPRIME
+ screen -S GN1
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reductio.py --on_jase --do_fit -n_jobs 2 --field  GN1
+ screen -S GS2
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS2
+ screen -S GS3
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS3
+ screen -S GN3
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN3
+ 
+ screen -S GN2
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN2
+
+ screen -S GS5
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS5
+ screen -S GN4
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN4
+ screen -S GN7
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN7
+
+
+ screen -S GS4
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS4
+
+
+
+
+
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GS1_beams.tar.gz 
+la GS1/Prep/GS1_beams.tar.gz 
+
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GN1_beams.tar.gz 
+la GN1/Prep/GN1_beams.tar.gz
+
+
+
+
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GS2_beams.tar.gz GS2/Prep
+la GS2/Prep/GS2_beams.tar.gz
+
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GN5_beams.tar.gz
+la GN5/Prep/GN5_beams.tar.gz
+
+
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GS3_beams.tar.gz
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GN3_beams.tar.gz
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GN2_beams.tar.gz
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GS5_beams.tar.gz
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GN4_beams.tar.gz
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GN7_beams.tar.gz
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/GS4_beams.tar.gz
+la /astro/clear/public/INCOMING/grizli_extractions_v2.1/beams/ERSPRIME_beams.tar.gz
+
+
+
+ls GS1/Prep/*beams.fits | wc -l
+ls GN5/Prep/*beams.fits | wc -l
+ls ERSPRIME/Prep/*beams.fits | wc -l
+ls GN1/Prep/*beams.fits | wc -l
+ls GS2/Prep/*beams.fits | wc -l
+ls GS3/Prep/*beams.fits | wc -l
+ls GN3/Prep/*beams.fits | wc -l
+ls GN2/Prep/*beams.fits | wc -l
+ls GS5/Prep/*beams.fits | wc -l
+ls GN4/Prep/*beams.fits | wc -l
+ls GN7/Prep/*beams.fits | wc -l
+ls GS4/Prep/*beams.fits | wc -l
+
+
+ls /user/rsimons/grizli_extractions/GS1/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN5/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/ERSPRIME/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN1/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS2/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS3/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN3/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN2/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS5/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN4/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GN7/j*/Prep/*beams.fits | wc -l
+ls /user/rsimons/grizli_extractions/GS4/j*/Prep/*beams.fits | wc -l
+
+
+
+
+
+
+
+
+
+
+
+
