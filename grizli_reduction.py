@@ -403,8 +403,8 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                                                         pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
                                                         zfit=pfit,diff=True)
                     # Save drizzled ("stacked") 2D trace as PNG and FITS
-                    fig.savefig('{0}-v3.0_diff_{1:05d}.stack.png'.format(field, id))
-                    hdu.writeto('{0}-v3.0_diff_{1:05d}.stack.fits'.format(field, id), clobber=True)
+                    fig.savefig('{0}_diff_{1:05d}.stack.png'.format(field, id))
+                    hdu.writeto('{0}_diff_{1:05d}.stack.fits'.format(field, id), clobber=True)
                 except:
                     pass
 
@@ -436,7 +436,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                     zr=zr,              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
                     dz=[0.004, 0.0005], 
                     fitter='nnls',
-                    group_name=field + '-v3.0',# + '_%i'%phot_scale_order,
+                    group_name=field,# + '_%i'%phot_scale_order,
                     fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
                     prior=None, 
                     fcontam=fcontam,           #suggests fcontam = 0.2
