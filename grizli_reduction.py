@@ -453,7 +453,9 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                         show_beams=True,
                         use_psf = use_psf)          #default: False
                 except:
+                    print ('----------------\n----------------\n----------------\n----------------\n----------------\n')
                     print ('EXCEPTION IN FIT', id, mag)
+                    print ('----------------\n----------------\n----------------\n----------------\n----------------\n')
                     pass
 
             print('Finished', id, mag)
@@ -633,7 +635,7 @@ if __name__ == '__main__':
         nums = cat_[0]
         mags = cat_[1]
 
-
+        '''
         Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                              mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                              id_choose = id_choose, use_pz_prior = False, use_phot = True, 
@@ -641,8 +643,8 @@ if __name__ == '__main__':
                                                                              ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_without_phot = fit_without_phot,
                                                                              zr = [args['zr_min'], args['zr_max']]) 
                                                                              for id, mag in zip(nums.astype('int'), mags))
-
         '''
+
         for id, mag in zip(nums.astype('int'), mags):
             grizli_fit(id = id, min_id = fit_min_id, mag = mag, field = field, 
                        mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
@@ -650,7 +652,7 @@ if __name__ == '__main__':
                        scale_phot = True, templ0 = templ0, templ1 = templ1, 
                        ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_without_phot = fit_without_phot,
                        zr = [args['zr_min'], args['zr_max']])
-        '''
+
 
 
     print ('Changing to %s'%PATH_TO_SCRIPTS)
