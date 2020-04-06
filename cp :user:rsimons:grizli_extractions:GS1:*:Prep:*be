@@ -18,67 +18,75 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field
 
 
 
+ screen -S GN1
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GN1
+
+ screen -S GN2
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GN2
+
+ screen -S GN3
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GN3
+ 
+  screen -S GN4
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GN4
 
 
+ screen -S GN5
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GN5
 
 
+ screen -S GN7
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GN7
 
 
+ screen -S ERSPRIME
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  ERSPRIME
 
 
 
  screen -S GS1
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS1
- screen -S GN5
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN5
- screen -S ERSPRIME
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  ERSPRIME
- screen -S GN1
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reductio.py --on_jase --do_fit -n_jobs 2 --field  GN1
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GS1
+
+
  screen -S GS2
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS2
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GS2
+
+
  screen -S GS3
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS3
- screen -S GN3
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN3
- 
- screen -S GN2
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN2
-
- screen -S GS5
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS5
- screen -S GN4
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN4
- screen -S GN7
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GN7
-
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GS3
 
  screen -S GS4
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs 2 --field  GS4
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GS4
+
+ screen -S GS5
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GS5
+
+
+
 
 
 
@@ -140,6 +148,18 @@ ls /user/rsimons/grizli_extractions/GS4/j*/Prep/*beams.fits | wc -l
 
 
 
+
+screen -S 36856.GS5   -X quit
+screen -S 36421.GN5   -X quit
+screen -S 36969.GN7   -X quit
+screen -S 36913.GN4   -X quit
+screen -S 36622.GS2   -X quit
+screen -S 36465.ERSPRIME  -X quit
+screen -S 37077.GS4   -X quit
+screen -S 36788.GN2   -X quit
+screen -S 36377.GS1   -X quit
+screen -S 36748.GN3   -X quit
+screen -S 36521.GN1   -X quit
 
 
 
