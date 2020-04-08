@@ -18,8 +18,8 @@ def write_catalog(field):
     print (field)
     #fls = glob('/Volumes/pegasus/clear/grizli_extractions/%s/*/Prep/*%s*full.fits'%(field, field))
     #fits_name = '/Volumes/pegasus/clear/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
-    fls = glob('~/Desktop/clear/grizli_extractions/%s/Prep/*%s*full.fits'%(field, field))
-    fits_name = '~/Desktop/clear/grizli_v3.0_cats/%s_lines_grizli.fits'%field
+    fls = glob('/Users/rsimons/Desktop/clear/grizli_extractions/%s/Prep/*%s*full.fits'%(field, field))
+    fits_name = '/Users/rsimons/Desktop/clear/grizli_v3.0_cats/%s_lines_grizli.fits'%field
 
 
     #lines = ['Lya', 'CIV', 'MgII', 'OII',
