@@ -16,8 +16,11 @@ fields = ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', '
 
 def write_catalog(field):
     print (field)
-    fls = glob('/Volumes/pegasus/clear/grizli_extractions/%s/*/Prep/*%s*full.fits'%(field, field))
-    fits_name = '/Volumes/pegasus/clear/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
+    #fls = glob('/Volumes/pegasus/clear/grizli_extractions/%s/*/Prep/*%s*full.fits'%(field, field))
+    #fits_name = '/Volumes/pegasus/clear/grizli_extractions/Catalogs/grizli_v2.1_cats/%s_lines_grizli.fits'%field
+    fls = glob('~/Desktop/clear/grizli_extractions/%s/Prep/*%s*full.fits'%(field, field))
+    fits_name = '~/Desktop/clear/grizli_v3.0_cats/%s_lines_grizli.fits'%field
+
 
     #lines = ['Lya', 'CIV', 'MgII', 'OII',
     #         'Hd', 'Hg', 'OIIIx', 'HeII',
