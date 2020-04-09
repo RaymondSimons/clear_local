@@ -570,11 +570,11 @@ if __name__ == '__main__':
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
 
 
-
+    '''
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
 
-    if False:
+    if True:
         visits, filters = grizli_getfiles(run = files_bool)
 
 
@@ -635,15 +635,15 @@ if __name__ == '__main__':
         nums = cat_[0]
         mags = cat_[1]
 
-        '''
-        Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
-                                                                             mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
-                                                                             id_choose = id_choose, use_pz_prior = False, use_phot = True, 
-                                                                             scale_phot = True, templ0 = templ0, templ1 = templ1, 
-                                                                             ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_without_phot = fit_without_phot,
-                                                                             zr = [args['zr_min'], args['zr_max']]) 
-                                                                             for id, mag in zip(nums.astype('int'), mags))
-        '''
+        if False:
+            Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
+                                                                                 mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
+                                                                                 id_choose = id_choose, use_pz_prior = False, use_phot = True, 
+                                                                                 scale_phot = True, templ0 = templ0, templ1 = templ1, 
+                                                                                 ep = ep, pline = pline, phot_scale_order = phot_scale_order, use_psf = use_psf, fit_without_phot = fit_without_phot,
+                                                                                 zr = [args['zr_min'], args['zr_max']]) 
+                                                                                 for id, mag in zip(nums.astype('int'), mags))
+
 
         for id, mag in zip(nums.astype('int'), mags):
             grizli_fit(id = id, min_id = fit_min_id, mag = mag, field = field, 
@@ -658,7 +658,7 @@ if __name__ == '__main__':
     print ('Changing to %s'%PATH_TO_SCRIPTS)
     os.chdir(PATH_TO_SCRIPTS)
 
-
+    '''
 
 
 
