@@ -379,6 +379,7 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
                id_choose = None, ref_filter = 'F105W', use_pz_prior = True, use_phot = True, 
                scale_phot = True, templ0 = None, templ1 = None, ep = None, pline = None, 
                fcontam = 0.2, phot_scale_order = 1, use_psf = False, fit_without_phot = True, zr = [0., 12.]):
+    print ( field, id)
     if os.path.exists(field + '_' + '%.5i.full.fits'%id): return
 
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
