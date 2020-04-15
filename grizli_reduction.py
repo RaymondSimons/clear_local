@@ -530,12 +530,13 @@ if __name__ == '__main__':
     make_catalog        = args['make_catalog']
 
     if fit_without_phot: phot_scale_order = -1
-    '''
+
     if on_jase:
         PATH_TO_PREP        = glob(HOME_PATH + '/Prep')[0]
-
     else:
-    '''
+        PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
+        PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
+
 
 
     print('\n\n\n\n###################\nParameters\n\n')
@@ -574,8 +575,6 @@ if __name__ == '__main__':
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
 
 
-    PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
-    PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
 
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
