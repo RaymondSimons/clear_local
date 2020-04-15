@@ -470,19 +470,19 @@ def retrieve_archival_data(field, retrieve_bool = False):
                          filters = ['G102'], target_name = field)
 
 
-    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, 
+    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.1, 
                                   filters=['G102', 'G141'], 
                                   instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
 
     pids = list(np.unique(tabs[0]['proposal_id']))
 
-    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.01, proposal_id = pids,
+    tabs = overlaps.find_overlaps(parent, buffer_arcmin=0.1, proposal_id = pids,
                                   filters=['G102', 'G141', 'F098M', 'F105W', 'F125W', 'F140W'], 
                                   instruments=['WFC3/IR','WFC3/UVIS','ACS/WFC'], close=False)
     footprint_fits_file = glob('*footprint.fits')[0]
     jtargname = footprint_fits_file.strip('_footprint.fits')
 
-    auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=False)
+    #auto_script.fetch_files(field_root=jtargname, HOME_PATH=HOME_PATH, remove_bad=True, reprocess_parallel=False)
 
     print (pids)
 
@@ -520,19 +520,20 @@ if __name__ == '__main__':
     if on_jase:
         PATH_TO_HOME   = '/Users/rsimons/Desktop/clear/grizli_extractions'
         PATH_TO_SCRIPTS = '/Users/rsimons/Dropbox/git/clear_local'
+    else:
+        PATH_TO_HOME   = '/Users/rsimons/Desktop/clear/grizli_extractions'
+        PATH_TO_SCRIPTS = '/Users/rsimons/Dropbox/git/clear_local'
 
     HOME_PATH           = PATH_TO_HOME + '/' + field
     make_catalog        = args['make_catalog']
 
     if fit_without_phot: phot_scale_order = -1
-
+    '''
     if on_jase:
         PATH_TO_PREP        = glob(HOME_PATH + '/Prep')[0]
 
     else:
-        PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
-        PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
-
+    '''
 
 
     print('\n\n\n\n###################\nParameters\n\n')
@@ -560,6 +561,7 @@ if __name__ == '__main__':
 
 
 
+
     if not os.path.isdir(HOME_PATH): os.system('mkdir %s'%HOME_PATH)
 
     print ('Changing to %s'%HOME_PATH)
@@ -570,14 +572,16 @@ if __name__ == '__main__':
     extra = retrieve_archival_data(field = field, retrieve_bool = retrieve_bool)
 
 
-    '''
+    PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
+    PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep')[0]
+
     print ('Changing to %s'%PATH_TO_PREP)
     os.chdir(PATH_TO_PREP)
 
-    if True:
-        visits, filters = grizli_getfiles(run = files_bool)
 
+    visits, filters = grizli_getfiles(run = files_bool)
 
+    if prep_bool:
         grizli_prep(visits = visits, field = field, run = prep_bool)
 
     if new_model:
@@ -658,7 +662,7 @@ if __name__ == '__main__':
     print ('Changing to %s'%PATH_TO_SCRIPTS)
     os.chdir(PATH_TO_SCRIPTS)
 
-    '''
+
 
 
 

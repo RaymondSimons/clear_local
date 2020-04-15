@@ -18,6 +18,9 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field
 
 
 
+python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase -do_retrieve -n_jobs -1 --field  GN7
+
+
  screen -S GN1
  source ~/.bash_profile
  grizli
