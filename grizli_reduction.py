@@ -41,6 +41,7 @@ def parse():
     parser.add_argument('-do_files',    '--do_files',       default = True, help = 'bool to load files')
     parser.add_argument('-do_model',    '--do_model',       default = True, help = 'bool to model spectra')
 
+    parser.add_argument('-run_parallel', '--run_parallel',    action = "store_true", default = False, help = 'fit with photometry')
     parser.add_argument('-fwop', '--fwop',    action = "store_true", default = False, help = 'fit with photometry')
     parser.add_argument('-do_retrieve', '--do_retrieve',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
     parser.add_argument('-on_jase', '--on_jase',    action = "store_true", default = False, help = 'bool to retrieve files from MAST')
@@ -499,6 +500,7 @@ if __name__ == '__main__':
     #id_choose = 23116
 
     field               = args['field']
+    run_parallel        = args['run_parallel']
     mag_lim             = args['mag_lim']
     mag_max             = args['mag_max']
     files_bool          = args['do_files']
@@ -644,7 +646,7 @@ if __name__ == '__main__':
         nums = cat_[0]
         mags = cat_[1]
 
-        if False:
+        if run_parallel:
             Parallel(n_jobs = n_jobs, backend = 'threading')(delayed(grizli_fit)(id = id, min_id = fit_min_id, mag = mag, field = field, 
                                                                                  mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                                                                                  id_choose = id_choose, use_pz_prior = False, use_phot = True, 

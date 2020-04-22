@@ -16,6 +16,16 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field
 
 
 
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -choose_id 24353 --field  GN2
+
+
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit --field  GN3
+
+
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit --field  GN4
 
 
 python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase -do_retrieve -n_jobs -1 --field  GN7
@@ -30,6 +40,9 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase -do_
  source ~/.bash_profile
  grizli
  python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GN2
+
+
+
 
  screen -S GN3
  source ~/.bash_profile
