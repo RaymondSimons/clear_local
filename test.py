@@ -31,11 +31,16 @@ for (field, root) in args:
     HOME_PATH = ge_path + '/' + field
 
 
-
+    visit_prep_args = kwargs['visit_prep_args']
     path_to_prep = HOME_PATH + '/' + root + '/Prep'
     os.chdir(path_to_prep)
 
 
+    ## IR filters
+    if 'fix_stars' in visit_prep_args:
+        fix_stars = visit_prep_args['fix_stars']
+    else:
+        fix_stars = False
 
     mosaic_args = kwargs['mosaic_args']
     mosaic_pixfrac = mosaic_args['mosaic_pixfrac']
