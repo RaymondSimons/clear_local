@@ -28,7 +28,7 @@ for (field, root) in args:
 
     print (field, root)
 
-    HOME_PATH = ge_path + field
+    HOME_PATH = ge_path + '/' + field
 
 
 
