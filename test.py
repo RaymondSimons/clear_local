@@ -32,7 +32,7 @@ for (field, root) in args:
 
 
 
-    path_to_prep = HOME_PATH + root + '/Prep'
+    path_to_prep = HOME_PATH + '/' + root + '/Prep'
     os.chdir(path_to_prep)
 
 
