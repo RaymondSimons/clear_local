@@ -14,6 +14,10 @@ cp /user/rsimons/grizli_extractions/ERSPRIME/*/Prep/*beams*fits ERSPRIME/Prep/
 python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field 
 
 
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GN4 --zr_min 0 --zr_max 12.05
+
+
 
 
  grizli
@@ -94,7 +98,7 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase -do_
  screen -S GS4
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GS4
+ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --on_jase --do_fit -n_jobs -1 --field  GS4 --run_parallel
 
  screen -S GS5
  source ~/.bash_profile

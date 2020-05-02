@@ -10,7 +10,7 @@ fig, ax = plt.subplots(1,1,figsize = (7,7))
 
 
 
-trimmed = True
+trimmed = False
 do_min = True
 if trimmed: figname = 'G102_G141_lines_trimmed.png'
 else: figname = 'G102_G141_lines.png'
