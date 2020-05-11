@@ -50,15 +50,20 @@ for (field, root) in args:
     wcs_ref_file = '{0}_wcs-ref.fits'.format(root)
     auto_script.make_reference_wcs(info, output=wcs_ref_file, get_hdu=True, 
                            **mosaic_args['wcs_params'])
-    combine_all_filters=True
+    if not os.path.exists(wcs_ref_file):
+        auto_script.make_reference_wcs(info, output=wcs_ref_file, get_hdu=True, 
+                               **mosaic_args['wcs_params'])
 
-    all_filters = mosaic_args['ir_filters'] + mosaic_args['optical_filters']
-    auto_script.drizzle_overlaps(root, 
-                             filters=all_filters, 
-                             min_nexp=1, pixfrac=mosaic_pixfrac,
-                             make_combined=True,
-                             ref_image=wcs_ref_file,
-                             drizzle_filters=False) 
+
+    combine_all_filters=True
+    if combine_all_filters:
+        all_filters = mosaic_args['ir_filters'] + mosaic_args['optical_filters']
+        auto_script.drizzle_overlaps(root, 
+                                 filters=all_filters, 
+                                 min_nexp=1, pixfrac=mosaic_pixfrac,
+                                 make_combined=True,
+                                 ref_image=wcs_ref_file,
+                                 drizzle_filters=False) 
 
 
     auto_script.drizzle_overlaps(root, filters=mosaic_args['ir_filters'], 
