@@ -121,8 +121,9 @@ if __name__ == '__main__':
     out_dir = '/user/rsimons/metal_maps_v3'
     full_dir = '/user/rsimons/grizli_extractions_v3'
 
-    print ('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))
-    fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
+    #print ('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))
+    #fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
+    fl = glob('%s/%s/*%s.full.fits'%(full_dir, field, di))[0]
 
 
     wdth = 20
