@@ -11,7 +11,6 @@ from joblib import Parallel, delayed
 
 
 fields = ['GS1','GS2', 'GS3', 'GS4', 'GS5', 'GN1', 'GN2', 'GN3', 'GN4', 'GN5', 'GN7', 'ERSPRIME']
-#fields = ['GS4', 'ERSPRIME']
 
 
 def write_catalog(field):
@@ -130,11 +129,106 @@ def write_catalog(field):
 
 
 
+def make_master_cat():
+    for f in ['S', 'N']:
 
+        cat_dir = '/Users/rsimons/Desktop/clear/grizli_v3.0_cats'
+        cat_names = glob(cat_dir + '/*%s*_lines_grizli.fits'%f)
+
+
+        for c, cat_name in enumerate(cat_names):
+
+            field = cat_name.split('/')[-1].split('_')[0]
+
+            cat = fits.open(cat_name)
+
+            if c == 0:
+                print ('Creating empty dictionary for GD%s'%f)
+                cat_all = {}
+
+                formats = cat[1].columns.formats
+                names = cat[1].columns.names
+                for n in arange(len(formats)):
+                    name = names[n]
+                    form = formats[n]
+
+                    cat_all[name] = {}
+                    cat_all[name]['data'] = []
+                    cat_all[name]['format'] = form
+
+
+
+            for i in arange(len(cat[1].data)):
+                if cat[1].data['ID'][i] not in cat_all['ID']['data']:
+                    # this is the first recording of this object                
+                    for name in names:
+                        if (name == 'ID') | (name == 'DEC') | (name == 'RA'):
+                            cat_all[name]['data'].append(cat[1].data[name][i])
+                        else:
+                            cat_all[name]['data'].append([cat[1].data[name][i]])
+
+                else:
+                    gd = where(cat[1].data['ID'][i]  == cat_all['ID']['data'])[0][0]
+                    for name in names:
+
+                        if (name == 'ID') | (name == 'DEC') | (name == 'RA'): continue
+                        else:  cat_all[name]['data'][gd].append(cat[1].data[name][i])
+
+        for i in arange(len(cat_all['ID']['data'])):
+            t_g102 = array(cat_all['T_G102']['data'][i])
+            t_g141 = array(cat_all['T_G141']['data'][i])
+
+            if len(t_g102) > 1:
+                where_both = where((t_g102 > 0) & (t_g141 > 0))[0]
+                where_g102 = where(t_g102 > 0)[0]
+                where_g141 = where(t_g141 > 0)[0]
+
+
+                if len(where_both) > 0:
+                    index_use = where_both[np.argmax(t_g102[where_both] + t_g141[where_both])]
+                    #print ('\t multiple fits, at least one with both G102 and G141, using index %i'%index_use)
+                elif len(where_g102) > 0:
+                    index_use = where_g102[np.argmax(t_g102[where_g102])]
+                    #print ('\t multiple fits, none with joint G102+G141, using max T G102, using index %i'%index_use)
+
+                elif len(where_g141) > 0:
+                    index_use = where_g141[np.argmax(t_g141[where_g141])]
+                    #print ('\t multiple fits, none with G102, using max T G141, using index %i'%index_use)
+
+            else: 
+                index_use = 0
+                #print ('\t single fit, using index %i'%index_use)
+
+            for name in names:    
+                if (name == 'ID') | (name == 'DEC') | (name == 'RA'): continue
+                cat_all[name]['data'][i] = cat_all[name]['data'][i][index_use]
+                
+                
+        print ('\t writing')
+
+        
+        master_hdulist = []
+        prihdr = fits.Header()
+
+        prihdu = fits.PrimaryHDU(header=prihdr)    
+        master_hdulist.append(prihdu)
+
+        colhdr = fits.Header()
+
+        col_list = []
+        for name in names:
+            col_list.append(fits.Column(name=name, format = cat_all[name]['format'], array=array(cat_all[name]['data'])))
+        coldefs = fits.ColDefs(col_list)
+        table_hdu = fits.BinTableHDU.from_columns(coldefs)
+        master_hdulist.append(table_hdu)
+        thdulist = fits.HDUList(master_hdulist)
+        thdulist.writeto(cat_dir + '/GD%s_lines_grizli_master.fits'%f, overwrite = True)
+        
+        print ('\t done')
 
 if __name__ == '__main__':
     Parallel(n_jobs = -1, backend = 'threading')(delayed(write_catalog) (field = field) for field in fields)
-
+    make_master_cat()
 
 
 
