@@ -111,7 +111,6 @@ def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/r
     np.random.seed(1)
     boxcar_size = 3
     kern = Box2DKernel(boxcar_size)
-    field, di = argv[1], argv[2]
 
     if 'S' in field: fld = 'goodss'
     if 'N' in field: fld = 'goodsn'
