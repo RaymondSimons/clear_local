@@ -1,4 +1,3 @@
-#!/home/rsimons/miniconda2/bin/python
 import pidly
 from clear_local.caseys_izi_tools.calzetti import k as calk
 import numpy as np
@@ -37,7 +36,7 @@ def izi(fluxes, errors, lines, logzprior = None, idl=None, dosave=False, savfile
             idl('errors = {0}'.format(np.array2string(errors, separator=',',max_line_width=1000)))
             idl('lines = {0}'.format(np.array2string(lines, separator=',',max_line_width=1000)))
             idl('logzprior = {0}'.format(np.array2string(logzprior, separator=',',max_line_width=1000)).replace('\n', ''))
-            idl('res=izi(fluxes, errors, lines, LOGZPRIOR = logzprior, NZ=100, gridfile="{0}")'.format(grid))
+            idl('res=izi(fluxes, errors, lines, LOGZPRIOR=logzprior, NZ=100, gridfile="{0}")'.format(grid))
             if dosave :
                 idl('save, file="{0}", res'.format(savfile))
             res = idl.ev('res', use_cache=True)
@@ -90,7 +89,7 @@ def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = 
 
             n_detected = len(np.where(fluxes_for_izi/errors_for_izi > 1.)[0])
             if n_detected > 1:
-                res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, logzprior = logzprior, idl=idl, dosave=False, savfile=None,
+                res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, logzprior=logzprior, idl=idl, dosave=False, savfile=None,
                               grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
                 (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
 
@@ -219,7 +218,7 @@ if __name__ == '__main__':
         Z_empty     = nan * zeros((wdth*2, wdth*2, 4))
         Z_pdf_empty = nan * zeros((wdth*2, wdth*2, 100, 2))
 
-        idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
+        idl_path = '/Applications/harris/idl87/bin/idl'#'/Applications/harris/idl87'#'/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
         idl = pidly.IDL(idl_path)
 
 
