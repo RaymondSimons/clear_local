@@ -40,7 +40,7 @@ def izi(fluxes, errors, lines, logzprior = None, idl=None, dosave=False, savfile
             idl('errors = {0}'.format(np.array2string(errors, separator=',',max_line_width=1000)))
             idl('lines = {0}'.format(np.array2string(lines, separator=',',max_line_width=1000)))
             idl('logzprior = {0}'.format(np.array2string(logzprior, separator=',',max_line_width=1000)).replace('\n', ''))
-            idl('res=izi(fluxes, errors, lines, LOGZPRIOR = logzprior, NZ=100, gridfile="{0}")'.format(grid))
+            idl('res=izi(fluxes, errors, lines, LOGZPRIOR=logzprior, NZ=100, gridfile="{0}")'.format(grid))
             if dosave :
                 idl('save, file="{0}", res'.format(savfile))
             res = idl.ev('res', use_cache=True)
@@ -93,7 +93,7 @@ def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = 
 
             n_detected = len(np.where(fluxes_for_izi/errors_for_izi > 1.)[0])
             if n_detected > 1:
-                res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, logzprior = logzprior, idl=idl, dosave=False, savfile=None,
+                res = izi(fluxes_for_izi, errors_for_izi, lines_for_izi, logzprior=logzprior, idl=idl, dosave=False, savfile=None,
                               grid=os.environ['IZI_DIR']+'/grids/d13_kappa20.fits')
                 (tZmod, tZlo, tZhi, tnpeaks) = hri( res['zarr'][0], res['zpdfmar'][0])
 
@@ -108,14 +108,10 @@ def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = 
 
 def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/rsimons/grizli_extractions'):
     
-
-    fits_name = out_dir + '/%s_%s_metals_highZbranch.fits'%(field, di)
-    if os.path.exists(fits_name): return
-
     np.random.seed(1)
     boxcar_size = 3
     kern = Box2DKernel(boxcar_size)
-
+    field, di = argv[1], argv[2]
 
     if 'S' in field: fld = 'goodss'
     if 'N' in field: fld = 'goodsn'
@@ -126,13 +122,15 @@ def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/r
     Av = eazy_fits[1].data['Av'][gd]
 
 
+    out_dir = '/user/rsimons/metal_maps_v3'
+    full_dir = '/user/rsimons/grizli_extractions_v3'
 
-    print ('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))
-    fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
-
+    #print ('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))
+    #fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
+    fl = glob('%s/%s/*%s.full.fits'%(full_dir, field, di))[0]
 
     wdth = 20
-    xmd = 40
+    xmd = 80
 
 
     xmn = xmd - wdth
@@ -224,7 +222,7 @@ def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/r
         Z_empty     = nan * zeros((wdth*2, wdth*2, 4))
         Z_pdf_empty = nan * zeros((wdth*2, wdth*2, 100, 2))
 
-        idl_path = '/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
+        idl_path = '/Applications/harris/idl87/bin/idl'#'/Applications/harris/idl87'#'/grp/software/Linux/itt/idl/idl84/idl/bin/idl'
         idl = pidly.IDL(idl_path)
 
 
@@ -247,10 +245,10 @@ def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/r
 
 
 
+        fits_name = out_dir + '/%s_%s_metals_highZbranch.fits'%(field, di)
         print ('\tSaving to ' + fits_name)
         thdulist = fits.HDUList(master_hdulist)
         thdulist.writeto(fits_name, overwrite = True)
-
 if __name__ == '__main__':
     izi_cat = ascii.read('/user/rsimons/good_izi.cat', header_start = 0)
     Parallel(n_jobs = -1)(delayed(run_all)(fld, di) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
