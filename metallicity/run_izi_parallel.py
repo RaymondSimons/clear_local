@@ -112,7 +112,10 @@ def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/r
         full_dir = '/user/rsimons/grizli_extractions_v3'
         fits_name = out_dir + '/%s_%s_metals_highZbranch.fits'%(field, di)
 
-        if os.path.exists(fits_name): return
+        if os.path.exists(fits_name): 
+            print ('%s exists'%fits_name)
+
+            return
 
         np.random.seed(1)
         boxcar_size = 3
