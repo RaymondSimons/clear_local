@@ -26,6 +26,7 @@ from math import *
 from sys import argv
 from hri import hri
 import os
+from astropy.io import ascii
 from joblib import Parallel, delayed
 
 
