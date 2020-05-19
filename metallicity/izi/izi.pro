@@ -367,7 +367,7 @@ FUNCTION izi, fluxin, errorin, idin, gridfile=gridfile, plot=plot, logOHsun=logO
   grid0=grid0[where(grid0.logz+logOHsun ge logzlimits[0] and grid0.logz+logOHsun le logzlimits[1] and grid0.logq ge logqlimits[0] and grid0.logq le logqlimits[1])]
 
 ; CHANGE LOGZPRIOR TO SOLAR UNITS
-  if (keyword_set(logZprior)) then logZprior[*,0]=logZprior-logOHsun
+  if (keyword_set(logZprior)) then logZprior[*,0]=logZprior[*,0]-logOHsun
 
 ; INTERPOLATE STRUCTURE
   if not (keyword_set(intergridfile)) then begin
