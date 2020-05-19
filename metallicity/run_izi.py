@@ -126,7 +126,7 @@ if __name__ == '__main__':
 
 
     wdth = 20
-    xmd = 40
+    xmd = 80
 
 
     xmn = xmd - wdth
