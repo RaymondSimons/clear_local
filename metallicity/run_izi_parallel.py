@@ -108,6 +108,12 @@ def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = 
 
 def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/rsimons/grizli_extractions'):
     try:
+        out_dir = '/user/rsimons/metal_maps_v3'
+        full_dir = '/user/rsimons/grizli_extractions_v3'
+        fits_name = out_dir + '/%s_%s_metals_highZbranch.fits'%(field, di)
+
+        if os.path.exists(fits_name): return
+
         np.random.seed(1)
         boxcar_size = 3
         kern = Box2DKernel(boxcar_size)
@@ -121,11 +127,6 @@ def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/r
         Av = eazy_fits[1].data['Av'][gd]
 
 
-        out_dir = '/user/rsimons/metal_maps_v3'
-        full_dir = '/user/rsimons/grizli_extractions_v3'
-        fits_name = out_dir + '/%s_%s_metals_highZbranch.fits'%(field, di)
-
-        if os.path.exists(fits_name): return
 
         #print ('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))
         #fl = glob('%s/%s/j*/Prep/*%s.full.fits'%(full_dir, field, di))[0]
