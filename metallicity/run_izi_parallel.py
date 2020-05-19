@@ -251,10 +251,10 @@ def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/r
         thdulist.writeto(fits_name, overwrite = True)
 if __name__ == '__main__':
     izi_cat = ascii.read('/user/rsimons/good_izi.cat', header_start = 0)
-    Parallel(n_jobs = -1)(delayed(run_all)(fld, di) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
+    #Parallel(n_jobs = -1)(delayed(run_all)(fld, di) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
 
 
-
-
-
+    for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])):
+        run_all(fld, di)
+    
 
