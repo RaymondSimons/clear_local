@@ -107,7 +107,7 @@ def run_izi(Z, Z_pdf, idl, thdulist_temp, lines_use, Av = None, do_extinction = 
     return Z, Z_pdf
 
 def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/rsimons/grizli_extractions'):
-    try:
+    if True:
         out_dir = '/user/rsimons/metal_maps_v3'
         full_dir = '/user/rsimons/grizli_extractions_v3'
         fits_name = out_dir + '/%s_%s_metals_highZbranch.fits'%(field, di)
@@ -254,8 +254,8 @@ def run_all(field, di, out_dir = '/user/rsimons/metal_maps', full_dir = '/user/r
             print ('\tSaving to ' + fits_name)
             thdulist = fits.HDUList(master_hdulist)
             thdulist.writeto(fits_name, overwrite = True)
-    except:
-        return
+    #except:
+    #    return
 if __name__ == '__main__':
     izi_cat = ascii.read('/user/rsimons/good_izi.cat', header_start = 0)
     Parallel(n_jobs = -1)(delayed(run_all)(fld, di) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
