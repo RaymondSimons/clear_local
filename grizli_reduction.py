@@ -686,6 +686,7 @@ if __name__ == '__main__':
 
 
         for id, mag in zip(nums.astype('int'), mags):
+            print (id)
             grizli_fit(id = id, min_id = fit_min_id, mag = mag, field = field, 
                        mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                        id_choose = id_choose, use_pz_prior = False, use_phot = True, 
