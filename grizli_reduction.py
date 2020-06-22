@@ -386,6 +386,8 @@ def grizli_fit(id, min_id, mag, field = '', mag_lim = 35, mag_lim_lower = 35, ru
     if (mag <= mag_lim) & (mag >=mag_lim_lower) & (id > min_id):
         if (id_choose is not None) & (id != id_choose):  return
         #if os.path.isfile(field + '_' + '%.5i.stack.fits'%id): return
+        print (id)
+
         if os.path.isfile(field + '_' + '%.5i.beams.fits'%id):
             print('Reading in beams.fits file for %.5i'%id)
             mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
@@ -686,7 +688,6 @@ if __name__ == '__main__':
 
 
         for id, mag in zip(nums.astype('int'), mags):
-            print (id)
             grizli_fit(id = id, min_id = fit_min_id, mag = mag, field = field, 
                        mag_lim = mag_lim, mag_lim_lower = mag_max, run = fit_bool, 
                        id_choose = id_choose, use_pz_prior = False, use_phot = True, 
