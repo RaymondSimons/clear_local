@@ -552,7 +552,7 @@ if __name__ == '__main__':
     PATH_TO_HOME        = args['PATH_TO_HOME']
 
     if on_jase:
-        PATH_TO_HOME   = '/Users/rsimons/Desktop/clear/grizli_extractions'
+        PATH_TO_HOME   = '/Users/rsimons/Desktop/clear/grizli_extractions_v3'
         PATH_TO_SCRIPTS = '/Users/rsimons/Dropbox/git/clear_local'
     else:
         PATH_TO_HOME   = '/Users/rsimons/Desktop/clear/grizli_extractions'

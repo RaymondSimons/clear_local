@@ -10,6 +10,8 @@ from numpy import *
 import glob
 from glob import glob
 from clear_local.utils.tools import *
+import astropy
+from astropy.stats import bootstrap
 plt.rcParams['xtick.labelsize']=12
 plt.rcParams['ytick.labelsize']=12
 plt.ioff()
@@ -38,9 +40,13 @@ fit_types = array(['', '_S', '_EC', '_S_EC'])
 fit_types = array([''])
 mrker = 'o'
 
+m_all  = []
+z_all  = []
+ez_all = []
+f_all  = []
 if True:
     for ff, fit_type in enumerate(fit_types):
-        with PdfPages('/Users/rsimons/Dropbox/clear/figures/for_paper/izi_z_radius%s_highZbranch.pdf'%fit_type) as pdf:
+        with PdfPages('/Users/rsimons/Dropbox/clear/figures/for_paper/izi_z_radius%s_highZbranch_v3.pdf'%fit_type) as pdf:
             ms = 5
             fig, (ax1, ax2) = plt.subplots(1,2, figsize = (10, 4), sharey = True)
             axes = [ax1, ax2]
@@ -57,6 +63,12 @@ if True:
                     ax1.errorbar(mass, zgrad,  \
                                 yerr = [lezgrad, uezgrad], ms = 3, \
                                 fmt = 'o', color = 'grey', zorder = 1)
+                    for i in np.arange(len(mass)):
+                        m_all.append(mass[i])
+                        z_all.append(zgrad[i])
+                        f_all.append(0)
+                        ez_all.append(np.average([lezgrad, uezgrad]))
+
                 if add_wuyts_line:
                     wuyts_x = linspace(10.0, 11.5, 100)
                     wuyts_y = -0.017*(wuyts_x - 10) + 0.0
@@ -84,6 +96,11 @@ if True:
                     ax1.errorbar(mstar, m, yerr = m_err, fmt = mrker, \
                                 color = 'red',  markeredgecolor = 'black', \
                                 ms = 5, zorder = 10)
+                    
+                    m_all.append(mstar)
+                    z_all.append(m)
+                    f_all.append(1)
+                    ez_all.append(m_err)
                     mstars.append(mstar)
                     ms.append(m)
                     ems.append(m_err)
@@ -153,6 +170,151 @@ if True:
 
             fig.subplots_adjust(wspace = 0.05, bottom = 0.20, left = 0.1, right = 0.98, top = 0.95)
             pdf.savefig()
+
+
+        with PdfPages('/Users/rsimons/Dropbox/clear/figures/for_paper/izi_z_radius%s_scatter_highZbranch_v3.pdf'%fit_type) as pdf:
+            m_all  = np.array(m_all)
+            z_all  = np.array(z_all)
+            ez_all = np.array(ez_all)
+            f_all  = np.array(f_all)
+            fig, (ax1, ax2, ax3) = plt.subplots(1,3, figsize = (15, 4))
+
+            m_bins = [(m, m+0.5) for m in np.arange(8.5, 10.5, 0.5)]
+
+            gd = where((m_all > 8.5) & (f_all == 1.))
+            ax1.plot(m_all[gd], z_all[gd], '.', color = 'blue',  markersize = 3)
+            gd = where((m_all > 8.5) & (f_all == 0.))
+            ax1.plot(m_all[gd], z_all[gd], '.', color = 'grey',  markersize = 3)
+
+
+
+
+            #for (m1, m2) in m_bins:
+            m_lower = 8.5
+            dm = 0.05
+            mbin = 0.50
+            m_final = 10.5 - mbin + dm
+
+            plot_scatter = {}
+
+            for c in arange(3):
+                plot_scatter[c] = {}
+                plot_scatter[c]['m']  = []
+                plot_scatter[c]['z']  = []
+                plot_scatter[c]['lz'] = []
+                plot_scatter[c]['uz'] = []
+
+
+            for mm, m1 in enumerate(np.arange(m_lower, m_final, dm)):
+                m2 = m1 + mbin
+
+                conds = [(((m_all > m1) & (~np.isnan(z_all))&(m_all < m2))                , 'black', 'All'),
+                         (((m_all > m1) & (~np.isnan(z_all))&(m_all < m2) & (f_all == 1.)), 'blue' , 'CLEAR'),
+                         (((m_all > m1) & (~np.isnan(z_all))&(m_all < m2) & (f_all == 0.)), 'grey' , 'Literature')]
+
+                for c, (cond, clr, lbl) in enumerate(conds):
+                    gd = where(cond)[0]
+                    m_avg = np.average([m1, m2]) - 0.02 + c*0.02
+                    z_avg = np.nanmedian(z_all[gd])
+                    z_perc = np.percentile(z_all[gd], [16, 50, 84])
+
+                    #ax1.errorbar(m_avg, z_avg, yerr = z_std, fmt = 'o', color = clr, label = lbl)
+                    plot_scatter[c]['m'].append(m_avg)
+                    plot_scatter[c]['z'].append(z_perc[1])
+                    plot_scatter[c]['lz'].append(z_perc[0])
+                    plot_scatter[c]['uz'].append(z_perc[2])
+
+
+            for c, (cond, clr, lbl) in enumerate(conds):
+                #ax1.plot(np.array(plot_scatter[c]['m']), np.array(plot_scatter[c]['z']), color = clr, linestyle = '-')
+                ax1.plot(np.array(plot_scatter[c]['m']), plot_scatter[c]['lz'], color = clr, linestyle = '-', linewidth = 3)
+                ax1.plot(np.array(plot_scatter[c]['m']), plot_scatter[c]['uz'], color = clr, linestyle = '-', linewidth = 3)
+
+
+
+
+
+
+            m_lower = 8.5
+            dm = 0.50
+            mbin = 0.50
+            m_final = 10.5 - mbin + dm
+
+
+
+            to_fits = {}
+            for i in arange(3):
+                to_fits[i] = {}
+                to_fits[i]['ms'] = []
+                to_fits[i]['dz'] = []
+            for mm, m1 in enumerate(np.arange(m_lower, m_final, dm)):
+                m2 = m1 + mbin
+
+                conds = [(((m_all > m1) & (~np.isnan(z_all))&(m_all < m2))                , 'black', 'All'),
+                         (((m_all > m1) & (~np.isnan(z_all))&(m_all < m2) & (f_all == 1.)), 'blue' , 'CLEAR'),
+                         (((m_all > m1) & (~np.isnan(z_all))&(m_all < m2) & (f_all == 0.)), 'grey' , 'Literature')]
+                np.random.seed(2)
+                for c, (cond, clr, lbl) in enumerate(conds):
+                    gd = where(cond)[0]
+                    m_avg = np.average([m1, m2]) - 0.03 + c*0.03
+                    ez    = np.nanmean(ez_all[gd])
+                    bn = 2000
+                    x_bs = bootstrap(z_all[gd], bootnum = bn)
+                    std_x_array = zeros(bn)      
+                    for i in arange(bn):
+                        perc_i = np.percentile(x_bs[i,:], [16, 50, 84])
+
+                        std_x_array[i] = (perc_i[-1] - perc_i[0])/2.#np.nanstd(x_bs[i,:])
+
+                    z_std  = np.mean(std_x_array)
+                    z_estd = np.std(std_x_array)
+                    if mm != 0: lbl = None
+                    #ax1.errorbar(m_avg, z_avg, yerr = z_std, fmt = 'o', color = clr, label = lbl)
+                    ax2.errorbar(m_avg, z_std, yerr = z_estd, fmt = 'o', color = clr, label = lbl)
+                    ax3.errorbar(m_avg, np.sqrt(z_std**2. - ez**2.), yerr = z_estd, fmt = 'o', color = clr, label = lbl)
+
+                    to_fits[c]['ms'].append(m_avg)
+                    to_fits[c]['dz'].append(np.sqrt(z_std**2. - ez**2.)) 
+
+
+            for c, (cond, clr, lbl) in enumerate(conds):
+                (m, b), V = np.polyfit(to_fits[c]['ms'], to_fits[c]['dz'], deg = 1, cov = True)
+
+                if c == 0:
+                    add_on = 'slope = '
+                else:
+                    add_on = ''
+                ax3.annotate(add_on + '%.4f '%m+r'$\pm$'+' %.4f (%.1f'%(np.sqrt(V[0,0]), abs(m/np.sqrt(V[0,0])))+r'$\sigma$)', (9.9, 0.124 - 0.01*c), ha = 'right', va = 'top', color = clr)
+                m_plot = np.linspace(8.0, 11.0, 200)
+                ax3.plot(m_plot, m_plot * m + b, color = clr)
+                '''
+                n_plot = 5
+                draws = np.random.multivariate_normal([m,b], V, n_plot)
+                for (m_n, b_n) in draws:
+                    ax3.plot(m_plot, m_plot * m_n + b_n, color = clr, linewidth = 0.3, zorder = 0.)
+                '''
+
+
+            for ax in [ax1, ax2, ax3]: 
+                ax.set_xlim(8.45, 10.6)
+                ax.set_xlabel(r'$\log$ M$_{*}$ [M$_{\odot}$]', fontsize = 15)
+            ax2.legend(loc = 1)
+            ax3.legend(loc = 1)
+            ax1.axhline(y = 0, color = 'black', linestyle = 'dashed',  zorder = 0)
+            for ax in [ax2, ax3]: 
+                ax.set_ylim(-0.025, 0.13)
+                ax.set_yticks(np.arange(0, 0.13, 0.02))
+            ax1.set_ylim(-0.2, 0.3)
+            ax3.axhline(y = 0.0, xmin = 0.22, xmax = 1.0,linestyle = 'dashed', color = 'black')
+            ax3.annotate('no\nintrinsic\nscatter', (8.5, 0.0), fontsize = 15,  ha = 'left', va = 'center', color = 'black')
+
+            ax1.set_ylabel(r'$\frac{\Delta \log(O/H)}{\Delta R}$ [dex kpc$^{-1}$]', rotation = 90, fontsize = 15)
+            ax2.set_ylabel(r'$\sigma_{\frac{\Delta}{\Delta}}$[dex kpc$^{-1}$]'+'\n(observed scatter)', rotation = 90, fontsize = 15)
+            ax3.set_ylabel(r'$(\sigma^{2}_{\frac{\Delta}{\Delta}} - \text{uncertainty}^{2}_{\text{avg}})^{1/2}$[dex kpc$^{-1}$]'+'\n(intrinsic scatter)', rotation = 90, fontsize = 15)
+
+            fig.subplots_adjust(wspace = 0.35, bottom = 0.20, left = 0.08, right = 0.98, top = 0.95)
+            pdf.savefig()
+
 
 
 

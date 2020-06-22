@@ -5,7 +5,7 @@ def load_paper_catalog(add_Z = True, cat_version = 'v4.5', cat_name = 'simons_sa
     from astropy.table import join
     cat_sample = ascii.read(cat_dir + '/' + cat_name + '_' + cat_version + '.cat')
     if add_Z:
-        cat_Z = ascii.read(cat_dir + '/' + 'metal_highZbranch_profile_fits.cat')
+        cat_Z = ascii.read(cat_dir + '/' + 'metal_highZbranch_profile_fits_v3.cat')
         cat = join(cat_sample, cat_Z)
     else: cat = cat_sample
 

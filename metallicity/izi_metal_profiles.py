@@ -97,11 +97,12 @@ def clean_metal_maps(fl):
         Dax1 = plt.subplot2grid((nrows, ncols), (6, ft))
         Sax1 = plt.subplot2grid((nrows, ncols), (7, ft))
 
-        dir_im = mm_fits['DSCI'].data[20:60, 20:60]
+        dir_im = mm_fits['DSCI'].data[60:100, 60:100]
         dir_im_header = mm_fits['DSCI'].header
 
-        dir_seg = mm_fits['SEG'].data[20:60, 20:60]
+        dir_seg = mm_fits['SEG'].data[60:100, 60:100]
         dir_seg_header = mm_fits['SEG'].header
+
 
         dir_im[dir_seg != dir_seg[20,20]] = 0.
 
@@ -195,9 +196,11 @@ def clean_metal_maps(fl):
             flux_im =   mm_fits['%s%s'%('OII', fit_type)].data
             flux_eim =  mm_fits['E%s%s'%('OII', fit_type)].data
         except: 
-            flux_im =   mm_fits['%s%s'%('HB', fit_type)].data
-            flux_eim =  mm_fits['E%s%s'%('HB', fit_type)].data
-
+            try:
+                flux_im =   mm_fits['%s%s'%('HB', fit_type)].data
+                flux_eim =  mm_fits['E%s%s'%('HB', fit_type)].data
+            except:
+                return
         Z_modeforseg = Z_mode.copy()
         Z_modeforseg[(Z_lerr > zmax) |\
                      (Z_uerr > zmax) |\
@@ -316,8 +319,8 @@ def clean_metal_maps(fl):
         master_hdulist[0].header['nlines'] = ct
 
 
-    figname = figdir + '/' + fl.split('/')[-1].replace('fits', 'png')
-    fitsname = fitdir + '/' + fl.split('/')[-1].replace('.fits', '_cleaned.fits')
+    figname = figdir + '/' + fl.split('/')[-1].replace('.fits', '_v3.png')
+    fitsname = fitdir + '/' + fl.split('/')[-1].replace('.fits', '_cleaned_v3.fits')
     print ('saving %s'%figname)
     fig.tight_layout()
     fig.savefig(figname)
@@ -334,7 +337,9 @@ def clean_metal_maps(fl):
 
 def make_clean_metal_map_figure(fld, di, fit_types):
     indir = '/Users/rsimons/Dropbox/clear/products/metals/metal_maps_cleaned'
-    fl = indir + '/{}_{}_metals_highZbranch_cleaned.fits'.format(fld, di)
+    fl = indir + '/{}_{}_metals_highZbranch_cleaned_v3.fits'.format(fld, di)
+    import os
+    if not os.path.exists(fl): return
     mm = fits.open(fl)
 
     midx = mm[1].header['midx']
@@ -386,12 +391,12 @@ def make_clean_metal_map_figure(fld, di, fit_types):
     fig.savefig(figdir + '/' + fl.split('/')[-1].replace('.fits', '.png'), dpi = 400)
 
 def write_metal_profile(fld, di, fit_types):
-    indir = '/Users/rsimons/Dropbox/clear/products/metals/metal_maps'
+    indir = '/Users/rsimons/Dropbox/clear/products/metals/metal_maps_v3'
     fl = indir + '/{}_{}_metals_highZbranch.fits'.format(fld, di)
     res = clean_metal_maps(fl)
-    np.save('/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/{}_{}_highZbranch.npy'.format(fld, di), res)
+    np.save('/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/{}_{}_highZbranch_v3.npy'.format(fld, di), res)
 def fit_metal_profile(fld, di, fit_types):
-    fl = '/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/{}_{}_highZbranch.npy'.format(fld, di)
+    fl = '/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/{}_{}_highZbranch_v3.npy'.format(fld, di)
     if not os.path.isfile(fl): return
     a = np.load(fl, allow_pickle = True)[()]
     try: x = a['Z_S_EC'].mask
@@ -528,9 +533,9 @@ def fit_metal_profile(fld, di, fit_types):
 
 
 
-    npsavename = fl.split('/')[-1].replace('.npy', '_profile_fit.npy')
+    npsavename = fl.split('/')[-1].replace('.npy', '_profile_fit_v3.npy')
     np.save('/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/fits/{}'.format(npsavename), res)
-    figname = figdir + '/' + fl.split('/')[-1].replace('npy', 'png')
+    figname = figdir + '/' + fl.split('/')[-1].replace('.npy', '.png')
 
 
     print ('saving %s'%figname)
@@ -550,19 +555,19 @@ if __name__ == '__main__':
 
 
     izi_cat = izi_cat
-    if True:
+    if False:
         if False:        
             for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])):
                 if True:#(fld == 'GS1') & (di == 46685):
                     write_metal_profile(fld, di, fit_types)
-                    make_clean_metal_map_figure(fld, di, fit_types)
+                    #make_clean_metal_map_figure(fld, di, fit_types)
                     #fit_metal_profile(fld, di, fit_types)
         else:
-            Parallel(n_jobs = -1)(delayed(write_metal_profile)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
-            #Parallel(n_jobs = -1)(delayed(make_clean_metal_map_figure)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
-            #Parallel(n_jobs = -1)(delayed(fit_metal_profile)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))
+            #Parallel(n_jobs = -1)(delayed(write_metal_profile)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
+            Parallel(n_jobs = -1)(delayed(make_clean_metal_map_figure)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))        
+            Parallel(n_jobs = -1)(delayed(fit_metal_profile)(fld, di, fit_types) for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])))
 
-    if False:
+    if True:
         #Write metal profile catalog
         catalog_dic = {}
         catalog_dic['field'] = []
@@ -573,11 +578,12 @@ if __name__ == '__main__':
             catalog_dic['m{}_err'.format(fit_type)] = []
             catalog_dic['b{}'.format(fit_type)] = []
             catalog_dic['b{}_err'.format(fit_type)] = []
-        izi_cat = ascii.read('/Users/rsimons/Dropbox/clear/catalogs/good_izi_new.cat', header_start = 0)
+        izi_cat = ascii.read('/Users/rsimons/Dropbox/clear/catalogs/good_izi.cat', header_start = 0)
 
         for f, (fld, di) in enumerate(zip(izi_cat['field'], izi_cat['id'])):
-            fl = '/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/fits/{}_{}_highZbranch_profile_fit.npy'.format(fld, di)
+            fl = '/Users/rsimons/Dropbox/clear/products/metals/metal_profiles/fits/{}_{}_highZbranch_v3_profile_fit_v3.npy'.format(fld, di)
             if not os.path.isfile(fl): continue
+
             res = np.load(fl, allow_pickle = True)[()]
             catalog_dic['field'].append(fld)
             catalog_dic['id'].append(di)
@@ -588,7 +594,7 @@ if __name__ == '__main__':
                 catalog_dic['b{}_err'.format(fit_type)].append(sqrt(res['V{}'.format(fit_type)][1,1]))
 
         data= Table(catalog_dic)
-        ascii.write(catalog_dic, '/Users/rsimons/Dropbox/clear/catalogs/metal_highZbranch_profile_fits.cat', format = 'commented_header')
+        ascii.write(catalog_dic, '/Users/rsimons/Dropbox/clear/catalogs/metal_highZbranch_profile_fits_v3.cat', format = 'commented_header')
 
         
 

@@ -5,18 +5,21 @@ from numpy import *
 plt.ioff()
 plt.close('all')
 plt.rcParams['text.usetex'] = True
-fig, ax = plt.subplots(1,1,figsize = (7,7))
+fig, ax = plt.subplots(1,1,figsize = (6,7))
 
 
 
 
 trimmed = False
+survey_paper = True
 do_min = True
 if trimmed: figname = 'G102_G141_lines_trimmed.png'
+elif survey_paper: figname = 'G102_G141_lines_surveypaper.png'
 else: figname = 'G102_G141_lines.png'
 if trimmed:ax.set_xlabel('z$_{\t{line}}$', fontsize = 35)
 
 else:ax.set_xlabel('z$_{\t{line}}$', fontsize = 25)
+
 
 
 lines = [(r'Ly$\alpha$-1215' 		, 1215.4),
@@ -56,7 +59,42 @@ if trimmed:
 			(r'H$\alpha$ + [NII]-6563' 			, 6564.61),
 			('[SII]-6718,6732' 	, 6718.29)]
 
+elif survey_paper:
 
+
+	'''
+	to use for survey paper
+	_______________________
+	Lya
+	CIII
+	MgII
+	OII
+	NeIII
+	OIII4363 + Hg
+	HB
+	OIII
+	OI
+	Ha/NII
+	SII
+	SIII
+	HeI
+	PaB
+	'''
+	#forbidden lines identified using http://astronomy.nmsu.edu/drewski/tableofemissionlines.html
+	lines = [(r'Ly$\alpha$-1215' 		, 1215.4),
+			('CIII]-1908' 		, 1908.734),
+			('MgII]-2796,2803' 		, 2799.117),
+			('[OII]-3727,3729' 	, 3727.092),
+			('[NeIII]-3867' 		, 3867.5),
+			(r'[OIII]+H$\gamma$-4363+4341' 		, 4364.436),
+			(r'H$\beta$-4862' 			, 4862.71),
+			('[OIII]-4960,5008' 	, 5008.24),
+			(r'H$\alpha$+[NII]-6563+6548,6583' 			, 6564.61),
+			('[SII]-6718,6732' 	, 6718.29),
+			('[OII]-7319,7330' 		, 7322.0),
+			('[SIII]-9069,9531' 	, 9250.6),
+			('HeI-10830' 		, 10830.0),
+			(r'Pa$\beta$-12822' 		, 12821.6)]
 
 '''
 lines = [('CIV .1550', 0.1550),
@@ -131,7 +169,7 @@ for f, filt in enumerate(filters_plot[::-1]):
 	filt_lam1 = filt[2]
 	txt_color = filt[3]
 
-	ax.annotate(filt_name, (0.75, 0.1 + 0.1*f), xycoords = 'axes fraction', fontsize = 40, fontweight = 'bold', color = txt_color)
+	ax.annotate(filt_name, (0.70, 0.1 + 0.1*f), xycoords = 'axes fraction', fontsize = 40, fontweight = 'bold', color = txt_color)
 
 	for l, line in enumerate(lines):
 		#if ('OII-3727,3729' in line[0]) | (r'H$\alpha$' in line[0]) | ('OIII-4960,5008' in line[0]) | (r'H$\beta$-4862' in line[0]) | (r'SII-6718' in line[0]):
@@ -147,7 +185,7 @@ for f, filt in enumerate(filters_plot[::-1]):
 		if trimmed: fs = 12
 		else: fs = 8
 		if trimmed:ax.annotate('{:>12} \AA'.format(line[0].split('-')[1]), (-0.01, ymn+0.03), ha = 'right', va = 'center', xycoords = 'axes fraction', fontsize = fs, color = 'grey')
-		else: ax.annotate('{:>12}'.format(line[0].split('-')[1]), (-0.12, np.mean([ymn, ymx])), ha = 'right', va = 'center', xycoords = 'axes fraction', fontsize = fs, color = 'grey')
+		else: ax.annotate('{:>12}'.format(line[0].split('-')[1]), (-0.01, np.mean([ymn, ymx]) - 0.03), ha = 'right', va = 'center', xycoords = 'axes fraction', fontsize = fs*0.8, color = 'grey')
 		ax.axvspan(xmin = xmn, xmax = xmx, ymin = ymn, ymax = ymx, facecolor = txt_color, edgecolor = 'black', linewidth = 3)
 
 
@@ -174,12 +212,9 @@ for fo, filt_o in enumerate(filters_overlap):
 
 
 
-
-
-
 if trimmed != True:
-	ax.annotate('$\lambda$ (\AA)', (-0.12, 1.00), ha = 'right', xycoords = 'axes fraction', color = 'grey')
-	ax.annotate('line', (-0.02, 1.00), ha = 'right', xycoords = 'axes fraction', fontweight = 'bold')
+	ax.annotate('$\lambda$ (\AA)', (-0.035, 0.97), ha = 'center', xycoords = 'axes fraction', color = 'grey', fontsize = fs*0.8*1.3)
+	ax.annotate('line', (-0.035, 1.00), ha = 'center', xycoords = 'axes fraction', fontweight = 'bold', fontsize = fs*1.3)
 
 
 if trimmed: 
@@ -201,14 +236,14 @@ ax.set_xticks(zticks_log10_p1)
 if trimmed:ax.set_xticklabels(zticks_str, fontsize = 20)
 else:ax.set_xticklabels(zticks_str, fontsize = 12)
 
-
+ax.grid(which='major', axis='x', linestyle='--')
 if trimmed:fig.subplots_adjust(left = 0.20, bottom = 0.15, top = 0.95, right = 0.98)
 
-else:fig.subplots_adjust(left = 0.20, bottom = 0.12, top = 0.95, right = 0.98)
+else:fig.subplots_adjust(left = 0.15, bottom = 0.12, top = 0.95, right = 0.98)
 
 
 
-fig.savefig('/Users/rsimons/Desktop/clear/figures/%s'%figname, dpi = 300)
+fig.savefig('/Users/rsimons/Dropbox/clear/figures/%s'%figname, dpi = 300)
 
 
 
