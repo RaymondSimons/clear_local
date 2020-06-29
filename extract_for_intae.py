@@ -93,109 +93,96 @@ def run_all(args):
 
 
 
-    '''
 
-    for id in dis_unmatched['ID_Finkelstein']:
-        if not os.path.isfile('%s_%s.beams.fits'%(field, id)):
-            beams = grp.get_beams(id, size=80)
-
-            # can separate beams extraction, save, load in without needing models
-            fcontam = 0.2
-            if beams != []:
-                mb = grizli.multifit.MultiBeam(beams, fcontam=fcontam, group_name=field)
-                mb.write_master_fits()            
-
+    if args['make_beams']:
+        for ob in intae_cat:
+            di = ob['ID_3DHST']
+            if (di == -1) | (di > 5400000): di = 54 + ob['ID_SF'] 
+            if not os.path.isfile('%s_%s.beams.fits'%(field, di)):
+                beams = grp.get_beams(id, size=80)
+                if beams != []:
+                    mb = grizli.multifit.MultiBeam(beams, fcontam=0.2, group_name=field)
+                    mb.write_master_fits()            
 
 
-    for id in dis_matched['ID_Finkelstein']:
-        if not os.path.isfile('%s_%s.beams.fits'%(field, id)):
-            beams = grp.get_beams(id, size=80)
-            # can separate beams extraction, save, load in without needing models
-            fcontam = 0.2
-            if beams != []:
-                mb = grizli.multifit.MultiBeam(beams, fcontam=fcontam, group_name=field)
-                mb.write_master_fits()            
+    if args['do_fit']:
 
+        import eazy
+        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data')
 
+        templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
+                                             full_line_list=None,  continuum_list=None, 
+                                             fsps_templates=True)
 
-
-
-    import eazy
-    eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data')
-
-    templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
-                                         full_line_list=None,  continuum_list=None, 
-                                         fsps_templates=True)
-
-    # Load individual line templates for fitting the line fluxes
-    templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
-                                         full_line_list=None, continuum_list=None, 
-                                         fsps_templates=True)
+        # Load individual line templates for fitting the line fluxes
+        templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
+                                             full_line_list=None, continuum_list=None, 
+                                             fsps_templates=True)
 
 
 
 
 
-    def do_fit(id, field, templ0, templ1, fcontam = 0.2):
-        print (field, id)
-        print (os.path.isfile(field + '_' + '%.5i.beams.fits'%id))
-        print ((not os.path.isfile('%s_%s.full.fits'%(field, id))))
-        if (os.path.isfile(field + '_' + '%.5i.beams.fits'%id)) & (not os.path.isfile('%s_%s.full.fits'%(field, id))):
-            pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
-            mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
-            wave = np.linspace(2000,2.5e4,100)
+        def do_fit(id, field, templ0, templ1, fcontam = 0.2):
+            print (field, id)
+            print (os.path.isfile(field + '_' + '%.5i.beams.fits'%id))
+            print ((not os.path.isfile('%s_%s.full.fits'%(field, id))))
+            if (os.path.isfile(field + '_' + '%.5i.beams.fits'%id)) & (not os.path.isfile('%s_%s.full.fits'%(field, id))):
+                pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
+                mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
+                wave = np.linspace(2000,2.5e4,100)
 
-            print ('creating poly_templates...')
-            poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
-            pfit = mb.template_at_z(z=0, templates=poly_templates, fit_background=True, fitter='lstsq', fwhm=1400, get_uncertainties=2)
-            print ('drizzle_grisms_and_PAs...')
+                print ('creating poly_templates...')
+                poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
+                pfit = mb.template_at_z(z=0, templates=poly_templates, fit_background=True, fitter='lstsq', fwhm=1400, get_uncertainties=2)
+                print ('drizzle_grisms_and_PAs...')
 
-            if not os.path.isfile('{0}_{1:05d}.stack.fits'.format(field, id)):
-                hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
-                                                    pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
-                                                    zfit=pfit,diff=True)
-                # Save drizzled ("stacked") 2D trace as PNG and FITS
-                fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
-                hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
-
-
-            try:
-                out = grizli.fitting.run_all(
-                    id, 
-                    t0=templ0, 
-                    t1=templ1, 
-                    fwhm=1200, 
-                    zr=[5., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
-                    dz=[0.004, 0.0005], 
-                    fitter='nnls',
-                    group_name=field,# + '_%i'%phot_scale_order,
-                    fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
-                    prior=None, 
-                    fcontam=fcontam,           #suggests fcontam = 0.2
-                    pline=pline, 
-                    mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
-                    fit_only_beams=True,       #suggests fit_only_beams = True
-                    fit_beams=False,           #suggests fit_beams = False
-                    root=field,
-                    fit_trace_shift=False,  
-                    bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
-                    phot=None, 
-                    verbose=True, 
-                    scale_photometry=0, 
-                    show_beams=True,
-                    use_psf = True)          #default: False
-            except:
-                print ('exception in fit for %s %s'%(field, id))
+                if not os.path.isfile('{0}_{1:05d}.stack.fits'.format(field, id)):
+                    hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
+                                                        pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
+                                                        zfit=pfit,diff=True)
+                    # Save drizzled ("stacked") 2D trace as PNG and FITS
+                    fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
+                    hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
 
 
+                try:
+                    out = grizli.fitting.run_all(
+                        id, 
+                        t0=templ0, 
+                        t1=templ1, 
+                        fwhm=1200, 
+                        zr=[5., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
+                        dz=[0.004, 0.0005], 
+                        fitter='nnls',
+                        group_name=field,# + '_%i'%phot_scale_order,
+                        fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
+                        prior=None, 
+                        fcontam=fcontam,           #suggests fcontam = 0.2
+                        pline=pline, 
+                        mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
+                        fit_only_beams=True,       #suggests fit_only_beams = True
+                        fit_beams=False,           #suggests fit_beams = False
+                        root=field,
+                        fit_trace_shift=False,  
+                        bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
+                        phot=None, 
+                        verbose=True, 
+                        scale_photometry=0, 
+                        show_beams=True,
+                        use_psf = True)          #default: False
+                except:
+                    print ('exception in fit for %s %s'%(field, id))
 
-    #for id in dis_unmatched['ID_Finkelstein']:
-    #    do_fit(id, field, templ0, templ1)
 
-    Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_unmatched['ID_Finkelstein'])
-    Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_matched['ID_Finkelstein'])
 
-    '''
+        #for id in dis_unmatched['ID_Finkelstein']:
+        #    do_fit(id, field, templ0, templ1)
+
+        Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_unmatched['ID_Finkelstein'])
+        Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_matched['ID_Finkelstein'])
+
+
     os.chdir('/Users/rsimons/Dropbox/git/clear_local')
 
 
