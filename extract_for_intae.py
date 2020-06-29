@@ -106,10 +106,6 @@ def run_all(args):
 
 
     if args['do_fit']:
-
-        import eazy
-        eazy.symlink_eazy_inputs(path=os.path.dirname(eazy.__file__)+'/data')
-
         templ0 = grizli.utils.load_templates(fwhm=1200, line_complexes=True, stars=False, 
                                              full_line_list=None,  continuum_list=None, 
                                              fsps_templates=True)
@@ -118,10 +114,6 @@ def run_all(args):
         templ1 = grizli.utils.load_templates(fwhm=1200, line_complexes=False, stars=False, 
                                              full_line_list=None, continuum_list=None, 
                                              fsps_templates=True)
-
-
-
-
 
         def do_fit(id, field, templ0, templ1, fcontam = 0.2):
             print (field, id)
@@ -176,7 +168,7 @@ def run_all(args):
                     print ('exception in fit for %s %s'%(field, id))
 
 
-        all_beams = [fl.replace('*beam.fits') for fl in glob('*beam.fits')]
+        all_beams = [fl.split('_')[-1].replace('.beams.fits', '') for fl in glob('*beams.fits')]
         print (all_beams)
         Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
 
