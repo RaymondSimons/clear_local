@@ -177,6 +177,7 @@ def run_all(args):
 
 
         all_beams = [fl.replace('*beam.fits') for fl in glob('*beam.fits')]
+        print (all_beams)
         Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
 
 
