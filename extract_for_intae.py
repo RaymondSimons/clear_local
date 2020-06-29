@@ -162,7 +162,7 @@ def run_all(args):
                 except:
                     print ('exception in fit for %s %s'%(field, id))
 
-        all_beams = [fl.split('_')[-1].replace('.beams.fits', '') for fl in glob('*beams.fits')]
+        all_beams = [int(fl.split('_')[-1].replace('.beams.fits', '')) for fl in glob('*beams.fits')]
         print (all_beams)
         Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
 
