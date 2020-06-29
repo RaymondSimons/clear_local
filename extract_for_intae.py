@@ -54,7 +54,7 @@ def run_all(args):
     field = args['field']
     HOME_PATH = '/Volumes/pegasus/clear/grizli_extractions_v3/%s'%field
     #PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
-    PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep_z67')[0]
+    PATH_TO_PREP        = glob(HOME_PATH + '/Prep_z67')[0]
     PATH_TO_CATS = '/Users/rsimons/Desktop/clear/catalogs'
     os.chdir(PATH_TO_PREP)
 
