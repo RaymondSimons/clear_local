@@ -98,7 +98,6 @@ def run_all(args):
         for ob in intae_cat:
             di = ob['ID_3DHST']
             if (di == -1) | (di > 5400000): di = 5400000 + ob['ID_SF'] 
-            #if not os.path.isfile('%s_%s.beams.fits'%(field, di)):
             beams = grp.get_beams(di, size=80)
             if beams != []:
                 print (field, di)
@@ -128,7 +127,7 @@ def run_all(args):
             print (field, id)
             print (os.path.isfile(field + '_' + '%.5i.beams.fits'%id))
             print ((not os.path.isfile('%s_%s.full.fits'%(field, id))))
-            if (os.path.isfile(field + '_' + '%.5i.beams.fits'%id)) & (not os.path.isfile('%s_%s.full.fits'%(field, id))):
+            if (os.path.isfile(field + '_' + '%.5i.beams.fits'%id)):
                 pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 8, 'wcs': None}
                 mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
                 wave = np.linspace(2000,2.5e4,100)
@@ -139,13 +138,14 @@ def run_all(args):
                 print ('drizzle_grisms_and_PAs...')
 
                 if not os.path.isfile('{0}_{1:05d}.stack.fits'.format(field, id)):
+                    print ('drizzle_grisms_and_PAs...')
+
                     hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
                                                         pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
                                                         zfit=pfit,diff=True)
                     # Save drizzled ("stacked") 2D trace as PNG and FITS
-                    fig.savefig('{0}_{1:05d}.stack.png'.format(field, id))
-                    hdu.writeto('{0}_{1:05d}.stack.fits'.format(field, id), clobber=True)
-
+                    fig.savefig('{0}_diff_{1:05d}.stack.png'.format(field, id))
+                    hdu.writeto('{0}_diff_{1:05d}.stack.fits'.format(field, id), clobber=True)
 
                 try:
                     out = grizli.fitting.run_all(
@@ -176,12 +176,8 @@ def run_all(args):
                     print ('exception in fit for %s %s'%(field, id))
 
 
-
-        #for id in dis_unmatched['ID_Finkelstein']:
-        #    do_fit(id, field, templ0, templ1)
-
-        Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_unmatched['ID_Finkelstein'])
-        Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_matched['ID_Finkelstein'])
+        all_beams = [fl.replace('*beam.fits') for fl in glob('*beam.fits')]
+        Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
 
 
     os.chdir('/Users/rsimons/Dropbox/git/clear_local')
