@@ -78,12 +78,12 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field
  screen -S GS4
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GS4
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --do_fit --field  GS4
 
  screen -S GS5
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GS5
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --do_fit --field  GS5
 
 ----
 
