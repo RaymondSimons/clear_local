@@ -41,55 +41,14 @@ class Pointing():
             self.seg_map =  PATH_TO_CATS + '/GND_3DHST_plus_v2_seg.fits'
             self.catalog = PATH_TO_CATS + '/GND_3DHST_plus_v2_seg.cat'
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
-
-            self.params = {}
-            #self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.3')
-            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodsn', 'v4.4', 'goodsn', 'v4.4')
-
-            self.params['Z_STEP'] = 0.002
-            self.params['Z_MAX'] = 4
-
-            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodsn', 'v4.4')
-            self.params['PRIOR_FILTER'] = 205
-
-
-            self.params['MW_EBV'] = {'aegis':0.0066, 'cosmos':0.0148, 'goodss':0.0069, 
-                                    'uds':0.0195, 'goodsn':0.0103}['goodsn']
-
-            self.params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
-            #self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodsn', 'v4.3')
-            self.translate_file = PATH_TO_CATS + '/{0}_{1}.translate'.format('goodsn', 'v4.4')
+            self.intae_cat = PATH_TO_CATS + '/z68_selected_in_clear_GS.txt'
 
         elif 'S' in field.upper():
             self.pad = 200
             self.seg_map =  PATH_TO_CATS + '/GSD_3DHST_plus_v2_seg.fits'
             self.catalog = PATH_TO_CATS + '/GSD_3DHST_plus_v2_seg.cat'
             self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits' 
-            self.params = {}
-            self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodss', 'v4.4', 'goodss', 'v4.4')
-            self.params['Z_STEP'] = 0.002
-            self.params['Z_MAX'] = 4
-
-            self.params['MAIN_OUTPUT_FILE'] = '{0}_3dhst.{1}.eazypy'.format('goodss', 'v4.4')
-            self.params['PRIOR_FILTER'] = 205
-
-
-            self.params['MW_EBV'] = {'aegis':0.0066, 'cosmos':0.0148, 'goodss':0.0069, 
-                                    'uds':0.0195, 'goodsn':0.0103}['goodsn']
-
-            self.params['TEMPLATES_FILE'] = 'templates/fsps_full/tweak_fsps_QSF_12_v3.param'
-            #self.translate_file = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Eazy/{0}_3dhst.{1}.translate'.format('goodss', 'v4.3')
-            self.translate_file = PATH_TO_CATS + '/{0}_{1}.translate'.format('goodss', 'v4.4')
-
-
-            
-            
-            
-
-
-
-
-
+            self.intae_cat = PATH_TO_CATS + '/z68_selected_in_clear_GS.txt'
 
 def run_all(args):
     field = args['field']
@@ -97,49 +56,13 @@ def run_all(args):
     #PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
     PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep_z67')[0]
     PATH_TO_CATS = '/Users/rsimons/Desktop/clear/catalogs'
-    if 'S' in field:
-        intae_cat = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GS_matched_Finkelstein.txt')
-        #dis_unmatched = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GS_unmatched_Finkelstein.txt')
-
-    else:
-        intae_cat = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GN_matched_Finkelstein.txt')
-        #dis_unmatched = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GN_unmatched_Finkelstein.txt')
-
     os.chdir(PATH_TO_PREP)
-    '''
-    files = glob('%s/*flt.fits'%PATH_TO_RAW)
-    info = grizli.utils.get_flt_info(files)
-    visits, filters = grizli.utils.parse_flt_files(info=info, uniquename=True)
-
-
-    ref_filter_1 = 'F105W'
-    ref_grism_1 = 'G102'
-    ref_filter_2 = 'F140W' 
-    ref_grism_2 = 'G141'
-    mag_lim = 25
-
-    all_grism_files = []
-    all_direct_files = []
-    product_names = np.array([visit['product'] for visit in visits])
-    filter_names = np.array([visit['product'].split('-')[-1] for visit in visits])
-    basenames = np.array([visit['product'].split('.')[0]+'.0' for visit in visits])
-
-    for v, visit in enumerate(visits):
-        product = product_names[v]
-        basename = basenames[v]
-        filt1 = filter_names[v]
-        if (ref_filter_1.lower() in filt1) or (ref_filter_2.lower() in filt1):
-            all_direct_files.extend(visit['files'])
-            grism_index_1 = np.where((basenames == basename) & (filter_names == ref_grism_1.lower()))[0]
-            grism_index_2 = np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
-            if len(grism_index_1) > 0: all_grism_files.extend(visits[grism_index_1[0]]['files'])
-            if len(grism_index_2) > 0: all_grism_files.extend(visits[grism_index_2[0]]['files'])
-    '''
-
 
     print('Loading contamination models...')
     p = Pointing(field=field)
+    intae_cat = ascii.read(p.intae_cat)
 
+    all_grism_files = glob('*flt.fits')
     grp = GroupFLT(
         grism_files=all_grism_files, 
         direct_files=[], 
@@ -308,6 +231,37 @@ if __name__ == '__main__':
 
 
 
+
+    if False:
+        '''
+        files = glob('%s/*flt.fits'%PATH_TO_RAW)
+        info = grizli.utils.get_flt_info(files)
+        visits, filters = grizli.utils.parse_flt_files(info=info, uniquename=True)
+
+
+        ref_filter_1 = 'F105W'
+        ref_grism_1 = 'G102'
+        ref_filter_2 = 'F140W' 
+        ref_grism_2 = 'G141'
+        mag_lim = 25
+
+        all_grism_files = []
+        all_direct_files = []
+        product_names = np.array([visit['product'] for visit in visits])
+        filter_names = np.array([visit['product'].split('-')[-1] for visit in visits])
+        basenames = np.array([visit['product'].split('.')[0]+'.0' for visit in visits])
+
+        for v, visit in enumerate(visits):
+            product = product_names[v]
+            basename = basenames[v]
+            filt1 = filter_names[v]
+            if (ref_filter_1.lower() in filt1) or (ref_filter_2.lower() in filt1):
+                all_direct_files.extend(visit['files'])
+                grism_index_1 = np.where((basenames == basename) & (filter_names == ref_grism_1.lower()))[0]
+                grism_index_2 = np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
+                if len(grism_index_1) > 0: all_grism_files.extend(visits[grism_index_1[0]]['files'])
+                if len(grism_index_2) > 0: all_grism_files.extend(visits[grism_index_2[0]]['files'])
+        '''
 
 
 
