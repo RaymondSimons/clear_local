@@ -60,7 +60,7 @@ def run_all(args):
     p = Pointing(field=field)
     intae_cat = ascii.read(p.intae_cat)
 
-    all_grism_files = glob('*flt.fits')
+    all_grism_files = [fl.replace('.01.GrismFLT.fits', '_flt.fits') for fl in glob('*.01.GrismFLT.fits')]
     grp = GroupFLT(
         grism_files=all_grism_files, 
         direct_files=[], 
