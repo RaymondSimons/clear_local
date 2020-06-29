@@ -102,8 +102,7 @@ def run_all(args):
             di = ob['ID_3DHST']
             if (di == -1) | (di > 5400000): di = 54 + ob['ID_SF'] 
             if not os.path.isfile('%s_%s.beams.fits'%(field, di)):
-                print ('hi')
-                beams = grp.get_beams(id, size=80)
+                beams = grp.get_beams(di, size=80)
                 if beams != []:
                     print ('hi')
                     mb = grizli.multifit.MultiBeam(beams, fcontam=0.2, group_name=field)
