@@ -42,7 +42,7 @@ class Pointing():
             self.seg_map =  PATH_TO_CATS + '/GND_3DHST_plus_v2_seg.fits'
             self.catalog = PATH_TO_CATS + '/GND_3DHST_plus_v2_seg.cat'
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
-            self.intae_cat = PATH_TO_CATS + '/z68_selected_in_clear_GS.txt'
+            self.intae_cat = PATH_TO_CATS + '/z68_selected_in_clear_GN.txt'
 
         elif 'S' in field.upper():
             self.pad = 200
@@ -98,11 +98,14 @@ def run_all(args):
 
     if args['make_beams']:
         for ob in intae_cat:
+            print (ob)
             di = ob['ID_3DHST']
             if (di == -1) | (di > 5400000): di = 54 + ob['ID_SF'] 
             if not os.path.isfile('%s_%s.beams.fits'%(field, di)):
+                print ('hi')
                 beams = grp.get_beams(id, size=80)
                 if beams != []:
+                    print ('hi')
                     mb = grizli.multifit.MultiBeam(beams, fcontam=0.2, group_name=field)
                     mb.write_master_fits()            
 
@@ -190,65 +193,20 @@ def run_all(args):
 
 
 if __name__ == '__main__':
-    fields = ['GN1',
-            'GN2',
-            'GN3',
-            'GN4',
-            'GN5',
-            'GN7',
-            'GS1',
-            'GS2',
-            'GS3',
-            'GS4',
-            'GS5',
-            'ERSPRIME']
-
-    fields = ['GN2']
-    #fields = ['GN1']
-
-    #Parallel(n_jobs = -1, backend = 'threading')(delayed(run_all) (field = field) for field in fields)
     args = parse()
-    #field               = args['field']
     run_all(args)
-    
-    #for field in fields: run_all(field)
-    #for field in fields:
-    #    print (field)
-    #    run_all(field)
 
 
 
 
-    if False:
-        '''
-        files = glob('%s/*flt.fits'%PATH_TO_RAW)
-        info = grizli.utils.get_flt_info(files)
-        visits, filters = grizli.utils.parse_flt_files(info=info, uniquename=True)
 
 
-        ref_filter_1 = 'F105W'
-        ref_grism_1 = 'G102'
-        ref_filter_2 = 'F140W' 
-        ref_grism_2 = 'G141'
-        mag_lim = 25
 
-        all_grism_files = []
-        all_direct_files = []
-        product_names = np.array([visit['product'] for visit in visits])
-        filter_names = np.array([visit['product'].split('-')[-1] for visit in visits])
-        basenames = np.array([visit['product'].split('.')[0]+'.0' for visit in visits])
 
-        for v, visit in enumerate(visits):
-            product = product_names[v]
-            basename = basenames[v]
-            filt1 = filter_names[v]
-            if (ref_filter_1.lower() in filt1) or (ref_filter_2.lower() in filt1):
-                all_direct_files.extend(visit['files'])
-                grism_index_1 = np.where((basenames == basename) & (filter_names == ref_grism_1.lower()))[0]
-                grism_index_2 = np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
-                if len(grism_index_1) > 0: all_grism_files.extend(visits[grism_index_1[0]]['files'])
-                if len(grism_index_2) > 0: all_grism_files.extend(visits[grism_index_2[0]]['files'])
-        '''
+
+
+
+
 
 
 
