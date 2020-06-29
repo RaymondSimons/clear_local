@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 plt.ioff()
 
 
+PATH_TO_CATS = '/Users/rsimons/Desktop/clear/catalogs'
 
 
 
@@ -53,7 +54,6 @@ def run_all(args):
     HOME_PATH = '/Users/rsimons/Desktop/clear/grizli_extractions_v3/%s'%field
     #PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
     PATH_TO_PREP        = glob(HOME_PATH + '/Prep_z67')[0]
-    PATH_TO_CATS = '/Users/rsimons/Desktop/clear/catalogs'
     os.chdir(PATH_TO_PREP)
 
     print('Loading contamination models...')
