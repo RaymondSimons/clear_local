@@ -35,7 +35,7 @@ def parse():
 
 
 class Pointing():
-    def __init__(self, field, ref_filter):
+    def __init__(self, field):
         if 'N' in field.upper():
             self.pad = 200
             self.seg_map =  PATH_TO_CATS + '/GND_3DHST_plus_v2_seg.fits'
