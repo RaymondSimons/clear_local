@@ -53,9 +53,7 @@ class Pointing():
 
 def run_all(args):
     field = args['field']
-    HOME_PATH = '/Users/rsimons/Desktop/clear/grizli_extractions_v3/%s'%field
-    #PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
-    PATH_TO_PREP        = glob(HOME_PATH + '/Prep_z67')[0]
+    PATH_TO_PREP        = '/Users/rsimons/Desktop/clear/grizli_extractions_v3/%s/Prep_z67'%field
     os.chdir(PATH_TO_PREP)
 
     print('Loading contamination models...')
