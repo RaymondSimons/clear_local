@@ -5,14 +5,17 @@ import numpy as np
 
 fields = [('s', 'v4.3'), ('n', 'v4.4')]
 
-cat_dir = '/Users/rsimons/Downloads'
+cat_dir = '/Users/rsimons/Dropbox/clear/catalogs'
 for (f, v) in fields:
     cat_name = '%s/goods%s-F105W-astrodrizzle-%s_drz_sub_plus.cat'%(cat_dir, f, v)
     cat      = ascii.read(cat_name)
     print (max(cat['NUMBER']))
-    cat_unmatched = ascii.read('%s/z67_in_CLEAR_G%s_unmatched_Finkelstein.txt'%(cat_dir,f))
-    cat_matched   = ascii.read('%s/z67_in_CLEAR_G%s_matched_Finkelstein.txt'%(cat_dir,f))
+    #cat_unmatched = ascii.read('%s/z67_in_CLEAR_G%s_unmatched_Finkelstein.txt'%(cat_dir,f))
+    #cat_matched   = ascii.read('%s/z67_in_CLEAR_G%s_matched_Finkelstein.txt'%(cat_dir,f))
 
+    cat_intae     = ascii.read('%s/z68_selected_in_CLEAR_G%s.txt'%(cat_dir,f))
+
+    cat_unmatched = cat_intae[cat_intae['ID_3DHST'] == -1]
 
     for i in np.arange(len(cat_unmatched)):
         di = cat_unmatched['ID_Finkelstein'][i]

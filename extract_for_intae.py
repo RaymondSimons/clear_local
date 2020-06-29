@@ -27,6 +27,8 @@ def parse():
     ''' 
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description='''CLEAR grizli extractions.''')
     parser.add_argument('-field',       '--field',          default='GS1', help='field to extract')
+    parser.add_argument('-reblot',      '--reblot',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
+
     args = vars(parser.parse_args())
     return args
 
@@ -36,8 +38,8 @@ class Pointing():
     def __init__(self, field, ref_filter):
         if 'N' in field.upper():
             self.pad = 200
-            self.seg_map =  PATH_TO_CATS + '/Goods_N_plus_unmatched_seg.fits'
-            self.catalog = PATH_TO_CATS + '/goodsn-v4.4-withunmatched.cat'
+            self.seg_map =  PATH_TO_CATS + '/GND_3DHST_plus_v2_seg.fits'
+            self.catalog = PATH_TO_CATS + '/GND_3DHST_plus_v2_seg.cat'
             self.ref_image =  PATH_TO_CATS + '/goodsn-F105W-astrodrizzle-v4.4_drz_sci.fits'
 
             self.params = {}
@@ -60,8 +62,8 @@ class Pointing():
 
         elif 'S' in field.upper():
             self.pad = 200
-            self.seg_map =  PATH_TO_CATS + '/Goods_S_plus_unmatched_seg.fits'
-            self.catalog = PATH_TO_CATS + '/goodss-v4.4-withunmatched.cat'
+            self.seg_map =  PATH_TO_CATS + '/GSD_3DHST_plus_v2_seg.fits'
+            self.catalog = PATH_TO_CATS + '/GSD_3DHST_plus_v2_seg.cat'
             self.ref_image =  PATH_TO_CATS + '/goodss-F105W-astrodrizzle-v4.3_drz_sci.fits' 
             self.params = {}
             self.params['CATALOG_FILE'] = PATH_TO_CATS + '/{0}_3dhst.{1}.cats/Catalog/{0}_3dhst.{1}.cat'.format('goodss', 'v4.4', 'goodss', 'v4.4')
@@ -89,20 +91,22 @@ class Pointing():
 
 
 
-def run_all(field):
-    HOME_PATH = '/Volumes/pegasus/clear/grizli_extractions/%s'%field
-    PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
+def run_all(args):
+    field = args['field']
+    HOME_PATH = '/Volumes/pegasus/clear/grizli_extractions_v3/%s'%field
+    #PATH_TO_RAW         = glob(HOME_PATH + '/*/RAW')[0]
     PATH_TO_PREP        = glob(HOME_PATH + '/*/Prep_z67')[0]
-    PATH_TO_CATS = '/Volumes/pegasus/clear/grizli_extractions/Catalogs'
+    PATH_TO_CATS = '/Users/rsimons/Desktop/clear/catalogs'
     if 'S' in field:
-        dis_matched = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GS_matched_Finkelstein.txt')
-        dis_unmatched = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GS_unmatched_Finkelstein.txt')
+        intae_cat = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GS_matched_Finkelstein.txt')
+        #dis_unmatched = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GS_unmatched_Finkelstein.txt')
 
     else:
-        dis_matched = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GN_matched_Finkelstein.txt')
-        dis_unmatched = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GN_unmatched_Finkelstein.txt')
+        intae_cat = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GN_matched_Finkelstein.txt')
+        #dis_unmatched = ascii.read(PATH_TO_CATS + '/z67_in_CLEAR_GN_unmatched_Finkelstein.txt')
 
     os.chdir(PATH_TO_PREP)
+    '''
     files = glob('%s/*flt.fits'%PATH_TO_RAW)
     info = grizli.utils.get_flt_info(files)
     visits, filters = grizli.utils.parse_flt_files(info=info, uniquename=True)
@@ -130,11 +134,11 @@ def run_all(field):
             grism_index_2 = np.where((basenames == basename) & (filter_names == ref_grism_2.lower()))[0]
             if len(grism_index_1) > 0: all_grism_files.extend(visits[grism_index_1[0]]['files'])
             if len(grism_index_2) > 0: all_grism_files.extend(visits[grism_index_2[0]]['files'])
-
+    '''
 
 
     print('Loading contamination models...')
-    p = Pointing(field=field, ref_filter=ref_filter_1)
+    p = Pointing(field=field)
 
     grp = GroupFLT(
         grism_files=all_grism_files, 
@@ -146,7 +150,7 @@ def run_all(field):
         cpu_count=1)
 
 
-    if False:
+    if args['reblot']:
         #Rewrite GrismFLT files to blot new targets (we only need to do this once)
         def rewrite_flt(FLT, p):
             FLT.process_seg_file(p.seg_map)
@@ -168,7 +172,7 @@ def run_all(field):
 
 
 
-
+    '''
 
     for id in dis_unmatched['ID_Finkelstein']:
         if not os.path.isfile('%s_%s.beams.fits'%(field, id)):
@@ -270,7 +274,7 @@ def run_all(field):
     Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_unmatched['ID_Finkelstein'])
     Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_matched['ID_Finkelstein'])
 
-
+    '''
     os.chdir('/Users/rsimons/Desktop/git/clear_local')
 
 
@@ -294,8 +298,8 @@ if __name__ == '__main__':
 
     #Parallel(n_jobs = -1, backend = 'threading')(delayed(run_all) (field = field) for field in fields)
     args = parse()
-    field               = args['field']
-    run_all(field)
+    #field               = args['field']
+    run_all(args)
     
     #for field in fields: run_all(field)
     #for field in fields:

@@ -12,9 +12,17 @@ def load_paper_catalog(add_Z = True, cat_version = 'v4.5', cat_name = 'simons_sa
     return cat
 
 
-def load_eazy_catalog(field_name = 'goodss', cat_version = 'v4.5', cat_dir = '/Users/rsimons/Desktop/clear/catalogs'):
-    print ('Loading Eazy v%s catalog for %s...'%(cat_version, field_name))
+def load_eazy_catalog(field_name = 's', cat_version = 'v4.5', cat_dir = '/Users/rsimons/Dropbox/clear/catalogs'):
+    print ('Loading Eazy %s catalog for GOODS-%s...'%(cat_version, field_name.upper()))
     import astropy.io
     from astropy.io import fits
-    cat_eazy_zout = fits.open(cat_dir + '/%s_3dhst.%s.cats/Eazy/%s_3dhst.%s.zout.fits'%(field_name, cat_version, field_name, cat_version))
+    cat_eazy_zout = fits.open(cat_dir + '/goods%s_3dhst.%s.cats/Eazy/goods%s_3dhst.%s.zout.fits'%(field_name, cat_version, field_name, cat_version))
     return cat_eazy_zout
+
+def load_grizli_catalog(field_name = 's', cat_version = 'v3.0', cat_dir = '/Users/rsimons/Dropbox/clear'):
+    print ('Loading Grizli %s catalog for GOODS-%s...'%(cat_version, field_name.upper()))
+    import astropy.io
+    from astropy.io import fits
+    
+    cat_grizli_zout = fits.open(cat_dir + '/grizli_extractions_%s/grizli_%s_cats/GD%s_lines_grizli_master.fits'%(cat_version, cat_version, field_name.upper()))
+    return cat_grizli_zout
