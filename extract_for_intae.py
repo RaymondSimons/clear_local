@@ -196,7 +196,7 @@ def run_all(args):
     Parallel(n_jobs = -1)(delayed(do_fit)(id, field, templ0, templ1) for id in dis_matched['ID_Finkelstein'])
 
     '''
-    os.chdir('/Users/rsimons/Desktop/git/clear_local')
+    os.chdir('/Users/rsimons/Dropbox/git/clear_local')
 
 
 
