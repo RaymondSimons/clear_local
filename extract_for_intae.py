@@ -99,13 +99,13 @@ def run_all(args):
     if args['make_beams']:
         for ob in intae_cat:
             di = ob['ID_3DHST']
-            if (di == -1) | (di > 5400000): di = 54 + ob['ID_SF'] 
-            if not os.path.isfile('%s_%s.beams.fits'%(field, di)):
-                beams = grp.get_beams(di, size=80)
-                if beams != []:
-                    print (field, di)
-                    mb = grizli.multifit.MultiBeam(beams, fcontam=0.2, group_name=field)
-                    mb.write_master_fits()            
+            if (di == -1) | (di > 5400000): di = 5400000 + ob['ID_SF'] 
+            #if not os.path.isfile('%s_%s.beams.fits'%(field, di)):
+            beams = grp.get_beams(di, size=80)
+            if beams != []:
+                print (field, di)
+                mb = grizli.multifit.MultiBeam(beams, fcontam=0.2, group_name=field)
+                mb.write_master_fits()            
 
 
     if args['do_fit']:
