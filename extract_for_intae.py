@@ -27,6 +27,8 @@ def parse():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description='''CLEAR grizli extractions.''')
     parser.add_argument('-field',       '--field',          default='GS1', help='field to extract')
     parser.add_argument('-reblot',      '--reblot',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
+    parser.add_argument('-make_beams',  '--make_beams',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
+    parser.add_argument('-do_fit',      '--do_fit',         action = "store_true", default = False, help = 'use psf extraction in fitting routine')
 
     args = vars(parser.parse_args())
     return args
