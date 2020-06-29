@@ -16,8 +16,6 @@ import matplotlib.pyplot as plt
 plt.ioff()
 
 
-PATH_TO_CATS = '/Volumes/pegasus/clear/grizli_extractions/Catalogs'
-
 
 
 
