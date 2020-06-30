@@ -119,7 +119,7 @@ def run_all(args):
                    wave = np.linspace(2000,2.5e4,100),\
                    fcontam = 0.2, \
                    pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 16, 'wcs': None}):
-
+            if os.path.exists(field + '_' + '%i.full.fits'%id): return
             print (field, id)            
             mb = grizli.multifit.MultiBeam(field + '_' + '%i.beams.fits'%id, fcontam=fcontam, group_name=field)
 

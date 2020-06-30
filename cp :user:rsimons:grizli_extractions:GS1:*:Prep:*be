@@ -21,69 +21,69 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field
  screen -S GN1
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GN1
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GN1
 
  screen -S GN2
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GN2
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GN2
 
  screen -S GN3
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GN3
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GN3
  
  screen -S GN4
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GN4
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GN4
 
 
  screen -S GN5
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GN5
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GN5
 
 
  screen -S GN7
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GN7
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GN7
 
 
  screen -S ERSPRIME
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  ERSPRIME
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  ERSPRIME
 
 
 
  screen -S GS1
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GS1
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GS1
 
 
  screen -S GS2
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GS2
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GS2
 
 
  screen -S GS3
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GS3
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GS3
 
  screen -S GS4
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GS4
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GS4
 
  screen -S GS5
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --reblot --make_beams --field  GS5
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GS5
 
 ----
 
