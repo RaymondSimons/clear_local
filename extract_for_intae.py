@@ -93,9 +93,9 @@ def run_all(args):
         for ob in intae_cat:
             di = ob['ID_3DHST']
             if (di == -1) | (di > 5400000): di = 5400000 + ob['ID_SF'] 
-            beams = grp.get_beams(di, size=80)
+            beams = grp.get_beams(int(di), size=80)
             if beams != []:
-                print (field, di)
+                print ('Creating beams for:', field, di)
                 mb = grizli.multifit.MultiBeam(beams, fcontam=0.2, group_name=field)
                 mb.write_master_fits()            
 
@@ -116,7 +116,7 @@ def run_all(args):
                    pline = {'kernel': 'point', 'pixfrac': 0.2, 'pixscale': 0.1, 'size': 16, 'wcs': None}):
 
             print (field, id)            
-            mb = grizli.multifit.MultiBeam(field + '_' + '%.5i.beams.fits'%id, fcontam=fcontam, group_name=field)
+            mb = grizli.multifit.MultiBeam(field + '_' + '%i.beams.fits'%id, fcontam=fcontam, group_name=field)
 
             print ('creating poly_templates...')
             poly_templates = grizli.utils.polynomial_templates(wave=wave, order=7,line=False)
@@ -130,8 +130,8 @@ def run_all(args):
                                                     pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
                                                     zfit=pfit,diff=True)
                 # Save drizzled ("stacked") 2D trace as PNG and FITS
-                fig.savefig('{0}_diff_{1:05d}.stack.png'.format(field, id))
-                hdu.writeto('{0}_diff_{1:05d}.stack.fits'.format(field, id), clobber=True)
+                fig.savefig('{0}_diff_{}.stack.png'.format(field, id))
+                hdu.writeto('{0}_diff_{}.stack.fits'.format(field, id), clobber=True)
 
             try:
                 out = grizli.fitting.run_all(
