@@ -18,10 +18,19 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field
 
 
 --------
- screen -S GN1
+ screen -S GN1_reverse
  source ~/.bash_profile
  grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GN1
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --field  GN1
+
+
+ screen -S GS4_reverse
+ source ~/.bash_profile
+ grizli
+ python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --field  GS4
+
+
+
 
  screen -S GN2
  source ~/.bash_profile
@@ -74,11 +83,6 @@ python /Users/rsimons/Dropbox/git/clear_local/grizli_reduction.py --field
  source ~/.bash_profile
  grizli
  python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GS3
-
- screen -S GS4
- source ~/.bash_profile
- grizli
- python /Users/rsimons/Dropbox/git/clear_local/extract_for_intae.py --do_fit --make_beams --field  GS4
 
  screen -S GS5
  source ~/.bash_profile
