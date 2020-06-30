@@ -143,6 +143,7 @@ def run_all(args):
             # Save drizzled ("stacked") 2D trace as PNG and FITS
             fig.savefig('{}_diff_{}.stack.png'.format(field, id))
             
+            import sys
 
             try:
                 out = grizli.fitting.run_all(
@@ -169,13 +170,20 @@ def run_all(args):
                     scale_photometry=0, 
                     show_beams=True,
                     use_psf = True)          #default: False
+            except OSError as err:
+                print("OS error: {0}".format(err))
+            except ValueError:
+                print("Could not convert data to an integer.")
             except:
-                print ('exception in fit for %s %s'%(field, id))
+                print("Unexpected error:", sys.exc_info()[0])
+                raise                
+            #except:
+            #    print ('exception in fit for %s %s'%(field, id))
 
         all_beams = [int(fl.split('_')[-1].replace('.beams.fits', '')) for fl in glob('*beams.fits')]
         #print (all_beams)
         #Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
-        for di in all_beams:
+        for di in all_beams[::-1]:
             do_fit(di, field, templ0, templ1)
 
 
