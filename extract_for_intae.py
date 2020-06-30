@@ -128,15 +128,13 @@ def run_all(args):
             pfit = mb.template_at_z(z=0, templates=poly_templates, fit_background=True, fitter='lstsq', fwhm=1400, get_uncertainties=2)
             print ('drizzle_grisms_and_PAs...')
 
-            if not os.path.isfile('{0}_{1:05d}.stack.fits'.format(field, id)):
-                print ('drizzle_grisms_and_PAs...')
 
-                hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
-                                                    pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
-                                                    zfit=pfit,diff=True)
-                # Save drizzled ("stacked") 2D trace as PNG and FITS
-                fig.savefig('{0}_diff_{}.stack.png'.format(field, id))
-                hdu.writeto('{0}_diff_{}.stack.fits'.format(field, id), clobber=True)
+            hdu, fig = mb.drizzle_grisms_and_PAs(size=32, fcontam=fcontam, flambda=False, scale=1, 
+                                                pixfrac=0.5, kernel='point', make_figure=True, usewcs=False, 
+                                                zfit=pfit,diff=True)
+            # Save drizzled ("stacked") 2D trace as PNG and FITS
+            fig.savefig('{}_diff_{}.stack.png'.format(field, id))
+            hdu.writeto('{}_diff_{}.stack.fits'.format(field, id), clobber=True)
 
             try:
                 out = grizli.fitting.run_all(
