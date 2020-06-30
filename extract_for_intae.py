@@ -165,8 +165,10 @@ def run_all(args):
                 print ('exception in fit for %s %s'%(field, id))
 
         all_beams = [int(fl.split('_')[-1].replace('.beams.fits', '')) for fl in glob('*beams.fits')]
-        print (all_beams)
-        Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
+        #print (all_beams)
+        #Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
+        for di in all_beams:
+            do_fit(di, field, templ0, templ1)
 
 
     os.chdir('/Users/rsimons/Dropbox/git/clear_local')
