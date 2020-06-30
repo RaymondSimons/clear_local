@@ -145,31 +145,32 @@ def run_all(args):
             
             import sys
 
-            try:
-                out = grizli.fitting.run_all(
-                    id, 
-                    t0=templ0, 
-                    t1=templ1, 
-                    fwhm=1200, 
-                    zr=[4.9, 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
-                    dz=[0.004, 0.0005], 
-                    fitter='nnls',
-                    group_name=field,# + '_%i'%phot_scale_order,
-                    fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
-                    prior=None, 
-                    fcontam=fcontam,           #suggests fcontam = 0.2
-                    pline=pline, 
-                    mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
-                    fit_only_beams=True,       #suggests fit_only_beams = True
-                    fit_beams=False,           #suggests fit_beams = False
-                    root=field,
-                    fit_trace_shift=False,  
-                    bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
-                    phot=None, 
-                    verbose=True, 
-                    scale_photometry=0, 
-                    show_beams=True,
-                    use_psf = True)          #default: False
+            #try:
+            out = grizli.fitting.run_all(
+                id, 
+                t0=templ0, 
+                t1=templ1, 
+                fwhm=1200, 
+                zr=[4.9, 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
+                dz=[0.004, 0.0005], 
+                fitter='nnls',
+                group_name=field,# + '_%i'%phot_scale_order,
+                fit_stacks=False,          #suggests fit_stacks = False, fit to FLT files
+                prior=None, 
+                fcontam=fcontam,           #suggests fcontam = 0.2
+                pline=pline, 
+                mask_sn_limit=np.inf,      #suggests mask_sn_limit = np.inf
+                fit_only_beams=True,       #suggests fit_only_beams = True
+                fit_beams=False,           #suggests fit_beams = False
+                root=field,
+                fit_trace_shift=False,  
+                bad_pa_threshold = np.inf, #suggests bad_pa_threshold = np.inf
+                phot=None, 
+                verbose=True, 
+                scale_photometry=0, 
+                show_beams=True,
+                use_psf = True)          #default: False
+            '''
             except OSError as err:
                 print("OS error: {0}".format(err))
             except ValueError as err:
@@ -179,7 +180,7 @@ def run_all(args):
                 raise                
             #except:
             #    print ('exception in fit for %s %s'%(field, id))
-
+            '''
         all_beams = [int(fl.split('_')[-1].replace('.beams.fits', '')) for fl in glob('*beams.fits')]
         #print (all_beams)
         #Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
