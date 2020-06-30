@@ -60,17 +60,17 @@ def run_all(args):
     p = Pointing(field=field)
     intae_cat = ascii.read(p.intae_cat)
     all_grism_files = [fl.replace('.01.GrismFLT.fits', '_flt.fits') for fl in glob('*.01.GrismFLT.fits')]
-    grp = GroupFLT(
-        grism_files=all_grism_files, 
-        direct_files=[], 
-        ref_file = p.ref_image,
-        seg_file = p.seg_map,
-        catalog  = p.catalog,
-        pad=p.pad, cpu_count = -1)
-
 
     if args['reblot']:
         #Rewrite GrismFLT files to blot new targets (we only need to do this once)
+        grp = GroupFLT(
+            grism_files=all_grism_files, 
+            direct_files=[], 
+            ref_file = p.ref_image,
+            seg_file = p.seg_map,
+            catalog  = p.catalog,
+            pad=p.pad, cpu_count = -1)
+
         def rewrite_flt(FLT, p):
             FLT.process_seg_file(p.seg_map)
             FLT.save_full_pickle()
@@ -86,13 +86,21 @@ def run_all(args):
             catalog  = p.catalog,
             pad=p.pad, cpu_count = -1)
     
-    sc_table = Table.read(p.catalog, format='ascii.commented_header')
-    for FLT in grp.FLTs:
-        FLT.process_seg_file(p.seg_map)
-        FLT.catalog = FLT.blot_catalog(sc_table, sextractor = True)
-    
+
 
     if args['make_beams']:
+        grp = GroupFLT(
+            grism_files=all_grism_files, 
+            direct_files=[], 
+            ref_file = p.ref_image,
+            seg_file = p.seg_map,
+            catalog  = p.catalog,
+            pad=p.pad, cpu_count = -1)
+        sc_table = Table.read(p.catalog, format='ascii.commented_header')
+        for FLT in grp.FLTs:
+            FLT.process_seg_file(p.seg_map)
+            FLT.catalog = FLT.blot_catalog(sc_table, sextractor = True)
+        
         for ob in intae_cat:
             di_3dhst = ob['ID_3DHST']
             if (di_3dhst == -1) | (di_3dhst > 5400000): di = 5400000 + ob['ID_SF'] 
