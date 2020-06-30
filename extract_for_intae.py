@@ -56,7 +56,6 @@ def run_all(args):
     #PATH_TO_PREP        = '/Users/rsimons/Dropbox/clear/grizli_extractions_v3.0/test_intae/%s/Prep_z67'%field #change
     os.chdir(PATH_TO_PREP)
 
-    print('Loading contamination models...')
     p = Pointing(field=field)
     intae_cat = ascii.read(p.intae_cat)
     all_grism_files = [fl.replace('.01.GrismFLT.fits', '_flt.fits') for fl in glob('*.01.GrismFLT.fits')]
@@ -89,6 +88,7 @@ def run_all(args):
 
 
     if args['make_beams']:
+        print('Loading contamination models...')
         grp = GroupFLT(
             grism_files=all_grism_files, 
             direct_files=[], 
@@ -175,7 +175,7 @@ def run_all(args):
         all_beams = [int(fl.split('_')[-1].replace('.beams.fits', '')) for fl in glob('*beams.fits')]
         #print (all_beams)
         #Parallel(n_jobs = -1)(delayed(do_fit)(di, field, templ0, templ1) for di in all_beams)
-        for di in all_beams:
+        for di in all_beams[::-1]:
             do_fit(di, field, templ0, templ1)
 
 
