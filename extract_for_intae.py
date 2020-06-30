@@ -13,10 +13,10 @@ from astropy.io import ascii, fits
 import numpy as np
 from numpy import *
 import matplotlib.pyplot as plt
-
+from astropy.table import Table
 
 PATH_TO_CATS = '/Users/rsimons/Desktop/clear/catalogs'
-
+#PATH_TO_CATS = '/Users/rsimons/Dropbox/clear/catalogs' #change
 
 
 def parse():
@@ -53,12 +53,12 @@ class Pointing():
 def run_all(args):
     field = args['field']
     PATH_TO_PREP        = '/Users/rsimons/Desktop/clear/grizli_extractions_v3/%s/Prep_z67'%field
+    #PATH_TO_PREP        = '/Users/rsimons/Dropbox/clear/grizli_extractions_v3.0/test_intae/%s/Prep_z67'%field #change
     os.chdir(PATH_TO_PREP)
 
     print('Loading contamination models...')
     p = Pointing(field=field)
     intae_cat = ascii.read(p.intae_cat)
-
     all_grism_files = [fl.replace('.01.GrismFLT.fits', '_flt.fits') for fl in glob('*.01.GrismFLT.fits')]
     grp = GroupFLT(
         grism_files=all_grism_files, 
@@ -66,7 +66,7 @@ def run_all(args):
         ref_file = p.ref_image,
         seg_file = p.seg_map,
         catalog  = p.catalog,
-        pad=p.pad)
+        pad=p.pad, cpu_count = -1)
 
 
     if args['reblot']:
@@ -84,7 +84,13 @@ def run_all(args):
             ref_file = p.ref_image,
             seg_file = p.seg_map,
             catalog  = p.catalog,
-            pad=p.pad)
+            pad=p.pad, cpu_count = -1)
+    
+    sc_table = Table.read(p.catalog, format='ascii.commented_header')
+    for FLT in grp.FLTs:
+        FLT.process_seg_file(p.seg_map)
+        FLT.catalog = FLT.blot_catalog(sc_table, sextractor = True)
+    
 
     if args['make_beams']:
         for ob in intae_cat:
