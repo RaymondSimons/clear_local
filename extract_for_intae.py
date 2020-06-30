@@ -13,7 +13,6 @@ from astropy.io import ascii, fits
 import numpy as np
 from numpy import *
 import matplotlib.pyplot as plt
-plt.ioff()
 
 
 PATH_TO_CATS = '/Users/rsimons/Desktop/clear/catalogs'
@@ -67,8 +66,7 @@ def run_all(args):
         ref_file = p.ref_image,
         seg_file = p.seg_map,
         catalog  = p.catalog,
-        pad=p.pad,
-        cpu_count=1)
+        pad=p.pad)
 
 
     if args['reblot']:
@@ -86,8 +84,7 @@ def run_all(args):
             ref_file = p.ref_image,
             seg_file = p.seg_map,
             catalog  = p.catalog,
-            pad=p.pad,
-            cpu_count=1)
+            pad=p.pad)
 
     if args['make_beams']:
         for ob in intae_cat:
