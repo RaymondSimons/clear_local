@@ -142,7 +142,7 @@ def run_all(args):
                                                 zfit=pfit,diff=True)
             # Save drizzled ("stacked") 2D trace as PNG and FITS
             fig.savefig('{}_diff_{}.stack.png'.format(field, id))
-            hdu.writeto('{}_diff_{}.stack.fits'.format(field, id), clobber=True)
+            
 
             try:
                 out = grizli.fitting.run_all(
