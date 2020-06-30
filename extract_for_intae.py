@@ -151,7 +151,7 @@ def run_all(args):
                     t0=templ0, 
                     t1=templ1, 
                     fwhm=1200, 
-                    zr=[5., 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
+                    zr=[4.9, 12.0],              #zr=[0.0, 12.0],    #suggests zr = [0, 12.0] if we want to extend redshift fit
                     dz=[0.004, 0.0005], 
                     fitter='nnls',
                     group_name=field,# + '_%i'%phot_scale_order,
@@ -172,8 +172,8 @@ def run_all(args):
                     use_psf = True)          #default: False
             except OSError as err:
                 print("OS error: {0}".format(err))
-            except ValueError:
-                print("Could not convert data to an integer.")
+            except ValueError as err:
+                print("Value Error: {}".format(ValueError))
             except:
                 print("Unexpected error:", sys.exc_info()[0])
                 raise                
