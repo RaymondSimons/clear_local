@@ -91,8 +91,11 @@ def run_all(args):
 
     if args['make_beams']:
         for ob in intae_cat:
+
             di = ob['ID_3DHST']
+            print (di)
             if (di == -1) | (di > 5400000): di = 5400000 + ob['ID_SF'] 
+            print ('\t', di)
             beams = grp.get_beams(int(di), size=80)
             if beams != []:
                 print ('Creating beams for:', field, di)
